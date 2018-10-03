@@ -52,7 +52,23 @@ Field arguments in GraphQL queries are powerful not only because they can be use
 
 ### CP 4.2: 
 
-### CP 4.3: 
+### CP 4.3: Subquery-based filtering
+Consider the following GraphQL query which retrieves the title of books reviewed by Alice and, for each of these books, the names of all those reviewers of the book who have also reviewed a movie that was reviewed by Alice. 
+
+```
+query {
+ person(name:″Alice″) {
+   reviewedBooks {
+     title
+     reviewedBy(where:{reviewedMovies:{reviewedBy:{name:″Alice″}}}) {
+       name
+     }
+   }
+ }
+} 
+```
+
+The query represents a case in which candidate data objects selected by traversing a relationship are filtered based on some condition; this filter condition is expressed in some form of subquery that is embedded inside the corresponding field argument. As illustrated by the example query, such a filter condition may involve the traversal of relationships for each candidate data object. We notice that this feature bears similarities to the notion of correlated subqueries in relational query languages such as SQL, and supporting such a subquery-based filtering in GraphQL poses similar challenges as correlated subqueries in SQL.
 
 ### CP 4.4: 
 
