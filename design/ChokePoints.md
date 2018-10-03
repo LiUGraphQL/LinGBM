@@ -20,7 +20,8 @@ One of the main innovations of GraphQL in comparison to REST APIs is that it all
 
 ### CP 2.3: 
 
-### CP 2.4: 
+### CP 2.4: Traversal of relationships that form cycles
+In cases in which relationships form directed cycles, traversing along these relationships may result in coming back to a data object that has been visited before on the same traversal path (which, formally, turns the path into a walk). This choke point captures the challenge of avoiding unnecessary operations in these cases. For instance, a naive implementation may end up requesting the same data multiple times from the underlying data source. Even a more sophisticated solution that caches and reuses the results of such requests may end up repeating the same operations over the cached data.
 
 ### CP 2.5: 
 
