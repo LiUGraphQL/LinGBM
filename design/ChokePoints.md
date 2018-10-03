@@ -18,7 +18,21 @@ One of the main innovations of GraphQL in comparison to REST APIs is that it all
 
 ### CP 2.2: 
 
-### CP 2.3: 
+### CP 2.3: Relationship traversal with and without retrieval of intermediate object data
+In addition to traversing along multiple relationships, GraphQL allows users to retrieve attributes (scalar fields) of the objects that are visited during the traversal. As an example, consider the following GraphQL query.
+
+```
+query {
+  person(name:″Alice″) {
+    knows {
+      name
+      reviewedBooks { title }
+    }
+  }
+}
+```
+
+This query does not only retrieve the titles of the books reached via the traversal, but also the names of the persons that are visited when traversing to the books. This choke point captures how efficient a system is in retrieving multiple attributes of such intermediate object data.
 
 ### CP 2.4: 
 
