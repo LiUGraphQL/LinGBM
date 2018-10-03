@@ -61,6 +61,7 @@ Field arguments in GraphQL queries are powerful not only because they can be use
 ## Choke Points Related to Aggregation
 Another advanced feature that GraphQL APIs may provide is to execute aggregation functions over the queried data. We identify the following two choke points related to aggregation. 
 
-### CP 5.1: 
+### CP 5.1: Calculation-based aggregation
+This choke point focuses on aggregation functions that calculate a single value from a set of values specified by the query. Examples of such functions include SUM, AVERAGE, and MAX. The challenge is to push the computation of such aggregation functions into the underlying data source or, if this is not possible, employ some other techniques to aggregate the specified values efficiently.
 
 ### CP 5.2: 
