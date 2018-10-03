@@ -43,7 +43,8 @@ A feature related to paging is to allow users to specify a particular order over
 
 ### CP 3.2: 
 
-### CP 3.3: 
+### CP 3.3: Ordering
+The challenge captured by this choke point is to efficiently apply a user-specified order over the objects visited by traversing a 1:N relationship.
 
 ## Choke Points Related to Searching and Filtering
 Field arguments in GraphQL queries are powerful not only because they can be used as a flexible approach to expose paging and ordering features. Another use case, which is perhaps even more interesting from a data retrieval point of view, is to expose arbitrarily complex search and filtering functionality. The following choke points capture different challenges related to this use case. 
