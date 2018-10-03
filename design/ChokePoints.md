@@ -41,7 +41,8 @@ A feature related to paging is to allow users to specify a particular order over
 
 ### CP 3.1: 
 
-### CP 3.2: 
+### CP 3.2: Paging with offset
+This choke point captures the additional challenge of efficiently supporting paging also in cases in which a limited number of objects have to be retrieved starting from a user-specified offset.
 
 ### CP 3.3: 
 
