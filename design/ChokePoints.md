@@ -9,7 +9,8 @@ We have grouped the choke points of the our benchmark into the following five di
 ## Choke Points Related to Attribute Retrieval
 Queries may request the retrieval of multiple attributes (scalar fields) of the data objects selected by the queries. A naive implementation may perform multiple, separate operations to fetch these attributes from the underlying data source. An approach that is commonly used to improve the performance in this case is called _batching_; the idea of this approach is to combine the retrieval of all requested attributes into a single query over the underlying data source.
 
-### CP 1.1: 
+### CP 1.1: Multi-attribute retrieval
+This choke point captures the challenge to efficiently support queries that request multiple attributes of the selected data objects.
 
 ## Choke Points Related to Relationship Traversal 
 One of the main innovations of GraphQL in comparison to REST APIs is that it allows users to traverse the relationships between data objects in a single request. Supporting such a traversal in a GraphQL server may pose different challenges. The following choke points capture these challenges.
