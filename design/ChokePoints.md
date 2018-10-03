@@ -16,7 +16,8 @@ One of the main innovations of GraphQL in comparison to REST APIs is that it all
 
 ### CP 2.1: 
 
-### CP 2.2: 
+### CP 2.2: Efficient traversal of 1:1 relationship types
+While all 1:1 relationship types trivially have the same fan-out of 1, they may differ in whether they are mandatory or optional. Additionally, a traversal of these types of relationships may be supported more efficiently by using techniques that cannot be applied to 1:N relationships. Consequently, the challenge captured by this choke point is to employ suitable traversal techniques that are efficient for the different types of relationships.
 
 ### CP 2.3: 
 
