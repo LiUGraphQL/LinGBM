@@ -56,7 +56,8 @@ Field arguments in GraphQL queries are powerful not only because they can be use
 
 ### CP 4.4: 
 
-### CP 4.5: 
+### CP 4.5: Multiple filter conditions
+In addition to single filter conditions, it is also possible to enable users to express conjunctions or disjunctions of multiple such conditions. The added challenge in this case is that the conditions may not be equally selective. Hence, pushing them together to the underlying data source, or at least choosing which of them to evaluate first, may have an impact on the performance (in particular, if they are subqueries).
 
 ## Choke Points Related to Aggregation
 Another advanced feature that GraphQL APIs may provide is to execute aggregation functions over the queried data. We identify the following two choke points related to aggregation. 
