@@ -22,7 +22,8 @@ One of the main innovations of GraphQL in comparison to REST APIs is that it all
 
 ### CP 2.4: 
 
-### CP 2.5: 
+### CP 2.5: Acyclic relationship traversal that visits data objects repeatedly
+Even without directed cycles, data objects may be visited multiple times during a traversal (via different paths). The challenge in this case is essentially the same as in the previous choke point. However, the techniques to address the challenge may be different, or they may not be equally effective in all cases. Consequently, we introduce a separate choke point related to avoiding unnecessary operations when data objects are visited repeatedly during the traversal of acyclic relationships.
 
 ## Choke Points Related to Ordering and Paging
 Given that an exhaustive traversal of a sequence of 1:N relationships may easily result in reaching a prohibitively large number of data objects, providers of public GraphQL APIs aim to protect their servers from queries that require such resource-intensive traversals. A common approach used in this context is to enforce clients to use paging when accessing 1:N relationships, which essentially establishes an upper bound on the maximum possible fan-out at every level of the traversal. As an example, consider the following query which retrieves only the last ten books reviewed by each of the first ten persons known by Alice (rather than all the books reviewed by all the persons known by Alice).
