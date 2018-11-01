@@ -23,7 +23,7 @@ In addition to traversing along multiple relationships, GraphQL allows users to 
 
 ```
 query {
-  person(name:″Alice″) {
+  person(name:"Alice") {
     knows {
       name
       reviewedBooks { title }
@@ -32,7 +32,7 @@ query {
 }
 ```
 
-This query does not only retrieve the titles of the books reached via the traversal, but also the names of the persons that are visited when traversing to the books. This choke point captures how efficient a system is in retrieving multiple attributes of such intermediate object data.
+This query does not only retrieve the titles of the books that are reached via the traversal. Instead, the query also retrieves the names of the persons that are visited when traversing to the books. In more general terms, this query does not only traverse from some starting node (such as the Alice object in the example) to some target nodes (the books) and then retrieve some attributes of these target nodes (the book titles). Instead, the additional aspect of this query that is important for this choke point is that the query requests attributes of objects that are along the way of the traversal. Hence, the challenge here is not only to be able to traverse efficiently (without looking at the intermediate objects along the way)--which is something that is already captured by choke points CP 2.1 and CP 2.2--but also to be able to efficiently access the attributes of objects that we "pass by" during the traversal.
 
 ### CP 2.4: 
 
