@@ -1,3 +1,7 @@
 Graphql Benchmark -- query Generator
 
-TODO
+TODO::
+
+
+1. 
+2. 
