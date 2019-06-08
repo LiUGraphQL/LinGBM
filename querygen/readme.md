@@ -31,5 +31,5 @@ Configuration options:
 The following example specifies 10 queries for each query template.
 
 ```
-java -cp target/querygen-1.0-SNAPSHOT.jar se.liu.ida.querygen.generator -nm 15
+java -cp target/querygen-1.0-SNAPSHOT.jar se.liu.ida.querygen.generator -nm 10
 ```
