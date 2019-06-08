@@ -1,0 +1,17 @@
+query multipleFilters{
+  Producer(nr:$producerID) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:$date}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:$keyword}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}

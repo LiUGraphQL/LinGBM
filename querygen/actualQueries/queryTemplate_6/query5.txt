@@ -1,0 +1,15 @@
+query vendor_offer_product_producer_country
+{
+  Vendor(nr:39) {
+    offers{
+      product {
+        producer {
+          country { code }
+        }
+      }
+    }
+  }
+}
+
+
+ 

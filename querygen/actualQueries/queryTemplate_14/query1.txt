@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:19) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:2001-06-04}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"bureaucracies"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

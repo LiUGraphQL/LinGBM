@@ -1,0 +1,17 @@
+query review_product_producttype_parenttype
+{
+  review(nr:18008) {
+    reviewFor {
+      type {
+        nr
+        label
+        comment
+        parent { nr label comment }
+      }
+    }
+  }
+}
+
+
+
+ 

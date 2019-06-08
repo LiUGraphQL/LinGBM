@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:55) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:2002-10-23}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"bhangs"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

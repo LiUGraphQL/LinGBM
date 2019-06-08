@@ -1,0 +1,13 @@
+query producer_product_review
+{
+  Producer(nr:30) {
+    products {
+      reviews { title }
+    }
+  }
+}
+
+
+
+
+ 
