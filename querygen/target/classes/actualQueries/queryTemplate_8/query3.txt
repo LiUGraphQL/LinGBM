@@ -1,0 +1,10 @@
+query sorting_with_paging
+{
+  offers(limit:247, order:[deliveryDays, publisher]) {
+    offerWebpage
+    validFrom
+    price
+  }
+}
+
+ 

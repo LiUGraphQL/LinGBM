@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:4) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:2003-10-28}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"attaching"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

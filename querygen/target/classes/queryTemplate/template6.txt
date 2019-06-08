@@ -1,0 +1,13 @@
+query vendor_offer_product_producer_country
+{
+  Vendor(nr:$vendorID) {
+    offers{
+      product {
+        producer {
+          country { code }
+        }
+      }
+    }
+  }
+}
+
