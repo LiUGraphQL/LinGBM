@@ -1,0 +1,15 @@
+query review_product_producttype_parenttype
+{
+  review(nr:$reviewID) {
+    reviewFor {
+      type {
+        nr
+        label
+        comment
+        parent { nr label comment }
+      }
+    }
+  }
+}
+
+

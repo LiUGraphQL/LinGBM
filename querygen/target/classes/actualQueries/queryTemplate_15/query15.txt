@@ -1,0 +1,13 @@
+query aggregation_query
+{
+   Vendor(nr:22){
+	offersConnection{
+		Aggregate{
+			count
+                }
+        }
+    } 
+}
+
+
+ 

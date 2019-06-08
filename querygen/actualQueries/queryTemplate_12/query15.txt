@@ -1,0 +1,15 @@
+query subqueryFilter1
+{
+  Producer(nr:11) {
+    product {
+      offers(where: { vendor: {nr:77} } )
+      {
+        price
+        offerWebpage
+        product {label comments}
+      }
+    }
+  }
+}
+
+ 

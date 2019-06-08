@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:44) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:2005-06-14}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"yearling"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

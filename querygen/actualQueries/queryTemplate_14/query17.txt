@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:17) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:2004-09-04}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"overdiversified"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

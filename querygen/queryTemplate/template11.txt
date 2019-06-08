@@ -1,0 +1,9 @@
+query subquerySearch
+{
+offers(where: { vendor: {nr:$vendorID} } )
+  	{
+    	price
+          	offerWebpage
+          	product {label comments}
+  	}
+}

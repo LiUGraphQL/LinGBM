@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:65) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:2004-03-20}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"regnal"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

@@ -1,0 +1,12 @@
+query offer_product_review
+{
+  Offer(nr:26844) {
+    product {
+      reviews { title text reviewDate publishDate rating1 rating2 }
+    }
+  }
+}
+
+
+
+ 
