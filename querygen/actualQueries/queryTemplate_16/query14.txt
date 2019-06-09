@@ -1,5 +1,5 @@
 query aggregation_query{
-    Vendor(nr:29){
+    Vendor(nr:7){
 	offersConnection{
 		Aggregate{
 			Avg{

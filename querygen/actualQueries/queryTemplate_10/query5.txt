@@ -2,7 +2,7 @@ query stringMatching
 {
   reviewSearch(field:text,
                criterion:contains,
-               pattern:"stateless")
+               pattern:"exegeses")
   {
     title 
     label

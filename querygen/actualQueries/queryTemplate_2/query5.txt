@@ -1,6 +1,6 @@
 query producer_product_review
 {
-  Producer(nr:70) {
+  Producer(nr:15) {
     products {
       reviews { title }
     }

@@ -1,8 +1,8 @@
 query multipleFilters{
-  Producer(nr:54) {
+  Producer(nr:15) {
     product {
       offers(where:{
-        vendor:{publishDate:{criterion:AFTER date:2001-02-01}} 
+        vendor:{publishDate:{criterion:AFTER date:"2001-02-01"}} 
         AND: {
         vendor:{comment:{criterion:CONTAINS, pattern:"shinning"}}
         }

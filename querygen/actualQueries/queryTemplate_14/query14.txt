@@ -1,10 +1,10 @@
 query multipleFilters{
-  Producer(nr:51) {
+  Producer(nr:56) {
     product {
       offers(where:{
-        vendor:{publishDate:{criterion:AFTER date:2005-07-27}} 
+        vendor:{publishDate:{criterion:AFTER date:"2005-05-05"}} 
         AND: {
-        vendor:{comment:{criterion:CONTAINS, pattern:"topkicks"}}
+        vendor:{comment:{criterion:CONTAINS, pattern:"preferment"}}
         }
       })
         {	

@@ -1,6 +1,6 @@
 query product_review_product
 {
-  Product(nr:1390) {
+  Product(nr:294) {
     reviews {
       title
       product {

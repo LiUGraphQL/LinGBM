@@ -1,6 +1,6 @@
 query offer_product_review_person_country
 {
-  offer(nr:45900) {
+  offer(nr:34198) {
     product {
 	label
 	comment

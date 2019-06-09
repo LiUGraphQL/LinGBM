@@ -1,6 +1,6 @@
 query offer_product_review
 {
-  Offer(nr:18058) {
+  Offer(nr:8153) {
     product {
       reviews { title text reviewDate publishDate rating1 rating2 }
     }

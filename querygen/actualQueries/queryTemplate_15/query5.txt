@@ -1,6 +1,6 @@
 query aggregation_query
 {
-   Vendor(nr:5){
+   Vendor(nr:13){
 	offersConnection{
 		Aggregate{
 			count

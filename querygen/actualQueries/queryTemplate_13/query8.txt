@@ -1,8 +1,8 @@
 query subqueryFilter2
 {
-  Producer(nr:50) {
+  Producer(nr:7) {
     product {
-      offers(where:{ vendor:{ publishDate:{criterion:AFTER date:2005-01-20}}})
+      offers(where:{ vendor:{ publishDate:{criterion:AFTER date:"2001-06-23"}}})
       {	
         price
         offerWebpage

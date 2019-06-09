@@ -4,22 +4,20 @@ import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-// This module works for input query template and output query instances
-// queryInstantiation will be called from here
+// This module works for input query templates and output query instances
+// queryInstantiation is called from here
 public class generator {
 
 	// TODO Auto-generated constructor stub
 	protected static int numQueriesPerTempate = generatorDefaultValues.numQueriesPerTempateDef;
-	//protected static File queryTemplate = generatorDefaultValues.queryTemplateFile;// where to take the queries from
 	protected static String placeholderValDir= generatorDefaultValues.placeholderValDirDef;
 	protected static String queryTemplateDir = generatorDefaultValues.queryTemplateDirDef;
 	protected static String queryInstanceDir = generatorDefaultValues.queryInstanceDirDef;
 	static ArrayList<String> templates = new ArrayList<String>();
+
 	/*
 	 * Parameters for steady state
 	 */
-
-	protected boolean rampup = false;
 	
 	public generator(String[] args) {
 		processProgramParameters(args);
@@ -61,7 +59,6 @@ public class generator {
 	}
 	
 	//print command line options
-
 	protected void printUsageInfos() {
 		String output = "Usage: java benchmark.queryGenerator <options> GraphQL\n\n"
 				+ "Possible options are:\n"
@@ -112,22 +109,21 @@ public class generator {
 	
 
 	public static void main(String[] args) throws IOException, ParseException {
-		// TODO Auto-generated method stub
 		generator generator = new generator(args);
+
+		System.out.println("\nStart generating queries...\n");
 		
-		//generator.init();
-		System.out.println("\nStarting generating queries...\n");
-		
-		//Find possible values for the placeholders
+		//The path to possible values for the placeholders
 		File resourceDir = new File(placeholderValDir);
 		
 		//read query template, and store it as string
 		File dir = new File(queryTemplateDir);
 		File[] directoryListing = dir.listFiles();
+		int templatNum = directoryListing.length;
 		if(directoryListing != null){
-			for (int i = 1; i<= 16; i++){
-				File queryinstance = new File(dir, "template"+i+".txt");
-				FileInputStream is = new FileInputStream(queryinstance);
+			for (int i = 1; i<= templatNum; i++){
+				File queryInstance = new File(dir, "template"+i+".txt");
+				FileInputStream is = new FileInputStream(queryInstance);
 				BufferedReader tsvFile = new BufferedReader(new InputStreamReader(is));
 				String line = tsvFile.readLine(); 
 				StringBuilder sb = new StringBuilder();
@@ -140,15 +136,15 @@ public class generator {
 			}
 		}
 		
-		File dirTem = new File(queryInstanceDir);
-		deleteFolder(dirTem);
+		File dirIns = new File(queryInstanceDir);
+		deleteFolder(dirIns);
 		
 		for(int i=0; i< parameters.length; i++){
 			String queryTemp = templates.get(i);
 			String placeholder = parameters[i];
-			System.out.println(i+"queryTemp:"+queryTemp);
-			System.out.print(i+"placeholder:"+placeholder);
-			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, resourceDir, dirTem, numQueriesPerTempate, (i+1));
+			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, resourceDir, dirIns, numQueriesPerTempate, (i+1));
+			System.out.println("queries for template "+(i+1)+" has been generated.");
 		}
+		System.out.println("All query instances has been generated.");
 	}
 }

@@ -1,6 +1,6 @@
 query review_product_producttype_parenttype
 {
-  review(nr:39106) {
+  review(nr:21147) {
     reviewFor {
       type {
         nr

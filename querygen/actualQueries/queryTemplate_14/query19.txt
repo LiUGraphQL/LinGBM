@@ -2,7 +2,7 @@ query multipleFilters{
   Producer(nr:30) {
     product {
       offers(where:{
-        vendor:{publishDate:{criterion:AFTER date:2003-03-08}} 
+        vendor:{publishDate:{criterion:AFTER date:"2003-03-08"}} 
         AND: {
         vendor:{comment:{criterion:CONTAINS, pattern:"surrejoinders"}}
         }

@@ -1,6 +1,6 @@
 query subquerySearch
 {
-offers(where: { vendor: {nr:5} } )
+offers(where: { vendor: {nr:22} } )
   	{
     	price
           	offerWebpage

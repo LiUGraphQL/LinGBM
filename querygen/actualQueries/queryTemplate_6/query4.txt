@@ -1,6 +1,6 @@
 query vendor_offer_product_producer_country
 {
-  Vendor(nr:8) {
+  Vendor(nr:24) {
     offers{
       product {
         producer {

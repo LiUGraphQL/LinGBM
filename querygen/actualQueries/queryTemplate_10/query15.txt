@@ -2,7 +2,7 @@ query stringMatching
 {
   reviewSearch(field:text,
                criterion:contains,
-               pattern:"agronomists")
+               pattern:"departmentalized")
   {
     title 
     label

@@ -1,8 +1,8 @@
 query subqueryFilter1
 {
-  Producer(nr:23) {
+  Producer(nr:12) {
     product {
-      offers(where: { vendor: {nr:67} } )
+      offers(where: { vendor: {nr:14} } )
       {
         price
         offerWebpage

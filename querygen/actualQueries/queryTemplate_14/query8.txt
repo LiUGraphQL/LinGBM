@@ -1,10 +1,10 @@
 query multipleFilters{
-  Producer(nr:1) {
+  Producer(nr:4) {
     product {
       offers(where:{
-        vendor:{publishDate:{criterion:AFTER date:2006-05-09}} 
+        vendor:{publishDate:{criterion:AFTER date:"2003-10-28"}} 
         AND: {
-        vendor:{comment:{criterion:CONTAINS, pattern:"nonaligned"}}
+        vendor:{comment:{criterion:CONTAINS, pattern:"attaching"}}
         }
       })
         {	

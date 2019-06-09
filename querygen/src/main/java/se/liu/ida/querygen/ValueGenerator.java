@@ -32,11 +32,12 @@ public class ValueGenerator {
 		String year, month, day;
 		String random = "1900-01-01";
 		String connect = "-";
-		SimpleDateFormat objSDF = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat objSDF = new SimpleDateFormat("yyyy-MM-dd");
+
 		Date startDate = objSDF.parse(start);
 		Date endDate = objSDF.parse(end);
 		Date randomDate = objSDF.parse(random);
-		
+
 		while(randomDate.compareTo(startDate) < 0 || randomDate.compareTo(endDate) > 0){
 			year = String.valueOf(randomInt(2000, 2006));
 			int monthTem = randomInt(1, 12);
@@ -52,9 +53,9 @@ public class ValueGenerator {
 				day = String.valueOf(dayTem);
 			}
 			random = year+connect+month+connect+day;
-			if(random != "2004-01-14") {
-				randomDate = objSDF.parse(random);
-			}
+            if(random != "2004-01-14"){
+                randomDate = objSDF.parse(random);
+            }
 		}
 		date = random;
 	    return date;
