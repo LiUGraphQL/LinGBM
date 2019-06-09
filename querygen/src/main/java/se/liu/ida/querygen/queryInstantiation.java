@@ -35,7 +35,7 @@ public class queryInstantiation {
 				for(int j = 0; j<valueCombine[0].length; j++){
 					replaceString = replaceString.replace(paraParts[j],valueCombine[i][j]);
 				}
-				File queryinstance = new File(dir, "query"+(i+1)+".txt");
+				File queryinstance = new File(dir, "query"+(i+1)+".graphql");
 				try(
 						FileWriter rfw = new FileWriter(queryinstance, true);
 						BufferedWriter rbw = new BufferedWriter(rfw);
