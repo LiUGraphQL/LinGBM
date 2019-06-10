@@ -33,11 +33,11 @@ public class generator {
 			try {
 				if (args[i].equals("-nm")) {
 					numQueriesPerTempate = Integer.parseInt(args[i++ + 1]);
-				} else if (args[i].equals("-idir")) {
+				} else if (args[i].equals("-values")) {
 					placeholderValDir = args[i++ + 1];
-				} else if (args[i].equals("-temp")) {
+				} else if (args[i].equals("-templates")) {
 					queryTemplateDir = args[i++ + 1];
-				} else if (args[i].equals("-oq")) {
+				} else if (args[i].equals("-outdir")) {
 					queryInstanceDir = args[i++ + 1];
 				} else {
 					if (!args[i].equals("-help")) {

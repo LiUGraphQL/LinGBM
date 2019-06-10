@@ -8,7 +8,7 @@ The input to the query generator tool contains 2 parts:
 2. **Values for placeholders**: these values are available in an extra directory that the [BSBM data generator](http://wifo5-03.informatik.uni-mannheim.de/bizer/berlinsparqlbenchmark/spec/BenchmarkRules/index.html#datagenerator) 
 produces, default "/td_data". The values in this directory will be different for the different datasets that the dataset generator generates.
 
-The query generator tool turns the above mentioned query templates into a group of actual queries, where the placeholders are replaced by actual values, which are randomly selected from valid values for a particular dataset. For every dataset, the query generator has to be run again to obtain the query instances that are guaranteed to work for that dataset.
+The query generator tool turns the above-mentioned query templates into a group of actual queries, where the placeholders are replaced by actual values, which are randomly selected from valid values for a particular dataset. For the same dataset, the generated query instances are deterministic and duplicate-free, however, for a different dataset, the query generator has to be run again to obtain the query instances that are guaranteed to work for that dataset.
 
 ### Setup
 
@@ -34,7 +34,7 @@ Configuration options:
 | ------ | ------|
 |-nm \<number of instances for each template> |The number of query instances for each template. Default: 20. <br> The generated instances is random but not duplicate. If the total number of possible instances is less than the specified value, then generate all possible query instances.| 
 |-values \<path to directory> |The input values for placeholders, which was created by the Dataset Generator. Default:"td_data"|
-|-tempplates \<path to query template> |The input query templates. Default: "queryTemplate"| 
+|-templates \<path to query template> |The input query templates. Default: "queryTemplate"| 
 |-outdir \<path to output directory> |The output directory for storing the generated queries. Default: "actualQueries"|
 
 The following example specifies 10 queries for each query template.
