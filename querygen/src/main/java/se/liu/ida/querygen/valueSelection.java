@@ -12,8 +12,12 @@ import java.util.*;
 public class valueSelection{
 
 	protected ValueGenerator valueGen;
-	protected HashMap<String,Integer> wordHash;
-	protected String[] wordList;
+	protected HashMap<String,Integer> wordHashLabelOfProduct;
+	protected HashMap<String,Integer> wordHashTextOfReview;
+	protected HashMap<String,Integer> wordHashCommentOfVendor;
+	protected String[] wordListLabelOfProduct;
+	protected String[] wordListTextOfReview;
+	protected String[] wordListCommentOfVendor;
 	protected GregorianCalendar currentDate;
 	protected Integer[] producerOfProduct;
 	protected Integer[] vendorOfOffer;
@@ -24,7 +28,6 @@ public class valueSelection{
 	protected Integer vendorCount;
 	protected Integer producerCount;
 	protected Integer instanceNm;
-	protected Integer maxInstanceNm;
 	
 	protected Integer scalefactor; 
 
@@ -49,13 +52,24 @@ public class valueSelection{
 		try {
 			currentDateAndLabelWordsInput = new ObjectInputStream(new FileInputStream(cdlw));
 			productCount = currentDateAndLabelWordsInput.readInt();
+			System.out.println("number of products: "+productCount);
 			reviewCount = currentDateAndLabelWordsInput.readInt();
+			System.out.println("number of reviews: "+reviewCount);
 			offerCount = currentDateAndLabelWordsInput.readInt();
+			System.out.println("number of offers: "+offerCount);
 			currentDate = (GregorianCalendar) currentDateAndLabelWordsInput.readObject();
 			@SuppressWarnings("unchecked")
 			HashMap<String, Integer> x = (HashMap<String, Integer>)currentDateAndLabelWordsInput.readObject();
-			wordHash = x ;
-			wordList = wordHash.keySet().toArray(new String[0]);
+			wordHashLabelOfProduct = x ;
+			wordListLabelOfProduct = wordHashLabelOfProduct.keySet().toArray(new String[0]);
+			HashMap<String, Integer> y = (HashMap<String, Integer>)currentDateAndLabelWordsInput.readObject();
+			wordHashTextOfReview = y ;
+			wordListTextOfReview = wordHashTextOfReview.keySet().toArray(new String[0]);
+			System.out.println("number of words that used in the text of Reviews: "+wordListTextOfReview.length);
+			HashMap<String, Integer> z = (HashMap<String, Integer>)currentDateAndLabelWordsInput.readObject();
+			wordHashCommentOfVendor = z ;
+			wordListCommentOfVendor = wordHashCommentOfVendor.keySet().toArray(new String[0]);
+			System.out.println("number of words that used in the comment of Vendors: "+wordListCommentOfVendor.length);
 		} catch(IOException | ClassNotFoundException e) {
 			System.err.println("Could not open or process file " + cdlw.getAbsolutePath());
 			System.err.println(e.getMessage());
@@ -87,6 +101,8 @@ public class valueSelection{
 			vendorOfOffer = (Integer[]) offerVendorInput.readObject();
 			//Add vendorCount
 			vendorCount =  vendorOfOffer.length;
+			System.out.println("number of vendors: "+vendorCount);
+
 		} catch(IOException e) {
 			System.err.println("Could not open or process file " + pp.getAbsolutePath());
 			System.err.println(e.getMessage());
@@ -103,6 +119,7 @@ public class valueSelection{
 			producerOfProduct = (Integer[]) productProducerInput.readObject();
 			//Add ProducerCount
 			producerCount =  producerOfProduct.length;
+			System.out.println("number of producers: "+producerCount);
 			scalefactor = producerOfProduct[producerOfProduct.length-1];
 		} catch(IOException e) {
 			System.err.println("Could not open or process file " + pp.getAbsolutePath());
@@ -149,9 +166,13 @@ public class valueSelection{
 		else if ("$date".equals(field)){
 			randomNr = valueGen.getRandomDate("2000-09-20", "2006-12-23");
 		}
-		else if ("$keyword".equals(field)){
-			Integer index = valueGen.randomInt(1, wordList.length-1);
-			randomNr = wordList[index];
+		else if ("$textOfReviewKeyword".equals(field)){
+			Integer index = valueGen.randomInt(0, wordListTextOfReview.length-1);
+			randomNr = wordListTextOfReview[index];
+		}
+		else if ("$commentOfVendorKeyword".equals(field)){
+			Integer index = valueGen.randomInt(0, wordListCommentOfVendor.length-1);
+			randomNr = wordListCommentOfVendor[index];
 		}
 		return randomNr;
 	}
@@ -170,9 +191,9 @@ public class valueSelection{
 			instanceNm = Math.min(offerCount, maxInstanceNm);
 		} else if ("$vendorID".equals(field)) {
 			instanceNm = Math.min(vendorCount, maxInstanceNm);
-		} else if ("$keyword".equals(field)) {
+		} else if ("$textOfReviewKeyword".equals(field)) {
 			//return index of attribute field
-			instanceNm = Math.min(wordList.length, maxInstanceNm);
+			instanceNm = Math.min(wordListTextOfReview.length, maxInstanceNm);
 		}else if ("$producerID-$vendorID".equals(field)) {
 			int combTotalCount = vendorCount*producerCount;
 			instanceNm = Math.min(combTotalCount, maxInstanceNm);
@@ -184,8 +205,8 @@ public class valueSelection{
 			int combTotalCount = producerCount*2285;
 			instanceNm = Math.min(combTotalCount, maxInstanceNm);
 		}
-		else if ("$producerID-$date-$keyword".equals(field)) {
-			int combTotalCount = producerCount*2285*(wordList.length);
+		else if ("$producerID-$date-$commentOfVendorKeyword".equals(field)) {
+			int combTotalCount = producerCount*2285*(wordListCommentOfVendor.length);
 			instanceNm = Math.min(combTotalCount, maxInstanceNm);
 		}
 		else if ("$vendorID-$attrReview".equals(field)) {
@@ -244,7 +265,7 @@ public class valueSelection{
 			String[] parts = element.split("_");
 			int k=0;
 			for(String value:parts){
-				if(("$date".equals(fields[k]))||("$keyword".equals(fields[k]))){
+				if(("$date".equals(fields[k]))||("$textOfReviewKeyword".equals(fields[k]))||("$commentOfVendorKeyword".equals(fields[k]))){
 					paras[i][k]= "\""+value+"\"";
 				}
 				else if("$attrReview".equals(fields[k])){

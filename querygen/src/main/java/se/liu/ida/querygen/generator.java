@@ -3,6 +3,7 @@ package se.liu.ida.querygen;
 import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Random;
 
 // This module works for input query templates and output query instances
 // queryInstantiation is called from here
@@ -14,6 +15,7 @@ public class generator {
 	protected static String queryTemplateDir = generatorDefaultValues.queryTemplateDirDef;
 	protected static String queryInstanceDir = generatorDefaultValues.queryInstanceDirDef;
 	static ArrayList<String> templates = new ArrayList<String>();
+	static final Random seedGenerator = new Random(53223436L);
 
 	/*
 	 * Parameters for steady state
@@ -21,8 +23,6 @@ public class generator {
 	
 	public generator(String[] args) {
 		processProgramParameters(args);
-		System.out.print("Reading query template data...");
-		System.out.println("done");
 	}
 	
 	 //Process the program parameters typed on the command line.
@@ -101,21 +101,17 @@ public class generator {
 			"$offerID", "$productID", 
 			"$vendorID", "$vendorID-$offset", 
 			"$cnt-$attrOffer1-$attrOffer2", 
-			"$vendorID-$attrReview", "$keyword", 
+			"$vendorID-$attrReview", "$textOfReviewKeyword",
 			"$vendorID", "$producerID-$vendorID", 
 			"$producerID-$date", 
-			"$producerID-$date-$keyword", 
+			"$producerID-$date-$commentOfVendorKeyword",
 			"$vendorID", "$vendorID"};
 	
 
 	public static void main(String[] args) throws IOException, ParseException {
 		generator generator = new generator(args);
 
-		System.out.println("\nStart generating queries...\n");
-		
-		//The path to possible values for the placeholders
-		File resourceDir = new File(placeholderValDir);
-		
+		System.out.println("Read in query templates...");
 		//read query template, and store it as string
 		File dir = new File(queryTemplateDir);
 		File[] directoryListing = dir.listFiles();
@@ -135,14 +131,27 @@ public class generator {
 				templates.add(queryTemp);
 			}
 		}
-		
+		System.out.println("Query templates are prepared.");
+
+		System.out.println("Read in Values for placeholders...");
+		//The path to possible values for the placeholders
+		File resourceDir = new File(placeholderValDir);
+		// read in files that used to generate values for the placeholders
+		valueSelection valueSel = new valueSelection();
+		Long seed = seedGenerator.nextLong();
+		valueSel.init(resourceDir, seed);
+		System.out.println("Values for placeholders are prepared.");
+
+		System.out.println("\n Clear existing query instances...\n");
 		File dirIns = new File(queryInstanceDir);
 		deleteFolder(dirIns);
-		
+		System.out.println("\n Cleared\n");
+
+		System.out.println("\nStart generating new query instances...\n");
 		for(int i=0; i< parameters.length; i++){
 			String queryTemp = templates.get(i);
 			String placeholder = parameters[i];
-			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, resourceDir, dirIns, numQueriesPerTempate, (i+1));
+			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, numQueriesPerTempate, (i+1));
 			System.out.println("queries for template "+(i+1)+" has been generated.");
 		}
 		System.out.println("All query instances has been generated.");

@@ -13,20 +13,15 @@ import java.util.Set;
 //Given a query template, output a set of query instances.
 public class queryInstantiation {
 
-	static final Random seedGenerator = new Random(53223436L);
-	public queryInstantiation(String oldQuery, String parameter, File resourceDir, File actualDir, int max, int No_temp) throws ParseException {
+	public queryInstantiation(String oldQuery, String parameter, valueSelection valueSel, File dirIns , int max, int No_temp) throws ParseException {
 
-		// read in files that used to generate values for the placeholders
-		valueSelection value = new valueSelection();
-		Long seed = seedGenerator.nextLong();
-		value.init(resourceDir, seed);
 
 		// Parse the parameter
 		String[] paraParts = parameter.split("-");
 
 		//Process the query string: replace the placeholders with corresponding values
 		String[][] valueCombine = null;
-		valueCombine = value.SelectedValues(parameter, 20);
+		valueCombine = valueSel.SelectedValues(parameter, 20);
 		if(valueCombine!= null){
 			for(int i = 0; i<valueCombine.length; i++){
 				String replaceString=oldQuery;
