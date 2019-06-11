@@ -33,7 +33,7 @@ Configuration options:
 | Option | Description |
 | ------ | ------|
 |-nm \<number of instances for each template> |The number of query instances for each template. Default: 20. <br> The generated instances is random but not duplicate. If the total number of possible instances is less than the specified value, then generate all possible query instances.| 
-|-values \<path to directory> |The input values for placeholders, which was created by the Dataset Generator. Default:"td_data"|
+|-values \<path to directory> |The input values for placeholders, which was created by the Dataset Generator. Default:"/datasetgen/td_data"|
 |-templates \<path to query template> |The input query templates. Default: "queryTemplate"| 
 |-outdir \<path to output directory> |The output directory for storing the generated queries. Default: "actualQueries"|
 

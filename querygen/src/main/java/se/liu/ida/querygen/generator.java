@@ -11,9 +11,15 @@ public class generator {
 
 	// TODO Auto-generated constructor stub
 	protected static int numQueriesPerTempate = generatorDefaultValues.numQueriesPerTempateDef;
-	protected static String placeholderValDir= generatorDefaultValues.placeholderValDirDef;
 	protected static String queryTemplateDir = generatorDefaultValues.queryTemplateDirDef;
 	protected static String queryInstanceDir = generatorDefaultValues.queryInstanceDirDef;
+
+	//Current work path
+	public static String currentPath = System.getProperty("user.dir");
+	//return back to the project path: ../LinGBM
+	public static String path = currentPath.substring(0, currentPath.lastIndexOf("/querygen"));
+	protected static String placeholderValDir= path+generatorDefaultValues.placeholderValDirDef;
+
 	static ArrayList<String> templates = new ArrayList<String>();
 	static final Random seedGenerator = new Random(53223436L);
 
@@ -110,6 +116,8 @@ public class generator {
 
 	public static void main(String[] args) throws IOException, ParseException {
 		generator generator = new generator(args);
+
+		System.out.println("Current path:/n"+System.getProperty("user.dir"));
 
 		System.out.println("Read in query templates...");
 		//read query template, and store it as string

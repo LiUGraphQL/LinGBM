@@ -100,7 +100,7 @@ public class valueSelection{
 			offerVendorInput = new ObjectInputStream(new FileInputStream(vo));
 			vendorOfOffer = (Integer[]) offerVendorInput.readObject();
 			//Add vendorCount
-			vendorCount =  vendorOfOffer.length;
+			vendorCount =  vendorOfOffer.length-1;
 			System.out.println("number of vendors: "+vendorCount);
 
 		} catch(IOException e) {
@@ -118,7 +118,7 @@ public class valueSelection{
 			productProducerInput = new ObjectInputStream(new FileInputStream(pp));
 			producerOfProduct = (Integer[]) productProducerInput.readObject();
 			//Add ProducerCount
-			producerCount =  producerOfProduct.length;
+			producerCount =  producerOfProduct.length-1;
 			System.out.println("number of producers: "+producerCount);
 			scalefactor = producerOfProduct[producerOfProduct.length-1];
 		} catch(IOException e) {
