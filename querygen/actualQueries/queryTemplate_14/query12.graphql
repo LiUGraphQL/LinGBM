@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:22) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2006-03-10"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"closemouthed"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

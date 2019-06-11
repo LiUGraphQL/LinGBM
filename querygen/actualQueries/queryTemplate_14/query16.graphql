@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:5) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2005-11-11"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"vested"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

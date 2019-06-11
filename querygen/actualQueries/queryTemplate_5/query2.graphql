@@ -1,0 +1,28 @@
+query product_review_product
+{
+  Product(nr:1141) {
+    reviews {
+      title
+      product {
+        reviews {
+          title
+          product {
+            reviews {
+              title
+              product { 
+                reviews {
+			  text
+                  title
+                  product { label }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+ 

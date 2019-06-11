@@ -1,0 +1,12 @@
+query paging_with_offset_as_counter
+{
+  Vendor(nr:16) {
+    offers(limit:10, offset:193) {
+      offerWebpage
+      product { label comment }
+    }
+  }
+}
+
+
+ 

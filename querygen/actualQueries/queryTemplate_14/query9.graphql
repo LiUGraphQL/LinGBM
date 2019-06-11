@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:14) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2002-01-04"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"overlords"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:32) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2005-06-26"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"sacrificers"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

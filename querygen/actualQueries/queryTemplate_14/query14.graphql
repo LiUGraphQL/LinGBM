@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:12) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2004-11-03"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"ignifying"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

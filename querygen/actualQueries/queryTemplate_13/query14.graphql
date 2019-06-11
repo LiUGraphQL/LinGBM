@@ -1,0 +1,15 @@
+query subqueryFilter2
+{
+  Producer(nr:39) {
+    product {
+      offers(where:{ vendor:{ publishDate:{criterion:AFTER date:"2000-09-30"}}})
+      {	
+        price
+        offerWebpage
+        product {label comments}
+      }
+    }
+  }
+}
+
+ 

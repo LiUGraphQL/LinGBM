@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:8) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2002-09-03"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"drawings"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

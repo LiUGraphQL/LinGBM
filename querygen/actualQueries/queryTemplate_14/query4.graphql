@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:21) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2000-12-16"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"perspicacity"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

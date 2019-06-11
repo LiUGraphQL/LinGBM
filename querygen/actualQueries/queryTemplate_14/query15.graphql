@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:43) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2003-02-20"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"pegs"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

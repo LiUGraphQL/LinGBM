@@ -1,0 +1,11 @@
+query subquerySearch
+{
+offers(where: { vendor: {nr:4} } )
+  	{
+    	price
+          	offerWebpage
+          	product {label comments}
+  	}
+}
+
+ 

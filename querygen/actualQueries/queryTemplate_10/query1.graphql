@@ -1,0 +1,12 @@
+query stringMatching
+{
+  reviewSearch(field:text,
+               criterion:contains,
+               pattern:"shareable")
+  {
+    title 
+    label
+  }
+}
+
+ 

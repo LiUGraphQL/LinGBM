@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:31) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2006-12-16"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"reallotting"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

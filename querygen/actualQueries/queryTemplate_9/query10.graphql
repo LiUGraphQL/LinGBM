@@ -1,0 +1,17 @@
+query paging_and_sorting
+{
+  Vendor(nr:17) {
+    offers(limit:50) {
+      product {
+        reviews( order:{field:publishDate direction:DESC} ) {
+          title
+          rating1
+          rating2
+          rating3
+        }
+      }
+    }
+  }
+}
+
+ 

@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:39) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2004-01-01"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"nobbler"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

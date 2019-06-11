@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:26) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2004-01-06"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"dicky"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

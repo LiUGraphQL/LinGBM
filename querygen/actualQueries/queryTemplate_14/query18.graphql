@@ -1,0 +1,19 @@
+query multipleFilters{
+  Producer(nr:6) {
+    product {
+      offers(where:{
+        vendor:{publishDate:{criterion:AFTER date:"2006-11-02"}} 
+        AND: {
+        vendor:{comment:{criterion:CONTAINS, pattern:"shinning"}}
+        }
+      })
+        {	
+          price
+          offerWebpage
+          product {label comments}
+        }
+     }
+  }
+}
+
+ 

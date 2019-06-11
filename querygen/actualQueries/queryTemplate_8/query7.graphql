@@ -1,0 +1,10 @@
+query sorting_with_paging
+{
+  offers(limit:274, order:[price, offerWebpage]) {
+    offerWebpage
+    validFrom
+    price
+  }
+}
+
+ 

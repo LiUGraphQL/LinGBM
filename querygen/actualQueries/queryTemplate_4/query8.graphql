@@ -1,0 +1,25 @@
+query offer_product_review_person_country
+{
+  offer(nr:30422) {
+    product {
+	label
+	comment
+ 	reviews {
+        	title
+        	text
+        	rating1
+        	rating2
+        	rating3
+        	rating4
+        	reviewer {
+          		country { code }
+        	}
+      	}
+    }
+  }
+}
+
+
+
+
+ 

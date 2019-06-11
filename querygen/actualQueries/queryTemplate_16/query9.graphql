@@ -1,0 +1,17 @@
+query aggregation_query{
+    Vendor(nr:18){
+	offersConnection{
+		Aggregate{
+			Avg{
+				price
+                        }
+                        Sum{
+	                        price
+                        }
+                }
+         }
+    }
+}
+
+
+ 
