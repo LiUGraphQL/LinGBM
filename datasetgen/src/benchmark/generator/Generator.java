@@ -82,7 +82,10 @@ public class Generator {
 	public static ArrayList<Integer> vendorOfOffer;//saves vendor-offer relationship
 	public static ArrayList<Integer> ratingsiteOfReview;//saves review-ratingSite relationship
 	private static HashMap<String,Integer> wordList;//Word list for the Test driver
-	
+	//LinGBM
+	private static HashMap<String,Integer> wordlistTextOfReview;//wordlist for Text Of Review
+	private static HashMap<String,Integer> wordlistCommentOfVendor;//wordlist for Text Of Review
+
 	private static Serializer serializer;
 	
 	private static File outputDir;
@@ -124,7 +127,10 @@ public class Generator {
 		outputDir.mkdirs();
 
 		wordList = new HashMap<String, Integer>();
-		
+		////LinGBM: initialize wordlist for textUReview and wordlist CommentOfVendor
+		wordlistTextOfReview = new HashMap<String, Integer>();
+		wordlistCommentOfVendor = new HashMap<String, Integer>();
+
 		dictionary1 = new TextGenerator(dictionary1File, seedGenerator.nextLong());
 		dictionary2 = new TextGenerator(dictionary2File, seedGenerator.nextLong());
 		dictionary3 = new TextGenerator(dictionary3File, seedGenerator.nextLong());
@@ -228,6 +234,10 @@ public class Generator {
 			currentDateAndLabelWordsOutput.writeInt(offerCount);
 			currentDateAndLabelWordsOutput.writeObject(today);
 			currentDateAndLabelWordsOutput.writeObject(wordList);
+			//LinGBM: output wordlist for textOfReview and wordlistCommentOfVendor
+			currentDateAndLabelWordsOutput.writeObject(wordlistTextOfReview);
+			currentDateAndLabelWordsOutput.writeObject(wordlistCommentOfVendor);
+
 		} catch(IOException e) {
 			System.err.println("Could not open or create file " + cdlw.getAbsolutePath());
 			System.err.println(e.getMessage());
@@ -781,6 +791,8 @@ public class Generator {
 	public static void createVendorData(Long[] seeds)
 	{
 		System.out.println("Generating Vendors and their Offers...");
+		//LinGBM: Record wordlist for comment of Vendor;
+		dictionary2.activateLogging(wordlistCommentOfVendor);
 		DateGenerator publishDateGen = new DateGenerator(new GregorianCalendar(2000,9,20),new GregorianCalendar(2007,0,23),seeds[0]);
 		ValueGenerator valueGen = new ValueGenerator(seeds[1]);
 		RandomBucket countryGen = createCountryGenerator(seeds[2]);
@@ -799,7 +811,6 @@ public class Generator {
 			
 			int commentNrWords = valueGen.randomInt(20, 50);
 			String comment = dictionary2.getRandomSentence(commentNrWords);
-			
 			String homepage = TextGenerator.getVendorWebpage(vendorNr);
 			
 			String country = (String)countryGen.getRandom();
@@ -833,6 +844,8 @@ public class Generator {
 			offerNr += offerCountVendor;
 			vendorNr++;
 		}
+		//LinGBM: End record wordlist for comment of Vendor;
+		dictionary2.deactivateLogging();
 		System.out.println((vendorNr-1) + " Vendors and " + (offerNr - 1) + " Offers have been generated.\n");
 	}
 
@@ -1012,7 +1025,9 @@ public class Generator {
 	private static void createReviewsOfPerson(ObjectBundle bundle, Person person, Integer reviewNr, Integer count,
 			ValueGenerator valueGen, DateGenerator dateGen, NormalDistRangeGenerator prodNrGen,
 			DateGenerator publishDateGen, RandomBucket true70)
-	{
+	{	
+		//LinGBM: Record wordlist for text of Review;
+		dictionary2.activateLogging(wordlistTextOfReview);
 		for(int i=0;i<count;i++)
 		{
 			int product = prodNrGen.getValue();
@@ -1020,7 +1035,8 @@ public class Generator {
 			int personNr = person.getNr();
 			Long reviewDate = dateGen.randomDateInMillis(today.getTimeInMillis()-DateGenerator.oneDayInMillis*365,today.getTimeInMillis());
 			int titleCount = valueGen.randomInt(4, 15);
-			String title = dictionary2.getRandomSentence(titleCount);
+			String title = dictionary1.getRandomSentence(titleCount);
+			//TODO:
 			int textCount = valueGen.randomInt(50, 200);
 			String text = dictionary2.getRandomSentence(textCount);
 			int language = ISO3166.countryCodes.get(person.getCountryCode());
@@ -1048,6 +1064,8 @@ public class Generator {
 
 			reviewNr++;
 		}
+		//LinGBM: End record wordlist for text of Review;
+		dictionary2.deactivateLogging();
 	}
 	
 	protected static void createUpdateDataset() {
