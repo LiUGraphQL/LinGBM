@@ -1,0 +1,14 @@
+query sorting_with_paging($cnt:Int, $attrOffer1:OffersSortingField, $attrOffer2:OffersSortingField)
+{
+  offers(limit:$cnt, order:[$attrOffer1, $attrOffer2]) {
+    offerWebpage
+    validFrom
+    price
+  }
+}
+{
+ 	"$cnt": 200,
+	"$attrOffer1": publisher,
+	"$attrOffer2": price
+}
+ 

@@ -1,0 +1,3 @@
+$producerID
+$date
+$commentOfVendorKeyword

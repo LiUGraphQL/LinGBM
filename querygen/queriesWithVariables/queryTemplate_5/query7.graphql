@@ -1,0 +1,29 @@
+query product_review_product($productID:ID)
+{
+  Product(nr:$productID) {
+    reviews {
+      title
+      product {
+        reviews {
+          title
+          product {
+            reviews {
+              title
+              product { 
+                reviews {
+			  text
+                  title
+                  product { label }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+{
+ 	"$productID": 662
+}
+ 

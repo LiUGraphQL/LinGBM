@@ -1,0 +1,12 @@
+query producer_product_review($producerID:ID)
+{
+  Producer(nr:$producerID) {
+    products {
+      reviews { title }
+    }
+  }
+}
+{
+ 	"$producerID": 4
+}
+ 

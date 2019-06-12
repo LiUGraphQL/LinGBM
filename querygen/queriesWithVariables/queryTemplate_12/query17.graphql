@@ -1,0 +1,18 @@
+query subqueryFilter1($producerID:ID, $vendorID:ID)
+{
+  Producer(nr:$producerID) {
+    product {
+      offers(where: { vendor: {nr:$vendorID} } )
+      {
+        price
+        offerWebpage
+        product {label comments}
+      }
+    }
+  }
+}
+{
+ 	"$producerID": 6,
+	"$vendorID": 11
+}
+ 

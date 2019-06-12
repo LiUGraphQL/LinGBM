@@ -1,0 +1,14 @@
+query paging_with_offset_as_counter($vendorID:ID, $offset:Int)
+{
+  Vendor(nr:$vendorID) {
+    offers(limit:10, offset:$offset) {
+      offerWebpage
+      product { label comment }
+    }
+  }
+}
+{
+ 	"$vendorID": 4,
+	"$offset": 126
+}
+ 

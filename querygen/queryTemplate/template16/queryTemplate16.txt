@@ -1,0 +1,15 @@
+query aggregation_query($vendorID:ID)
+{
+    Vendor(nr:$vendorID){
+	offersConnection{
+		Aggregate{
+			Avg{
+				price
+                        }
+                        Sum{
+	                        price
+                        }
+                }
+         }
+    }
+}
