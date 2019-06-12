@@ -1,6 +1,6 @@
-query offer_product_review_person_country
+query offer_product_review_person_country($offerID:ID)
 {
-  offer(nr:19229) {
+  offer(nr:1515) {
     product {
 	label
 	comment
@@ -18,8 +18,5 @@ query offer_product_review_person_country
     }
   }
 }
-
-
-
 
  

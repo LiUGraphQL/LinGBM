@@ -1,13 +1,10 @@
-query producer_product_review
+query producer_product_review($producerID:ID)
 {
-  Producer(nr:29) {
+  Producer(nr:1) {
     products {
       reviews { title }
     }
   }
 }
-
-
-
 
  

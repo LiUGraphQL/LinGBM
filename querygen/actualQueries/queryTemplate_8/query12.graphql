@@ -1,6 +1,6 @@
-query sorting_with_paging
+query sorting_with_paging($cnt:Int, $attrOffer1:OffersSortingField, $attrOffer2:OffersSortingField)
 {
-  offers(limit:204, order:[validTo, nr]) {
+  offers(limit:245, order:[publisher, validTo]) {
     offerWebpage
     validFrom
     price

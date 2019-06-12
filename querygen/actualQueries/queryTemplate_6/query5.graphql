@@ -1,6 +1,6 @@
-query vendor_offer_product_producer_country
+query vendor_offer_product_producer_country($vendorID:ID)
 {
-  Vendor(nr:24) {
+  Vendor(nr:3) {
     offers{
       product {
         producer {
@@ -10,6 +10,5 @@ query vendor_offer_product_producer_country
     }
   }
 }
-
 
  

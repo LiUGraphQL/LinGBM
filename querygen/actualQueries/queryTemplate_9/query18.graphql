@@ -1,9 +1,9 @@
-query paging_and_sorting
+query paging_and_sorting($vendorID:ID, $attrReview:ReviewFieldInput)
 {
-  Vendor(nr:16) {
+  Vendor(nr:7) {
     offers(limit:50) {
       product {
-        reviews( order:{field:text direction:DESC} ) {
+        reviews( order:{field:rating3 direction:DESC} ) {
           title
           rating1
           rating2

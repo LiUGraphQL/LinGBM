@@ -1,13 +1,12 @@
-query aggregation_query
+query aggregation_query($vendorID:ID)
 {
-   Vendor(nr:23){
+   Vendor(nr:12){
 	offersConnection{
 		Aggregate{
 			count
-                }
+			}
         }
     } 
 }
-
 
  

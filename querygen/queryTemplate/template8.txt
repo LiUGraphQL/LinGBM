@@ -1,8 +1,0 @@
-query sorting_with_paging
-{
-  offers(limit:$cnt, order:[$attrOffer1, $attrOffer2]) {
-    offerWebpage
-    validFrom
-    price
-  }
-}

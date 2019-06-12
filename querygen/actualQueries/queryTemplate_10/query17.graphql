@@ -1,8 +1,8 @@
-query stringMatching
+query stringMatching($textOfReviewKeyword:String)
 {
   reviewSearch(field:text,
                criterion:contains,
-               pattern:"souses")
+               pattern:"pharmacologic")
   {
     title 
     label

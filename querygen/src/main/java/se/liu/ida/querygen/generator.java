@@ -13,6 +13,7 @@ public class generator {
 	protected static int numQueriesPerTempate = generatorDefaultValues.numQueriesPerTempateDef;
 	protected static String queryTemplateDir = generatorDefaultValues.queryTemplateDirDef;
 	protected static String queryInstanceDir = generatorDefaultValues.queryInstanceDirDef;
+	protected static String querywithVariDir = generatorDefaultValues.querywithVariDirDef;
 
 	//Current work path
 	public static String currentPath = System.getProperty("user.dir");
@@ -22,7 +23,7 @@ public class generator {
 
 	static ArrayList<String> templates = new ArrayList<String>();
 	static final Random seedGenerator = new Random(53223436L);
-
+	static ArrayList<String> placeholders = new ArrayList<String>();
 	/*
 	 * Parameters for steady state
 	 */
@@ -102,44 +103,52 @@ public class generator {
 	    }
 	}
 	
-	static String[] parameters={"$offerID", 
-			"$producerID", "$reviewID", 
-			"$offerID", "$productID", 
-			"$vendorID", "$vendorID-$offset", 
-			"$cnt-$attrOffer1-$attrOffer2", 
-			"$vendorID-$attrReview", "$textOfReviewKeyword",
-			"$vendorID", "$producerID-$vendorID", 
-			"$producerID-$date", 
-			"$producerID-$date-$commentOfVendorKeyword",
-			"$vendorID", "$vendorID"};
-	
 
 	public static void main(String[] args) throws IOException, ParseException {
 		generator generator = new generator(args);
 
-		System.out.println("Current path:/n"+System.getProperty("user.dir"));
-
-		System.out.println("Read in query templates...");
 		//read query template, and store it as string
 		File dir = new File(queryTemplateDir);
-		File[] directoryListing = dir.listFiles();
-		int templatNum = directoryListing.length;
-		if(directoryListing != null){
-			for (int i = 1; i<= templatNum; i++){
-				File queryInstance = new File(dir, "template"+i+".txt");
-				FileInputStream is = new FileInputStream(queryInstance);
-				BufferedReader tsvFile = new BufferedReader(new InputStreamReader(is));
-				String line = tsvFile.readLine(); 
-				StringBuilder sb = new StringBuilder();
-				while(line != null){ 
-					sb.append(line).append("\n"); 
-					line = tsvFile.readLine(); 
-				} 
-				String queryTemp = sb.toString();
-				templates.add(queryTemp);
+		int numberOfTemplates = 0;
+		File listDir[] = dir.listFiles();
+		for (int i = 0; i < listDir.length; i++) {
+			if (listDir[i].isDirectory()) {
+				numberOfTemplates++;
 			}
 		}
-		System.out.println("Query templates are prepared.");
+		System.out.println("number of query templates:"+numberOfTemplates);
+		System.out.println("Read in query templates and placeholders for query templates...");
+		for (int i = 1; i<= numberOfTemplates; i++){
+			File queryTempfile = new File(dir, "template"+i+"/queryTemplate"+i+".txt");
+			FileInputStream queryT = new FileInputStream(queryTempfile);
+			BufferedReader txtQueryTem = new BufferedReader(new InputStreamReader(queryT));
+
+
+			String queryLine = txtQueryTem.readLine();
+			StringBuilder queryBuilder = new StringBuilder();
+			while(queryLine != null){
+				queryBuilder.append(queryLine).append("\n");
+				queryLine = txtQueryTem.readLine();
+			}
+			String queryTemp = queryBuilder.toString();
+			templates.add(queryTemp);
+
+			File queryDesfile = new File(dir, "template"+i+"/queryTemplateDes"+i+".txt");
+			BufferedReader txtQueryDes = new BufferedReader(new InputStreamReader(new FileInputStream(queryDesfile)));
+			String placeholder = txtQueryDes.readLine();
+
+			//StringBuilder queryDesBuilder = new StringBuilder();
+			String queryDescription= "";
+			while(placeholder != null){
+				queryDescription = queryDescription+"-"+placeholder;
+				placeholder = txtQueryDes.readLine();
+			}
+			String para = queryDescription.substring(1, queryDescription.length());
+			placeholders.add(para);
+		}
+
+
+		System.out.println("Query templates and description are prepared.\n");
 
 		System.out.println("Read in Values for placeholders...");
 		//The path to possible values for the placeholders
@@ -154,12 +163,16 @@ public class generator {
 		File dirIns = new File(queryInstanceDir);
 		deleteFolder(dirIns);
 		System.out.println("\n Cleared\n");
+		System.out.println("\n Clear existing queries with variables...\n");
+		File dirQueryVari = new File(querywithVariDir);
+		deleteFolder(dirQueryVari);
+		System.out.println("\n Cleared\n");
 
 		System.out.println("\nStart generating new query instances...\n");
-		for(int i=0; i< parameters.length; i++){
+		for(int i=0; i< placeholders.size(); i++){
 			String queryTemp = templates.get(i);
-			String placeholder = parameters[i];
-			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, numQueriesPerTempate, (i+1));
+			String placeholder = placeholders.get(i);
+			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, (i+1));
 			System.out.println("queries for template "+(i+1)+" has been generated.");
 		}
 		System.out.println("All query instances has been generated.");

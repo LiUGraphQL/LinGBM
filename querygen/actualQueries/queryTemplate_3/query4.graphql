@@ -1,6 +1,6 @@
-query review_product_producttype_parenttype
+query review_product_producttype_parenttype($reviewID:ID)
 {
-  review(nr:15597) {
+  review(nr:8775) {
     reviewFor {
       type {
         nr
@@ -11,7 +11,5 @@ query review_product_producttype_parenttype
     }
   }
 }
-
-
 
  

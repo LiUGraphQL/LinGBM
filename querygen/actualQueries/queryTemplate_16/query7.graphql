@@ -1,5 +1,6 @@
-query aggregation_query{
-    Vendor(nr:16){
+query aggregation_query($vendorID:ID)
+{
+    Vendor(nr:5){
 	offersConnection{
 		Aggregate{
 			Avg{
@@ -12,6 +13,5 @@ query aggregation_query{
          }
     }
 }
-
 
  

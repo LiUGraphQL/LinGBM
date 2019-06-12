@@ -1,10 +1,11 @@
-query multipleFilters{
-  Producer(nr:14) {
+query multipleFilters($producerID:ID,$date:Date, $commentOfVendorKeyword:String)
+{
+  Producer(nr:15) {
     product {
       offers(where:{
-        vendor:{publishDate:{criterion:AFTER date:"2002-01-04"}} 
+        vendor:{publishDate:{criterion:AFTER date:"2002-09-23"}} 
         AND: {
-        vendor:{comment:{criterion:CONTAINS, pattern:"overlords"}}
+        vendor:{comment:{criterion:CONTAINS, pattern:"plink"}}
         }
       })
         {	

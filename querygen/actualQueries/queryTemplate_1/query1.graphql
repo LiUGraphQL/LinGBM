@@ -1,4 +1,4 @@
-query offer_product_review
+query offer_product_review($offerID:ID)
 {
   Offer(nr:18058) {
     product {
@@ -6,7 +6,5 @@ query offer_product_review
     }
   }
 }
-
-
 
  

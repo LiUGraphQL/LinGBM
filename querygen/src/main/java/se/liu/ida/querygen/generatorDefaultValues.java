@@ -5,8 +5,9 @@ package se.liu.ida.querygen;
 public class generatorDefaultValues {
 
 	public static int numQueriesPerTempateDef = 20;//how many Query mixes are generated for one query template
-	public static String queryTemplateDirDef = "queryTemplate/";
+	public static String queryTemplateDirDef = "queryTemplate";
 	//Absolute path for "td_data", need to find this directory in dataset generator
 	public static String placeholderValDirDef = "/datasetgen/td_data";
-	public static String queryInstanceDirDef = "actualQueries/";
+	public static String queryInstanceDirDef = "actualQueries";
+	public static String querywithVariDirDef = "queriesWithVariables";
 }

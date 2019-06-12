@@ -1,12 +1,11 @@
-query paging_with_offset_as_counter
+query paging_with_offset_as_counter($vendorID:ID, $offset:Int)
 {
-  Vendor(nr:5) {
-    offers(limit:10, offset:132) {
+  Vendor(nr:9) {
+    offers(limit:10, offset:199) {
       offerWebpage
       product { label comment }
     }
   }
 }
-
 
  

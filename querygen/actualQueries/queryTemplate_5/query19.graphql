@@ -1,6 +1,6 @@
-query product_review_product
+query product_review_product($productID:ID)
 {
-  Product(nr:1417) {
+  Product(nr:419) {
     reviews {
       title
       product {
@@ -23,6 +23,5 @@ query product_review_product
     }
   }
 }
-
 
  

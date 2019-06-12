@@ -1,8 +1,8 @@
-query subqueryFilter2
+query subqueryFilter2($producerID:ID, $date: Date)
 {
-  Producer(nr:25) {
+  Producer(nr:7) {
     product {
-      offers(where:{ vendor:{ publishDate:{criterion:AFTER date:"2005-02-21"}}})
+      offers(where:{ vendor:{ publishDate:{criterion:AFTER date:"2004-08-19"}}})
       {	
         price
         offerWebpage

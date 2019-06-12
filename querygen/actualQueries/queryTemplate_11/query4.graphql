@@ -1,10 +1,10 @@
-query subquerySearch
+query subquerySearch($vendorID:ID)
 {
-offers(where: { vendor: {nr:12} } )
+offers(where: { vendor: {nr:2} } )
   	{
     	price
-          	offerWebpage
-          	product {label comments}
+    	offerWebpage
+    	product {label comments}
   	}
 }
 

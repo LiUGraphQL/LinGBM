@@ -1,12 +1,10 @@
-query offer_product_review
+query offer_product_review($offerID:ID)
 {
-  Offer(nr:38999) {
+  Offer(nr:18999) {
     product {
       reviews { title text reviewDate publishDate rating1 rating2 }
     }
   }
 }
-
-
 
  
