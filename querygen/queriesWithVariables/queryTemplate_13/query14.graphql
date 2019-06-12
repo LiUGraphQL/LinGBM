@@ -12,7 +12,7 @@ query subqueryFilter2($producerID:ID, $date: Date)
   }
 }
 {
- 	"$producerID": 3,
-	"$date": "2005-08-24"
+ 	"producerID": 3,
+	"date": "2005-08-24"
 }
  

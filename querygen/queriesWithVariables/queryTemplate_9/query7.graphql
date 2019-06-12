@@ -14,7 +14,7 @@ query paging_and_sorting($vendorID:ID, $attrReview:ReviewFieldInput)
   }
 }
 {
- 	"$vendorID": 4,
-	"$attrReview": title
+ 	"vendorID": 4,
+	"attrReview": title
 }
  

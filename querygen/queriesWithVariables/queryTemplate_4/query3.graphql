@@ -19,6 +19,6 @@ query offer_product_review_person_country($offerID:ID)
   }
 }
 {
- 	"$offerID": 17247
+ 	"offerID": 17247
 }
  

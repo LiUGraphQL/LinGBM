@@ -8,6 +8,6 @@ offers(where: { vendor: {nr:$vendorID} } )
   	}
 }
 {
- 	"$vendorID": 1
+ 	"vendorID": 1
 }
  

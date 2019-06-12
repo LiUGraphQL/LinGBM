@@ -9,6 +9,6 @@ query stringMatching($textOfReviewKeyword:String)
   }
 }
 {
- 	"$textOfReviewKeyword": "foredated"
+ 	"textOfReviewKeyword": "foredated"
 }
  

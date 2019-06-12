@@ -7,8 +7,8 @@ query sorting_with_paging($cnt:Int, $attrOffer1:OffersSortingField, $attrOffer2:
   }
 }
 {
- 	"$cnt": 215,
-	"$attrOffer1": deliveryDays,
-	"$attrOffer2": validFrom
+ 	"cnt": 215,
+	"attrOffer1": deliveryDays,
+	"attrOffer2": validFrom
 }
  

@@ -12,7 +12,7 @@ query subqueryFilter1($producerID:ID, $vendorID:ID)
   }
 }
 {
- 	"$producerID": 17,
-	"$vendorID": 4
+ 	"producerID": 17,
+	"vendorID": 4
 }
  

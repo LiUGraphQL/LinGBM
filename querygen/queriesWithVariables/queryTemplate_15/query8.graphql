@@ -9,6 +9,6 @@ query aggregation_query($vendorID:ID)
     } 
 }
 {
- 	"$vendorID": 6
+ 	"vendorID": 6
 }
  

@@ -11,6 +11,6 @@ query vendor_offer_product_producer_country($vendorID:ID)
   }
 }
 {
- 	"$vendorID": 1
+ 	"vendorID": 1
 }
  

@@ -17,8 +17,8 @@ query multipleFilters($producerID:ID,$date:Date, $commentOfVendorKeyword:String)
   }
 }
 {
- 	"$producerID": 2,
-	"$date": "2002-01-04",
-	"$commentOfVendorKeyword": "querulously"
+ 	"producerID": 2,
+	"date": "2002-01-04",
+	"commentOfVendorKeyword": "querulously"
 }
  

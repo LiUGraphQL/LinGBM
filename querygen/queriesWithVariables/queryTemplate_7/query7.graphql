@@ -8,7 +8,7 @@ query paging_with_offset_as_counter($vendorID:ID, $offset:Int)
   }
 }
 {
- 	"$vendorID": 3,
-	"$offset": 128
+ 	"vendorID": 3,
+	"offset": 128
 }
  

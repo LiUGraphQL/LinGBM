@@ -7,6 +7,6 @@ query producer_product_review($producerID:ID)
   }
 }
 {
- 	"$producerID": 16
+ 	"producerID": 16
 }
  

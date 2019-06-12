@@ -7,6 +7,6 @@ query offer_product_review($offerID:ID)
   }
 }
 {
- 	"$offerID": 5492
+ 	"offerID": 5492
 }
  

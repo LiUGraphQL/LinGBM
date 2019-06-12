@@ -12,6 +12,6 @@ query review_product_producttype_parenttype($reviewID:ID)
   }
 }
 {
- 	"$reviewID": 8775
+ 	"reviewID": 8775
 }
  

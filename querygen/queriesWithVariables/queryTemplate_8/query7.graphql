@@ -7,8 +7,8 @@ query sorting_with_paging($cnt:Int, $attrOffer1:OffersSortingField, $attrOffer2:
   }
 }
 {
- 	"$cnt": 200,
-	"$attrOffer1": publisher,
-	"$attrOffer2": price
+ 	"cnt": 200,
+	"attrOffer1": publisher,
+	"attrOffer2": price
 }
  

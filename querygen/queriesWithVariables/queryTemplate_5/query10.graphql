@@ -24,6 +24,6 @@ query product_review_product($productID:ID)
   }
 }
 {
- 	"$productID": 269
+ 	"productID": 269
 }
  

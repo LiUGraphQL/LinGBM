@@ -51,7 +51,7 @@ public class queryInstantiation {
 				File dirQuerywithVari = new File(dirQueryVari+"/queryTemplate_"+No_temp+"/");
 				dirQuerywithVari.mkdir();
 				for(int k = 0; k<valueCombine[0].length; k++){
-					newQuery = newQuery.concat("	\""+paraParts[k]+"\": "+valueCombine[i][k]+",\n");
+					newQuery = newQuery.concat("	\""+paraParts[k].substring(1, paraParts[k].length())+"\": "+valueCombine[i][k]+",\n");
 				}
 				newQuery = newQuery.substring(0, newQuery.length()-2);
 				newQuery=newQuery.concat("\n}");
