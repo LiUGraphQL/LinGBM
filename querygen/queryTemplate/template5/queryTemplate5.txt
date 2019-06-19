@@ -3,17 +3,17 @@ query product_review_product($productID:ID)
   Product(nr:$productID) {
     reviews {
       title
-      product {
+      reviewFor {
         reviews {
           title
-          product {
+          reviewFor {
             reviews {
               title
-              product { 
+              reviewFor { 
                 reviews {
-			  text
+                  text
                   title
-                  product { label }
+                  reviewFor { label }
                 }
               }
             }
