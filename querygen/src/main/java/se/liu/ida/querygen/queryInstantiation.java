@@ -52,7 +52,7 @@ public class queryInstantiation {
 				variables = variables.substring(0, variables.length()-2);
 				variables=variables.concat("\n}");
 
-				File querywithVariable = new File(dirQuerywithVari, "values"+(i+1)+".graphql");
+				File querywithVariable = new File(dirQuerywithVari, "values"+(i+1)+".json");
 				try(
 						FileWriter rfw = new FileWriter(querywithVariable, true);
 						BufferedWriter rbw = new BufferedWriter(rfw);
