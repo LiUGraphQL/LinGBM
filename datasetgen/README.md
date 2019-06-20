@@ -16,6 +16,7 @@ cd LinGBM/datasetgen
 ### Usage
 
 The instruction and command options for using the data generator can be found [here](http://wifo5-03.informatik.uni-mannheim.de/bizer/berlinsparqlbenchmark/spec/BenchmarkRules/index.html#datagenerator). The data generator supports different output format, such as N-Triples, XML, Turtle and SQL dump. 
+
 Here is an example command of generating SQL dataset with the scale factor 1000:
 
 ```
@@ -27,3 +28,5 @@ You could also use the following example command:
 ```
 ./generate -pc 1000 -s sql
 ```
+Note:
+In our dataset generator, we disabled the command option '-fc', which means the data generator by default adds one rdf:type statement for the most specific type of a product to the dataset.

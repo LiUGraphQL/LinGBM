@@ -1095,9 +1095,9 @@ public class Generator {
 				else if(args[i].equals("-pc")) {
 					productCount = Integer.parseInt(args[i++ + 1]);
 				}
-				else if(args[i].equals("-fc")) {
-					forwardChaining = true;
-				}
+				//else if(args[i].equals("-fc")) {
+				//	forwardChaining = true;
+				//}
 				else if(args[i].equals("-dir")) {
 					outputDirectory = args[i++ + 1];
 				}
@@ -1150,7 +1150,7 @@ public class Generator {
 						"\t\tNote:\tBy chosing a named graph output format like TriG,\n\t\t\ta named graph model gets generated.\n" +
 						"\t-pc <product count>\n" +
 						"\t\tdefault: 100\n" +
-						"\t-fc\tSwitch on forward chaining which is by default off\n" +
+						//"\t-fc\tSwitch on forward chaining which is by default off\n" +
 						"\t-dir <output directory>\n" +
 						"\t\tThe output directory for the Test Driver data\n" +
 						"\t\tdefault: td_data\n" +
