@@ -137,7 +137,6 @@ public class generator {
 			BufferedReader txtQueryDes = new BufferedReader(new InputStreamReader(new FileInputStream(queryDesfile)));
 			String placeholder = txtQueryDes.readLine();
 
-			//StringBuilder queryDesBuilder = new StringBuilder();
 			String queryDescription= "";
 			while(placeholder != null){
 				queryDescription = queryDescription+"-"+placeholder;

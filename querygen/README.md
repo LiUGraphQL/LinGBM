@@ -22,7 +22,7 @@ mvn package
 
 ### Usage
 
-Start generating query instances by running the following example command, which defaultly generate 20 instances for each query template, and output these queries to the directory: "/actualQueries"
+Start generating query instances by running the following example command, which default generate 20 instances for each query template, and output these queries to the directory: "/actualQueries"
 
 ```
 java -cp target/querygen-1.0-SNAPSHOT.jar se.liu.ida.querygen.generator
@@ -35,7 +35,8 @@ Configuration options:
 |-nm \<number of instances for each template> |The number of query instances for each template. Default: 20. <br> The generated instances is random but not duplicate. If the total number of possible instances is less than the specified value, then generate all possible query instances.| 
 |-values \<path to directory> |The input values for placeholders, which was created by the Dataset Generator. Default:"/datasetgen/td_data"|
 |-templates \<path to query template> |The input query templates. Default: "queryTemplate"| 
-|-outdir \<path to output directory> |The output directory for storing the generated queries. Default: "actualQueries"|
+|-outdirQ \<path to output directory: query instances> |The output directory for storing the generated queries. Default: "actualQueries"|
+|-outdirV \<path to output directory: values for variables> |The output directory for storing the variable values for query templates. Default: "queryVariables"|
 
 The following example specifies 10 queries for each query template.
 

@@ -9,5 +9,5 @@ public class generatorDefaultValues {
 	//Absolute path for "td_data", need to find this directory in dataset generator
 	public static String placeholderValDirDef = "/datasetgen/td_data";
 	public static String queryInstanceDirDef = "actualQueries";
-	public static String querywithVariDirDef = "queriesWithVariables";
+	public static String querywithVariDirDef = "queryVariables";
 }

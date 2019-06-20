@@ -5,7 +5,7 @@ query multipleFilters($producerID:ID,$date:Date, $commentOfVendorKeyword:String)
       offers(where:{
         AND:[
 	  vendor:{publishDate:{criterion:AFTER date:$date}},
-	  vendor:{comment:{criterion:CONTAINS, pattern:$keyword}}
+	  vendor:{comment:{criterion:CONTAINS, pattern:$commentOfVendorKeyword}}
         ]
       })
         {	
