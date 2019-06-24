@@ -1,10 +1,10 @@
 query aggregation_query($vendorID:ID)
 {
-   Vendor(nr:$vendorID){
-	offersConnection{
-		Aggregate{
-			count
+	Vendor(nr:$vendorID){
+		offersConnection{
+			aggregate{
+				count
 			}
         }
-    } 
+    }
 }
