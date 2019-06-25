@@ -1,6 +1,6 @@
 query offer_product_review($offerID:ID)
 {
-  Offer(nr:$offerID) {
+  offer(nr:$offerID) {
     product {
       reviews { title text reviewDate publishDate rating1 rating2 }
     }

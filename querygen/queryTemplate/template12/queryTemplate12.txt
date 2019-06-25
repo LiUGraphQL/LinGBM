@@ -1,6 +1,6 @@
 query subqueryFilter1($producerID:ID, $vendorID:ID)
 {
-  Producer(nr:$producerID) {
+  producer(nr:$producerID) {
     product {
       offers(where: { vendor: {nr:$vendorID} } )
       {

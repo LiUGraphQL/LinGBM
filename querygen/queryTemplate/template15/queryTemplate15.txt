@@ -1,6 +1,6 @@
 query aggregation_query($vendorID:ID)
 {
-	Vendor(nr:$vendorID){
+	vendor(nr:$vendorID){
 		offersConnection{
 			aggregate{
 				count

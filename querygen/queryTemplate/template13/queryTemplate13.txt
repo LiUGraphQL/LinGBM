@@ -1,6 +1,6 @@
 query subqueryFilter2($producerID:ID, $date: Date)
 {
-  Producer(nr:$producerID) {
+  producer(nr:$producerID) {
     product {
       offers(where:{ vendor:{ publishDate:{criterion:AFTER date:$date}}})
       {	

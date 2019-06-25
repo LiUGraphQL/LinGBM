@@ -1,6 +1,6 @@
 query producer_product_review($producerID:ID)
 {
-  Producer(nr:$producerID) {
+  producer(nr:$producerID) {
     products {
       reviews { title }
     }

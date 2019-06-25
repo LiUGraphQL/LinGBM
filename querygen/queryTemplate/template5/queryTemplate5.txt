@@ -1,6 +1,6 @@
 query product_review_product($productID:ID)
 {
-  Product(nr:$productID) {
+  product(nr:$productID) {
     reviews {
       title
       reviewFor {
