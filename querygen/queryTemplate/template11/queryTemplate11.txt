@@ -4,6 +4,6 @@ query subquerySearch($vendorID:ID)
   	{
     	price
     	offerWebpage
-    	product {label comments}
+    	product {label comment}
   	}
 }
