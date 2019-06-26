@@ -6,7 +6,7 @@ query subqueryFilter2($producerID:ID, $date: Date)
       {	
         price
         offerWebpage
-        product {label comments}
+        product {label comment}
       }
     }
   }
