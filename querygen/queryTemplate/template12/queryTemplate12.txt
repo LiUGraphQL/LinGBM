@@ -6,7 +6,7 @@ query subqueryFilter1($producerID:ID, $vendorID:ID)
       {
         price
         offerWebpage
-        product {label comments}
+        products {label comments}
       }
     }
   }
