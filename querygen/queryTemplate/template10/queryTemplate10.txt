@@ -1,10 +1,10 @@
 query stringMatching($textOfReviewKeyword:String)
 {
   reviewSearch(field:text,
-               criterion:contains,
+               criterion:CONTAINS,
                pattern:$textOfReviewKeyword)
   {
     title 
-    label
+    text
   }
 }
