@@ -5,6 +5,6 @@ query stringMatching($textOfReviewKeyword:String)
                pattern:$textOfReviewKeyword)
   {
     title 
-    label
+    text
   }
 }
