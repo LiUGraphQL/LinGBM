@@ -1,1 +1,205 @@
-TODO
+type Vendor
+{
+  nr: ID!
+  label: String
+  comment: String
+  homepage: String
+  country: Country
+  publisher: Int
+  publishDate: Date
+  offers(limit: Int, offset: Int): [Offer]
+  offersConnection:CollectionOfEdgesToOffers
+}
+
+type Offer 
+{
+  nr: ID!
+  price: Float
+  validFrom: Date
+  validTo: Date
+  deliveryDays: Int
+  offerWebpage: String
+  publisher: Int
+  publishDate: Date
+  product: Product
+  vendor: Vendor
+}
+
+type Product 
+{
+  nr: ID!
+  label: String
+  comment: String
+  producer: Producer
+  type: ProductType
+  features: [ProductFeature]
+  publishDate: Date
+  reviews(order:ReviewSortingCriterion): [Review]
+  offers(where: OfferWhereInput): [Offer]
+}
+
+type ProductType 
+{
+  nr: ID!
+  label: String
+  comment: String
+  parent: ProductType
+  products: [Product]
+}
+
+type ProductFeature 
+{
+  nr: ID!
+  label: String
+  comment: String
+  products: [Product]
+}
+
+type Producer 
+{
+  nr: ID!
+  label: String
+  comment: String
+  homepage: String
+  country: Country
+  products: [Product]
+}
+
+type Review
+{
+  nr: ID!
+  title: String
+  text: String
+  reviewDate: Date
+  rating1: Int
+  rating2: Int
+  rating3: Int
+  rating4: Int
+  publishDate: Date
+  reviewFor: Product
+  reviewer: Person
+}
+
+type Person 
+{
+  nr: ID!
+  name: String
+  mbox_sha1sum: String
+  country: Country
+}
+
+scalar Date
+
+enum OffersSortingField 
+{	
+  nr
+  price
+  validFrom
+  validTo
+  deliveryDays
+  offerWebpage
+  publisher
+  publishDate
+}
+
+input OfferWhereInput
+{
+  AND: [OfferWhereInput!]
+  vendor: VendorFieldInput
+}
+
+input VendorFieldInput
+{
+  nr: ID
+  comment: StringMatching
+  publishDate: DateMatching 
+}
+
+input DateMatching
+{
+  criterion: DateCriterion
+  date: Date
+}
+
+input StringMatching
+{
+  criterion: StringCriterion
+  pattern: String
+}
+
+type CollectionOfEdgesToOffers 
+{
+  aggregate: AggregateOffers!
+}
+
+type AggregateOffers 
+{
+  count: Int!
+  price: PriceAggregationOfOffers!
+}
+
+type PriceAggregationOfOffers
+{
+  sum: Float!
+  avg: Float!
+  max: Float!
+  min: Float!
+}
+
+input ReviewSortingCriterion
+{
+  field: ReviewFieldInput
+  direction: SortDirection
+}
+enum ReviewFieldInput 
+{
+  nr
+  title
+  text
+  reviewDate
+  rating1
+  rating2
+  rating3
+  rating4
+  publishDate
+}
+
+enum SortDirection 
+{
+  ASC
+  DESC
+}
+
+enum StringCriterion 
+{
+  CONTAINS
+  START_WITH
+  END_WITH
+  EQUALS  
+}
+
+enum DateCriterion 
+{
+  BEFORE
+  AFTER
+  EQUALS
+}
+
+type Country 
+{
+  code: Code!
+}
+
+enum Code
+{
+  US
+  UK
+  JP
+  CN
+  DE
+  FR
+  ES
+  RU
+  KR
+  AT
+}
