@@ -1,12 +1,12 @@
 query subqueryFilter1($producerID:ID, $vendorID:ID)
 {
   producer(nr:$producerID) {
-    product {
+    products {
       offers(where: { vendor: {nr:$vendorID} } )
       {
         price
         offerWebpage
-        products {label comments}
+        product {label comments}
       }
     }
   }
