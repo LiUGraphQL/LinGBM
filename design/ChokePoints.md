@@ -83,7 +83,8 @@ query {
 
 Notice that the string matching features exposed by a GraphQL API can be more powerful than supporting only the notion of prefix matching that is illustrated in the example.
 
-### CP 4.2: 
+### CP 4.2: Date matching
+While similar in spirit to the previous one, this choke point focuses on values that are dates. In addition to requiring exact matches for a given date, it is possible to match dates based on range conditions (e.g., everything before a specific date) or based on given periods (e.g., everything in some February).
 
 ### CP 4.3: 
 
