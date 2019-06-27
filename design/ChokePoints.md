@@ -15,7 +15,8 @@ This choke point captures the challenge to efficiently support queries that requ
 ## Choke Points Related to Relationship Traversal 
 One of the main innovations of GraphQL in comparison to REST APIs is that it allows users to traverse the relationships between data objects in a single request. Supporting such a traversal in a GraphQL server may pose different challenges. The following choke points capture these challenges.
 
-### CP 2.1: 
+### CP 2.1: Traversal of different 1:N relationship types
+Types of relationships between object types may be 1:1, 1:N, or M:N (note that the latter two are the same from the perspective of a given data object that has such relationships), and whether a data object has a specific relationship may be mandatory or optional. Supporting an efficient traversal of 1:N (or M:N) relationships may be challenging due to the fact that every such relationship may have a different fan-out (i.e., how big is N?). This challenge, together with the need to support traversals along multiple relationships (which may be of different types), is captured by this choke point.
 
 ### CP 2.2: 
 
