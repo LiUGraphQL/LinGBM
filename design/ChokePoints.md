@@ -104,7 +104,20 @@ query {
 
 The query represents a case in which candidate data objects selected by traversing a relationship are filtered based on some condition; this filter condition is expressed in some form of subquery that is embedded inside the corresponding field argument. As illustrated by the example query, such a filter condition may involve the traversal of relationships for each candidate data object. We notice that this feature bears similarities to the notion of correlated subqueries in relational query languages such as SQL, and supporting such a subquery-based filtering in GraphQL poses similar challenges as correlated subqueries in SQL.
 
-### CP 4.4: 
+### CP 4.4: Subquery-based search
+While the previous choke point focuses explicitly on cases in which a subquery-based filter condition has to be applied somewhere along a relationship traversal, it is also possible to use such subqueries as field arguments of the main query object (like in the string matching example given above). For instance, the following query searches for persons who have reviewed a movie that was reviewed by Alice and, for each such person, retrieves the persons that they know.
+
+```
+query {
+  person(where:{reviewedMovies:{reviewedBy:{name:″Alice″}}}) {
+    knows {
+      name
+    }
+  }
+} 
+```
+
+Such a usage of subqueries captures more a notion of query-based search for candidate objects rather than filtering. While techniques to perform a subquery-based filtering (as captured by the previous choke point) may also be employed for subquery-based search, some systems may be equipped with techniques that focus especially on only one of the two variants of using subqueries in field arguments. Therefore, we consider subquery-based search as an additional choke point (separate from the previous one about subquery-based filtering).
 
 ### CP 4.5: 
 
