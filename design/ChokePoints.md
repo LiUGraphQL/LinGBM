@@ -119,7 +119,8 @@ query {
 
 Such a usage of subqueries captures more a notion of query-based search for candidate objects rather than filtering. While techniques to perform a subquery-based filtering (as captured by the previous choke point) may also be employed for subquery-based search, some systems may be equipped with techniques that focus especially on only one of the two variants of using subqueries in field arguments. Therefore, we consider subquery-based search as an additional choke point (separate from the previous one about subquery-based filtering).
 
-### CP 4.5: 
+### CP 4.5: Multiple filter conditions
+In addition to single filter conditions, it is also possible to enable users to express conjunctions or disjunctions of multiple such conditions. The added challenge in this case is that the conditions may not be equally selective. Hence, pushing them together to the underlying data source, or at least choosing which of them to evaluate first, may have an impact on the performance (in particular, if they are subqueries).
 
 ## Choke Points Related to Aggregation
 Another advanced feature that GraphQL APIs may provide is to execute aggregation functions over the queried data. We identify the following two choke points related to aggregation. 
