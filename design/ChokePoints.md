@@ -128,4 +128,6 @@ Another advanced feature that GraphQL APIs may provide is to execute aggregation
 ### CP 5.1: Calculation-based aggregation
 This choke point focuses on aggregation functions that calculate a single value from a set of values specified by the query. Examples of such functions include SUM, AVERAGE, and MAX. The challenge is to push the computation of such aggregation functions into the underlying data source or, if this is not possible, employ some other techniques to aggregate the specified values efficiently.
 
-### CP 5.2: 
+### CP 5.2: Counting
+This choke point focuses on the aggregation function that counts the number of elements in a set of data objects or values. In contrast to the previous choke point, the challenge in this case is to recognize that the objects/values may not actually have to be retrieved from the underlying data source in order to count them.
+
