@@ -37,7 +37,8 @@ query {
 
 This query does not only retrieve the titles of the books that are reached via the traversal. Instead, the query also retrieves the names of the persons that are visited when traversing to the books. In more general terms, this query does not only traverse from some starting node (such as the Alice object in the example) to some target nodes (the books) and then retrieve some attributes of these target nodes (the book titles). Instead, the additional aspect of this query that is important for this choke point is that the query requests attributes of objects that are along the way of the traversal. Hence, the challenge here is not only to be able to traverse efficiently (without looking at the intermediate objects along the way)--which is something that is already captured by choke points CP 2.1 and CP 2.2--but also to be able to efficiently access the attributes of objects that we "pass by" during the traversal.
 
-### CP 2.4: 
+### CP 2.4: Traversal of relationships that form cycles
+In cases in which relationships form directed cycles, traversing along these relationships may result in coming back to a data object that has been visited before on the same traversal path (which, formally, turns the path into a walk). This choke point captures the challenge of avoiding unnecessary operations in these cases. For instance, a naive implementation may end up requesting the same data multiple times from the underlying data source. Even a more sophisticated solution that caches and reuses the results of such requests may end up repeating the same operations over the cached data.
 
 ### CP 2.5: 
 
