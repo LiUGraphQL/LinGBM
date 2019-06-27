@@ -58,7 +58,8 @@ query {
 
 A feature related to paging is to allow users to specify a particular order over the objects visited by traversing a 1:N relationship. This feature may be used in combination with paging, but also to simply request a particular order in which objects have have to appear in the result.
 
-### CP 3.1: 
+### CP 3.1: Paging without offset
+This choke point captures the general challenge of providing efficient support for the retrieval of a limited number of first objects or last objects (i.e., by avoiding unnecessary operations).
 
 ### CP 3.2: 
 
