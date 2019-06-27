@@ -70,7 +70,18 @@ The challenge captured by this choke point is to efficiently apply a user-specif
 ## Choke Points Related to Searching and Filtering
 Field arguments in GraphQL queries are powerful not only because they can be used as a flexible approach to expose paging and ordering features. Another use case, which is perhaps even more interesting from a data retrieval point of view, is to expose arbitrarily complex search and filtering functionality. The following choke points capture different challenges related to this use case. 
 
-### CP 4.1: 
+### CP 4.1: String matching
+The challenge captured by this choke point is to efficiently support string matching as illustrated in the following query (which retrieves the birthdate of persons whose name begins with an A).
+
+```
+query {
+  person(match:{attribute:″name″, startswith:″A″}) {
+    birthdate
+  }
+}
+```
+
+Notice that the string matching features exposed by a GraphQL API can be more powerful than supporting only the notion of prefix matching that is illustrated in the example.
 
 ### CP 4.2: 
 
