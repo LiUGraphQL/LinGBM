@@ -1,9 +1,9 @@
-# Linköping GraphQL Benchmark (LinGBM) - query Generator
-This repo contains the source code of the generator that we used for generating query instances from the query templates.
+# Linköping GraphQL Benchmark (LinGBM) <br/> Query Generator
+This directory contains the source code of a program to generate query instances from the query templates of the benchmark.
 
-The input to the query generator tool contains 2 parts:
+The input to this query generator program consists of the following two parts:
 
-1. **Query templates**: we defined 16 [query templates](https://docs.google.com/document/d/1-t2RxAcZMo47JPXBh9nZBlGhKKmH433ZuCCPg9W55ZE/edit?usp=sharing) to cover the [chokepoints](https://github.com/LiUGraphQL/LinGBM/wiki/Choke-Points-for-a-GraphQL-Performance-Benchmark) in GraphQL implementation. You could find these tempaltes in the "queryTemplate" subdirectory.
+1. **Query templates**: The benchmark comes with a set of [query templates](https://github.com/LiUGraphQL/LinGBM/wiki/Query-Templates-of-the-Benchmark) that cover the [chokepoints based on which the benchmark has been designed](https://github.com/LiUGraphQL/LinGBM/wiki/Choke-Points-for-a-GraphQL-Performance-Benchmark). The templates can be found in the directory `./artifacts/queryTemplates/` of the LinGBM git repo.
 
 2. **Values for placeholders**: these values are available in an extra directory that the [BSBM data generator](http://wifo5-03.informatik.uni-mannheim.de/bizer/berlinsparqlbenchmark/spec/BenchmarkRules/index.html#datagenerator) 
 produces, default "/td_data". The values in this directory will be different for the different datasets that the dataset generator generates.
