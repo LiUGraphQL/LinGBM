@@ -86,7 +86,23 @@ Notice that the string matching features exposed by a GraphQL API can be more po
 ### CP 4.2: Date matching
 While similar in spirit to the previous one, this choke point focuses on values that are dates. In addition to requiring exact matches for a given date, it is possible to match dates based on range conditions (e.g., everything before a specific date) or based on given periods (e.g., everything in some February).
 
-### CP 4.3: 
+### CP 4.3: Subquery-based filtering
+Consider the following GraphQL query which retrieves the title of books reviewed by Alice and, for each of these books, the names of all those reviewers of the book who have also reviewed a movie that was reviewed by Alice. 
+
+```
+query {
+ person(name:″Alice″) {
+   reviewedBooks {
+     title
+     reviewedBy(where:{reviewedMovies:{reviewedBy:{name:″Alice″}}}) {
+       name
+     }
+   }
+ }
+} 
+```
+
+The query represents a case in which candidate data objects selected by traversing a relationship are filtered based on some condition; this filter condition is expressed in some form of subquery that is embedded inside the corresponding field argument. As illustrated by the example query, such a filter condition may involve the traversal of relationships for each candidate data object. We notice that this feature bears similarities to the notion of correlated subqueries in relational query languages such as SQL, and supporting such a subquery-based filtering in GraphQL poses similar challenges as correlated subqueries in SQL.
 
 ### CP 4.4: 
 
