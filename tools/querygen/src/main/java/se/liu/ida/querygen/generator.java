@@ -11,15 +11,12 @@ public class generator {
 
 	// TODO Auto-generated constructor stub
 	protected static int numQueriesPerTempate = generatorDefaultValues.numQueriesPerTempateDef;
-	protected static String queryTemplateDir = generatorDefaultValues.queryTemplateDirDef;
 	protected static String queryInstanceDir = generatorDefaultValues.queryInstanceDirDef;
 	protected static String querywithVariDir = generatorDefaultValues.querywithVariDirDef;
 
-	//Current work path
-	public static String currentPath = System.getProperty("user.dir");
-	//return back to the project path: ../LinGBM
-	public static String path = currentPath.substring(0, currentPath.lastIndexOf("/querygen"));
-	protected static String placeholderValDir= path+generatorDefaultValues.placeholderValDirDef;
+
+	protected static String placeholderValDir= generatorDefaultValues.placeholderValDirDef;
+	protected static String queryTemplateDir = generatorDefaultValues.queryTemplateDirDef;
 
 	static ArrayList<String> templates = new ArrayList<String>();
 	static final Random seedGenerator = new Random(53223436L);
@@ -44,9 +41,11 @@ public class generator {
 					placeholderValDir = args[i++ + 1];
 				} else if (args[i].equals("-templates")) {
 					queryTemplateDir = args[i++ + 1];
-				} else if (args[i].equals("-outdir")) {
+				} else if (args[i].equals("-outdirQ")) {
 					queryInstanceDir = args[i++ + 1];
-				} else {
+				} else if(args[i].equals("-outdirV")){
+					querywithVariDir = args[i++ + 1];
+				}else {
 					if (!args[i].equals("-help")) {
 						System.err.println("Unknown parameter: " + args[i]);
 					}
@@ -69,22 +68,27 @@ public class generator {
 	protected void printUsageInfos() {
 		String output = "Usage: java benchmark.queryGenerator <options> GraphQL\n\n"
 				+ "Possible options are:\n"
-				+ "\t-nm <specify the number of query instances per template>\n" + "\t\tdefault: "
+				+ "\t-nm <specify the number of query instances for each template>\n" + "\t\tdefault: "
 				+ generatorDefaultValues.numQueriesPerTempateDef
 				+ "\n"
-				+ "\t-idir <data input directory>\n"
+				+ "\t-values <path to input values for placeholders>\n"
 				+ "\t\tThe input directory for the possible values for placeholders of template\n"
 				+ "\t\tdefault: "
 				+ generatorDefaultValues.placeholderValDirDef
 				+ "\n"
-				+ "\t-temp <query template files>\n"
+				+ "\t-templates <path to query template>\n"
 				+ "\t\tdefault: "
 				+ generatorDefaultValues.queryTemplateDirDef
 				+ "\n"
-				+ "\t-oq <output query instances>\n"
+				+ "\t-outdirQ <path to output directory:query instances>\n"
 				+ "\t\tdefault: "
 				+ generatorDefaultValues.queryInstanceDirDef
-				+ "\n";
+				+ "\n"
+				+ "\t-outdirV <path to output directory: values for variables>\n"
+				+ "\t\tdefault: "
+				+ generatorDefaultValues.querywithVariDirDef
+				+ "\n"
+				;
 
 		System.out.print(output);
 	}
@@ -109,6 +113,7 @@ public class generator {
 
 		//read query template, and store it as string
 		File dir = new File(queryTemplateDir);
+		System.out.println(queryTemplateDir);
 		int numberOfTemplates = 0;
 		File listDir[] = dir.listFiles();
 		for (int i = 0; i < listDir.length; i++) {

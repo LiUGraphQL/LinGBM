@@ -33,10 +33,10 @@ Configuration options:
 | Option | Description |
 | ------ | ------|
 |-nm \<number of instances for each template> |The number of query instances for each template. Default: 20. <br> The generated instances is random but not duplicate. If the total number of possible instances is less than the specified value, then generate all possible query instances.| 
-|-values \<path to directory> |The input values for placeholders, which was created by the Dataset Generator. Default:"/datasetgen/td_data"|
-|-templates \<path to query template> |The input query templates. Default: "queryTemplate"| 
-|-outdirQ \<path to output directory: query instances> |The output directory for storing the generated queries. Default: "actualQueries"|
-|-outdirV \<path to output directory: values for variables> |The output directory for storing the variable values for query templates. Default: "queryVariables"|
+|-values \<Absolute path to placeholder values> |The input values for placeholders, which was created by the Dataset Generator. Default:"/LinGBM/tools/datasetgen/td_data"|
+|-templates \<Absolute path to query template> |The input query templates. Default: "LinGBM/artifacts/queryTemplates/main"| 
+|-outdirQ \<Absolute path to output directory: query instances> |The output directory for storing the generated queries. Default: "/LinGBM/tools/querygen/actualQueries"|
+|-outdirV \<Absolute path to output directory: values for variables> |The output directory for storing the variable values for query templates. Default: "/LinGBM/tools/querygen/queryVariables"|
 
 The following example specifies 10 queries for each query template.
 

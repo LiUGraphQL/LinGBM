@@ -28,7 +28,8 @@ public class ValueGenerator {
 	 */
 	
 	public String getRandomDate(String start, String end) throws ParseException {
-		String date;
+		String date = null;
+		Boolean valid;
 		String year, month, day;
 		String random = "1900-01-01";
 		String connect = "-";
@@ -38,7 +39,7 @@ public class ValueGenerator {
 		Date endDate = objSDF.parse(end);
 		Date randomDate = objSDF.parse(random);
 
-		while(randomDate.compareTo(startDate) < 0 || randomDate.compareTo(endDate) > 0){
+		while(randomDate.before(startDate) || randomDate.after(endDate)){
 			year = String.valueOf(randomInt(2000, 2006));
 			int monthTem = randomInt(1, 12);
 			if(monthTem<10) {
@@ -46,19 +47,21 @@ public class ValueGenerator {
 			} else {
 				month = String.valueOf(monthTem);
 			}
-			int dayTem = randomInt(1, 30);
+			int dayTem = randomInt(1, 31);
 			if(dayTem<10) {
 				day = "0"+String.valueOf(dayTem);
 			} else {
 				day = String.valueOf(dayTem);
 			}
 			random = year+connect+month+connect+day;
-            if(random != "2004-01-14"){
-                randomDate = objSDF.parse(random);
-            }
+			try{
+				randomDate = objSDF.parse(random);
+				date = objSDF.format(randomDate);
+			} catch (ParseException e){
+				continue;
+			}
 		}
-		date = random;
-	    return date;
+		return date;
 	}
 
 }
