@@ -64,7 +64,8 @@ This choke point captures the general challenge of providing efficient support f
 ### CP 3.2: Paging with offset
 This choke point captures the additional challenge of efficiently supporting paging also in cases in which a limited number of objects have to be retrieved starting from a user-specified offset.
 
-### CP 3.3: 
+### CP 3.3: Ordering
+The challenge captured by this choke point is to efficiently apply a user-specified order over the objects visited by traversing a 1:N relationship.
 
 ## Choke Points Related to Searching and Filtering
 Field arguments in GraphQL queries are powerful not only because they can be used as a flexible approach to expose paging and ordering features. Another use case, which is perhaps even more interesting from a data retrieval point of view, is to expose arbitrarily complex search and filtering functionality. The following choke points capture different challenges related to this use case. 
