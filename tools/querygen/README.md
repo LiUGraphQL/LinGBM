@@ -31,13 +31,13 @@ The following arguments can be used to change the behavior of the program:
 
 | Argument | Description |
 | ------ | ------|
-|-nm \<number of instances for each template> |The number of query instances for each template. Default: 20. <br> The generated instances is random but not duplicate. If the total number of possible instances is less than the specified value, then generate all possible query instances.| 
-|-values \<Absolute path to placeholder values> |The input values for placeholders, which was created by the Dataset Generator. Default:"/LinGBM/tools/datasetgen/td_data"|
-|-templates \<Absolute path to query template> |The input query templates. Default: "LinGBM/artifacts/queryTemplates/main"| 
-|-outdirQ \<Absolute path to output directory: query instances> |The output directory for storing the generated queries. Default: "/LinGBM/tools/querygen/actualQueries"|
-|-outdirV \<Absolute path to output directory: values for variables> |The output directory for storing the variable values for query templates. Default: "/LinGBM/tools/querygen/queryVariables"|
+|-nm \<number of instances for each template> |The number of query instances for each template. Default: 20. <br> If the specified value is less than the total number of instances possible for some query template (because there are not enough possible values for the placeholder(s) in that query template), then all possible query instances are generated.| 
+|-templates \<Absolute path to the directory with the query templates> |The query templates used as input. Default: /LinGBM/artifacts/queryTemplates/main| 
+|-values \<Absolute path to the directory with the placeholder values> |The directory with the input values for placeholders, which was created by the dataset generator. Default: /LinGBM/tools/datasetgen/td_data |
+|-outdirQ \<Absolute path to output directory: query instances> |The output directory for writing the files with the generated query instances. Default: /LinGBM/tools/querygen/actualQueries|
+|-outdirV \<Absolute path to output directory: values for variables> |The output directory for writing the files with the variable assignments to be used together with the query templates. Default: /LinGBM/tools/querygen/queryVariables |
 
-The following example specifies 10 queries for each query template.
+For instance, the following example command generates only 10 queries for each query template.
 
 ```
 java -cp target/querygen-1.0-SNAPSHOT.jar se.liu.ida.querygen.generator -nm 10
