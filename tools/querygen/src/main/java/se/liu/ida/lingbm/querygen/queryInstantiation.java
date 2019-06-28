@@ -25,7 +25,7 @@ public class queryInstantiation {
 		if(valueCombine!= null){
 			for(int i = 0; i<valueCombine.length; i++){
 				String replaceString=oldQuery.substring(oldQuery.indexOf('\n')+1);
-				File dirActualQueries = new File(dirIns+"/"+"queryTemplate_"+No_temp+"/");
+				File dirActualQueries = new File(dirIns+"/"+"QT"+No_temp+"/");
 				dirActualQueries.mkdirs();
 				for(int j = 0; j<valueCombine[0].length; j++){
 					replaceString = replaceString.replace(paraParts[j], valueCombine[i][j]);
@@ -44,7 +44,7 @@ public class queryInstantiation {
 				}
 
 				String variables="{"+ "\n ";
-				File dirQuerywithVari = new File(dirQueryVari+"/"+"variableValues_"+No_temp+"/");
+				File dirQuerywithVari = new File(dirQueryVari+"/"+"QT"+No_temp+"/");
 				dirQuerywithVari.mkdirs();
 				for(int k = 0; k<valueCombine[0].length; k++){
 					variables = variables.concat("	\""+paraParts[k].substring(1, paraParts[k].length())+"\": "+valueCombine[i][k]+",\n");

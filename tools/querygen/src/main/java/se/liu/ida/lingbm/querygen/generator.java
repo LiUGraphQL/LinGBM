@@ -113,18 +113,15 @@ public class generator {
 
 		//read query template, and store it as string
 		File dir = new File(queryTemplateDir);
-		System.out.println(queryTemplateDir);
+		//System.out.println(queryTemplateDir);
 		int numberOfTemplates = 0;
 		File listDir[] = dir.listFiles();
-		for (int i = 0; i < listDir.length; i++) {
-			if (listDir[i].isDirectory()) {
-				numberOfTemplates++;
-			}
-		}
+		numberOfTemplates = listDir.length/2;
+		
 		System.out.println("number of query templates:"+numberOfTemplates);
 		System.out.println("Read in query templates and placeholders for query templates...");
 		for (int i = 1; i<= numberOfTemplates; i++){
-			File queryTempfile = new File(dir, "template"+i+"/queryTemplate"+i+".txt");
+			File queryTempfile = new File(dir, "QT"+i+".txt");
 			FileInputStream queryT = new FileInputStream(queryTempfile);
 			BufferedReader txtQueryTem = new BufferedReader(new InputStreamReader(queryT));
 
@@ -138,7 +135,7 @@ public class generator {
 			String queryTemp = queryBuilder.toString();
 			templates.add(queryTemp);
 
-			File queryDesfile = new File(dir, "template"+i+"/queryTemplateDes"+i+".txt");
+			File queryDesfile = new File(dir, "QT"+i+".vars");
 			BufferedReader txtQueryDes = new BufferedReader(new InputStreamReader(new FileInputStream(queryDesfile)));
 			String placeholder = txtQueryDes.readLine();
 
