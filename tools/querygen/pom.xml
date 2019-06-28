@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>se.liu.ida</groupId>
-    <artifactId>querygen</artifactId>
+    <groupId>se.liu.ida.lingbm</groupId>
+    <artifactId>lingbm-querygen</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -25,7 +25,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>se.liu.ida.querygen.generator</mainClass>
+                            <mainClass>se.liu.ida.lingbm.querygen.generator</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,4 +1,4 @@
-package se.liu.ida.querygen;
+package se.liu.ida.lingbm.querygen;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

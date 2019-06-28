@@ -22,7 +22,7 @@ mvn package
 To have the program generate query instances execute it as a Java program using the following example command.
 
 ```
-java -cp target/querygen-1.0-SNAPSHOT.jar se.liu.ida.querygen.generator
+java -cp target/lingbm-querygen-1.0-SNAPSHOT.jar se.liu.ida.lingbm.querygen.generator
 ```
 
 By default, the program generates 20 instances for each query template and writes these queries in separate files into the directory `./actualQueries/`
@@ -40,5 +40,5 @@ The following arguments can be used to change the behavior of the program:
 For instance, the following example command generates only 10 queries for each query template.
 
 ```
-java -cp target/querygen-1.0-SNAPSHOT.jar se.liu.ida.querygen.generator -nm 10
+java -cp target/lingbm-querygen-1.0-SNAPSHOT.jar se.liu.ida.lingbm.querygen.generator -nm 10
 ```

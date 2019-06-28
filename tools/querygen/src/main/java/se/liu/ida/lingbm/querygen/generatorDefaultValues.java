@@ -1,4 +1,4 @@
-package se.liu.ida.querygen;
+package se.liu.ida.lingbm.querygen;
 
 // This module defines the default values for running the queryGenerator
 // If a user doesn't specify any values when running, the default values will be set

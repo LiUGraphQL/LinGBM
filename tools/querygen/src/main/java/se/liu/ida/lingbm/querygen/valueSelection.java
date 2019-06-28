@@ -1,4 +1,4 @@
-package se.liu.ida.querygen;
+package se.liu.ida.lingbm.querygen;
 
 import java.io.File;
 import java.io.FileInputStream;
