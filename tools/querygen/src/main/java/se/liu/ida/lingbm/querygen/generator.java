@@ -1,9 +1,9 @@
 package se.liu.ida.lingbm.querygen;
 
+import javax.swing.text.html.HTMLDocument;
 import java.io.*;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 // This module works for input query templates and output query instances
 // queryInstantiation is called from here
@@ -21,6 +21,7 @@ public class generator {
 	static ArrayList<String> templates = new ArrayList<String>();
 	static final Random seedGenerator = new Random(53223436L);
 	static ArrayList<String> placeholders = new ArrayList<String>();
+	static ArrayList<String> data = new ArrayList<String>();
 	/*
 	 * Parameters for steady state
 	 */
@@ -117,14 +118,13 @@ public class generator {
 		int numberOfTemplates = 0;
 		File listDir[] = dir.listFiles();
 		numberOfTemplates = listDir.length/2;
-		
+
 		System.out.println("number of query templates:"+numberOfTemplates);
 		System.out.println("Read in query templates and placeholders for query templates...");
 		for (int i = 1; i<= numberOfTemplates; i++){
 			File queryTempfile = new File(dir, "QT"+i+".txt");
 			FileInputStream queryT = new FileInputStream(queryTempfile);
 			BufferedReader txtQueryTem = new BufferedReader(new InputStreamReader(queryT));
-
 
 			String queryLine = txtQueryTem.readLine();
 			StringBuilder queryBuilder = new StringBuilder();
@@ -170,12 +170,39 @@ public class generator {
 		System.out.println("\n Cleared\n");
 
 		System.out.println("\nStart generating new query instances...\n");
+
+		Integer[] actualNumInstan= new Integer[3];
 		for(int i=0; i< placeholders.size(); i++){
 			String queryTemp = templates.get(i);
 			String placeholder = placeholders.get(i);
 			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, (i+1));
+			//statistics NumOfInstance = new statistics(placeholder, valueSel, dirIns, numQueriesPerTempate, (i+1));
+			actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
+			data.add(actualNumInstan[0]+","+"QT"+ (i+1)+","+actualNumInstan[2]);
 			System.out.println("queries for template "+(i+1)+" has been generated.");
 		}
 		System.out.println("All query instances has been generated.");
+
+
+
+		File path = new File(dirIns.getPath().substring(0, dirIns.getPath().lastIndexOf("/actualQueries")));
+		File oldNumInstance = new File(path, "/NumOfInstances.csv");
+		oldNumInstance.delete();
+
+		path.mkdir();
+
+		File numInstance = new File(path, "/NumOfInstances.csv");
+		try (
+				FileWriter rfw = new FileWriter(numInstance, true);
+				BufferedWriter rbw = new BufferedWriter(rfw);
+				PrintWriter R_file = new PrintWriter(rbw)) {
+			Iterator dataIte = data.iterator();
+			while (dataIte.hasNext()) {
+				R_file.println(dataIte.next());
+			}
+		} catch (Exception e) {
+			System.out.println("This is the type of exception found for filling parameter of query: " + e);
+		}
+		System.out.println("Statics has been recorded.");
 	}
 }

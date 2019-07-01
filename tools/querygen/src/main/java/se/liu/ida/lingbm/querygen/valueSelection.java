@@ -179,52 +179,68 @@ public class valueSelection{
 
 
 	//number of instances
-	protected Integer getInstanceNm(String field, Integer maxInstanceNm) {
-		Integer instanceNm= null;
+	protected Integer[] getInstanceNm(String field, Integer maxInstanceNm) {
+		//NumOfInstance[1]: number of query instances (should be generated)
+		//NumOfInstance[2]: actual max number of query instances in the dataset
+		Integer[] NumOfInstance = new Integer[3];
 		if ("$productID".equals(field)) {
-			instanceNm = Math.min(productCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(productCount, maxInstanceNm);
+			NumOfInstance[2] = productCount;
 		} else if ("$producerID".equals(field)) {
-			instanceNm = Math.min(producerCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(producerCount, maxInstanceNm);
+			NumOfInstance[2] = producerCount;
 		} else if ("$reviewID".equals(field)) {
-			instanceNm = Math.min(reviewCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(reviewCount, maxInstanceNm);
+			NumOfInstance[2]= reviewCount;
 		} else if ("$offerID".equals(field)) {
-			instanceNm = Math.min(offerCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(offerCount, maxInstanceNm);
+			NumOfInstance[2] = offerCount;
 		} else if ("$vendorID".equals(field)) {
-			instanceNm = Math.min(vendorCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(vendorCount, maxInstanceNm);
+			NumOfInstance[2] = vendorCount;
 		} else if ("$textOfReviewKeyword".equals(field)) {
 			//return index of attribute field
-			instanceNm = Math.min(wordListTextOfReview.length, maxInstanceNm);
+			NumOfInstance[1] = Math.min(wordListTextOfReview.length, maxInstanceNm);
+			NumOfInstance[2] = wordListTextOfReview.length;
 		}else if ("$producerID-$vendorID".equals(field)) {
 			int combTotalCount = vendorCount*producerCount;
-			instanceNm = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[2] = combTotalCount;
 		}else if ("$vendorID-$offset".equals(field)) {
 			int combTotalCount = vendorCount * 200;
-			instanceNm = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[1]= Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[2] = combTotalCount;
 		}
 		else if ("$producerID-$date".equals(field)) {
 			int combTotalCount = producerCount*2285;
-			instanceNm = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[2] = combTotalCount;
 		}
 		else if ("$producerID-$date-$commentOfVendorKeyword".equals(field)) {
 			int combTotalCount = producerCount*2285*(wordListCommentOfVendor.length);
-			instanceNm = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[1]= Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[2] = combTotalCount;
 		}
 		else if ("$vendorID-$attrReview".equals(field)) {
 			int combTotalCount = vendorCount*9;
-			instanceNm = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[2] = combTotalCount;
 		}
 		else if ("$cnt-$attrOffer1-$attrOffer2".equals(field)){
 			int combTotalCount = 9000;
-			instanceNm = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+			NumOfInstance[2] = combTotalCount;
 		}
-		return instanceNm;
+		NumOfInstance[0] = scalefactor;
+		//System.out.println(NumOfInstance);
+		return NumOfInstance;
 	}
 
 	/*
 	 * Returns a combination of values for placeholders
 	 */
 	protected Set getRandomSelectedValues(String field, Integer maxInstanceNm) throws ParseException {
-		instanceNm = getInstanceNm(field, maxInstanceNm);
+		instanceNm = getInstanceNm(field, maxInstanceNm)[1];
 		Set setCombination = new HashSet();
 		int size = 0;
 
@@ -285,6 +301,4 @@ public class valueSelection{
 		}
 		return paras;
 	}
-
-
 }
