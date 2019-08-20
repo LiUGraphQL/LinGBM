@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.text.ParseException;
 import java.util.*;
+import java.io.*;
 
 // This module works for generating a group of values for one parameter or a combination of parameters.
 // Given a placeholder, randomly select a group of values for it
@@ -66,10 +67,36 @@ public class valueSelection{
 			wordHashTextOfReview = y ;
 			wordListTextOfReview = wordHashTextOfReview.keySet().toArray(new String[0]);
 			System.out.println("number of words that used in the text of Reviews: "+wordListTextOfReview.length);
+
+			//output the word list for text of review to a csv file
+			BufferedWriter br = new BufferedWriter(new FileWriter("wordListTextOfReview.csv"));
+			StringBuilder sb = new StringBuilder();
+			// Append word string from array
+			for (String element : wordListTextOfReview) {
+				sb.append(element);
+				sb.append("\n");
+			}
+
+			br.write(sb.toString());
+			br.close();
+
 			HashMap<String, Integer> z = (HashMap<String, Integer>)currentDateAndLabelWordsInput.readObject();
 			wordHashCommentOfVendor = z ;
 			wordListCommentOfVendor = wordHashCommentOfVendor.keySet().toArray(new String[0]);
 			System.out.println("number of words that used in the comment of Vendors: "+wordListCommentOfVendor.length);
+
+			//output the word list for comment of vendor to a csv file
+			BufferedWriter bw = new BufferedWriter(new FileWriter("wordListCommentOfVendor.csv"));
+			StringBuilder sbu = new StringBuilder();
+			// Append word string from array
+			for (String element : wordListCommentOfVendor) {
+				sbu.append(element);
+				sbu.append("\n");
+			}
+
+			bw.write(sbu.toString());
+			bw.close();
+
 		} catch(IOException | ClassNotFoundException e) {
 			System.err.println("Could not open or process file " + cdlw.getAbsolutePath());
 			System.err.println(e.getMessage());
