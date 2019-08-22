@@ -10,11 +10,7 @@ query product_review_product($productID:ID)
             reviews {
               title
               reviewFor { 
-                reviews {
-                  text
-                  title
-                  reviewFor { label }
-                }
+                label
               }
             }
           }
