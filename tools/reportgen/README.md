@@ -1,4 +1,4 @@
-# Report Generator
+# Report Generator <br/> of the Linköping GraphQL Benchmark (LinGBM)
 
 TODO!
 
