@@ -1,8 +1,9 @@
-query offer_product_review($offerID:ID)
-{
-  offer(nr:$offerID) {
-    product {
-      reviews { title text reviewDate publishDate rating1 rating2 }
-    }
-  }
-}
+query faculty_university_graduateStudent($facultyID:ID) 
+{ 
+	faculty(nr:$facultyID){ 
+		doctoralDegreeFrom { 
+			undergraduateDegreeObtainedBystudent{id emailAddress} 
+		} 
+	} 
+} 
+ 

@@ -1,9 +1,7 @@
-query subquerySearch($vendorID:ID)
-{
-	offers(where: { vendor: {nr:$vendorID} } )
-  	{
-    	price
-    	offerWebpage
-    	product {label comment}
-  	}
+query subquerySearch($universityID:ID) 
+{ 
+	graduateStudents (where: {university: {nr:$universityID} } ) { 
+		id 
+		advisor {id} 
+	} 
 }

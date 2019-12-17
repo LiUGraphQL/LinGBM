@@ -1,8 +1,8 @@
-query producer_product_review($producerID:ID)
-{
-  producer(nr:$producerID) {
-    products {
-      reviews { title }
-    }
-  }
-}
+query university_faculty_publications($universityID:ID) 
+{ 
+	university(nr:$universityID){ 
+		doctoralDegreeObtainers{ 
+			publications{title} 
+		} 
+	} 
+} 

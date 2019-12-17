@@ -1,10 +1,10 @@
-query aggregation_query($vendorID:ID)
-{
-	vendor(nr:$vendorID){
-		offersConnection{
-			aggregate{
-				count
-			}
-        }
-    }
+query count_query ($departmentID:ID) 
+{ 
+	university(nr:$universityID){ 
+		undergraduateStudentConnection{ 
+			aggregate { 
+				count 
+			} 
+		} 
+	} 
 }

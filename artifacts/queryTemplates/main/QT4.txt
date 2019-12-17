@@ -1,20 +1,17 @@
-query offer_product_review_person_country($offerID:ID)
-{
-  offer(nr:$offerID) {
-    product {
-    	label
-    	comment
-     	reviews {
-        title
-        text
-        rating1
-        rating2
-        rating3
-        rating4
-        reviewer {
-        		country { code }
-        }
-      }
-    }
-  }
-}
+query lecturer_university_graduateStudent_professor_department($lecturerID:ID) 
+{ 
+  lecturer(nr:$lecturerID) { 
+    doctoralDegreeFrom { 
+      id 
+      undergraduateDegreeObtainedBystudent { 
+        id 
+        email 
+        advisor { 
+          id 
+          email  
+          worksFor {id} 
+        } 
+      } 
+    } 
+  } 
+} 

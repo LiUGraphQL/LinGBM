@@ -1,12 +1,10 @@
-query vendor_offer_product_producer_country($vendorID:ID)
-{
-  vendor(nr:$vendorID) {
-    offers{
-      product {
-        producer {
-          country { code }
-        }
-      }
-    }
-  }
-}
+query university_graduateStudents_supervisor_department($universityID:ID) 
+{ 
+	university (nr:$universityID) { 
+		undergraduateDegreeObtainedBystudent{ 
+			advisor { 
+				worksFor{id} 
+			} 
+		} 
+	} 
+} 

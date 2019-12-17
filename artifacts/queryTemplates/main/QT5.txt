@@ -1,21 +1,17 @@
-query product_review_product($productID:ID)
-{
-  product(nr:$productID) {
-    reviews {
-      title
-      reviewFor {
-        reviews {
-          title
-          reviewFor {
-            reviews {
-              title
-              reviewFor { 
-                label
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
+query department_faculty_university_graduateStudents_department($departmentID:ID) 
+{ 
+  department(nr:$departmentID) { 
+    id 
+    faculties { 
+      id 
+      emailAddress 
+      doctoralDegreeFrom { 
+        undergraduateDegreeObtainedBystudent { 
+          id 
+          emailAddress 
+          memberOf{ id } 
+        } 
+      } 
+    } 
+  } 
+} 

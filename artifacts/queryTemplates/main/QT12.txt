@@ -1,13 +1,10 @@
-query subqueryFilter1($producerID:ID, $vendorID:ID)
-{
-  producer(nr:$producerID) {
-    products {
-      offers(where: { vendor: {nr:$vendorID} } )
-      {
-        price
-        offerWebpage
-        product {label comment}
-      }
-    }
-  }
-}
+query subqueryFilter1($universityID:ID, $departmentID:ID) 
+{ 
+  university(nr:$universityID) { 
+    doctoralDegreeObtainers (where: {department: {nr:$departmentID} } ){ 
+      id 
+      emailAddress 
+      publications {id } 
+    } 
+  } 
+} 

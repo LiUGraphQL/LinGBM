@@ -1,16 +1,10 @@
-query multipleFilters($producerID:ID,$date:Date, $commentOfVendorKeyword:String)
-{
-  producer(nr:$producerID) {
-    products {
-      offers(where:{
-        AND:[
-        {vendor:{publishDate:{criterion:AFTER, date:$date}}},
-        {vendor:{comment:{criterion:CONTAINS, pattern:$commentOfVendorKeyword}}}
-        ]}){	
-          price
-          offerWebpage
-          product {label comment}
-        }
-     }
-  }
+query multipleFilters($departmentID:ID,$professorType:String, $interestkeyword:String) 
+{ 
+  university(nr:$universityID) { 
+    undergraduateDegreeObtainedBystudent(where: {AND:[{advisor:{age:{criterion:MORETHAN, pattern:$age}}},{advisor:{researchInterest:{criterion:CONTAINS, pattern:$interestKeyword}}}]}) { 
+      id 
+      emailAddress 
+      takeGraduateCourses {id} 
+    } 
+  } 
 }

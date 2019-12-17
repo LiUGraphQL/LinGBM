@@ -1,13 +1,12 @@
-query review_product_producttype_parenttype($reviewID:ID)
-{
-  review(nr:$reviewID) {
-    reviewFor {
-      type {
-        nr
-        label
-        comment
-        parent { nr label comment }
-      }
-    }
-  }
-}
+query researchGroup_department_head_doctorDegreeFrom($researchGroupID:ID) 
+{ 
+  researchGroup(nr:$researchGroupID) { 
+    subOrgnizationOf { 
+      head { 
+        id 
+        email 
+        doctorDegreeFrom {id} 
+      } 
+    } 
+  } 
+} 

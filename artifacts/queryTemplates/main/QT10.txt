@@ -1,10 +1,8 @@
-query stringMatching($textOfReviewKeyword:String)
-{
-  reviewSearch(field:text,
-               criterion:CONTAINS,
-               pattern:$textOfReviewKeyword)
-  {
-    title 
-    text
-  }
-}
+query stringMatching($keyword:String) 
+{ 
+	publicationSearch(field:title, criterion:contains, pattern:$keyword) { 
+		id 
+		title 
+		abstract 
+	} 
+} 

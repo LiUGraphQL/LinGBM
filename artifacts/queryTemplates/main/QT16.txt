@@ -1,15 +1,14 @@
-query aggregation_query($vendorID:ID)
-{
-	vendor(nr:$vendorID){
-		offersConnection{
-			aggregate{
-				price{
-					sum
-					avg
-                	max
-                    min
-                }
-            }
-        }
-    }
+query aggregation_query ($departmentID:ID) 
+{ 
+	university(nr:$universityID){ 
+		undergraduateStudentConnection{ 
+			aggregate { 
+				age{ 
+					avg 
+					max 
+					min 
+				} 
+			} 
+		} 
+	} 
 }

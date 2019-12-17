@@ -1,9 +1,8 @@
-query paging_with_offset_as_counter($vendorID:ID, $offset:Int)
-{
-  vendor(nr:$vendorID) {
-    offers(limit:10, offset:$offset) {
-      offerWebpage
-      product { label comment }
-    }
-  }
-}
+query paging_with_offset_as_counter($universityID:ID, $offset:Int) 
+{ 
+	university(nr:$universityID) { 
+		undergraduateDegreeObtainedBystudent(limit:10, offset: $offset) { 
+			advisor {id} 
+		} 
+	} 
+} 

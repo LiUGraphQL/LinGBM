@@ -1,13 +1,10 @@
-query subqueryFilter2($producerID:ID, $date: Date)
-{
-  producer(nr:$producerID) {
-    products {
-      offers(where:{ vendor:{ publishDate:{criterion:AFTER, date:$date}}})
-      {	
-        price
-        offerWebpage
-        product {label comment}
-      }
-    }
-  }
-}
+query subqueryFilter2($universityID:ID, $interestWord: String) 
+{ 
+  university(nr:$universityID) { 
+    undergraduateDegreeObtainedBystudent(where: {advisor: {researchInterest:{criterion:CONTAINS, pattern:$interestWord}}}){ 
+      id 
+      emailAddress 
+      takeGraduateCourses {id } 
+    } 
+  } 
+} 

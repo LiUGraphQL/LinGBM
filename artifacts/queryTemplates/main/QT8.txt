@@ -1,8 +1,8 @@
-query sorting_with_paging($cnt:Int, $attrOffer1:OffersSortingField, $attrOffer2:OffersSortingField)
-{
-  offers(limit:$cnt, order:[$attrOffer1, $attrOffer2]) {
-    offerWebpage
-    validFrom
-    price
-  }
-}
+query sorting_with_paging($cnt:Int, $attrGStudent1: graduateStudentField, $attrGStudent2: graduateStudentField)  
+{ 
+	graduateStudents (limit:$cnt, order:[$attrOffer1, $attrOffer2]){ 
+		id 
+		telephone 
+		emailAddress 
+	} 
+} 
