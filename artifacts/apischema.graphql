@@ -1,42 +1,45 @@
 type University  
 { 
-id: ID! 
-undergraduateDegreeObtainedByFaculty: [Faculty] 
-mastergraduateDegreeObtainers: [Faculty] 
-doctoralDegreeObtainers: [Faculty] 
-undergraduateDegreeObtainedBystudent: [GraduateStudent] 
-departments: [Department] 
+	id: ID! 
+	undergraduateDegreeObtainedByFaculty: [Faculty] 
+	mastergraduateDegreeObtainers: [Faculty] 
+	doctoralDegreeObtainers: [Faculty] 
+	undergraduateDegreeObtainedBystudent: [GraduateStudent] 
+	departments: [Department] 
 } 
+
 interface Faculty  
 { 
-id: ID! 
-telephone: String 
-emailAddress: String 
-undergraduteDegreeFrom: University 
-masterDegreeFrom: University 
-doctoralDegreeFrom: University 
-worksFor: Department 
-teacherOfGraduateCourses: [GraduateCourse] 
-teacherOfUndergraduateCourses: [Course] 
-publications: [Publication] 
+	id: ID! 
+	telephone: String 
+	emailAddress: String 
+	undergraduteDegreeFrom: University 
+	masterDegreeFrom: University 
+	doctoralDegreeFrom: University 
+	worksFor: Department 
+	teacherOfGraduateCourses: [GraduateCourse] 
+	teacherOfUndergraduateCourses: [Course] 
+	publications: [Publication] 
 } 
+
 type Department  
 { 
-id: ID! 
-subOrganizationOf: University 
-head: FullProfessor 
-researchGroups: [ResearchGroup] 
-faculties: [Faculty] 
-professors: [Professor] 
-fullProfessors: [FullProfessor] 
-students: [Student] 
-graduateStudents: [GraduateStudent] 
-undergraduateStudents: [undergraduateStudent] 
+	id: ID! 
+	subOrganizationOf: University 
+	head: FullProfessor 
+	researchGroups: [ResearchGroup] 
+	faculties: [Faculty] 
+	professors: [Professor] 
+	fullProfessors: [FullProfessor] 
+	students: [Student] 
+	graduateStudents: [GraduateStudent] 
+	undergraduateStudents: [undergraduateStudent] 
 } 
+
 type ResearchGroup  
 { 
-id: ID! 
-subOrgnizationOf: Department 
+	id: ID! 
+	subOrgnizationOf: Department 
 } 
  
 union Professor 
@@ -44,68 +47,71 @@ union Professor = AssistantProfessor | AssociateProfessor | FullProfessor
  
 type Lecturer implements Faculty  
 { 
-id: ID! 
-telephone: String 
-emailAddress: String 
-undergraduteDegreeFrom: University 
-masterDegreeFrom: University 
-doctoralDegreeFrom: University 
-worksFor: Department 
-graduateCourses: [GraduateCourse] 
-courses: [Course] 
-publications: [Publication] 
+	id: ID! 
+	telephone: String 
+	emailAddress: String 
+	undergraduteDegreeFrom: University 
+	masterDegreeFrom: University 
+	doctoralDegreeFrom: University 
+	worksFor: Department 
+	graduateCourses: [GraduateCourse] 
+	courses: [Course] 
+	publications: [Publication] 
 } 
+
 type AssociateProfessor implements Faculty  
 { 
-id: ID! 
-telephone: String 
-emailAddress: String 
-researchInterest: String 
-undergraduteDegreeFrom: University 
-masterDegreeFrom: University 
-doctoralDegreeFrom: University 
-worksFor: Department 
-graduateCourses: [GraduateCourse] 
-courses: [Course] 
-publications: [Publication] 
-supervisedStudents: [Student] 
-supervisedGraduateStudents: [GraduateStudent] 
-supervisedUndergraduateStudents: [UndergraduateStudent] 
+	id: ID! 
+	telephone: String 
+	emailAddress: String 
+	researchInterest: String 
+	undergraduteDegreeFrom: University 
+	masterDegreeFrom: University 
+	doctoralDegreeFrom: University 
+	worksFor: Department 
+	graduateCourses: [GraduateCourse] 
+	courses: [Course] 
+	publications: [Publication] 
+	supervisedStudents: [Student] 
+	supervisedGraduateStudents: [GraduateStudent] 
+	supervisedUndergraduateStudents: [UndergraduateStudent] 
 } 
+
 type AssistantProfessor implements Faculty  
 { 
-id: ID! 
-telephone: String 
-emailAddress: String 
-researchInterest: String 
-undergraduteDegreeFrom: University 
-masterDegreeFrom: University 
-doctoralDegreeFrom: University 
-worksFor: Department 
-graduateCourses: [GraduateCourse] 
-courses: [Course] 
-publications: [Publication] 
-supervisedStudents: [Student] 
-supervisedGraduateStudents: [GraduateStudent] 
-supervisedUndergraduateStudents: [UndergraduateStudent] 
+	id: ID! 
+	telephone: String 
+	emailAddress: String 
+	researchInterest: String 
+	undergraduteDegreeFrom: University 
+	masterDegreeFrom: University 
+	doctoralDegreeFrom: University 
+	worksFor: Department 
+	graduateCourses: [GraduateCourse] 
+	courses: [Course] 
+	publications: [Publication] 
+	supervisedStudents: [Student] 
+	supervisedGraduateStudents: [GraduateStudent] 
+	supervisedUndergraduateStudents: [UndergraduateStudent] 
 } 
+
 type FullProfessor implements Faculty  
 { 
-id: ID! 
-headOf: Department 
-telephone: String 
-emailAddress: String 
-researchInterest: String 
-undergraduteDegreeFrom: University 
-masterDegreeFrom: University 
-doctoralDegreeFrom: University 
-worksFor: Department 
-graduateCourses: [GraduateCourse] 
-courses: [Course] 
-publications: [Publication] 
-supervisedStudents: [Student] 
-supervisedGraduateStudents: [GraduateStudent] 
-supervisedUndergraduateStudents: [UndergraduateStudent] 
+	id: ID! 
+	headOf: Department 
+	telephone: String 
+	emailAddress: String 
+	researchInterest: String 
+	undergraduteDegreeFrom: University 
+	masterDegreeFrom: University 
+	doctoralDegreeFrom: University 
+	worksFor: Department 
+	graduateCourses: [GraduateCourse] 
+	courses: [Course] 
+	publications: [Publication] 
+	supervisedStudents: [Student] 
+	supervisedGraduateStudents: [GraduateStudent] 
+	supervisedUndergraduateStudents: [UndergraduateStudent] 
 } 
  
 union Author 
@@ -113,51 +119,55 @@ union Author=Faculty | GraduateStudent
  
 type Publication  
 { 
-id: ID! 
-title: String 
-abstract: String 
-authors: [Author] 
+	id: ID! 
+	title: String 
+	abstract: String 
+	authors: [Author] 
 } 
+
 interface Student  
 { 
-id: ID! 
-telephone: String 
-emailAddress: String 
-memberOf: Department 
-age: Int 
-advisor: Professor 
+	id: ID! 
+	telephone: String 
+	emailAddress: String 
+	memberOf: Department 
+	age: Int 
+	advisor: Professor 
 } 
+
 type GraduateStudent implements Student  
 { 
-id: ID! 
-telephone: String 
-emailAddress: String 
-memberOf: Department 
-undergraduateDegreeFrom: University 
-advisor: Professor 
-takeGraduateCourses: [GraduateCourse] 
-assistCourses: [Course] 
+	id: ID! 
+	telephone: String 
+	emailAddress: String 
+	memberOf: Department 
+	undergraduateDegreeFrom: University 
+	advisor: Professor 
+	takeGraduateCourses: [GraduateCourse] 
+	assistCourses: [Course] 
 } 
  
 type UndergraduateStudent implements Student  
 { 
-id: ID! 
-telephone: String 
-emailAddress: String 
-memberOf: Department 
-advisor: Professor 
-takeCourses: [Course] 
+	id: ID! 
+	telephone: String 
+	emailAddress: String 
+	memberOf: Department 
+	advisor: Professor 
+	takeCourses: [Course] 
 } 
+
 type GraduateCourse  
 { 
-id: ID! 
-teachedby: Faculty 
-graduateStudents: [GraduateStudent] 
+	id: ID! 
+	teachedby: Faculty 
+	graduateStudents: [GraduateStudent] 
 } 
+
 type Course  
 { 
-id: ID! 
-teachedby: Faculty 
-undergraduateStudents: [UndergraduateStudent] 
-teachingAssistants: GraduateStudent 
+	id: ID! 
+	teachedby: Faculty 
+	undergraduateStudents: [UndergraduateStudent] 
+	teachingAssistants: GraduateStudent 
 } 
