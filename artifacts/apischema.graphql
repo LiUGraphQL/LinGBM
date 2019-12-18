@@ -198,7 +198,7 @@ input GraduateStudentWhereInput
 	age: NumberMatching
 }
 
-UniversityWhereInput
+input UniversityWhereInput
 {
 	nr: ID
 }
