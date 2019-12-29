@@ -5,7 +5,7 @@ type Query
 	researchGroup(nr: ID!): ResearchGroup
 	lecturer(nr: ID!): Lecturer
 	department(nr:ID!): Department
-	graduateStudents(where: GraduateStudentWhereInput, limit: int, order:[GraduateStudentField]): [GraduateStudent]
+	graduateStudents(where: GraduateStudentWhereInput, limit: Int, order:[GraduateStudentField]): [GraduateStudent]
 	publicationSearch(field: publicationField!, criterion: StringCriterion!, pattern: String!): [Publication]
 }
 
@@ -218,7 +218,7 @@ input StringMatching
 input NumberMatching
 {
   criterion: NumberCriterion
-  pattern: int
+  pattern: Int
 }
 
 enum NumberCriterion 
