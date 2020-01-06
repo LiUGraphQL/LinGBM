@@ -13,12 +13,9 @@ type University
 { 
 	id: ID! 
 	undergraduateDegreeObtainedByFaculty: [Faculty] 
-	mastergraduateDegreeObtainers: [Faculty] 
-	doctoralDegreeObtainers: [Faculty] 
-	doctoralDegreeObtainers(where: FacultyWhereInput): [Faculty] 
-	undergraduateDegreeObtainedBystudent: [GraduateStudent]
-	undergraduateDegreeObtainedBystudent(where: GraduateStudentWhereInput): [GraduateStudent]
-	undergraduateDegreeObtainedBystudent(limit: Int, offset: Int): [GraduateStudent]
+	mastergraduateDegreeObtainers: [Faculty]
+	doctoralDegreeObtainers(where: FacultyWhereInput): [Faculty]
+	undergraduateDegreeObtainedBystudent(where: GraduateStudentWhereInput, limit: Int, offset: Int): [GraduateStudent]
 	departments: [Department] 
 	undergraduateStudentConnection:CollectionOfEdgesToUgStudents
 } 
@@ -33,7 +30,7 @@ interface Faculty
 	doctoralDegreeFrom: University 
 	worksFor: Department 
 	teacherOfGraduateCourses: [GraduateCourse] 
-	teacherOfUndergraduateCourses: [Course] 
+	teacherOfUndergraduateCourses: [UndergraduateCourse] 
 	publications: [Publication] 
 } 
 
@@ -68,7 +65,7 @@ type Lecturer implements Faculty
 	doctoralDegreeFrom: University 
 	worksFor: Department 
 	graduateCourses: [GraduateCourse] 
-	courses: [Course] 
+	UndergraduateCourses: [UndergraduateCourse] 
 	publications: [Publication] 
 } 
 
@@ -83,10 +80,9 @@ type AssociateProfessor implements Faculty
 	doctoralDegreeFrom: University 
 	worksFor: Department 
 	graduateCourses: [GraduateCourse] 
-	courses: [Course] 
-	publications: [Publication]
+	UndergraduateCourses: [UndergraduateCourse]
 	publications(order: PublicationSortCriterion): [Publication]
-	supervisedStudents: [Student] 
+	supervisedUndergraduateStudents: [UndergraduateStudent] 
 	supervisedGraduateStudents: [GraduateStudent] 
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
 } 
@@ -102,10 +98,10 @@ type AssistantProfessor implements Faculty
 	doctoralDegreeFrom: University 
 	worksFor: Department 
 	graduateCourses: [GraduateCourse] 
-	courses: [Course] 
+	UndergraduateCourses: [UndergraduateCourse] 
 	publications: [Publication]
 	publications(order: PublicationSortCriterion): [Publication] 
-	supervisedStudents: [Student] 
+	supervisedUndergraduateStudents: [UndergraduateStudent] 
 	supervisedGraduateStudents: [GraduateStudent] 
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
 } 
@@ -122,10 +118,10 @@ type FullProfessor implements Faculty
 	doctoralDegreeFrom: University 
 	worksFor: Department 
 	graduateCourses: [GraduateCourse] 
-	courses: [Course] 
+	UndergraduateCourses: [UndergraduateCourse] 
 	publications: [Publication] 
 	publications(order: PublicationSortCriterion): [Publication]
-	supervisedStudents: [Student] 
+	supervisedUndergraduateStudents: [UndergraduateStudent] 
 	supervisedGraduateStudents: [GraduateStudent] 
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
 } 
