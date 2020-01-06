@@ -83,8 +83,7 @@ type AssociateProfessor implements Faculty
 	UndergraduateCourses: [UndergraduateCourse]
 	publications(order: PublicationSortCriterion): [Publication]
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
-	supervisedGraduateStudents: [GraduateStudent] 
-	supervisedUndergraduateStudents: [UndergraduateStudent] 
+	supervisedGraduateStudents: [GraduateStudent]
 } 
 
 type AssistantProfessor implements Faculty  
@@ -99,11 +98,9 @@ type AssistantProfessor implements Faculty
 	worksFor: Department 
 	graduateCourses: [GraduateCourse] 
 	UndergraduateCourses: [UndergraduateCourse] 
-	publications: [Publication]
 	publications(order: PublicationSortCriterion): [Publication] 
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
-	supervisedGraduateStudents: [GraduateStudent] 
-	supervisedUndergraduateStudents: [UndergraduateStudent] 
+	supervisedGraduateStudents: [GraduateStudent]
 } 
 
 type FullProfessor implements Faculty  
@@ -119,11 +116,9 @@ type FullProfessor implements Faculty
 	worksFor: Department 
 	graduateCourses: [GraduateCourse] 
 	UndergraduateCourses: [UndergraduateCourse] 
-	publications: [Publication] 
 	publications(order: PublicationSortCriterion): [Publication]
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
-	supervisedGraduateStudents: [GraduateStudent] 
-	supervisedUndergraduateStudents: [UndergraduateStudent] 
+	supervisedGraduateStudents: [GraduateStudent]
 } 
 
 union Author=Faculty | GraduateStudent 
