@@ -64,8 +64,8 @@ type Lecturer implements Faculty
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
 	worksFor: Department 
-	graduateCourses: [GraduateCourse] 
-	UndergraduateCourses: [UndergraduateCourse] 
+	teacherOfGraduateCourses: [GraduateCourse] 
+	teacherOfUndergraduateCourses: [UndergraduateCourse] 
 	publications: [Publication] 
 } 
 
@@ -79,8 +79,8 @@ type AssociateProfessor implements Faculty
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
 	worksFor: Department 
-	graduateCourses: [GraduateCourse] 
-	UndergraduateCourses: [UndergraduateCourse]
+	teacherOfGraduateCourses: [GraduateCourse] 
+	teacherOfUndergraduateCourses: [UndergraduateCourse]
 	publications(order: PublicationSortCriterion): [Publication]
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
 	supervisedGraduateStudents: [GraduateStudent]
@@ -96,8 +96,8 @@ type AssistantProfessor implements Faculty
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
 	worksFor: Department 
-	graduateCourses: [GraduateCourse] 
-	UndergraduateCourses: [UndergraduateCourse] 
+	teacherOfGraduateCourses: [GraduateCourse] 
+	teacherOfUndergraduateCourses: [UndergraduateCourse]  
 	publications(order: PublicationSortCriterion): [Publication] 
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
 	supervisedGraduateStudents: [GraduateStudent]
@@ -114,14 +114,14 @@ type FullProfessor implements Faculty
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
 	worksFor: Department 
-	graduateCourses: [GraduateCourse] 
-	UndergraduateCourses: [UndergraduateCourse] 
+	teacherOfGraduateCourses: [GraduateCourse] 
+	teacherOfUndergraduateCourses: [UndergraduateCourse]
 	publications(order: PublicationSortCriterion): [Publication]
 	supervisedUndergraduateStudents: [UndergraduateStudent] 
 	supervisedGraduateStudents: [GraduateStudent]
 } 
 
-union Author=Faculty | GraduateStudent 
+union Author= FullProfessor|AssociateProfessor|AssistantProfessor|Lecturer|GraduateStudent 
  
 type Publication  
 { 
