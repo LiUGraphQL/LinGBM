@@ -4,3 +4,4 @@ actualQueries/
 queryVariables/
 tools/querygen/NumOfInstances.csv
 tools/datasetgen/dataset/
+.DS_Store
