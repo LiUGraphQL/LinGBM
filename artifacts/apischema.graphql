@@ -6,7 +6,7 @@ type Query
 	lecturer(nr: ID!): Lecturer
 	department(nr:ID!): Department
 	graduateStudents(where: GraduateStudentWhereInput, limit: Int, order:[GraduateStudentField]): [GraduateStudent]
-	publicationSearch(field: publicationField!, criterion: StringCriterion!, pattern: String!): [Publication]
+	publicationSearch(field: PublicationField!, criterion: StringCriterion!, pattern: String!): [Publication]
 }
 
 type University  
