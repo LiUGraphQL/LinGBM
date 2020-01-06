@@ -44,7 +44,7 @@ type Department
 	professors: [Professor]
 	lecturers: [FullProfessor]
 	graduateStudents: [GraduateStudent] 
-	undergraduateStudents: [undergraduateStudent] 
+	undergraduateStudents: [UndergraduateStudent] 
 } 
 
 type ResearchGroup  
