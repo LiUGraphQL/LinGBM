@@ -1,2 +1,0 @@
-DELETE WHERE
-{ %Offer% ?p ?o }
