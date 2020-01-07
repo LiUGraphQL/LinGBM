@@ -11,14 +11,12 @@ public class SQLWriter extends SQLFlatWriter {
     @Override
     protected void insertPriValue(String className, int valueID, boolean isResource){
         if (isResource) {
-            out.format("insert into %s(nr) values (%s);", className, valueID);
+            out.format("insert ignore into %s(nr) values (%s);", className, valueID);
             out.println();
         }
     };
     @Override
-    protected void insertAttrValue(String propertyType, String objeClass, int valueID){
-        //insertPriValue(objeClass, valueID, true);
-        //out.println();
+    protected void insertAttrValue(String propertyType, int valueID){
         out.format("UPDATE %s set %s= %s where nr = %s;", this.getCurrentType(),propertyType, valueID, getIdOfCurrentSubject());
         out.println();
     };

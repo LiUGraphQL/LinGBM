@@ -16,8 +16,21 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
     protected final String ontologyUrl;
     private final Stack<String> subjects = new Stack<String>();
+    private final Stack<Integer> type = new Stack<Integer>();
     ArrayList<String> globalURL = new ArrayList<String>();
-    private final Stack<String> type = new Stack<String>();
+    ArrayList<String> UniversityNr = new ArrayList<String>();
+    ArrayList<String> DepartmentNr = new ArrayList<String>();
+    ArrayList<String> FacultyNr = new ArrayList<String>();
+    ArrayList<String> FullProfessorNr = new ArrayList<String>();
+    ArrayList<String> AssociateProfessorNr = new ArrayList<String>();
+    ArrayList<String> AssistantProfessorNr = new ArrayList<String>();
+    ArrayList<String> LecturerNr = new ArrayList<String>();
+    ArrayList<String> UnderStudentNr = new ArrayList<String>();
+    ArrayList<String> GraduateStudentNr = new ArrayList<String>();
+    ArrayList<String> UnderCourseNr = new ArrayList<String>();
+    ArrayList<String> GraduateCourseNr = new ArrayList<String>();
+    ArrayList<String> ResearchGroupNr = new ArrayList<String>();
+
 
     public SQLFlatWriter(GeneratorCallbackTarget target, String ontologyUrl) {
         super(target);
@@ -62,9 +75,51 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     }
 
     protected int getIdOfCurrentSubject() {
+        int objectID = -1;
         if (this.subjects.isEmpty())
             throw new RuntimeException("Mismatched calls to writer in getCurrentSubject()");
-        return globalURL.indexOf(this.subjects.peek());
+
+        switch (this.type.peek()) {
+            case Ontology.CS_C_UNIV:
+                objectID=UniversityNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_DEPT:
+                objectID= DepartmentNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_FACULTY:
+                objectID= FacultyNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_FULLPROF:
+                objectID= FullProfessorNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_ASSOPROF:
+                objectID= AssociateProfessorNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_ASSTPROF:
+                objectID= AssistantProfessorNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_LECTURER:
+                objectID= LecturerNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_UNDERSTUD:
+                objectID= UnderStudentNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_GRADSTUD:
+                objectID= GraduateStudentNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_COURSE:
+                objectID= UnderCourseNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_GRADCOURSE:
+                objectID= GraduateCourseNr.indexOf(this.subjects.peek());
+                break;
+            case Ontology.CS_C_RESEARCHGROUP:
+                objectID= ResearchGroupNr.indexOf(this.subjects.peek());
+                break;
+            default:
+                break;
+        }
+        return objectID;
     }
     protected String getCurrentSubject() {
         if (this.subjects.isEmpty())
@@ -74,7 +129,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     protected String getCurrentType() {
         if (this.type.isEmpty())
             throw new RuntimeException("Mismatched calls to writer in getCurrentSubject()");
-        return this.type.peek();
+        return Ontology.CLASS_TOKEN[this.type.peek()];
     }
 
     //protected abstract void addTriple(String property, String object, boolean isResource);
@@ -82,7 +137,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     //protected abstract void addTypeTriple(String subject, int classType);
 
     protected abstract void insertPriValue(String className, int valueID, boolean isResource);
-    protected abstract void insertAttrValue(String propertyType, String objectName, int valueID);
+    protected abstract void insertAttrValue(String propertyType, int valueID);
 
     @Override
     public final void startSection(int classType, String id) {
@@ -91,31 +146,112 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     }
 
     protected void newSection(int classType, String id) {
-        if (!this.subjects.isEmpty()) {
-            // Nested section which we don't support directly
-            // Link the existing subject to the new subject
-            //addTriple(this.getCurrentSubject(), id, true);
-            this.subjects.push(id);
-            this.type.push(Ontology.CLASS_TOKEN[classType]);
-            if(globalURL.contains(id)){
 
-            }else
-                globalURL.add(id);
+        // Nested section which we don't support directly
+        // Link the existing subject to the new subject
+        //addTriple(this.getCurrentSubject(), id, true);
+        this.subjects.push(id);
+        this.type.push(classType);
+        //this.type.push(Ontology.CLASS_TOKEN[classType]);
+        if(!globalURL.isEmpty() && globalURL.contains(id)){
+            switch (classType) {
+                case Ontology.CS_C_UNIV:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], UniversityNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_DEPT:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], DepartmentNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_FACULTY:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], FacultyNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_FULLPROF:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], FullProfessorNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_ASSOPROF:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], AssociateProfessorNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_ASSTPROF:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], AssistantProfessorNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_LECTURER:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], LecturerNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_UNDERSTUD:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], UnderStudentNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_GRADSTUD:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], GraduateStudentNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_COURSE:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], UnderCourseNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_GRADCOURSE:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], GraduateCourseNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_RESEARCHGROUP:
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], ResearchGroupNr.indexOf(id), true);
+                    break;
+                default:
+                    break;
+            }
 
-            // Add type triple
-            //insert primary key value
-            //addTypeTriple(id, classType);
-        } else {
-            // Top level section
-            this.subjects.push(id);
-            this.type.push(Ontology.CLASS_TOKEN[classType]);
-            if(globalURL.contains(id)){
-
-            }else
-                globalURL.add(id);
-            //addTypeTriple(id, classType);
+        }else{
+            globalURL.add(id);
+            switch (classType) {
+                case Ontology.CS_C_UNIV:
+                    UniversityNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], UniversityNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_DEPT:
+                    DepartmentNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], DepartmentNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_FACULTY:
+                    FacultyNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], FacultyNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_FULLPROF:
+                    FullProfessorNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], FullProfessorNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_ASSOPROF:
+                    AssociateProfessorNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], AssociateProfessorNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_ASSTPROF:
+                    AssistantProfessorNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], AssistantProfessorNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_LECTURER:
+                    LecturerNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], LecturerNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_UNDERSTUD:
+                    UnderStudentNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], UnderStudentNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_GRADSTUD:
+                    GraduateStudentNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], GraduateStudentNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_COURSE:
+                    UnderCourseNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], UnderCourseNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_GRADCOURSE:
+                    GraduateCourseNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], GraduateCourseNr.indexOf(id), true);
+                    break;
+                case Ontology.CS_C_RESEARCHGROUP:
+                    ResearchGroupNr.add(id);
+                    insertPriValue(Ontology.CLASS_TOKEN[classType], ResearchGroupNr.indexOf(id), true);
+                    break;
+                default:
+                    break;
+            }
         }
-        insertPriValue(Ontology.CLASS_TOKEN[classType], globalURL.indexOf(id), true);
+
+        //insertPriValue(Ontology.CLASS_TOKEN[classType], globalURL.indexOf(id), true);
     }
 
     @Override
@@ -156,10 +292,128 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         //ADD the object type triple
         //addTypeTriple(valueId, valueClass);
         if(globalURL.contains(valueId)){
-
-        }else
+            switch (valueClass) {
+                case Ontology.CS_C_UNIV:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], UniversityNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], UniversityNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_DEPT:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], DepartmentNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], DepartmentNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_FACULTY:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], FacultyNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], FacultyNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_FULLPROF:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], FullProfessorNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], FullProfessorNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_ASSOPROF:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], AssociateProfessorNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], AssociateProfessorNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_ASSTPROF:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], AssistantProfessorNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], AssistantProfessorNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_LECTURER:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], LecturerNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], LecturerNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_UNDERSTUD:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], UnderStudentNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], UnderStudentNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_GRADSTUD:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], GraduateStudentNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], GraduateStudentNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_COURSE:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], UnderCourseNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], UnderCourseNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_GRADCOURSE:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], GraduateCourseNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], GraduateCourseNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_RESEARCHGROUP:
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], ResearchGroupNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], ResearchGroupNr.indexOf(valueId));
+                    break;
+                default:
+                    break;
+            }
+        }else{
             globalURL.add(valueId);
-        insertPriValue(Ontology.CLASS_TOKEN[valueClass], globalURL.indexOf(valueId), true);
-        insertAttrValue(Ontology.PROP_TOKEN[property], valueId, globalURL.indexOf(valueId));
+            switch (valueClass) {
+                case Ontology.CS_C_UNIV:
+                    UniversityNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], UniversityNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], UniversityNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_DEPT:
+                    DepartmentNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], DepartmentNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], DepartmentNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_FACULTY:
+                    FacultyNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], FacultyNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], FacultyNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_FULLPROF:
+                    FullProfessorNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], FullProfessorNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], FullProfessorNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_ASSOPROF:
+                    AssociateProfessorNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], AssociateProfessorNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], AssociateProfessorNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_ASSTPROF:
+                    AssistantProfessorNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], AssistantProfessorNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], AssistantProfessorNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_LECTURER:
+                    LecturerNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], LecturerNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], LecturerNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_UNDERSTUD:
+                    UnderStudentNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], UnderStudentNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], UnderStudentNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_GRADSTUD:
+                    GraduateStudentNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], GraduateStudentNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], GraduateStudentNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_COURSE:
+                    UnderCourseNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], UnderCourseNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], UnderCourseNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_GRADCOURSE:
+                    GraduateCourseNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], GraduateCourseNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], GraduateCourseNr.indexOf(valueId));
+                    break;
+                case Ontology.CS_C_RESEARCHGROUP:
+                    ResearchGroupNr.add(valueId);
+                    insertPriValue(Ontology.CLASS_TOKEN[valueClass], ResearchGroupNr.indexOf(valueId), true);
+                    insertAttrValue(Ontology.PROP_TOKEN[property], ResearchGroupNr.indexOf(valueId));
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        //insertPriValue(Ontology.CLASS_TOKEN[valueClass], globalURL.indexOf(valueId), true);
+        //insertAttrValue(Ontology.PROP_TOKEN[property], globalURL.indexOf(valueId));
     }
 }
