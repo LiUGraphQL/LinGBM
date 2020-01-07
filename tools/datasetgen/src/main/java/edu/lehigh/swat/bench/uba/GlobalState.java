@@ -12,6 +12,7 @@ import edu.lehigh.swat.bench.uba.model.Ontology;
 import edu.lehigh.swat.bench.uba.writers.ConsolidationMode;
 import edu.lehigh.swat.bench.uba.writers.DamlWriter;
 import edu.lehigh.swat.bench.uba.writers.NTriplesWriter;
+import edu.lehigh.swat.bench.uba.writers.SQLWriter;
 import edu.lehigh.swat.bench.uba.writers.OwlWriter;
 import edu.lehigh.swat.bench.uba.writers.TurtleWriter;
 import edu.lehigh.swat.bench.uba.writers.Writer;
@@ -101,6 +102,7 @@ public class GlobalState {
                 this.consolidate = ConsolidationMode.Partial;
                 break;
             case NTRIPLES:
+            case SQL:
             case TURTLE:
                 // All these formats can be trivially concatenated together so
                 // again using Partial should give the best IO balance and we'll
@@ -163,6 +165,7 @@ public class GlobalState {
                     file.replace(ext, "-edges" + ext));
             break;
         case NTRIPLES:
+        case SQL:
         case TURTLE:
             if (consolidate == ConsolidationMode.Maximal) {
                 this.writeConsolidator = new SingleFileConsolidator(consolidatedFileName.toString());
@@ -263,6 +266,8 @@ public class GlobalState {
             return ".daml";
         case NTRIPLES:
             return ".nt";
+        case SQL:
+            return ".sql";
         case TURTLE:
             return ".ttl";
         case GRAPHML:
@@ -293,6 +298,9 @@ public class GlobalState {
 
         case NTRIPLES:
             return new NTriplesWriter(callbackTarget, this.getOntologyUrl());
+
+        case SQL:
+            return new SQLWriter(callbackTarget, this.getOntologyUrl());
 
         case TURTLE:
             return new TurtleWriter(callbackTarget, this.getOntologyUrl());

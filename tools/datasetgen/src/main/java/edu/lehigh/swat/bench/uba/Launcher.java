@@ -62,7 +62,7 @@ public class Launcher {
 
     @Option(name = { "-f",
             "--format" }, title = "OutputFormat", arity = 1, description = "Sets the desired output format (default OWL)")
-    @AllowedRawValues(allowedValues = { "OWL", "DAML", "NTRIPLES", "TURTLE", "GRAPHML", "GRAPHML_NODESFIRST", "NEO4J_GRAPHML", "JSON" })
+    @AllowedRawValues(allowedValues = { "OWL", "DAML", "NTRIPLES", "SQL", "TURTLE", "GRAPHML", "GRAPHML_NODESFIRST", "NEO4J_GRAPHML", "JSON" })
     private WriterType format = WriterType.OWL;
 
     @Option(name = { "--onto",
