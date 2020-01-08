@@ -42,7 +42,7 @@ type Department
 	researchGroups: [ResearchGroup] 
 	faculties: [Faculty] 
 	professors: [Professor]
-	lecturers: [Professor]
+	lecturers: [Lecturer]
 	graduateStudents: [GraduateStudent] 
 	undergraduateStudents: [UndergraduateStudent] 
 } 
