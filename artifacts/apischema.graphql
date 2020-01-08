@@ -59,7 +59,7 @@ type Professor implements Faculty
 	telephone: String 
 	emailAddress: String 
 	researchInterest: String 
-	type: String
+	profType: String
 	undergraduteDegreeFrom: University 
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
