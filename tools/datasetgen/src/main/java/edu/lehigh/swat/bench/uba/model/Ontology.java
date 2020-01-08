@@ -73,25 +73,25 @@ public class Ontology {
             { 0, CS_C_NULL } // CS_C_RESEARCHGROUP
     };
     /** class name strings */
-    public static final String[] CLASS_TOKEN = { "University", // CS_C_UNIV
-            "Department", // CS_C_DEPT
-            "Faculty", // CS_C_FACULTY
-            "Professor", // CS_C_PROF
-            "FullProfessor", // CS_C_FULLPROF
-            "AssociateProfessor", // CS_C_ASSOPROF
-            "AssistantProfessor", // CS_C_ASSTPROF
-            "Lecturer", // CS_C_LECTURER
-            "Student", // CS_C_STUDENT
-            "UndergraduateStudent", // CS_C_UNDERSTUD
-            "GraduateStudent", // CS_C_GRADSTUD
-            "TeachingAssistant", // CS_C_TA
-            "ResearchAssistant", // CS_C_RA
-            "Course", // CS_C_COURSE
-            "GraduateCourse", // CS_C_GRADCOURSE
-            "Publication", // CS_C_PUBLICATION
-            "Chair", // CS_C_CHAIR
-            "Research", // CS_C_RESEARCH
-            "ResearchGroup" // CS_C_RESEARCHGROUP
+    public static final String[] CLASS_TOKEN = { "university", // CS_C_UNIV
+            "department", // CS_C_DEPT
+            "faculty", // CS_C_FACULTY
+            "professor", // CS_C_PROF
+            "fullProfessor", // CS_C_FULLPROF
+            "associateProfessor", // CS_C_ASSOPROF
+            "assistantProfessor", // CS_C_ASSTPROF
+            "lecturer", // CS_C_LECTURER
+            "student", // CS_C_STUDENT
+            "undergraduateStudent", // CS_C_UNDERSTUD
+            "graduateStudent", // CS_C_GRADSTUD
+            "teachingAssistant", // CS_C_TA
+            "researchAssistant", // CS_C_RA
+            "undergraduateCourse", // CS_C_COURSE
+            "graduateCourse", // CS_C_GRADCOURSE
+            "publication", // CS_C_PUBLICATION
+            "chair", // CS_C_CHAIR
+            "research", // CS_C_RESEARCH
+            "researchGroup" // CS_C_RESEARCHGROUP
     };
     /** number of classes */
     public static final int CLASS_NUM = CLASS_INFO.length;
@@ -136,7 +136,7 @@ public class Ontology {
     public static final int CS_P_WORKSFOR = CS_P_SUBORGANIZATIONOF + 1;
     /** property name strings */
     public static final String[] PROP_TOKEN = { "name", "takesCourse", "teacherOf", "undergraduateDegreeFrom",
-            "mastersDegreeFrom", "doctoralDegreeFrom", "advisor", "memberOf", "publicationAuthor", "headOf",
+            "masterDegreeFrom", "doctoralDegreeFrom", "advisor", "memberOf", "publicationAuthor", "headOf",
             "teachingAssistantOf", "researchInterest", "emailAddress", "telephone", "subOrganizationOf", "worksFor" };
     /** number of properties */
     public static final int PROP_NUM = PROP_TOKEN.length;

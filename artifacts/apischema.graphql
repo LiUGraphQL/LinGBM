@@ -53,13 +53,31 @@ type ResearchGroup
 	subOrgnizationOf: Department 
 } 
 
-union Professor = AssistantProfessor | AssociateProfessor | FullProfessor 
+type Professor implements Faculty  
+{ 
+	id: ID! 
+	telephone: String 
+	emailAddress: String 
+	researchInterest: String 
+	type: String
+	undergraduteDegreeFrom: University 
+	masterDegreeFrom: University 
+	doctoralDegreeFrom: University 
+	worksFor: Department 
+	teacherOfGraduateCourses: [GraduateCourse] 
+	teacherOfUndergraduateCourses: [UndergraduateCourse]
+	publications(order: PublicationSortCriterion): [Publication]
+	supervisedUndergraduateStudents: [UndergraduateStudent] 
+	supervisedGraduateStudents: [GraduateStudent]
+} 
+
  
 type Lecturer implements Faculty  
 { 
 	id: ID! 
 	telephone: String 
 	emailAddress: String 
+	position: String
 	undergraduteDegreeFrom: University 
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
@@ -69,59 +87,8 @@ type Lecturer implements Faculty
 	publications: [Publication] 
 } 
 
-type AssociateProfessor implements Faculty  
-{ 
-	id: ID! 
-	telephone: String 
-	emailAddress: String 
-	researchInterest: String 
-	undergraduteDegreeFrom: University 
-	masterDegreeFrom: University 
-	doctoralDegreeFrom: University 
-	worksFor: Department 
-	teacherOfGraduateCourses: [GraduateCourse] 
-	teacherOfUndergraduateCourses: [UndergraduateCourse]
-	publications(order: PublicationSortCriterion): [Publication]
-	supervisedUndergraduateStudents: [UndergraduateStudent] 
-	supervisedGraduateStudents: [GraduateStudent]
-} 
 
-type AssistantProfessor implements Faculty  
-{ 
-	id: ID! 
-	telephone: String 
-	emailAddress: String 
-	researchInterest: String 
-	undergraduteDegreeFrom: University 
-	masterDegreeFrom: University 
-	doctoralDegreeFrom: University 
-	worksFor: Department 
-	teacherOfGraduateCourses: [GraduateCourse] 
-	teacherOfUndergraduateCourses: [UndergraduateCourse]  
-	publications(order: PublicationSortCriterion): [Publication] 
-	supervisedUndergraduateStudents: [UndergraduateStudent] 
-	supervisedGraduateStudents: [GraduateStudent]
-} 
-
-type FullProfessor implements Faculty  
-{ 
-	id: ID! 
-	headOf: Department 
-	telephone: String 
-	emailAddress: String 
-	researchInterest: String 
-	undergraduteDegreeFrom: University 
-	masterDegreeFrom: University 
-	doctoralDegreeFrom: University 
-	worksFor: Department 
-	teacherOfGraduateCourses: [GraduateCourse] 
-	teacherOfUndergraduateCourses: [UndergraduateCourse]
-	publications(order: PublicationSortCriterion): [Publication]
-	supervisedUndergraduateStudents: [UndergraduateStudent] 
-	supervisedGraduateStudents: [GraduateStudent]
-} 
-
-union Author= FullProfessor|AssociateProfessor|AssistantProfessor|Lecturer|GraduateStudent 
+union Author= Professor|Lecturer|GraduateStudent 
  
 type Publication  
 { 

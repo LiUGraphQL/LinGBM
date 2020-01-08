@@ -9,7 +9,7 @@ CREATE TABLE `undergraduateCourse` (
   `teachingAssistant` int(11),
   primary key (nr),
   foreign key (teacher) references faculty(nr),
-  foreign key (teacheingAssistant) references graduateStudent(nr)
+  foreign key (teachingAssistant) references graduateStudent(nr)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `undergraduateCourse` WRITE;
