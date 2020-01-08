@@ -38,11 +38,11 @@ type Department
 { 
 	id: ID! 
 	subOrganizationOf: University 
-	head: FullProfessor 
+	head: Professor 
 	researchGroups: [ResearchGroup] 
 	faculties: [Faculty] 
 	professors: [Professor]
-	lecturers: [FullProfessor]
+	lecturers: [Professor]
 	graduateStudents: [GraduateStudent] 
 	undergraduateStudents: [UndergraduateStudent] 
 } 
