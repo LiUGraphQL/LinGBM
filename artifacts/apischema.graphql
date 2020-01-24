@@ -102,7 +102,7 @@ type Publication
 	authors: [Author] 
 }  
 
-type GraduateStudent  
+type GraduateStudent implements Author 
 { 
 	id: ID! 
 	telephone: String 
