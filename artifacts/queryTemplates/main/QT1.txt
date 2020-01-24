@@ -5,5 +5,4 @@ query faculty_university_graduateStudent($facultyID:ID)
 			undergraduateDegreeObtainedBystudent{id emailAddress} 
 		} 
 	} 
-} 
- 
+}
