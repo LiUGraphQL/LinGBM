@@ -8,7 +8,7 @@ query lecturer_university_graduateStudent_professor_department($lecturerID:ID)
         email 
         advisor { 
           id 
-          email  
+          emailAddress  
           worksFor {id} 
         } 
       } 
