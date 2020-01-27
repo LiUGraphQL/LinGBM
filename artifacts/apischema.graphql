@@ -25,6 +25,7 @@ interface Faculty
 	id: ID! 
 	telephone: String 
 	emailAddress: String 
+	age: Int
 	undergraduteDegreeFrom: University 
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
@@ -65,6 +66,7 @@ type Professor implements Faculty & Author
 	id: ID! 
 	telephone: String 
 	emailAddress: String 
+	age: Int
 	researchInterest: String 
 	profType: String
 	undergraduteDegreeFrom: University 
@@ -84,6 +86,7 @@ type Lecturer implements Faculty & Author
 	id: ID! 
 	telephone: String 
 	emailAddress: String 
+	age: Int
 	position: String
 	undergraduteDegreeFrom: University 
 	masterDegreeFrom: University 

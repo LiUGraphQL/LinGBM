@@ -1,7 +1,7 @@
 query subqueryFilter1($universityID:ID, $departmentID:ID) 
 { 
   university(nr:$universityID) { 
-    doctoralDegreeObtainers (where: {department: {nr:$departmentID} } ){ 
+    doctoralDegreeObtainers (where: {worksFor: {nr:$departmentID} } ){ 
       id 
       emailAddress 
       publications {id } 
