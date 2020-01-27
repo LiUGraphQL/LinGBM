@@ -1,10 +1,10 @@
-query multipleFilters($departmentID:ID,$professorType:String, $interestkeyword:String) 
+query multipleFilters($departmentID:ID, $professorType:String, $interestkeyword:String) 
 { 
-  university(nr:$universityID) { 
-    undergraduateDegreeObtainedBystudent(where: {AND:{advisor:{age:{criterion:MORETHAN, pattern:$age}}},{advisor:{researchInterest:{criterion:CONTAINS, pattern:$interestKeyword}}}}) { 
-      id 
-      emailAddress 
-      takeGraduateCourses {id} 
-    } 
-  } 
+	university(nr:$universityID) { 
+		undergraduateDegreeObtainedBystudent(where: { AND:{age:{pattern:$interestkeyword,criterion: MORETHAN}, advisor:{researchInterest:{criterion:CONTAINS, pattern:$interestkeyword}}}}) { 
+			id 
+			emailAddress 
+			takeGraduateCourses {id} 
+		} 
+	} 
 }

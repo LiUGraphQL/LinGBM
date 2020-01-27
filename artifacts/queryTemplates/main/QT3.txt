@@ -4,7 +4,7 @@ query researchGroup_department_head_doctorDegreeFrom($researchGroupID:ID)
     subOrgnizationOf { 
       head { 
         id 
-        email 
+        emailAddress 
         doctorDegreeFrom {id} 
       } 
     } 
