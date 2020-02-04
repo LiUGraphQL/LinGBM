@@ -24,12 +24,18 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     protected final String ontologyUrl;
     private final Stack<String> subjects = new Stack<String>();
     private final Stack<Integer> type = new Stack<Integer>();
-    //private List<String> wordlist = new ArrayList<String>();
+    private List<String> wordlist = new ArrayList<String>();
 
 
     public SQLFlatWriter(GeneratorCallbackTarget target, String ontologyUrl) {
         super(target);
         this.ontologyUrl = ontologyUrl;
+        try {
+            this.wordlist = fileReader("titlewords.txt");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -44,12 +50,8 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         // For flat file formats which are natively concatenatable calling
         // startFile() multiple times won't matter
 
-        /*try {
-            this.wordlist = fileReader("titlewords.txt");
+        /*
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         */
     }
 
@@ -77,11 +79,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         // No-op
     }
 
-    //protected void readfile(String fileName) {
-        //List<String> wordlist = null;
-
-        // No-op
-    //}
 
     protected List<Integer> extractIntfromString(String value) {
         Matcher matcher = Pattern.compile("\\d+").matcher(value);
@@ -232,13 +229,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
         String o_type = null;
 
-        List<String> wordlist = null;
-        try {
-            wordlist = fileReader("titlewords.txt");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         List<Integer> list = extractIntfromString(id);
         if(list.size()>1){
@@ -254,21 +244,18 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 break;
             case Ontology.CS_C_FULLPROF:
                 int fullProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+1;
-                //insertPriValue(Ontology.CLASS_TOKEN[classType], fullProfessor_id);
                 insertPriValue("faculty", fullProfessor_id);
                 insertPriValue("professor", fullProfessor_id);
                 insertAttrValue("professorType", Integer.toString(fullProfessor_id), "fullProfessor",false);
                 break;
             case Ontology.CS_C_ASSOPROF:
                 int associateProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+2;
-                //insertPriValue(Ontology.CLASS_TOKEN[classType], associateProfessor_id);
                 insertPriValue("faculty", associateProfessor_id);
                 insertPriValue("professor", associateProfessor_id);
                 insertAttrValue("professorType", Integer.toString(associateProfessor_id), "associateProfessor",false);
                 break;
             case Ontology.CS_C_ASSTPROF:
                 int assistantProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+3;
-                //insertPriValue(Ontology.CLASS_TOKEN[classType], assistantProfessor_id);
                 insertPriValue("faculty", assistantProfessor_id);
                 insertPriValue("professor", assistantProfessor_id);
                 insertAttrValue("professorType", Integer.toString(assistantProfessor_id), "assistantProfessor",false);
@@ -290,11 +277,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 int rand_g = rand.nextInt((27 - 20) + 1) + 20;
                 insertAttrValue("age", Integer.toString(rand_g), null,false);
                 break;
-            //case Ontology.CS_C_TA:
-            //    int graduateStudent_ra = department_id*10000+Integer.parseInt(String.format("%03d", list.get(2)))*10+2;
-                //insertPriValue(Ontology.CLASS_TOKEN[classType], graduateStudent_ra);
-                //insertPriValue("graduateStudent", graduateStudent_ra);
-            //    break;
             case Ontology.CS_C_COURSE:
                 int underCourse_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+1;
                 insertPriValue(Ontology.CLASS_TOKEN[classType], underCourse_id);
@@ -311,19 +293,19 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 int main_author_id;
                 if (id.contains("fullProfessor")) {
                     main_author_id = department_id * 1000 + Integer.parseInt(String.format("%02d", list.get(2)))*10+1;
-                    o_type="fullProfessor";
+                    //o_type="fullProfessor";
                 }
                 else if (id.contains("associateProfessor")){
                     main_author_id = department_id * 1000 + Integer.parseInt(String.format("%02d", list.get(2)))*10+2;
-                    o_type="associateProfessor";
+                    //o_type="associateProfessor";
                 }
                 else if (id.contains("assistantProfessor")){
                     main_author_id = department_id * 1000 + Integer.parseInt(String.format("%02d", list.get(2)))*10+3;
-                    o_type="assistantProfessor";
+                    //o_type="assistantProfessor";
                 }
                 else{
                     main_author_id = department_id * 1000 + Integer.parseInt(String.format("%02d", list.get(2)))*10+4;
-                    o_type="lecturer";
+                    //o_type="lecturer";
                 }
                 int publication_id = main_author_id * 100+Integer.parseInt(String.format("%02d", list.get(3)));
                 insertPriValue(Ontology.CLASS_TOKEN[classType], publication_id);
@@ -334,8 +316,8 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 String abstract_p = null;
 
                 try {
-                    title_p = generateRamString(wordlist, numberOfWords_t);
-                    abstract_p = generateRamString(wordlist, numberOfWords_a);
+                    title_p = generateRamString(this.wordlist, numberOfWords_t);
+                    abstract_p = generateRamString(this.wordlist, numberOfWords_a);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -414,11 +396,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 value_new = Integer.toString(gradStudent_id);
                 o_type = "graduateStudent";
             }
-            //else if(objectType.contains("teachingAssistant")){
-            //    int gradStudent_id = department_id*10000+Integer.parseInt(String.format("%03d", list2.get(2)))*10+2;
-            //    value_new = Integer.toString(gradStudent_id);
-             //   o_type = "teachingAssistant";
-            //}
             else if(objectType.contains("undergraduateCourse")){
                 int underCourse_id = department_id*1000+Integer.parseInt(String.format("%02d", list2.get(2)))*10+1;
                 value_new = Integer.toString(underCourse_id);
@@ -429,18 +406,16 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 value_new = Integer.toString(gradCourse_id);
                 o_type = "graduateCourse";
             }
-            //else if(Ontology.PROP_TOKEN[property].equals("researchInterest")){
-            //    List<String> wordlist = null;
-            //    String interest = null;
-            //    try {
-            //        wordlist = fileReader("titlewords.txt");
-            //        int numberOfWords_r = rand.nextInt((3 - 1) + 1) + 1;
-            //        interest = generateRamString(wordlist, numberOfWords_r);
-            //    } catch (IOException e) {
-            //        e.printStackTrace();
-            //    }
-            //    value_new = interest;
-            //}
+        }
+        else if(value.contains("research")){
+            String interest = null;
+            int numberOfWords_r = rand.nextInt((3 - 1) + 1) + 1;
+            try {
+                interest = generateRamString(this.wordlist, numberOfWords_r);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            value_new = interest;
         }
 
         String propertyName = String.format("%s", Ontology.PROP_TOKEN[property]);

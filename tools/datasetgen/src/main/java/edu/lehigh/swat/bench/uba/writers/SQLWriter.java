@@ -83,7 +83,6 @@ public class SQLWriter extends SQLFlatWriter {
                 else{
                     out.format("UPDATE %s set %s= \"%s\" where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
                 }
-                out.format("UPDATE %s set %s= \"%s\" where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
             }
             else if(this.getCurrentType().equals("assistantProfessor")){
                 if(propertyType.equals("researchInterest")){
