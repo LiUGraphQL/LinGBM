@@ -24,7 +24,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     protected final String ontologyUrl;
     private final Stack<String> subjects = new Stack<String>();
     private final Stack<Integer> type = new Stack<Integer>();
-    //private final List<String> wordList = new ArrayList<String>();
+    //private List<String> wordlist = new ArrayList<String>();
 
 
     public SQLFlatWriter(GeneratorCallbackTarget target, String ontologyUrl) {
@@ -37,11 +37,20 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         this.out = prepareOutputStream(fileName, state);
     }
 
+
     @Override
     public void startFile(GlobalState state, OutputStream output) {
         // No-op
         // For flat file formats which are natively concatenatable calling
         // startFile() multiple times won't matter
+
+        /*try {
+            this.wordlist = fileReader("titlewords.txt");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        */
     }
 
     @Override
@@ -67,6 +76,12 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     public void endFile(GlobalState state, OutputStream output) {
         // No-op
     }
+
+    //protected void readfile(String fileName) {
+        //List<String> wordlist = null;
+
+        // No-op
+    //}
 
     protected List<Integer> extractIntfromString(String value) {
         Matcher matcher = Pattern.compile("\\d+").matcher(value);
@@ -242,14 +257,14 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 //insertPriValue(Ontology.CLASS_TOKEN[classType], fullProfessor_id);
                 insertPriValue("faculty", fullProfessor_id);
                 insertPriValue("professor", fullProfessor_id);
-                insertAttrValue("professorType", Integer.toString(fullProfessor_id), "fullProfessor",true);
+                insertAttrValue("professorType", Integer.toString(fullProfessor_id), "fullProfessor",false);
                 break;
             case Ontology.CS_C_ASSOPROF:
                 int associateProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+2;
                 //insertPriValue(Ontology.CLASS_TOKEN[classType], associateProfessor_id);
                 insertPriValue("faculty", associateProfessor_id);
                 insertPriValue("professor", associateProfessor_id);
-                insertAttrValue("professorType", Integer.toString(associateProfessor_id), "associateProfessor",true);
+                insertAttrValue("professorType", Integer.toString(associateProfessor_id), "associateProfessor",false);
                 break;
             case Ontology.CS_C_ASSTPROF:
                 int assistantProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+3;
@@ -376,18 +391,18 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
             if (objectType.contains("fullProfessor")){
                 int fullProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list2.get(2)))*10+1;
                 value_new = Integer.toString(fullProfessor_id);
-                o_type = "fullProfessor";
+                o_type = "professor";
 
             }
             else if(objectType.contains("associateProfessor")){
                 int associateProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list2.get(2)))*10+2;
                 value_new = Integer.toString(associateProfessor_id);
-                o_type = "associateProfessor";
+                o_type = "professor";
             }
             else if(objectType.contains("assistantProfessor")){
                 int assistantProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list2.get(2)))*10+3;
                 value_new = Integer.toString(assistantProfessor_id);
-                o_type = "assistantProfessor";
+                o_type = "professor";
             }
             else if(objectType.contains("lecturer")){
                 int lectureProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list2.get(2)))*10+4;
@@ -441,7 +456,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         List<Integer> list3 = extractIntfromString(valueId);
         if(valueClass==Ontology.CS_C_UNIV) {
             int university_id = list3.get(0);
-            //insertPriValue(Ontology.CLASS_TOKEN[valueClass], university_id);
+            insertPriValue(Ontology.CLASS_TOKEN[valueClass], university_id);
             addProperty(property, Integer.toString(university_id), true);
         }
 

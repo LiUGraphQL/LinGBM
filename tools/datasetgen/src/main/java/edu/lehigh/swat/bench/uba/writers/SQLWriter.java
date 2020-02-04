@@ -37,9 +37,23 @@ public class SQLWriter extends SQLFlatWriter {
             else if(propertyType.equals("takesCourse")&&(objectType.equals("graduateCourse"))){
                 out.format("insert ignore into graduateStudentTakeCourse(graduateStudentID, graduateCourseID) values (%s, %s);",getIdOfCurrentSubject(), valueID);
             }
-            //else if(propertyType.equals("age")){
-            //    out.format("UPDATE %s set %s= \"%s\" where nr = %s;",this.getCurrentType(), "age", valueID, getIdOfCurrentSubject());
-            //}
+            else if(this.getCurrentType().equals("fullProfessor")){
+                if (propertyType.equals("headOf")){
+                    out.format("UPDATE %s set %s= %s where nr = %s;","professor", propertyType, valueID, getIdOfCurrentSubject());
+                }
+                else{
+                    out.format("UPDATE %s set %s= %s where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
+                }
+            }
+            else if(this.getCurrentType().equals("associateProfessor")){
+                out.format("UPDATE %s set %s= %s where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
+            }
+            else if(this.getCurrentType().equals("assistantProfessor")){
+                out.format("UPDATE %s set %s= %s where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
+            }
+            else if(this.getCurrentType().equals("lecturer")){
+                out.format("UPDATE %s set %s= %s where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
+            }
             else{
                 out.format("UPDATE %s set %s= %s where nr = %s;", this.getCurrentType(), propertyType, valueID, getIdOfCurrentSubject());
             }
@@ -48,8 +62,42 @@ public class SQLWriter extends SQLFlatWriter {
             if(propertyType.equals("age")){
                 out.format("UPDATE %s set %s= %s where nr = %s;",this.getCurrentType(), "age", valueID, getIdOfCurrentSubject());
             }
-            else if(propertyType.equals("professorType")){
-                out.format("UPDATE %s set %s= \"%s\" where nr = %s;","professor", "professorType", objectType, valueID);
+            else if(this.getCurrentType().equals("fullProfessor")){
+                if(propertyType.equals("researchInterest")){
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","professor", propertyType, valueID, getIdOfCurrentSubject());
+                }
+                else if(propertyType.equals("professorType")){
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","professor", "professorType", objectType, valueID);
+                }
+                else{
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
+                }
+            }
+            else if(this.getCurrentType().equals("associateProfessor")){
+                if(propertyType.equals("researchInterest")){
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","professor", propertyType, valueID, getIdOfCurrentSubject());
+                }
+                else if(propertyType.equals("professorType")){
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","professor", "professorType", objectType, valueID);
+                }
+                else{
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
+                }
+                out.format("UPDATE %s set %s= \"%s\" where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
+            }
+            else if(this.getCurrentType().equals("assistantProfessor")){
+                if(propertyType.equals("researchInterest")){
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","professor", propertyType, valueID, getIdOfCurrentSubject());
+                }
+                else if(propertyType.equals("professorType")){
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","professor", "professorType", objectType, valueID);
+                }
+                else{
+                    out.format("UPDATE %s set %s= \"%s\" where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
+                }
+            }
+            else if(this.getCurrentType().equals("lecturer")){
+                out.format("UPDATE %s set %s= \"%s\" where nr = %s;","faculty", propertyType, valueID, getIdOfCurrentSubject());
             }
             else{
                 out.format("UPDATE %s set %s= \"%s\" where nr = %s;", this.getCurrentType(), propertyType, valueID, getIdOfCurrentSubject());
