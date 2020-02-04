@@ -137,7 +137,7 @@ public class Ontology {
     /** property name strings */
     public static final String[] PROP_TOKEN = { "name", "takesCourse", "teacherOf", "undergraduateDegreeFrom",
             "masterDegreeFrom", "doctoralDegreeFrom", "advisor", "memberOf", "publicationAuthor", "headOf",
-            "teachingAssistantOf", "researchInterest", "emailAddress", "telephone", "subOrganizationOf", "worksFor" };
+            "teachingAssistantOf", "researchInterest", "emailAddress", "telephone", "subOrganizationOf", "worksFor"};
     /** number of properties */
     public static final int PROP_NUM = PROP_TOKEN.length;
 
