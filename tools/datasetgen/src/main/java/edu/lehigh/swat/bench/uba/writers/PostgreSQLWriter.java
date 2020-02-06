@@ -23,7 +23,7 @@ public class PostgreSQLWriter extends SQLFlatWriter {
                     out.format("UPDATE %s set mainAuthor=%s where nr=%s;", this.getCurrentType(), valueID, getIdOfCurrentSubject());
                 }
                 else if(objectType.equals("graduateStudent")){
-                    out.format("insert ignore into coAuthorOfPublication(publicationID, graduateStudentID) values (%s, %s);", getIdOfCurrentSubject(), valueID);
+                    out.format("insert into coAuthorOfPublication(publicationID, graduateStudentID) values (%s, %s) ON CONFLICT (publicationID, graduateStudentID) DO NOTHING;", getIdOfCurrentSubject(), valueID);
                 }
             }
             else if(propertyType.equals("teachingAssistantOf")){
@@ -31,10 +31,10 @@ public class PostgreSQLWriter extends SQLFlatWriter {
                 out.format("UPDATE %s set %s=%s where nr=%s;", "undergraduateCourse", "teachingAssistant", getIdOfCurrentSubject(), valueID);
             }
             else if(propertyType.equals("takesCourse")&&(objectType.equals("undergraduateCourse"))){
-                out.format("insert ignore into undergraduateStudentTakeCourse(undergraduateStudentID, undergraduateCourseID) values (%s, %s);",getIdOfCurrentSubject(), valueID);
+                out.format("insert into undergraduateStudentTakeCourse(undergraduateStudentID, undergraduateCourseID) values (%s, %s) ON CONFLICT (undergraduateStudentID, undergraduateCourseID) DO NOTHING;",getIdOfCurrentSubject(), valueID);
             }
             else if(propertyType.equals("takesCourse")&&(objectType.equals("graduateCourse"))){
-                out.format("insert ignore into graduateStudentTakeCourse(graduateStudentID, graduateCourseID) values (%s, %s);",getIdOfCurrentSubject(), valueID);
+                out.format("insert into graduateStudentTakeCourse(graduateStudentID, graduateCourseID) values (%s, %s) ON CONFLICT (graduateStudentID, graduateCourseID) DO NOTHING;",getIdOfCurrentSubject(), valueID);
             }
             else if(this.getCurrentType().equals("fullProfessor")){
                 if (propertyType.equals("headOf")){
