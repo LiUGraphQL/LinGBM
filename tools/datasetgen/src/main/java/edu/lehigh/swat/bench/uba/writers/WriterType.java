@@ -9,5 +9,6 @@ public enum WriterType {
  GRAPHML_NODESFIRST,
  NEO4J_GRAPHML,
  JSON,
- SQL
+ SQL,
+ PostgreSQL
 }

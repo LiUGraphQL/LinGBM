@@ -13,6 +13,7 @@ import edu.lehigh.swat.bench.uba.writers.ConsolidationMode;
 import edu.lehigh.swat.bench.uba.writers.DamlWriter;
 import edu.lehigh.swat.bench.uba.writers.NTriplesWriter;
 import edu.lehigh.swat.bench.uba.writers.SQLWriter;
+import edu.lehigh.swat.bench.uba.writers.PostgreSQLWriter;
 import edu.lehigh.swat.bench.uba.writers.OwlWriter;
 import edu.lehigh.swat.bench.uba.writers.TurtleWriter;
 import edu.lehigh.swat.bench.uba.writers.Writer;
@@ -268,6 +269,8 @@ public class GlobalState {
             return ".nt";
         case SQL:
             return ".sql";
+        case PostgreSQL:
+            return ".sql";
         case TURTLE:
             return ".ttl";
         case GRAPHML:
@@ -301,7 +304,8 @@ public class GlobalState {
 
         case SQL:
             return new SQLWriter(callbackTarget, this.getOntologyUrl());
-
+        case PostgreSQL:
+            return new PostgreSQLWriter(callbackTarget, this.getOntologyUrl());
         case TURTLE:
             return new TurtleWriter(callbackTarget, this.getOntologyUrl());
 

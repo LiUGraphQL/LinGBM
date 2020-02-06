@@ -14,7 +14,7 @@ cd LinGBM/tools/datasetgen
 
 ### Usage
 
-For the instructions and command options for using the data generator refer to the [README.md of the LUBM data generator](https://github.com/rvesse/lubm-uba/blob/improved/ReadMe.md). The data generator supports different output formats such as OWL, DAML, NTRIPLES, TURTLE, GRAPHML, GRAPHML_NODESFIRST, NEO4J_GRAPHML and JSON. In addition, our extended generator also support outputing SQL dump.
+For the instructions and command options for using the data generator refer to the [README.md of the LUBM data generator](https://github.com/rvesse/lubm-uba/blob/improved/ReadMe.md). The data generator supports different output formats such as OWL, DAML, NTRIPLES, TURTLE, GRAPHML, GRAPHML_NODESFIRST, NEO4J_GRAPHML and JSON. In addition, our extended generator also support outputing SQL and PostgreSQL.
 
 As an example, the following command generates the dataset with scale factor 2 and writes all the data as an SQL dump: Universities.sql:
 
@@ -22,6 +22,8 @@ As an example, the following command generates the dataset with scale factor 2 a
 mvn clean install
 
 ./generate.sh --format SQL --consolidate Maximal -u 2
+or
+./generate.sh --format PostgreSQL --consolidate Maximal -u 2
 ```
 To set up the dataset with the script, we also supply a script named schema_university.sql, which can be used to created tables. Then, you can load data into the database by simply executing the script:Universities.sql. 
 
