@@ -116,7 +116,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         StringBuilder text = new StringBuilder();
         rand = new Random();
         int numberOfwordlist = wordlist.size();
-        for(int i = 1; i<numberOfWords;i++){
+        for(int i = 0; i<numberOfWords;i++){
             int rand_g = rand.nextInt(numberOfwordlist);
             text.append(wordlist.get(rand_g)+" ");
         }
