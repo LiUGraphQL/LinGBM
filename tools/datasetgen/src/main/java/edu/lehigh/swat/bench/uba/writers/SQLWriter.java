@@ -17,6 +17,7 @@ public class SQLWriter extends SQLFlatWriter {
     protected void insertAttrValue(String propertyType, String valueID, String objectType, boolean isResource){
         if (isResource) {
             if(propertyType.equals("teacherOf")){
+                insertPriValue(objectType, Integer.parseInt(valueID));
                 out.format("UPDATE %s set %s= %s where nr = %s;", objectType, "teacher", getIdOfCurrentSubject(), valueID);
             }
             else if(propertyType.equals("publicationAuthor")){
@@ -28,7 +29,7 @@ public class SQLWriter extends SQLFlatWriter {
                 }
             }
             else if(propertyType.equals("teachingAssistantOf")){
-                //System.out.println(getIdOfCurrentSubject());
+                insertPriValue(objectType, Integer.parseInt(valueID));
                 out.format("UPDATE %s set %s= %s where nr = %s;", "undergraduateCourse", "teachingAssistant", getIdOfCurrentSubject(), valueID);
             }
             else if(propertyType.equals("takesCourse")&&(objectType.equals("undergraduateCourse"))){

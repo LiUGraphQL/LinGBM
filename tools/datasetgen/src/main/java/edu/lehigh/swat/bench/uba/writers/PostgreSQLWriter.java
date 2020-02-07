@@ -1,6 +1,7 @@
 package edu.lehigh.swat.bench.uba.writers;
 
 import edu.lehigh.swat.bench.uba.GeneratorCallbackTarget;
+import edu.lehigh.swat.bench.uba.model.Ontology;
 
 public class PostgreSQLWriter extends SQLFlatWriter {
     public PostgreSQLWriter(GeneratorCallbackTarget target, String ontologyUrl) {
@@ -16,6 +17,7 @@ public class PostgreSQLWriter extends SQLFlatWriter {
     protected void insertAttrValue(String propertyType, String valueID, String objectType, boolean isResource){
         if (isResource) {
             if(propertyType.equals("teacherOf")){
+                insertPriValue(objectType, Integer.parseInt(valueID));
                 out.format("UPDATE %s set %s=%s where nr=%s;", objectType, "teacher", getIdOfCurrentSubject(), valueID);
             }
             else if(propertyType.equals("publicationAuthor")){
@@ -27,7 +29,7 @@ public class PostgreSQLWriter extends SQLFlatWriter {
                 }
             }
             else if(propertyType.equals("teachingAssistantOf")){
-                //System.out.println(getIdOfCurrentSubject());
+                insertPriValue(objectType, Integer.parseInt(valueID));
                 out.format("UPDATE %s set %s=%s where nr=%s;", "undergraduateCourse", "teachingAssistant", getIdOfCurrentSubject(), valueID);
             }
             else if(propertyType.equals("takesCourse")&&(objectType.equals("undergraduateCourse"))){
