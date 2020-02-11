@@ -38,7 +38,6 @@ CREATE TABLE department (
 
 CREATE TABLE researchGroup (
   nr int(11),
-  name varchar(25),
   subOrganizationOf int(11),
   primary key (nr)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -160,17 +159,7 @@ ALTER TABLE faculty ADD CONSTRAINT fk_fal_d_uni FOREIGN KEY (doctoralDegreeFrom)
 ALTER TABLE faculty ADD CONSTRAINT fk_fal_dep FOREIGN KEY (worksFor) REFERENCES department(nr) ON DELETE SET NULL;
 
 
-#ALTER TABLE professor ADD CONSTRAINT fk_p_fal FOREIGN KEY (nr) REFERENCES faculty(nr) ON DELETE SET NULL;
 ALTER TABLE professor ADD CONSTRAINT fk_p_dep FOREIGN KEY (headOf) REFERENCES department(nr) ON DELETE SET NULL;
-/*
-ALTER TABLE associateProfessor ADD CONSTRAINT fk_assoP_fal FOREIGN KEY (nr) REFERENCES faculty(nr) ON DELETE SET NULL;
-
-ALTER TABLE assistantProfessor ADD CONSTRAINT fk_assisP_fal FOREIGN KEY (nr) REFERENCES faculty(nr) ON DELETE SET NULL;
-*/
-
-#ALTER TABLE lecturer ADD CONSTRAINT fk_le_fal FOREIGN KEY (nr) REFERENCES faculty(nr) ON DELETE SET NULL;
-
-#TODO: professor
 ALTER TABLE graduateStudent ADD CONSTRAINT fk_gs_uni FOREIGN KEY (undergraduateDegreeFrom) REFERENCES university(nr) ON DELETE SET NULL;
 ALTER TABLE graduateStudent ADD CONSTRAINT fk_gs_fac FOREIGN KEY (advisor) REFERENCES professor(nr) ON DELETE SET NULL;
 ALTER TABLE graduateStudent ADD CONSTRAINT fk_gs_dep FOREIGN KEY (memberOf) REFERENCES department(nr) ON DELETE SET NULL;
@@ -184,13 +173,3 @@ ALTER TABLE graduateCourse ADD CONSTRAINT fk_graCour_fac FOREIGN KEY (teacher) R
 
 ALTER TABLE undergraduateStudent ADD CONSTRAINT fk_undergra_Stu_prof FOREIGN KEY (advisor) REFERENCES professor(nr) ON DELETE SET NULL;
 ALTER TABLE undergraduateStudent ADD CONSTRAINT fk_undergra_Stu_dep FOREIGN KEY (memberOf) REFERENCES department(nr) ON DELETE SET NULL;
-
-
-#ALTER TABLE graduateStudentTakeCourse ADD CONSTRAINT fk_gra_Stu_cour FOREIGN KEY (graduateCourseID) REFERENCES graduateCourse(nr) ON DELETE SET NULL;
-#ALTER TABLE graduateStudentTakeCourse ADD CONSTRAINT fk_gra_Stu_stud FOREIGN KEY (graduateStudentID) REFERENCES graduateStudent(nr) ON DELETE SET NULL;
-
-#ALTER TABLE undergraduateStudentTakeCourse ADD CONSTRAINT fk_ungra_Stu_cour FOREIGN KEY (undergraduateCourseID) REFERENCES undergraduateCourse(nr) ON DELETE SET NULL;
-#ALTER TABLE undergraduateStudentTakeCourse ADD CONSTRAINT fk_ungra_Stu_stud FOREIGN KEY (undergraduateStudentID) REFERENCES undergraduateStudent(nr) ON DELETE SET NULL;
-
-#ALTER TABLE coAuthorOfPublication ADD CONSTRAINT fk_pubCoAu_pub FOREIGN KEY (publicationID) REFERENCES publication(nr) ON DELETE SET NULL;
-#ALTER TABLE coAuthorOfPublication ADD CONSTRAINT fk_pubCoAu_gradStu FOREIGN KEY (graduateStudentID) REFERENCES graduateStudent(nr) ON DELETE SET NULL;

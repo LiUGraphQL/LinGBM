@@ -3,6 +3,9 @@ package edu.lehigh.swat.bench.uba.writers;
 import edu.lehigh.swat.bench.uba.GeneratorCallbackTarget;
 import edu.lehigh.swat.bench.uba.model.Ontology;
 
+
+import java.io.PrintStream;
+
 public class SQLWriter extends SQLFlatWriter {
     public SQLWriter(GeneratorCallbackTarget target, String ontologyUrl) {
         super(target, ontologyUrl);
@@ -106,5 +109,44 @@ public class SQLWriter extends SQLFlatWriter {
         out.println();
 
     };
+
+    @Override
+    protected void writeHeader(PrintStream out) {
+        //Disable keys before inserting data
+        out.println("alter table faculty disable keys;");
+        out.println("alter table professor disable keys;");
+        out.println("alter table department disable keys;");
+        out.println("alter table undergraduateStudentTakeCourse disable keys;");
+        out.println("alter table graduateStudentTakeCourse disable keys;");
+        out.println("alter table coAuthorOfPublication disable keys;");
+        out.println("alter table undergraduateStudent disable keys;");
+        out.println("alter table graduateCourse disable keys;");
+        out.println("alter table publication disable keys;");
+        out.println("alter table undergraduateCourse disable keys;");
+        out.println("alter table graduateStudent disable keys;");
+        out.println("alter table lecturer disable keys;");
+        out.println("alter table researchGroup disable keys;");
+        out.println("alter table university disable keys;");
+        out.println();
+    }
+
+    @Override
+    protected void writeEnableKeys(PrintStream out) {
+        out.println();
+        out.println("alter table faculty enable keys;");
+        out.println("alter table professor enable keys;");
+        out.println("alter table department enable keys;");
+        out.println("alter table undergraduateStudentTakeCourse enable keys;");
+        out.println("alter table graduateStudentTakeCourse enable keys;");
+        out.println("alter table coAuthorOfPublication enable keys;");
+        out.println("alter table undergraduateStudent enable keys;");
+        out.println("alter table graduateCourse enable keys;");
+        out.println("alter table publication enable keys;");
+        out.println("alter table undergraduateCourse enable keys;");
+        out.println("alter table graduateStudent enable keys;");
+        out.println("alter table lecturer enable keys;");
+        out.println("alter table researchGroup enable keys;");
+        out.println("alter table university enable keys;");
+    }
 
 }

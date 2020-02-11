@@ -3,6 +3,8 @@ package edu.lehigh.swat.bench.uba.writers;
 import edu.lehigh.swat.bench.uba.GeneratorCallbackTarget;
 import edu.lehigh.swat.bench.uba.model.Ontology;
 
+import java.io.PrintStream;
+
 public class PostgreSQLWriter extends SQLFlatWriter {
     public PostgreSQLWriter(GeneratorCallbackTarget target, String ontologyUrl) {
         super(target, ontologyUrl);
@@ -106,5 +108,44 @@ public class PostgreSQLWriter extends SQLFlatWriter {
         out.println();
 
     };
+
+    @Override
+    protected void writeHeader(PrintStream out) {
+        //Disable keys before inserting data
+        out.println("alter table faculty disable trigger all;");
+        out.println("alter table professor disable trigger all;");
+        out.println("alter table department disable trigger all;");
+        out.println("alter table undergraduateStudentTakeCourse disable trigger all;");
+        out.println("alter table graduateStudentTakeCourse disable trigger all;");
+        out.println("alter table coAuthorOfPublication disable trigger all;");
+        out.println("alter table undergraduateStudent disable trigger all;");
+        out.println("alter table graduateCourse disable trigger all;");
+        out.println("alter table publication disable trigger all;");
+        out.println("alter table undergraduateCourse disable trigger all;");
+        out.println("alter table graduateStudent disable trigger all;");
+        out.println("alter table lecturer disable trigger all;");
+        out.println("alter table researchGroup disable trigger all;");
+        out.println("alter table university disable trigger all;");
+        out.println();
+    }
+
+    @Override
+    protected void writeEnableKeys(PrintStream out) {
+        out.println();
+        out.println("alter table faculty enable trigger all;");
+        out.println("alter table professor enable trigger all;");
+        out.println("alter table department enable trigger all;");
+        out.println("alter table undergraduateStudentTakeCourse enable trigger all;");
+        out.println("alter table graduateStudentTakeCourse enable trigger all;");
+        out.println("alter table coAuthorOfPublication enable trigger all;");
+        out.println("alter table undergraduateStudent enable trigger all;");
+        out.println("alter table graduateCourse enable trigger all;");
+        out.println("alter table publication enable trigger all;");
+        out.println("alter table undergraduateCourse enable trigger all;");
+        out.println("alter table graduateStudent enable trigger all;");
+        out.println("alter table lecturer enable trigger all;");
+        out.println("alter table researchGroup enable trigger all;");
+        out.println("alter table university enable trigger all;");
+    }
 
 }

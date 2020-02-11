@@ -1,6 +1,6 @@
 package edu.lehigh.swat.bench.uba.writers;
 
-import java.io.OutputStream;
+import java.io.*;
 import java.util.*;
 
 import edu.lehigh.swat.bench.uba.GeneratorCallbackTarget;
@@ -10,9 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.Random;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.FileReader;
 
 public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
@@ -40,20 +37,20 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
     @Override
     public void startFile(String fileName, GlobalState state) {
+
         this.out = prepareOutputStream(fileName, state);
+        writeHeader(this.out);
     }
 
 
     @Override
     public void startFile(GlobalState state, OutputStream output) {
-        // No-op
-        // For flat file formats which are natively concatenatable calling
-        // startFile() multiple times won't matter
 
-        /*
-
-        */
     }
+
+    //disable keys before inserting data and enable keys after it
+    protected abstract void writeHeader(PrintStream output);
+    protected abstract void writeEnableKeys(PrintStream output);
 
     @Override
     public void flushFile(GlobalState state) {
@@ -64,6 +61,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
     @Override
     public void endFile(GlobalState state) {
+        writeEnableKeys(this.out);
         if (!subjects.isEmpty())
             throw new RuntimeException("Mismatched calls to writer in endFile()");
         try {
@@ -73,6 +71,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
             this.out = null;
         }
     }
+
 
     @Override
     public void endFile(GlobalState state, OutputStream output) {
