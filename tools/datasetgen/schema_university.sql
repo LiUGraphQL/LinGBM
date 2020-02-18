@@ -96,7 +96,7 @@ CREATE TABLE publication (
   nr int(11),
   name varchar(25),
   title varchar(100),
-  abstract varchar(100),
+  abstract varchar(250),
   mainAuthor int(11),
   primary key (nr)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
