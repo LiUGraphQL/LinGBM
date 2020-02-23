@@ -1,4 +1,4 @@
-drop database LinBenchmark;
+DROP DATABASE IF EXISTS LinBenchmark;
 CREATE DATABASE LinBenchmark;
 
 USE LinBenchmark;
@@ -96,7 +96,7 @@ CREATE TABLE publication (
   nr int(11),
   name varchar(25),
   title varchar(100),
-  abstract varchar(100),
+  abstract varchar(250),
   mainAuthor int(11),
   primary key (nr)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -153,9 +153,9 @@ ALTER TABLE department ADD CONSTRAINT fk_dep_uni FOREIGN KEY (subOrganizationOf)
 
 ALTER TABLE researchGroup ADD CONSTRAINT fk_res_dep FOREIGN KEY (subOrganizationOf) REFERENCES department(nr) ON DELETE SET NULL;
 
-ALTER TABLE faculty ADD CONSTRAINT fk_fal_u_uni FOREIGN KEY (undergraduateDegreeFrom) REFERENCES University(nr) ON DELETE SET NULL;
-ALTER TABLE faculty ADD CONSTRAINT fk_fal_m_uni FOREIGN KEY (masterDegreeFrom) REFERENCES University(nr) ON DELETE SET NULL;
-ALTER TABLE faculty ADD CONSTRAINT fk_fal_d_uni FOREIGN KEY (doctoralDegreeFrom) REFERENCES University(nr) ON DELETE SET NULL;
+ALTER TABLE faculty ADD CONSTRAINT fk_fal_u_uni FOREIGN KEY (undergraduateDegreeFrom) REFERENCES university(nr) ON DELETE SET NULL;
+ALTER TABLE faculty ADD CONSTRAINT fk_fal_m_uni FOREIGN KEY (masterDegreeFrom) REFERENCES university(nr) ON DELETE SET NULL;
+ALTER TABLE faculty ADD CONSTRAINT fk_fal_d_uni FOREIGN KEY (doctoralDegreeFrom) REFERENCES university(nr) ON DELETE SET NULL;
 ALTER TABLE faculty ADD CONSTRAINT fk_fal_dep FOREIGN KEY (worksFor) REFERENCES department(nr) ON DELETE SET NULL;
 
 
