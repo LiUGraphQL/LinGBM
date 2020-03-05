@@ -59,70 +59,53 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
     protected void recordValues(String entity){
 
-        //System.out.println("\""+entity+"\".dat");
         new File("values").mkdir();
         File pth = new File("values", entity+".txt");
-        //ObjectOutputStream entityValueOutput;
         BufferedWriter outputWriter = null;
         try {
             pth.createNewFile();
             outputWriter = new BufferedWriter(new FileWriter(pth, false));
-            //entitiyValueOutput = new outputString(new FileOutputStream(pth, false));
-            //entityValueOutput = new ObjectOutputStream(new FileOutputStream(pth, false));
             switch (entity) {
                 case "universityID":
                     outputWriter.write(universityID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "departmentID":
-                    //entityValueOutput.writeObject(departmentID);
                     outputWriter.write(departmentID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "researchGroupID":
-                    //entityValueOutput.writeObject(researchGroupID);
                     outputWriter.write(researchGroupID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "facultyID":
-                    //entityValueOutput.writeObject(facultyID);
                     outputWriter.write(facultyID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "professorID":
-                    //entityValueOutput.writeObject(professorID);
                     outputWriter.write(professorID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "lecturerID":
-                    //entityValueOutput.writeObject(lecturerID);
                     outputWriter.write(lecturerID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "graduateStudentID":
-                    //entityValueOutput.writeObject(graduateStudentID);
                     outputWriter.write(graduateStudentID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "undergraduateStudentID":
-                    //entityValueOutput.writeObject(undergraduateStudentID);
                     outputWriter.write(undergraduateStudentID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "publicationID":
-                    //entityValueOutput.writeObject(publicationID);
                     outputWriter.write(publicationID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "graduateCourseID":
-                    //entityValueOutput.writeObject(graduateCourseID);
                     outputWriter.write(graduateCourseID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "undergraduateCourseID":
-                    //entityValueOutput.writeObject(undergraduateCourseID);
                     outputWriter.write(undergraduateCourseID.toString().replace("[", "").replace("]", ""));
                     break;
                 case "title":
-                    //entityValueOutput.writeObject(undergraduateCourseID);
                     outputWriter.write(title_wordlist.toString().replace("[", "").replace("]", ""));
                     break;
                 case "abstract":
-                    //entityValueOutput.writeObject(undergraduateCourseID);
                     outputWriter.write(abstract_wordlist.toString().replace("[", "").replace("]", ""));
                     break;
                 case "interest":
-                    //entityValueOutput.writeObject(undergraduateCourseID);
                     outputWriter.write(interest_wordlist.toString().replace("[", "").replace("]", ""));
                     break;
 
@@ -286,7 +269,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 objectID= department_id*10000+Integer.parseInt(String.format("%03d", list1.get(2)))*10+2;
                 break;
             case Ontology.CS_C_TA:
-                //System.out.println("url:"+current_url);
                 objectID= department_id*10000+Integer.parseInt(String.format("%03d", list1.get(2)))*10+2;
                 break;
             case Ontology.CS_C_COURSE:
@@ -342,9 +324,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
     protected void newSection(int classType, String id) {
 
-        // Nested section which we don't support directly
-        // Link the existing subject to the new subject
-        //addTriple(this.getCurrentSubject(), id, true);
         this.subjects.push(id);
         this.type.push(classType);
         rand = new Random();
@@ -447,19 +426,15 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 int main_author_id;
                 if (id.contains("fullProfessor")) {
                     main_author_id = department_id * 1000 + Integer.parseInt(String.format("%02d", list.get(2)))*10+1;
-                    //o_type="fullProfessor";
                 }
                 else if (id.contains("associateProfessor")){
                     main_author_id = department_id * 1000 + Integer.parseInt(String.format("%02d", list.get(2)))*10+2;
-                    //o_type="associateProfessor";
                 }
                 else if (id.contains("assistantProfessor")){
                     main_author_id = department_id * 1000 + Integer.parseInt(String.format("%02d", list.get(2)))*10+3;
-                    //o_type="assistantProfessor";
                 }
                 else{
                     main_author_id = department_id * 1000 + Integer.parseInt(String.format("%02d", list.get(2)))*10+4;
-                    //o_type="lecturer";
                 }
                 int publication_id = main_author_id * 100+Integer.parseInt(String.format("%02d", list.get(3)));
                 insertPriValue(Ontology.CLASS_TOKEN[classType], publication_id);
@@ -467,7 +442,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                     publicationID.add(publication_id);
                 int numberOfWords_t = rand.nextInt((6 - 3) + 1) + 3;
                 int numberOfWords_a = rand.nextInt((20 - 10) + 1) + 10;
-                //String title_p = null;
                 String word = null;
                 StringBuilder title_p = new StringBuilder();
                 StringBuilder abstract_p = new StringBuilder();
@@ -581,7 +555,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
             }
         }
         else if(value.contains("research")){
-            //String interest = null;
             int numberOfWords_r = rand.nextInt((3 - 1) + 1) + 1;
 
             String word = null;
