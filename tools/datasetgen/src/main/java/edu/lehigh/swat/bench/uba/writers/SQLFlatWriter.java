@@ -39,10 +39,11 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     private List<Integer> undergraduateCourseID = new ArrayList<Integer>();
     private List<String> title_wordlist = new ArrayList<String>();
     private List<String> abstract_wordlist = new ArrayList<String>();
+    private List<String> interest_wordlist = new ArrayList<String>();
     //private List<String> offersAttribute = new ArrayList<String>();
     protected String[] entityNames = {"universityID", "departmentID", "researchGroupID", "facultyID",
             "professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
-            "publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract"};
+            "publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract", "interest"};
 
 
     public SQLFlatWriter(GeneratorCallbackTarget target, String ontologyUrl) {
@@ -50,17 +51,16 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         this.ontologyUrl = ontologyUrl;
         try {
             this.wordlist = fileReader("titlewords.txt");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
     protected void recordValues(String entity){
 
         //System.out.println("\""+entity+"\".dat");
+        new File("values").mkdir();
         File pth = new File("values", entity+".txt");
         //ObjectOutputStream entityValueOutput;
         BufferedWriter outputWriter = null;
@@ -72,7 +72,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
             switch (entity) {
                 case "universityID":
                     outputWriter.write(universityID.toString().replace("[", "").replace("]", ""));
-                    //entityValueOutput.writeObject(universityID);
                     break;
                 case "departmentID":
                     //entityValueOutput.writeObject(departmentID);
@@ -114,6 +113,19 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                     //entityValueOutput.writeObject(undergraduateCourseID);
                     outputWriter.write(undergraduateCourseID.toString().replace("[", "").replace("]", ""));
                     break;
+                case "title":
+                    //entityValueOutput.writeObject(undergraduateCourseID);
+                    outputWriter.write(title_wordlist.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "abstract":
+                    //entityValueOutput.writeObject(undergraduateCourseID);
+                    outputWriter.write(abstract_wordlist.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "interest":
+                    //entityValueOutput.writeObject(undergraduateCourseID);
+                    outputWriter.write(interest_wordlist.toString().replace("[", "").replace("]", ""));
+                    break;
+
                 default:
                     break;
             }
@@ -209,6 +221,8 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         return result;
     }
 
+    /*
+
     protected String generateRamString(List wordlist, int numberOfWords) throws IOException{
         StringBuilder text = new StringBuilder();
         rand = new Random();
@@ -218,6 +232,18 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
             text.append(wordlist.get(rand_g)+" ");
         }
         return text.toString();
+    }
+
+     */
+
+    protected String generateRamString(List wordlist) throws IOException{
+        //StringBuilder text = new StringBuilder();
+        rand = new Random();
+        int numberOfwordlist = wordlist.size();
+        int rand_g = rand.nextInt(numberOfwordlist);
+        String word = wordlist.get(rand_g).toString();
+
+        return word;
     }
 
 
@@ -441,17 +467,33 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                     publicationID.add(publication_id);
                 int numberOfWords_t = rand.nextInt((6 - 3) + 1) + 3;
                 int numberOfWords_a = rand.nextInt((20 - 10) + 1) + 10;
-                String title_p = null;
-                String abstract_p = null;
+                //String title_p = null;
+                String word = null;
+                StringBuilder title_p = new StringBuilder();
+                StringBuilder abstract_p = new StringBuilder();
 
                 try {
-                    title_p = generateRamString(this.wordlist, numberOfWords_t);
-                    abstract_p = generateRamString(this.wordlist, numberOfWords_a);
+
+                    for(int i = 0; i<numberOfWords_t;i++){
+                        word = generateRamString(this.wordlist);
+                        title_wordlist.add(word);
+                        title_p.append(word+" ");
+                    }
+
+                    for(int i = 0; i<numberOfWords_a;i++){
+                        word = generateRamString(this.wordlist);
+                        abstract_wordlist.add(word);
+                        abstract_p.append(word+" ");
+                    }
+
+                    //title_p = generateRamString(this.wordlist, numberOfWords_t);
+                    //abstract_p = generateRamString(this.wordlist, numberOfWords_t);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                insertAttrValue("title", title_p, null,false);
-                insertAttrValue("abstract", abstract_p, null,false);
+
+                insertAttrValue("title", title_p.toString(), null,false);
+                insertAttrValue("abstract", abstract_p.toString(), null,false);
                 break;
             default:
                 break;
@@ -491,6 +533,8 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         else if ((value.endsWith(".edu"))&(!(value.contains("department")))){
             int university_id = list2.get(0);
             value_new = Integer.toString(university_id);
+            if(!universityID.contains(university_id))
+                universityID.add(university_id);
             o_type = "university";
         }
         else if(value.endsWith(".edu")&(value.contains("department"))){
@@ -537,14 +581,22 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
             }
         }
         else if(value.contains("research")){
-            String interest = null;
+            //String interest = null;
             int numberOfWords_r = rand.nextInt((3 - 1) + 1) + 1;
+
+            String word = null;
+            StringBuilder interest = new StringBuilder();
+
             try {
-                interest = generateRamString(this.wordlist, numberOfWords_r);
+                for(int i = 0; i<numberOfWords_r;i++){
+                    word = generateRamString(this.wordlist);
+                    interest_wordlist.add(word);
+                    interest.append(word+" ");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            value_new = interest;
+            value_new = interest.toString();
         }
 
         String propertyName = String.format("%s", Ontology.PROP_TOKEN[property]);
@@ -560,6 +612,8 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         List<Integer> list3 = extractIntfromString(valueId);
         if(valueClass==Ontology.CS_C_UNIV) {
             int university_id = list3.get(0);
+            if(!universityID.contains(university_id))
+                universityID.add(university_id);
             insertPriValue(Ontology.CLASS_TOKEN[valueClass], university_id);
             addProperty(property, Integer.toString(university_id), true);
         }
