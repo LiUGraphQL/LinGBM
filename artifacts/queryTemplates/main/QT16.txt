@@ -1,4 +1,4 @@
-query aggregation_query ($departmentID:ID) 
+query aggregation_query ($universityID:ID) 
 { 
 	university(nr:$universityID){ 
 		undergraduateStudentConnection{ 

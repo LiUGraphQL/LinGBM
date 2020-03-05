@@ -1,6 +1,6 @@
 query sorting_with_paging($cnt:Int, $attrGStudent1: graduateStudentField, $attrGStudent2: graduateStudentField)  
 { 
-	graduateStudents (limit:$cnt, order:[$attrOffer1, $attrOffer2]){ 
+	graduateStudents (limit:$cnt, order:[$attrGStudent1, $attrGStudent2]){ 
 		id 
 		telephone 
 		emailAddress 

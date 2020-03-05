@@ -1,4 +1,4 @@
-query count_query ($departmentID:ID) 
+query count_query ($universityID:ID) 
 { 
 	university(nr:$universityID){ 
 		undergraduateStudentConnection{ 

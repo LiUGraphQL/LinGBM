@@ -1,7 +1,7 @@
-query multipleFilters($departmentID:ID, $professorType:String, $interestkeyword:String) 
+query multipleFilters($universityID:ID, $age:Int, $interestkeyword:String) 
 { 
 	university(nr:$universityID) { 
-		undergraduateDegreeObtainedBystudent(where: { AND:{age:{pattern:$interestkeyword,criterion: MORETHAN}, advisor:{researchInterest:{criterion:CONTAINS, pattern:$interestkeyword}}}}) { 
+		undergraduateDegreeObtainedBystudent(where: { AND:{age:{pattern:$age,criterion: MORETHAN}, advisor:{researchInterest:{criterion:CONTAINS, pattern:$interestkeyword}}}}) { 
 			id 
 			emailAddress 
 			takeGraduateCourses {id} 
