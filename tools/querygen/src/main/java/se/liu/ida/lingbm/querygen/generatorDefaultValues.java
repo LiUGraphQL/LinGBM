@@ -12,7 +12,7 @@ public class generatorDefaultValues {
 	public static int numQueriesPerTempateDef = 20;//how many Query mixes are generated for one query template
 	public static String queryTemplateDirDef = path+"LinGBM/artifacts/queryTemplates/main";
 	//Absolute path for "td_data", need to find this directory in dataset generator
-	public static String placeholderValDirDef = path+"LinGBM/tools/datasetgen/td_data";
+	public static String placeholderValDirDef = path+"LinGBM/tools/datasetgen/values";
 	public static String queryInstanceDirDef = path+"LinGBM/tools/querygen/actualQueries";
 	public static String querywithVariDirDef = path+"LinGBM/tools/querygen/queryVariables";
 }

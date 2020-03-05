@@ -10,6 +10,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.Random;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileReader;
+
 
 public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
@@ -22,6 +26,23 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     private final Stack<String> subjects = new Stack<String>();
     private final Stack<Integer> type = new Stack<Integer>();
     private List<String> wordlist = new ArrayList<String>();
+    private List<Integer> universityID = new ArrayList<Integer>();
+    private List<Integer> departmentID = new ArrayList<Integer>();
+    private List<Integer> researchGroupID = new ArrayList<Integer>();
+    private List<Integer> facultyID = new ArrayList<Integer>();
+    private List<Integer> professorID = new ArrayList<Integer>();
+    private List<Integer> lecturerID = new ArrayList<Integer>();
+    private List<Integer> graduateStudentID = new ArrayList<Integer>();
+    private List<Integer> undergraduateStudentID = new ArrayList<Integer>();
+    private List<Integer> publicationID = new ArrayList<Integer>();
+    private List<Integer> graduateCourseID = new ArrayList<Integer>();
+    private List<Integer> undergraduateCourseID = new ArrayList<Integer>();
+    private List<String> title_wordlist = new ArrayList<String>();
+    private List<String> abstract_wordlist = new ArrayList<String>();
+    //private List<String> offersAttribute = new ArrayList<String>();
+    protected String[] entityNames = {"universityID", "departmentID", "researchGroupID", "facultyID",
+            "professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
+            "publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract"};
 
 
     public SQLFlatWriter(GeneratorCallbackTarget target, String ontologyUrl) {
@@ -33,7 +54,78 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
+
+    protected void recordValues(String entity){
+
+        //System.out.println("\""+entity+"\".dat");
+        File pth = new File("values", entity+".txt");
+        //ObjectOutputStream entityValueOutput;
+        BufferedWriter outputWriter = null;
+        try {
+            pth.createNewFile();
+            outputWriter = new BufferedWriter(new FileWriter(pth, false));
+            //entitiyValueOutput = new outputString(new FileOutputStream(pth, false));
+            //entityValueOutput = new ObjectOutputStream(new FileOutputStream(pth, false));
+            switch (entity) {
+                case "universityID":
+                    outputWriter.write(universityID.toString().replace("[", "").replace("]", ""));
+                    //entityValueOutput.writeObject(universityID);
+                    break;
+                case "departmentID":
+                    //entityValueOutput.writeObject(departmentID);
+                    outputWriter.write(departmentID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "researchGroupID":
+                    //entityValueOutput.writeObject(researchGroupID);
+                    outputWriter.write(researchGroupID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "facultyID":
+                    //entityValueOutput.writeObject(facultyID);
+                    outputWriter.write(facultyID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "professorID":
+                    //entityValueOutput.writeObject(professorID);
+                    outputWriter.write(professorID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "lecturerID":
+                    //entityValueOutput.writeObject(lecturerID);
+                    outputWriter.write(lecturerID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "graduateStudentID":
+                    //entityValueOutput.writeObject(graduateStudentID);
+                    outputWriter.write(graduateStudentID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "undergraduateStudentID":
+                    //entityValueOutput.writeObject(undergraduateStudentID);
+                    outputWriter.write(undergraduateStudentID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "publicationID":
+                    //entityValueOutput.writeObject(publicationID);
+                    outputWriter.write(publicationID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "graduateCourseID":
+                    //entityValueOutput.writeObject(graduateCourseID);
+                    outputWriter.write(graduateCourseID.toString().replace("[", "").replace("]", ""));
+                    break;
+                case "undergraduateCourseID":
+                    //entityValueOutput.writeObject(undergraduateCourseID);
+                    outputWriter.write(undergraduateCourseID.toString().replace("[", "").replace("]", ""));
+                    break;
+                default:
+                    break;
+            }
+            outputWriter.close();
+
+        } catch(IOException e) {
+            System.err.println("Could not open or create file " + pth.getAbsolutePath());
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        }
+    }
+
 
     @Override
     public void startFile(String fileName, GlobalState state) {
@@ -70,6 +162,12 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         } finally {
             this.out = null;
         }
+        System.out.println(this.departmentID);
+
+        for(int i = 0; i<entityNames.length; i++){
+            recordValues(entityNames[i]);
+        }
+
     }
 
 
@@ -236,57 +334,88 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
         switch (classType) {
             case Ontology.CS_C_UNIV:
-                insertPriValue(Ontology.CLASS_TOKEN[classType], list.get(0));
+                int university_id = list.get(0);
+                insertPriValue(Ontology.CLASS_TOKEN[classType], university_id);
+                if(!universityID.contains(university_id))
+                    universityID.add(university_id);
                 break;
             case Ontology.CS_C_DEPT:
                 insertPriValue(Ontology.CLASS_TOKEN[classType], department_id);
+                if(!departmentID.contains(department_id))
+                    departmentID.add(department_id);
                 break;
             case Ontology.CS_C_FULLPROF:
                 int fullProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+1;
                 insertPriValue("faculty", fullProfessor_id);
+                if(!facultyID.contains(fullProfessor_id))
+                    facultyID.add(fullProfessor_id);
                 insertPriValue("professor", fullProfessor_id);
+                if(!professorID.contains(fullProfessor_id))
+                    professorID.add(fullProfessor_id);
                 insertAttrValue("professorType", Integer.toString(fullProfessor_id), "fullProfessor",false);
                 break;
             case Ontology.CS_C_ASSOPROF:
                 int associateProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+2;
                 insertPriValue("faculty", associateProfessor_id);
+                if(!facultyID.contains(associateProfessor_id))
+                    facultyID.add(associateProfessor_id);
                 insertPriValue("professor", associateProfessor_id);
+                if(!professorID.contains(associateProfessor_id))
+                    professorID.add(associateProfessor_id);
                 insertAttrValue("professorType", Integer.toString(associateProfessor_id), "associateProfessor",false);
                 break;
             case Ontology.CS_C_ASSTPROF:
                 int assistantProfessor_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+3;
                 insertPriValue("faculty", assistantProfessor_id);
+                if(!facultyID.contains(assistantProfessor_id))
+                    facultyID.add(assistantProfessor_id);
                 insertPriValue("professor", assistantProfessor_id);
+                if(!professorID.contains(assistantProfessor_id))
+                    professorID.add(assistantProfessor_id);
                 insertAttrValue("professorType", Integer.toString(assistantProfessor_id), "assistantProfessor",false);
                 break;
             case Ontology.CS_C_LECTURER:
                 int lecturer_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+4;
                 insertPriValue(Ontology.CLASS_TOKEN[classType], lecturer_id);
+                if(!lecturerID.contains(lecturer_id))
+                    lecturerID.add(lecturer_id);
                 insertPriValue("faculty", lecturer_id);
+                if(!facultyID.contains(lecturer_id))
+                    facultyID.add(lecturer_id);
                 break;
             case Ontology.CS_C_UNDERSTUD:
                 int underStudent_id = department_id*10000+Integer.parseInt(String.format("%03d", list.get(2)))*10+1;
                 insertPriValue(Ontology.CLASS_TOKEN[classType], underStudent_id);
+                if(!undergraduateStudentID.contains(underStudent_id))
+                    undergraduateStudentID.add(underStudent_id);
                 int rand_ug = rand.nextInt((24 - 16) + 1) + 16;
                 insertAttrValue("age", Integer.toString(rand_ug), null,false);
                 break;
             case Ontology.CS_C_GRADSTUD:
                 int graduateStudent_id = department_id*10000+Integer.parseInt(String.format("%03d", list.get(2)))*10+2;
                 insertPriValue(Ontology.CLASS_TOKEN[classType], graduateStudent_id);
+                if(!graduateStudentID.contains(graduateStudent_id))
+                    graduateStudentID.add(graduateStudent_id);
                 int rand_g = rand.nextInt((27 - 20) + 1) + 20;
                 insertAttrValue("age", Integer.toString(rand_g), null,false);
                 break;
             case Ontology.CS_C_COURSE:
                 int underCourse_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+1;
                 insertPriValue(Ontology.CLASS_TOKEN[classType], underCourse_id);
+                if(!undergraduateCourseID.contains(underCourse_id))
+                    undergraduateCourseID.add(underCourse_id);
                 break;
             case Ontology.CS_C_GRADCOURSE:
                 int graduateCourse_id = department_id*1000+Integer.parseInt(String.format("%02d", list.get(2)))*10+2;
                 insertPriValue(Ontology.CLASS_TOKEN[classType], graduateCourse_id);
+                if(!graduateCourseID.contains(graduateCourse_id))
+                    graduateCourseID.add(graduateCourse_id);
                 break;
             case Ontology.CS_C_RESEARCHGROUP:
                 int researchGroup_id = department_id*100+Integer.parseInt(String.format("%02d", list.get(2)));
                 insertPriValue(Ontology.CLASS_TOKEN[classType], researchGroup_id);
+                if(!researchGroupID.contains(researchGroup_id))
+                    researchGroupID.add(researchGroup_id);
                 break;
             case Ontology.CS_C_PUBLICATION:
                 int main_author_id;
@@ -308,7 +437,8 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                 }
                 int publication_id = main_author_id * 100+Integer.parseInt(String.format("%02d", list.get(3)));
                 insertPriValue(Ontology.CLASS_TOKEN[classType], publication_id);
-
+                if(!publicationID.contains(publication_id))
+                    publicationID.add(publication_id);
                 int numberOfWords_t = rand.nextInt((6 - 3) + 1) + 3;
                 int numberOfWords_a = rand.nextInt((20 - 10) + 1) + 10;
                 String title_p = null;

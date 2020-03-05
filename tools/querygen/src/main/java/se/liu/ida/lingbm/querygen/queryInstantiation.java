@@ -13,7 +13,7 @@ import java.util.Set;
 //Given a query template, output a set of query instances.
 public class queryInstantiation {
 
-	public queryInstantiation(String oldQuery, String parameter, valueSelection valueSel, File dirIns , File dirQueryVari, int max, int No_temp) throws ParseException {
+	public queryInstantiation(String oldQuery, String parameter, valueSelection_new valueSel, File dirIns , File dirQueryVari, int max, int No_temp) throws ParseException {
 
 
 		// Parse the parameter

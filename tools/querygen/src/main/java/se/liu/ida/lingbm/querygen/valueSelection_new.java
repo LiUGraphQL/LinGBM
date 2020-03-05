@@ -1,0 +1,338 @@
+package se.liu.ida.lingbm.querygen;
+
+import java.io.*;
+import java.sql.Array;
+import java.text.ParseException;
+import java.util.*;
+import java.util.Scanner;
+
+// This module works for generating a group of values for one parameter or a combination of parameters.
+// Given a placeholder, randomly select a group of values for it
+public class valueSelection_new {
+	protected ValueGenerator valueGen;
+
+	private List<Integer> university = new ArrayList<Integer>();
+	private List<Integer> department = new ArrayList<Integer>();
+	private List<Integer> researchGroup = new ArrayList<Integer>();
+	private List<Integer> faculty = new ArrayList<Integer>();
+	private List<Integer> professor = new ArrayList<Integer>();
+	private List<Integer> lecturer = new ArrayList<Integer>();
+	private List<Integer> graduateStudent = new ArrayList<Integer>();
+	private List<Integer> undergraduateStudent = new ArrayList<Integer>();
+	private List<Integer> publication = new ArrayList<Integer>();
+	private List<Integer> graduateCourse = new ArrayList<Integer>();
+	private List<Integer> undergraduateCourse = new ArrayList<Integer>();
+
+	protected Integer scalefactor;
+	protected Integer departmentCount;
+	protected Integer universityCount;
+	protected Integer researchGroupCount;
+	protected Integer facultyCount;
+	protected Integer professorCount;
+	protected Integer lecturerCount;
+	protected Integer graduateStudentCount;
+	protected Integer undergraduateStudentCount;
+	protected Integer publicationCount;
+	protected Integer graduateCourseCount;
+	protected Integer undergraduateCourseCount;
+	//todo
+	protected Integer titleWordCount=100;
+	protected Integer abstractWordCount=100;
+	protected Integer interestWordCount=100;
+
+	protected Integer instanceNm;
+	protected String[] entityNames = {"universityID", "departmentID", "researchGroupID", "facultyID",
+			"professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
+			"publicationID", "graduateCourseID", "undergraduateCourseID"};
+
+	protected void init(File resourceDir, long seed) {
+		Random seedGen = new Random(seed);
+		valueGen = new ValueGenerator(seedGen.nextLong());
+		for(int i = 0; i<entityNames.length; i++){
+			readDepartment(resourceDir, entityNames[i]);
+		}
+		System.out.println("department: "+department.get(5));
+	}
+	private void readDepartment(File resourceDir, String entity) {
+		File dep = new File(resourceDir, entity+".txt");
+		String line = null;
+
+		BufferedReader departmentinputReader = null;
+		try {
+			departmentinputReader = new BufferedReader(new FileReader(dep));
+			line = departmentinputReader.readLine();
+
+			String[] values = line.split(", ");
+
+			switch (entity) {
+				case "universityID":
+					universityCount = values.length;
+					for(int i=0; i<values.length; i++){
+						university.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "departmentID":
+					departmentCount = values.length;
+					for(int i=0; i<values.length; i++){
+						department.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "researchGroupID":
+					researchGroupCount = values.length;
+					for(int i=0; i<values.length; i++){
+						researchGroup.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "facultyID":
+					facultyCount = values.length;
+					for(int i=0; i<values.length; i++){
+						faculty.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "professorID":
+					professorCount = values.length;
+					for(int i=0; i<values.length; i++){
+						professor.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "lecturerID":
+					lecturerCount = values.length;
+					for(int i=0; i<values.length; i++){
+						lecturer.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "graduateStudentID":
+					graduateStudentCount = values.length;
+					for(int i=0; i<values.length; i++){
+						graduateStudent.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "undergraduateStudentID":
+					undergraduateStudentCount = values.length;
+					for(int i=0; i<values.length; i++){
+						undergraduateStudent.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "publicationID":
+					publicationCount = values.length;
+					for(int i=0; i<values.length; i++){
+						publication.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "graduateCourseID":
+					graduateCourseCount = values.length;
+					for(int i=0; i<values.length; i++){
+						graduateCourse.add(Integer.parseInt(values[i]));
+					}
+					break;
+				case "undergraduateCourseID":
+					undergraduateCourseCount = values.length;
+					for(int i=0; i<values.length; i++){
+						undergraduateCourse.add(Integer.parseInt(values[i]));
+					}
+					break;
+				default:
+					break;
+			}
+		}
+		catch(IOException e) {
+			System.err.println("Could not open or process file " + resourceDir.getAbsolutePath());
+			System.err.println(e.getMessage());
+			System.exit(-1);
+		}
+
+	}
+
+	protected String[][] SelectedValues(String field, Integer maxInstanceNm) throws ParseException {
+		Set setCombination=getRandomSelectedValues(field, maxInstanceNm);
+		String[] fields = field.split("-");
+		int paraNum = fields.length;
+		String[][] paras = new String[instanceNm][paraNum];
+		Iterator iterator = setCombination.iterator();
+		int i=0;
+		while(iterator.hasNext()){
+			String element = (String) iterator.next();
+			String[] parts = element.split("_");
+			int k=0;
+			for(String value:parts){
+				//todo
+					paras[i][k]= value;
+				k++;
+			}
+			i++;
+		}
+		return paras;
+	}
+
+	protected Set getRandomSelectedValues(String field, Integer maxInstanceNm) throws ParseException {
+		System.out.println("field"+field);
+		instanceNm = getInstanceNm(field, maxInstanceNm)[1];
+		System.out.println("instance"+instanceNm);
+		Set setCombination = new HashSet();
+		int size = 0;
+
+		String[] fields = field.split("-");
+		int paraNum = fields.length;
+
+		boolean Empty = true;
+		String component = null;
+		String connect = "_";
+
+		while(size < instanceNm){
+			String oneCombination = getRandom(fields[0]);
+			for(int i = 1; i< paraNum;i++){
+				String para = fields[i];
+				component = getRandom(para);
+				oneCombination = oneCombination+connect+component;
+			}
+
+			setCombination.add(oneCombination);
+			size = setCombination.size();
+		}
+		Empty = setCombination.isEmpty();
+
+		if(Empty)
+			System.out.println("The combination set is empty");
+		return setCombination;
+	}
+
+	protected String[] publicationField = {"title", "abstract"};
+	protected String[] graduateStudentField = {"id", "telephone", "emailAddress", "memberOf", "undergraduateDegreeFrom", "advisor"};
+
+
+
+	protected Integer[] getInstanceNm(String field, Integer maxInstanceNm) {
+		int combTotalCount =0;
+		//NumOfInstance[1]: number of query instances (should be generated)
+		//NumOfInstance[2]: actual max number of query instances in the dataset
+		Integer[] NumOfInstance = new Integer[3];
+		switch (field){
+			case "$facultyID":
+				NumOfInstance[1] = Math.min(facultyCount, maxInstanceNm);
+				NumOfInstance[2] = departmentCount;
+				break;
+			case "$universityID":
+				NumOfInstance[1] = Math.min(universityCount, maxInstanceNm);
+				NumOfInstance[2] = universityCount;
+				break;
+			case "$researchGroupID":
+				NumOfInstance[1] = Math.min(researchGroupCount, maxInstanceNm);
+				NumOfInstance[2] = researchGroupCount;
+				break;
+			case "$lecturerID":
+				NumOfInstance[1] = Math.min(lecturerCount, maxInstanceNm);
+				NumOfInstance[2] = lecturerCount;
+				break;
+			case "$universityID-$offset":
+				int combTotalCount_7 = universityCount * 50;
+				NumOfInstance[1] = Math.min(combTotalCount_7, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount_7;
+				break;
+			case "$cnt-$attrGStudent1-$attrGStudent2":
+				int combTotalCount_8 = 500 * 3 * 3;
+				NumOfInstance[1] = Math.min(combTotalCount_8, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount_8;
+				break;
+			case "$universityID-$attrPublicationField":
+				combTotalCount = universityCount * 2;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
+				break;
+			case "$keyword":
+				NumOfInstance[1] = Math.min(titleWordCount, maxInstanceNm);
+				NumOfInstance[2] = titleWordCount;
+				break;
+			case "$universityID-$departmentID":
+				combTotalCount = universityCount * departmentCount;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
+				break;
+			case "$universityID-$interestWord":
+				combTotalCount = universityCount * interestWordCount;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
+				break;
+			case "$universityID-$age-$interestWord":
+				//todo
+				combTotalCount = universityCount * 7 * interestWordCount;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
+				break;
+			case "$departmentID":
+				NumOfInstance[1] = Math.min(departmentCount, maxInstanceNm);
+				NumOfInstance[2] = departmentCount;
+				break;
+			default:
+				break;
+		}
+
+		NumOfInstance[0] = scalefactor;
+		//System.out.println(NumOfInstance);
+		return NumOfInstance;
+	}
+
+
+	protected String getRandom(String field) throws ParseException {
+		int Nr=-1;
+		String randomNr = null;
+		switch (field){
+			case "$departmentID":
+				Nr = valueGen.randomInt(0, departmentCount-1);
+				randomNr = String.valueOf(department.get(Nr));
+				break;
+			case "$facultyID":
+				Nr = valueGen.randomInt(0, facultyCount-1);
+				randomNr = String.valueOf(faculty.get(Nr));
+				break;
+			case "$universityID":
+				Nr = valueGen.randomInt(0, universityCount-1);
+				randomNr = String.valueOf(university.get(Nr));
+				break;
+			case "$researchGroupID":
+				Nr = valueGen.randomInt(0, researchGroupCount-1);
+				randomNr = String.valueOf(researchGroup.get(Nr));
+				break;
+			case "$lecturerID":
+				Nr = valueGen.randomInt(0, lecturerCount-1);
+				randomNr = String.valueOf(lecturer.get(Nr));
+				break;
+			case "$offset":
+				Nr = valueGen.randomInt(1, 50);
+				randomNr = String.valueOf(Nr);
+				break;
+			case "$cnt":
+				Nr = valueGen.randomInt(500, 1000);
+				randomNr = String.valueOf(Nr);
+				break;
+			case "$attrGStudent1":
+				randomNr = String.valueOf(valueGen.randomInt(0, graduateStudentField.length-1));
+				break;
+			case "$attrGStudent2":
+				randomNr = String.valueOf(valueGen.randomInt(0, graduateStudentField.length-1));
+				break;
+			case "$attrPublicationField":
+				randomNr = String.valueOf(valueGen.randomInt(0, publicationField.length-1));
+				break;
+			case "$age":
+				Nr = valueGen.randomInt(20, 27);
+				randomNr = String.valueOf(Nr);
+				break;
+
+				//todo
+			case "$keyword":
+				Nr = valueGen.randomInt(0, 100);
+				randomNr = String.valueOf(Nr);
+				break;
+			case "$interestWord":
+				Nr = valueGen.randomInt(0, 100);
+				randomNr = String.valueOf(Nr);
+				break;
+
+			default:
+				break;
+		}
+		return randomNr;
+	}
+
+
+}

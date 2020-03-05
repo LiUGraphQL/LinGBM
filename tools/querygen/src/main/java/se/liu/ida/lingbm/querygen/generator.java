@@ -155,7 +155,9 @@ public class generator {
 		//The path to possible values for the placeholders
 		File resourceDir = new File(placeholderValDir);
 		// read in files that used to generate values for the placeholders
-		valueSelection valueSel = new valueSelection();
+		//valueSelection valueSel = new valueSelection();
+		//Test
+		valueSelection_new valueSel = new valueSelection_new();
 		Long seed = seedGenerator.nextLong();
 		valueSel.init(resourceDir, seed);
 		System.out.println("Values for placeholders are prepared.");
