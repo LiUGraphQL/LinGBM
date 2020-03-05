@@ -5,7 +5,7 @@ query lecturer_university_graduateStudent_professor_department($lecturerID:ID)
       id 
       undergraduateDegreeObtainedBystudent { 
         id 
-        email 
+        emailAddress 
         advisor { 
           id 
           emailAddress  
