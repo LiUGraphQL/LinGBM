@@ -5,7 +5,7 @@ The input to this query generator program consists of the following two parts:
 
 1. **Query templates**: The benchmark comes with a set of [query templates](https://github.com/LiUGraphQL/LinGBM/wiki/Query-Templates-of-the-Benchmark) that cover the [chokepoints based on which the benchmark has been designed](https://github.com/LiUGraphQL/LinGBM/wiki/Choke-Points-for-a-GraphQL-Performance-Benchmark). The templates can be found in the directory `./artifacts/queryTemplates/` of the LinGBM git repo.
 
-2. **Values for placeholders in the templates**: The possible values to replace the placeholders in the query templates are available in an extra directory created by the [dataset generator](https://github.com/LiUGraphQL/LinGBM/tree/master/tools/datasetgen). Per default, this directory is called `td_data/`. The values in this directory depend on the generated dataset; hence, they will be different for each dataset. Consequently, the query instances may be different as well. In other words, for each dataset it is necessary to generate a corresponding set of query instances.
+2. **Values for placeholders in the templates**: The possible values to replace the placeholders in the query templates are available in an extra directory created by the [dataset generator](https://github.com/LiUGraphQL/LinGBM/tree/master/tools/datasetgen). Per default, this directory is called `values/`. The values in this directory depend on the generated dataset; hence, they will be different for each dataset. Consequently, the query instances may be different as well. In other words, for each dataset it is necessary to generate a corresponding set of query instances.
 
 ### Setup
 
