@@ -22,6 +22,9 @@ public class valueSelection_new {
 	private List<Integer> publication = new ArrayList<Integer>();
 	private List<Integer> graduateCourse = new ArrayList<Integer>();
 	private List<Integer> undergraduateCourse = new ArrayList<Integer>();
+	private List<String> titleWord = new ArrayList<String>();
+	private List<String> abstractWord = new ArrayList<String>();
+	private List<String> interestWord = new ArrayList<String>();
 
 	protected Integer scalefactor;
 	protected Integer departmentCount;
@@ -35,15 +38,14 @@ public class valueSelection_new {
 	protected Integer publicationCount;
 	protected Integer graduateCourseCount;
 	protected Integer undergraduateCourseCount;
-	//todo
-	protected Integer titleWordCount=100;
-	protected Integer abstractWordCount=100;
-	protected Integer interestWordCount=100;
+	protected Integer titleWordCount;
+	protected Integer abstractWordCount;
+	protected Integer interestWordCount;
 
 	protected Integer instanceNm;
 	protected String[] entityNames = {"universityID", "departmentID", "researchGroupID", "facultyID",
 			"professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
-			"publicationID", "graduateCourseID", "undergraduateCourseID"};
+			"publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract", "interest"};
 
 	protected void init(File resourceDir, long seed) {
 		Random seedGen = new Random(seed);
@@ -51,7 +53,6 @@ public class valueSelection_new {
 		for(int i = 0; i<entityNames.length; i++){
 			readDepartment(resourceDir, entityNames[i]);
 		}
-		System.out.println("department: "+department.get(5));
 	}
 	private void readDepartment(File resourceDir, String entity) {
 		File dep = new File(resourceDir, entity+".txt");
@@ -131,6 +132,25 @@ public class valueSelection_new {
 						undergraduateCourse.add(Integer.parseInt(values[i]));
 					}
 					break;
+				case "title":
+					titleWordCount = values.length;
+					System.out.println("titleWordCount:"+titleWordCount);
+					for(int i=0; i<values.length; i++){
+						titleWord.add(values[i]);
+					}
+					break;
+				case "abstract":
+					abstractWordCount = values.length;
+					for(int i=0; i<values.length; i++){
+						abstractWord.add(values[i]);
+					}
+					break;
+				case "interest":
+					interestWordCount = values.length;
+					for(int i=0; i<values.length; i++){
+						interestWord.add(values[i]);
+					}
+					break;
 				default:
 					break;
 			}
@@ -155,8 +175,12 @@ public class valueSelection_new {
 			String[] parts = element.split("_");
 			int k=0;
 			for(String value:parts){
-				//todo
+				if(("$interestWord".equals(fields[k]))||("$keyword".equals(fields[k]))){
+					paras[i][k]= "\""+value+"\"";
+				}
+				else{
 					paras[i][k]= value;
+				}
 				k++;
 			}
 			i++;
@@ -165,9 +189,7 @@ public class valueSelection_new {
 	}
 
 	protected Set getRandomSelectedValues(String field, Integer maxInstanceNm) throws ParseException {
-		System.out.println("field"+field);
 		instanceNm = getInstanceNm(field, maxInstanceNm)[1];
-		System.out.println("instance"+instanceNm);
 		Set setCombination = new HashSet();
 		int size = 0;
 
@@ -267,7 +289,6 @@ public class valueSelection_new {
 		}
 
 		NumOfInstance[0] = scalefactor;
-		//System.out.println(NumOfInstance);
 		return NumOfInstance;
 	}
 
@@ -305,27 +326,30 @@ public class valueSelection_new {
 				randomNr = String.valueOf(Nr);
 				break;
 			case "$attrGStudent1":
-				randomNr = String.valueOf(valueGen.randomInt(0, graduateStudentField.length-1));
+				Nr = valueGen.randomInt(0, graduateStudentField.length-1);
+				randomNr = String.valueOf(graduateStudentField[Nr]);
 				break;
 			case "$attrGStudent2":
-				randomNr = String.valueOf(valueGen.randomInt(0, graduateStudentField.length-1));
+				Nr = valueGen.randomInt(0, graduateStudentField.length-1);
+				randomNr = String.valueOf(graduateStudentField[Nr]);
 				break;
 			case "$attrPublicationField":
-				randomNr = String.valueOf(valueGen.randomInt(0, publicationField.length-1));
+				Nr = valueGen.randomInt(0, publicationField.length-1);
+				randomNr = String.valueOf(publicationField[Nr]);
 				break;
 			case "$age":
 				Nr = valueGen.randomInt(20, 27);
 				randomNr = String.valueOf(Nr);
 				break;
 
-				//todo
 			case "$keyword":
-				Nr = valueGen.randomInt(0, 100);
-				randomNr = String.valueOf(Nr);
+				Nr = valueGen.randomInt(0, titleWordCount-1);
+				System.out.println("Nr:"+Nr);
+				randomNr = titleWord.get(Nr);
 				break;
 			case "$interestWord":
-				Nr = valueGen.randomInt(0, 100);
-				randomNr = String.valueOf(Nr);
+				Nr = valueGen.randomInt(0, interestWordCount-1);
+				randomNr = interestWord.get(Nr);
 				break;
 
 			default:
