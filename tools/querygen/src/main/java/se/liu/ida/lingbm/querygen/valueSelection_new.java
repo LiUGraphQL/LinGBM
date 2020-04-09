@@ -134,7 +134,6 @@ public class valueSelection_new {
 					break;
 				case "title":
 					titleWordCount = values.length;
-					System.out.println("titleWordCount:"+titleWordCount);
 					for(int i=0; i<values.length; i++){
 						titleWord.add(values[i]);
 					}
@@ -344,7 +343,6 @@ public class valueSelection_new {
 
 			case "$keyword":
 				Nr = valueGen.randomInt(0, titleWordCount-1);
-				System.out.println("Nr:"+Nr);
 				randomNr = titleWord.get(Nr);
 				break;
 			case "$interestWord":
