@@ -5,7 +5,7 @@ query researchGroup_department_head_doctorDegreeFrom($researchGroupID:ID)
       head { 
         id 
         emailAddress 
-        doctorDegreeFrom {id} 
+        doctoralDegreeFrom {id} 
       } 
     } 
   } 
