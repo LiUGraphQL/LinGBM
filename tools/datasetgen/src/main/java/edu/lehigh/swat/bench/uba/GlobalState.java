@@ -104,6 +104,7 @@ public class GlobalState {
                 break;
             case NTRIPLES:
             case SQL:
+            case PostgreSQL:
             case TURTLE:
                 // All these formats can be trivially concatenated together so
                 // again using Partial should give the best IO balance and we'll
@@ -356,7 +357,6 @@ public class GlobalState {
         // Wait for write consolidation
         if (this.writeConsolidator != null) {
             this.writeConsolidator.finish();
-
             this.consolidatorService.shutdown();
             try {
                 this.consolidatorFuture.get(this.executionTimeout, this.executionTimeoutUnit);
