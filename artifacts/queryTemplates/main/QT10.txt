@@ -1,6 +1,6 @@
 query stringMatching($keyword:String) 
 { 
-	publicationSearch(field:title, criterion:contains, pattern:$keyword) { 
+	publicationSearch(field:title, criterion:CONTAINS, pattern:$keyword) { 
 		id 
 		title 
 		abstract 
