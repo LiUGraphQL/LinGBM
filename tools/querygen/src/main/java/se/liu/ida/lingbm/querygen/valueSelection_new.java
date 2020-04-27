@@ -174,12 +174,15 @@ public class valueSelection_new {
 			String[] parts = element.split("_");
 			int k=0;
 			for(String value:parts){
+				/*
 				if(("$interestWord".equals(fields[k]))||("$keyword".equals(fields[k]))){
 					paras[i][k]= "\""+value+"\"";
 				}
 				else{
 					paras[i][k]= value;
 				}
+				*/
+				paras[i][k]= value;
 				k++;
 			}
 			i++;
@@ -217,8 +220,18 @@ public class valueSelection_new {
 		return setCombination;
 	}
 
+	//For the customized schema: attributes of publication
 	protected String[] publicationField = {"title", "abstract"};
+    //For auto generated schema of PostGraphile: attributes of publication
+	protected String[] publicationField_PostGraphile = {"TITLE", "ABSTRACT"};
+
+	//For the customized schema 'main': attributes of GrauduateStudent
 	protected String[] graduateStudentField = {"id", "telephone", "emailAddress", "memberOf", "undergraduateDegreeFrom", "advisor"};
+    //For auto generated schema of Hasura: attributes of GrauduateStudent
+    protected String[] graduateStudentField_Hasura = {"nr", "telephone", "emailaddress", "memberof", "undergraduatedegreefrom", "advisor"};
+    //For auto generated schema of PostGraphile: attributes of GrauduateStudent
+    protected String[] graduateStudentField_PostGraphile = {"NR", "TELEPHONE", "EMAILADDRESS", "MEMBEROF", "UNDERGRADUATEDEGREEFROM", "ADVISOR"};
+
 
 
 
@@ -332,9 +345,29 @@ public class valueSelection_new {
 				Nr = valueGen.randomInt(0, graduateStudentField.length-1);
 				randomNr = String.valueOf(graduateStudentField[Nr]);
 				break;
+			case "$attrGStudent1PostGraphile":
+				Nr = valueGen.randomInt(0, graduateStudentField_PostGraphile.length-1);
+				randomNr = String.valueOf(graduateStudentField_PostGraphile[Nr]);
+				break;
+			case "$attrGStudent2PostGraphile":
+				Nr = valueGen.randomInt(0, graduateStudentField_PostGraphile.length-1);
+				randomNr = String.valueOf(graduateStudentField_PostGraphile[Nr]);
+				break;
+			case "$attrGStudent1Hasura":
+				Nr = valueGen.randomInt(0, graduateStudentField_Hasura.length-1);
+				randomNr = String.valueOf(graduateStudentField_Hasura[Nr]);
+				break;
+			case "$attrGStudent2Hasura":
+				Nr = valueGen.randomInt(0, graduateStudentField_Hasura.length-1);
+				randomNr = String.valueOf(graduateStudentField_Hasura[Nr]);
+				break;	
 			case "$attrPublicationField":
 				Nr = valueGen.randomInt(0, publicationField.length-1);
 				randomNr = String.valueOf(publicationField[Nr]);
+				break;
+			case "$attrPublicationFieldPostGraphile":
+				Nr = valueGen.randomInt(0, publicationField_PostGraphile.length-1);
+				randomNr = String.valueOf(publicationField_PostGraphile[Nr]);
 				break;
 			case "$age":
 				Nr = valueGen.randomInt(20, 27);

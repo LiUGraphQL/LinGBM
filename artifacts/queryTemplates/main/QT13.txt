@@ -1,7 +1,7 @@
 query subqueryFilter2($universityID:ID, $interestWord: String) 
 { 
   university(nr:$universityID) { 
-    undergraduateDegreeObtainedBystudent(where: {advisor: {researchInterest:{criterion:CONTAINS, pattern:$interestWord}}}){ 
+    undergraduateDegreeObtainedBystudent(where: {advisor: {researchInterest:{criterion:CONTAINS, pattern:"$interestWord"}}}){ 
       id 
       emailAddress 
       takeGraduateCourses {id } 

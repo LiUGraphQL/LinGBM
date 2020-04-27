@@ -1,7 +1,7 @@
 query aggregation_query ($universityID:ID) 
 { 
 	university(nr:$universityID){ 
-		undergraduateStudentConnection{ 
+		graduateStudentConnection{ 
 			aggregate { 
 				age{ 
 					avg 

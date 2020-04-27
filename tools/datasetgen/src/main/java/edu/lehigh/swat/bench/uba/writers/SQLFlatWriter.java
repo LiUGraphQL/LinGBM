@@ -157,7 +157,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         } finally {
             this.out = null;
         }
-        System.out.println(this.departmentID);
+        //System.out.println(this.departmentID);
 
         for(int i = 0; i<entityNames.length; i++){
             recordValues(entityNames[i]);

@@ -17,7 +17,7 @@ type University
 	doctoralDegreeObtainers(where: FacultyWhereInput): [Faculty]
 	undergraduateDegreeObtainedBystudent(where: GraduateStudentWhereInput, limit: Int, offset: Int): [GraduateStudent]
 	departments: [Department] 
-	undergraduateStudentConnection:CollectionOfEdgesToUgStudents
+	graduateStudentConnection:CollectionOfEdgesToUgStudents
 } 
 
 interface Faculty  

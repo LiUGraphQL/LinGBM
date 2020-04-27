@@ -1,7 +1,7 @@
 query count_query ($universityID:ID) 
 { 
 	university(nr:$universityID){ 
-		undergraduateStudentConnection{ 
+		graduateStudentConnection{ 
 			aggregate { 
 				count 
 			} 
