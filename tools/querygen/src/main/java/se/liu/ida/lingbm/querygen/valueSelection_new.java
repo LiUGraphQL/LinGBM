@@ -258,16 +258,31 @@ public class valueSelection_new {
 				NumOfInstance[2] = lecturerCount;
 				break;
 			case "$universityID-$offset":
-				int combTotalCount_7 = universityCount * 50;
-				NumOfInstance[1] = Math.min(combTotalCount_7, maxInstanceNm);
-				NumOfInstance[2] = combTotalCount_7;
+				combTotalCount = universityCount * 50;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
 				break;
 			case "$cnt-$attrGStudent1-$attrGStudent2":
-				int combTotalCount_8 = 500 * 3 * 3;
-				NumOfInstance[1] = Math.min(combTotalCount_8, maxInstanceNm);
-				NumOfInstance[2] = combTotalCount_8;
+				combTotalCount = 500 * 6 * 6;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
+				break;
+			case "$cnt-$attrGStudent1Hasura-$attrGStudent2Hasura":
+				combTotalCount = 500 * 6 * 6;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
+				break;
+			case "$cnt-$attrGStudent1PostGraphile-$attrGStudent2PostGraphile":
+				combTotalCount = 500 * 6 * 6;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
 				break;
 			case "$universityID-$attrPublicationField":
+				combTotalCount = universityCount * 2;
+				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+				NumOfInstance[2] = combTotalCount;
+				break;
+			case "$universityID-$attrPublicationFieldPostGraphile":
 				combTotalCount = universityCount * 2;
 				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
 				NumOfInstance[2] = combTotalCount;
