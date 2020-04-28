@@ -230,7 +230,7 @@ public class valueSelection_new {
     //For auto generated schema of Hasura: attributes of GrauduateStudent
     protected String[] graduateStudentField_Hasura = {"nr", "telephone", "emailaddress", "memberof", "undergraduatedegreefrom", "advisor"};
     //For auto generated schema of PostGraphile: attributes of GrauduateStudent
-    protected String[] graduateStudentField_PostGraphile = {"NR", "TELEPHONE", "EMAILADDRESS", "MEMBEROF", "UNDERGRADUATEDEGREEFROM", "ADVISOR"};
+    protected String[] graduateStudentField_PostGraphile = {"NR_ASC", "TELEPHONE_ASC", "EMAILADDRESS_ASC", "MEMBEROF_ASC", "UNDERGRADUATEDEGREEFROM_ASC", "ADVISOR_ASC"};
 
 
 
