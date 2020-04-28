@@ -223,7 +223,7 @@ public class valueSelection_new {
 	//For the customized schema: attributes of publication
 	protected String[] publicationField = {"title", "abstract"};
     //For auto generated schema of PostGraphile: attributes of publication
-	protected String[] publicationField_PostGraphile = {"TITLE", "ABSTRACT"};
+	protected String[] publicationField_PostGraphile = {"TITLE_DESC", "ABSTRACT_DESC"};
 
 	//For the customized schema 'main': attributes of GrauduateStudent
 	protected String[] graduateStudentField = {"id", "telephone", "emailAddress", "memberOf", "undergraduateDegreeFrom", "advisor"};
