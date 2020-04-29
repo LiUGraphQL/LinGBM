@@ -171,17 +171,10 @@ public class valueSelection_new {
 		int i=0;
 		while(iterator.hasNext()){
 			String element = (String) iterator.next();
-			String[] parts = element.split("_");
+			//String[] parts = element.split("_");
+			String[] parts = element.split("/");
 			int k=0;
 			for(String value:parts){
-				/*
-				if(("$interestWord".equals(fields[k]))||("$keyword".equals(fields[k]))){
-					paras[i][k]= "\""+value+"\"";
-				}
-				else{
-					paras[i][k]= value;
-				}
-				*/
 				paras[i][k]= value;
 				k++;
 			}
@@ -200,7 +193,8 @@ public class valueSelection_new {
 
 		boolean Empty = true;
 		String component = null;
-		String connect = "_";
+		//String connect = "_";
+		String connect = "/";
 
 		while(size < instanceNm){
 			String oneCombination = getRandom(fields[0]);

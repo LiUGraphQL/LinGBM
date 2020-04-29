@@ -31,7 +31,6 @@ public class generator {
 	}
 	
 	 //Process the program parameters typed on the command line.
-	 
 	protected void processProgramParameters(String[] args) {
 		int i = 0;
 		while (i < args.length) {
@@ -155,8 +154,6 @@ public class generator {
 		//The path to possible values for the placeholders
 		File resourceDir = new File(placeholderValDir);
 		// read in files that used to generate values for the placeholders
-		//valueSelection valueSel = new valueSelection();
-		//Test
 		valueSelection_new valueSel = new valueSelection_new();
 		Long seed = seedGenerator.nextLong();
 		valueSel.init(resourceDir, seed);
@@ -178,7 +175,6 @@ public class generator {
 			String queryTemp = templates.get(i);
 			String placeholder = placeholders.get(i);
 			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, (i+1));
-			//statistics NumOfInstance = new statistics(placeholder, valueSel, dirIns, numQueriesPerTempate, (i+1));
 			actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
 			data.add(actualNumInstan[0]+","+"QT"+ (i+1)+","+actualNumInstan[2]);
 			System.out.println("queries for template "+(i+1)+" has been generated.");
