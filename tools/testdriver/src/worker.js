@@ -1,7 +1,7 @@
 import { request } from "graphql-request";
 import prettyjson from "prettyjson";
-import mysql from "mysql2/promise";
-import bluebird from "bluebird";
+//import mysql from "mysql2/promise";
+//import bluebird from "bluebird";
 
 export default () => {
   console.log(`Worker ${process.pid} started`);
@@ -10,6 +10,7 @@ export default () => {
   let queries;
   let cursor = 0;
 
+  /*
   const setupDatabase = async () => {
     console.log("setting up database");
     const db = await mysql.createConnection({
@@ -21,6 +22,7 @@ export default () => {
     });
     return db;
   };
+  */
 
   const errorHandler = ({ query, error }) => {
     console.log("ERROR - EXITING");
@@ -30,6 +32,7 @@ export default () => {
     process.exit(1);
 
     // Send up error
+    /*
     process.send({
       command: "LOGDATA",
       data: {
@@ -37,8 +40,10 @@ export default () => {
         error: 1
       }
     });
+    */
   };
 
+  /*
   const databaseRequestTest = async ({ url }) => {
     db = await setupDatabase();
     const runRequest = async (url, query) => {
@@ -73,6 +78,7 @@ export default () => {
       process.exit(0);
     }
   };
+  */
 
   const throughputTest = async ({ url }) => {
     const runRequest = async (url, query) => {

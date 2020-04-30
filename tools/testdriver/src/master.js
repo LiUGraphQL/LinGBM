@@ -30,7 +30,7 @@ export default () => {
       30
     )
     .option("-n --name <name>", "Set the name of the output file")
-    .option("-q, --query <query>", "Set the queryTemplate to test", 1)
+    //.option("-q, --query <query>", "Set the queryTemplate to test", 1)
     .option(
       "-r, --repeat <repeat>",
       "Set the number of times to repeat the test",
@@ -91,7 +91,7 @@ export default () => {
 
   const killWorkers = () => {
     for (const id in cluster.workers) {
-      console.log("killing worker", id);
+      //console.log("killing worker", id);
       cluster.workers[id].kill();
     }
   };
@@ -104,12 +104,13 @@ export default () => {
   };
 
   cluster.on("exit", (worker, code, signal) => {
-    console.log(`worker ${worker.process.pid} died`);
+    //console.log(`worker ${worker.process.pid} died`);
     workerCount -= 1;
 
     if (workerCount === 0) {
       // Time to convert data to some csv
       console.log("All workers are done.");
+      console.log("Within", program.interval, "seconds, the number of executed queries are:", totalCount);
       let fields;
       if (program.type === "tp") {
         fields = [
@@ -138,7 +139,7 @@ export default () => {
         { encoding: "utf-8" },
         err => {
           if (err) throw err;
-          console.log("Output has been saved.");
+          console.log("Output has been saved.\n");
         }
       );
 
@@ -146,20 +147,34 @@ export default () => {
     }
   });
 
+  let totalCount = 0;
   // Handle log-data from the workers
   cluster.on("message", (worker, { command, data }) => {
     switch (command) {
       case "LOGDATA":
-        console.log(`worker ${worker.id}:`, data);
+        //console.log(`worker ${worker.id}:`, data);
+        totalCount +=1;
         collectedData.push(data);
     }
   });
 
+  /*
   const qts = queryTemplates.find(
     qt => qt.queryTemplate === parseInt(program.query)
   );
-  const distributeQueries = () => {
+  */
+  const qtsFuc = queryT => {
+    const qts_value = queryTemplates.find(
+      qt => qt.queryTemplate === parseInt(queryT)
+    );
+    return {
+      qts_value
+    };
+  };
+
+  const distributeQueries = query => {
     let index = 1;
+    let qts = qtsFuc(query).qts_value;
     _.forEach(cluster.workers, worker => {
       const slice = Math.floor(
         (qts.queries.length / program.clients) * (index - 1)
@@ -182,9 +197,9 @@ export default () => {
     }
   };
 
-  const start = () => {
+  const start = query => {
     createWorkers();
-    distributeQueries();
+    distributeQueries(query);
     startWorkers();
     // If a throughput test is started, stop it after 30s.
     if (program.type == "tp") {
@@ -200,8 +215,20 @@ export default () => {
       resetCollectedData();
       setTimeout(start, 1000);
     } else {
-      console.log("Test is complete, exiting.");
+      //console.log("Test is complete, exiting.");
+      console.log("The throughput test for query template", query, "is completed");
+      query +=1;
+      testForNextQT(query);
     }
   };
-  start();
+
+  const testForNextQT = (query) => {
+    if(query<queryTemplatesDirs.length+1){
+      start(query);
+    }else{
+      console.log("All Throughput test are completed");
+    }
+  };
+  let query = 1;
+  start(query);
 };
