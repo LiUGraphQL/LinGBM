@@ -30,7 +30,7 @@ export default () => {
       30
     )
     .option("-n --name <name>", "Set the name of the output file")
-    //.option("-q, --query <query>", "Set the queryTemplate to test", 1)
+    .option("-q, --queryTP <queryTP>", "Set the queryTemplate to test", 0)
     .option(
       "-r, --repeat <repeat>",
       "Set the number of times to repeat the test",
@@ -215,10 +215,13 @@ export default () => {
       resetCollectedData();
       setTimeout(start, 1000);
     } else {
-      //console.log("Test is complete, exiting.");
-      console.log("The throughput test for query template", query, "is completed");
-      query +=1;
-      testForNextQT(query);
+      if(program.queryTP == 0){
+        console.log("The throughput test for query template", query, "is completed");
+        query +=1;
+        testForNextQT(query);
+      }else{
+        console.log("Test is complete, exiting.");
+      } 
     }
   };
 
@@ -229,6 +232,13 @@ export default () => {
       console.log("All Throughput test are completed");
     }
   };
+
   let query = 1;
-  start(query);
+  if(program.queryTP == 0){
+    query = 1;
+    start(query);
+  }else{
+    query = program.queryTP;
+    start(query);
+  } 
 };
