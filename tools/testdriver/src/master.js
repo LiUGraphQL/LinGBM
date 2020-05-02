@@ -29,7 +29,7 @@ export default () => {
       "How long the test should run for, default 30 sec",
       30
     )
-    .option("-n --name <name>", "Set the name of the output file")
+    .option("-n --name <name>", "Set the name of the output file", "0")
     .option("-q, --queryTP <queryTP>", "Set the queryTemplate to test", 0)
     .option(
       "-r, --repeat <repeat>",
@@ -129,12 +129,15 @@ export default () => {
       // Create output dir if it doesn't exist
       if (!fs.existsSync("output")) fs.mkdirSync("output");
       // Write to file
-      const outputFileName = program.name
-        ? program.name
-        : `${program.type}-test-${new Date().toISOString()}`;
+      if(program.name == "0"){
+        program.name = `${program.type}_${program.interval}s_${program.clients}clients`;
+      }else{
+        program.name = program.name;
+      }
+      const outputFileName = program.name;
 
       writeFile(
-        `output/${outputFileName}-${currentRun}.csv`,
+        `output/${outputFileName}_QT${query}_${currentRun}.csv`,
         csv,
         { encoding: "utf-8" },
         err => {
@@ -142,7 +145,17 @@ export default () => {
           console.log("Output has been saved.\n");
         }
       );
-
+      //Append to statistic file
+      const current_statistic = `QT${query}, ${totalCount}, ${currentRun}\n`;
+      fs.appendFile(
+        `output/${outputFileName}_statistics.csv`,
+        current_statistic,
+        { encoding: "utf-8" },
+        err => {
+          if (err) throw err;
+          console.log("statistics has been saved.\n");
+        }
+      );
       reset();
     }
   });
@@ -152,8 +165,9 @@ export default () => {
   cluster.on("message", (worker, { command, data }) => {
     switch (command) {
       case "LOGDATA":
-        //console.log(`worker ${worker.id}:`, data);
+        console.log(`worker ${worker.id}:`, data);
         totalCount +=1;
+        console.log(`totalCount:`, totalCount);
         collectedData.push(data);
     }
   });
@@ -212,12 +226,15 @@ export default () => {
   const reset = () => {
     if (currentRun < program.repeat) {
       currentRun += 1;
+      totalCount = 0;
       resetCollectedData();
-      setTimeout(start, 1000);
+      start(query);
     } else {
       if(program.queryTP == 0){
         console.log("The throughput test for query template", query, "is completed");
         query +=1;
+        currentRun = 1;
+        totalCount = 0;
         testForNextQT(query);
       }else{
         console.log("Test is complete, exiting.");
@@ -227,6 +244,7 @@ export default () => {
 
   const testForNextQT = (query) => {
     if(query<queryTemplatesDirs.length+1){
+      resetCollectedData();
       start(query);
     }else{
       console.log("All Throughput test are completed");
