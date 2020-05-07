@@ -86,6 +86,15 @@ public class Generator {
             state.start();
             System.out.println("Started...");
 
+            new File("values").mkdir();
+            File folder = new File("values");
+            if(folder.isDirectory()){
+                File[] files = folder.listFiles();
+                for(File f: files){
+                    f.delete();
+                }
+            }
+
             // Submit a university generator for each university
             List<UniversityState> states = new ArrayList<>();
             for (int i = 0; i < state.getNumberUniversities(); i++) {

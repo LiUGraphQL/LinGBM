@@ -57,54 +57,54 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
     protected void recordValues(String entity){
 
-        new File("values").mkdir();
+        //new File("values").mkdir();
         File pth = new File("values", entity+".txt");
         BufferedWriter outputWriter = null;
         try {
             pth.createNewFile();
-            outputWriter = new BufferedWriter(new FileWriter(pth, false));
+            outputWriter = new BufferedWriter(new FileWriter(pth, true));
             switch (entity) {
                 case "universityID":
-                    outputWriter.write(universityID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(universityID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "departmentID":
-                    outputWriter.write(departmentID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(departmentID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "researchGroupID":
-                    outputWriter.write(researchGroupID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(researchGroupID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "facultyID":
-                    outputWriter.write(facultyID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(facultyID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "professorID":
-                    outputWriter.write(professorID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(professorID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "lecturerID":
-                    outputWriter.write(lecturerID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(lecturerID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "graduateStudentID":
-                    outputWriter.write(graduateStudentID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(graduateStudentID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "undergraduateStudentID":
-                    outputWriter.write(undergraduateStudentID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(undergraduateStudentID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "publicationID":
-                    outputWriter.write(publicationID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(publicationID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "graduateCourseID":
-                    outputWriter.write(graduateCourseID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(graduateCourseID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "undergraduateCourseID":
-                    outputWriter.write(undergraduateCourseID.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(undergraduateCourseID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "title":
-                    outputWriter.write(title_wordlist.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(title_wordlist.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "abstract":
-                    outputWriter.write(abstract_wordlist.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(abstract_wordlist.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "interest":
-                    outputWriter.write(interest_wordlist.toString().replace("[", "").replace("]", ""));
+                    outputWriter.write(interest_wordlist.toString().replace("[", "").replace("]", "")+", ");
                     break;
 
                 default:
@@ -120,59 +120,56 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     }
 
     protected void recordStatistics(String entity){
-        File statis = new File("statistics.csv");
+        File statis = new File("values", "statistics.csv");
         BufferedWriter outputWriter = null;
         try {
-            if (entity=="universityID"){
-                outputWriter = new BufferedWriter(new FileWriter(statis, false));
-                outputWriter.write(entity+","+universityID.size()+"\n");
-            }else {
-                outputWriter = new BufferedWriter(new FileWriter(statis, true));
-                switch (entity) {
-                    case "departmentID":
-                        outputWriter.write(entity+","+departmentID.size()+"\n");
-                        break;
-                    case "researchGroupID":
-                        outputWriter.write(entity+","+researchGroupID.size()+"\n");
-                        break;
-                    case "facultyID":
-                        outputWriter.write(entity+","+facultyID.size()+"\n");
-                        break;
-                    case "professorID":
-                        outputWriter.write(entity+","+professorID.size()+"\n");
-                        break;
-                    case "lecturerID":
-                        outputWriter.write(entity+","+lecturerID.size()+"\n");
-                        break;
-                    case "graduateStudentID":
-                        outputWriter.write(entity+","+graduateStudentID.size()+"\n");
-                        break;
-                    case "undergraduateStudentID":
-                        outputWriter.write(entity+","+undergraduateStudentID.size()+"\n");
-                        break;
-                    case "publicationID":
-                        outputWriter.write(entity+","+publicationID.size()+"\n");
-                        break;
-                    case "graduateCourseID":
-                        outputWriter.write(entity+","+graduateCourseID.size()+"\n");
-                        break;
-                    case "undergraduateCourseID":
-                        outputWriter.write(entity+","+undergraduateCourseID.size()+"\n");
-                        break;
-                    case "title":
-                        outputWriter.write(entity+","+title_wordlist.size()+"\n");
-                        break;
-                    case "abstract":
-                        outputWriter.write(entity+","+abstract_wordlist.size()+"\n");
-                        break;
-                    case "interest":
-                        outputWriter.write(entity+","+interest_wordlist.size()+"\n");
-                        break;
+            outputWriter = new BufferedWriter(new FileWriter(statis, true));
+            switch (entity) {
+                case "universityID":
+                    outputWriter.write("\nthe number of "+entity+","+universityID.size()+"\n");
+                    break;
+                case "departmentID":
+                    outputWriter.write("the number of "+entity+","+departmentID.size()+"\n");
+                    break;
+                case "researchGroupID":
+                    outputWriter.write("the number of "+entity+","+researchGroupID.size()+"\n");
+                    break;
+                case "facultyID":
+                    outputWriter.write("the number of "+entity+","+facultyID.size()+"\n");
+                    break;
+                case "professorID":
+                    outputWriter.write("the number of "+entity+","+professorID.size()+"\n");
+                    break;
+                case "lecturerID":
+                    outputWriter.write("the number of "+entity+","+lecturerID.size()+"\n");
+                    break;
+                case "graduateStudentID":
+                    outputWriter.write("the number of "+entity+","+graduateStudentID.size()+"\n");
+                    break;
+                case "undergraduateStudentID":
+                    outputWriter.write("the number of "+entity+","+undergraduateStudentID.size()+"\n");
+                    break;
+                case "publicationID":
+                    outputWriter.write("the number of "+entity+","+publicationID.size()+"\n");
+                    break;
+                case "graduateCourseID":
+                    outputWriter.write("the number of "+entity+","+graduateCourseID.size()+"\n");
+                    break;
+                case "undergraduateCourseID":
+                    outputWriter.write("the number of "+entity+","+undergraduateCourseID.size()+"\n");
+                    break;
+                case "title":
+                    outputWriter.write("the number of "+entity+","+title_wordlist.size()+"\n");
+                    break;
+                case "abstract":
+                    outputWriter.write("the number of "+entity+","+abstract_wordlist.size()+"\n");
+                    break;
+                case "interest":
+                    outputWriter.write("the number of "+entity+","+interest_wordlist.size()+"\n");
+                    break;
 
-                    default:
-                        break;
-                }
-
+                default:
+                    break;
             }
             outputWriter.close();
 
@@ -193,7 +190,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
     @Override
     public void startFile(GlobalState state, OutputStream output) {
-
     }
 
     //disable keys before inserting data and enable keys after it
@@ -218,7 +214,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         } finally {
             this.out = null;
         }
-
         for(int i = 0; i<entityNames.length; i++){
             recordValues(entityNames[i]);
             recordStatistics(entityNames[i]);
