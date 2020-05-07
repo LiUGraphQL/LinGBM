@@ -40,7 +40,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     private List<String> title_wordlist = new ArrayList<String>();
     private List<String> abstract_wordlist = new ArrayList<String>();
     private List<String> interest_wordlist = new ArrayList<String>();
-    //private List<String> offersAttribute = new ArrayList<String>();
     protected String[] entityNames = {"universityID", "departmentID", "researchGroupID", "facultyID",
             "professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
             "publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract", "interest"};
@@ -121,6 +120,69 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         }
     }
 
+    protected void recordStatistics(String entity){
+        File statis = new File("statistics.csv");
+        BufferedWriter outputWriter = null;
+        try {
+            if (entity=="universityID"){
+                outputWriter = new BufferedWriter(new FileWriter(statis, false));
+                outputWriter.write(entity+","+universityID.size()+"\n");
+            }else {
+                outputWriter = new BufferedWriter(new FileWriter(statis, true));
+                switch (entity) {
+                    case "departmentID":
+                        outputWriter.write(entity+","+departmentID.size()+"\n");
+                        break;
+                    case "researchGroupID":
+                        outputWriter.write(entity+","+researchGroupID.size()+"\n");
+                        break;
+                    case "facultyID":
+                        outputWriter.write(entity+","+facultyID.size()+"\n");
+                        break;
+                    case "professorID":
+                        outputWriter.write(entity+","+professorID.size()+"\n");
+                        break;
+                    case "lecturerID":
+                        outputWriter.write(entity+","+lecturerID.size()+"\n");
+                        break;
+                    case "graduateStudentID":
+                        outputWriter.write(entity+","+graduateStudentID.size()+"\n");
+                        break;
+                    case "undergraduateStudentID":
+                        outputWriter.write(entity+","+undergraduateStudentID.size()+"\n");
+                        break;
+                    case "publicationID":
+                        outputWriter.write(entity+","+publicationID.size()+"\n");
+                        break;
+                    case "graduateCourseID":
+                        outputWriter.write(entity+","+graduateCourseID.size()+"\n");
+                        break;
+                    case "undergraduateCourseID":
+                        outputWriter.write(entity+","+undergraduateCourseID.size()+"\n");
+                        break;
+                    case "title":
+                        outputWriter.write(entity+","+title_wordlist.size()+"\n");
+                        break;
+                    case "abstract":
+                        outputWriter.write(entity+","+abstract_wordlist.size()+"\n");
+                        break;
+                    case "interest":
+                        outputWriter.write(entity+","+interest_wordlist.size()+"\n");
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+            outputWriter.close();
+
+        } catch(IOException e) {
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        }
+    }
+
 
     @Override
     public void startFile(String fileName, GlobalState state) {
@@ -157,10 +219,10 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         } finally {
             this.out = null;
         }
-        //System.out.println(this.departmentID);
 
         for(int i = 0; i<entityNames.length; i++){
             recordValues(entityNames[i]);
+            recordStatistics(entityNames[i]);
         }
 
     }
@@ -220,7 +282,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
      */
 
     protected String generateRamString(List wordlist) throws IOException{
-        //StringBuilder text = new StringBuilder();
         rand = new Random();
         int numberOfwordlist = wordlist.size();
         int rand_g = rand.nextInt(numberOfwordlist);
@@ -459,9 +520,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
                         abstract_wordlist.add(word);
                         abstract_p.append(word+" ");
                     }
-
-                    //title_p = generateRamString(this.wordlist, numberOfWords_t);
-                    //abstract_p = generateRamString(this.wordlist, numberOfWords_t);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
