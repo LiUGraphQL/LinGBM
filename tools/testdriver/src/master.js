@@ -130,7 +130,8 @@ export default () => {
       if (!fs.existsSync("output")) fs.mkdirSync("output");
       // Write to file
       if(program.name == "0"){
-        program.name = `${program.type}_${program.interval}sec_${program.clients}clients`;
+        //program.name = `${program.type}_${program.interval}sec_${program.clients}clients`;
+        program.name = `${program.type}_${program.interval}sec_${Math.min(maxClients, program.clients)}clients`;
       }else{
         program.name = program.name;
       }
