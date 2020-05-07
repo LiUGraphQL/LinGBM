@@ -292,14 +292,24 @@ public class valueSelection_new {
 				break;
 			case "$universityID-$interestWord":
 				combTotalCount = universityCount * interestWordCount;
-				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
-				NumOfInstance[2] = combTotalCount;
+
+				if(combTotalCount<0){
+					NumOfInstance[1] = maxInstanceNm;
+					NumOfInstance[2] = (int)Math.pow(2, 30)-1;
+				}else {
+					NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+					NumOfInstance[2] = combTotalCount;
+				}
 				break;
 			case "$universityID-$age-$interestWord":
-				//todo
-				combTotalCount = universityCount * 7 * interestWordCount;
-				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
-				NumOfInstance[2] = combTotalCount;
+				combTotalCount = (universityCount * interestWordCount) * 7;
+				if(combTotalCount<0){
+					NumOfInstance[1] = maxInstanceNm;
+					NumOfInstance[2] = (int)Math.pow(2, 30)-1;
+				}else {
+					NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
+					NumOfInstance[2] = combTotalCount;
+				}
 				break;
 			case "$departmentID":
 				NumOfInstance[1] = Math.min(departmentCount, maxInstanceNm);
@@ -382,7 +392,6 @@ public class valueSelection_new {
 				Nr = valueGen.randomInt(20, 27);
 				randomNr = String.valueOf(Nr);
 				break;
-
 			case "$keyword":
 				Nr = valueGen.randomInt(0, titleWordCount-1);
 				randomNr = titleWord.get(Nr);
