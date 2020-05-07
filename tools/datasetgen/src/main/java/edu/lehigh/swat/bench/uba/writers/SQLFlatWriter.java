@@ -20,7 +20,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     protected static final String RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
     protected static final String OWL_ONTOLOGY = "http://www.w3.org/2002/07/owl#Ontology";
     protected static final String OWL_IMPORTS = "http://www.w3.org/2002/07/owl#imports";
-    static Random rand;
+    static Random rand= new Random(20);
 
     protected final String ontologyUrl;
     private final Stack<String> subjects = new Stack<String>();
@@ -43,7 +43,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     protected String[] entityNames = {"universityID", "departmentID", "researchGroupID", "facultyID",
             "professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
             "publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract", "interest"};
-
 
     public SQLFlatWriter(GeneratorCallbackTarget target, String ontologyUrl) {
         super(target);
@@ -282,7 +281,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
      */
 
     protected String generateRamString(List wordlist) throws IOException{
-        rand = new Random();
         int numberOfwordlist = wordlist.size();
         int rand_g = rand.nextInt(numberOfwordlist);
         String word = wordlist.get(rand_g).toString();
@@ -387,7 +385,6 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
 
         this.subjects.push(id);
         this.type.push(classType);
-        rand = new Random();
         int department_id = -1;
 
         String o_type = null;
