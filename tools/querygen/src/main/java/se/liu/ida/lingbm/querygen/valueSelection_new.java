@@ -237,7 +237,7 @@ public class valueSelection_new {
 		switch (field){
 			case "$facultyID":
 				NumOfInstance[1] = Math.min(facultyCount, maxInstanceNm);
-				NumOfInstance[2] = departmentCount;
+				NumOfInstance[2] = facultyCount;
 				break;
 			case "$universityID":
 				NumOfInstance[1] = Math.min(universityCount, maxInstanceNm);

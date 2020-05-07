@@ -176,7 +176,7 @@ public class generator {
 			String placeholder = placeholders.get(i);
 			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, (i+1));
 			actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
-			data.add(actualNumInstan[0]+","+"QT"+ (i+1)+","+actualNumInstan[2]);
+			data.add(actualNumInstan[1]+","+"QT"+ (i+1)+","+actualNumInstan[2]);
 			System.out.println("queries for template "+(i+1)+" has been generated.");
 		}
 		System.out.println("All query instances has been generated.");
