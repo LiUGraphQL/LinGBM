@@ -5,4 +5,4 @@ query university_faculty_publications($universityID:ID)
 			publications{title} 
 		} 
 	} 
-} 
+}

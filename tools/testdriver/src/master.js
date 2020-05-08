@@ -41,6 +41,7 @@ export default () => {
   // Constants
   const numCPUs = os.cpus().length;
   const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
+  console.log("The max number of clients that this operation system can hold:", maxClients);
   const actualQueriesPath = program.actualQueries;
   const SERVER_URL = "http://" + program.server + ":" + program.port;
   const numWorkers =
@@ -168,7 +169,7 @@ export default () => {
       case "LOGDATA":
         console.log(`worker ${worker.id}:`, data);
         totalCount +=1;
-        console.log(`totalCount:`, totalCount);
+        //console.log(`totalCount:`, totalCount);
         collectedData.push(data);
     }
   });
@@ -187,12 +188,13 @@ export default () => {
     };
   };
 
-  const distributeQueries = query => {
+  const distributeQueries = queryT => {
     let index = 1;
-    let qts = qtsFuc(query).qts_value;
+    let qts = qtsFuc(queryT).qts_value;
     _.forEach(cluster.workers, worker => {
       const slice = Math.floor(
-        (qts.queries.length / program.clients) * (index - 1)
+        //(qts.queries.length / program.clients) * (index - 1)
+        (qts.queries.length / numWorkers) * (index - 1)
       );
       worker.send({
         command: "QUERIES",
@@ -212,9 +214,9 @@ export default () => {
     }
   };
 
-  const start = query => {
+  const start = queryT => {
     createWorkers();
-    distributeQueries(query);
+    distributeQueries(queryT);
     startWorkers();
     // If a throughput test is started, stop it after 30s.
     if (program.type == "tp") {
@@ -243,15 +245,16 @@ export default () => {
     }
   };
 
-  const testForNextQT = (query) => {
-    if(query<queryTemplatesDirs.length+1){
+  const testForNextQT = (queryT) => {
+    if(queryT<queryTemplatesDirs.length+1){
       resetCollectedData();
-      start(query);
+      start(queryT);
     }else{
       console.log("All Throughput test are completed");
     }
   };
 
+  //query: specify the nr of query template
   let query = 1;
   if(program.queryTP == 0){
     query = 1;
