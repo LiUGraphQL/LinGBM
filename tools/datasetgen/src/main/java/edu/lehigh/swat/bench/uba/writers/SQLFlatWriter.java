@@ -3,6 +3,7 @@ package edu.lehigh.swat.bench.uba.writers;
 import java.io.*;
 import java.util.*;
 
+import edu.lehigh.swat.bench.uba.Generator;
 import edu.lehigh.swat.bench.uba.GeneratorCallbackTarget;
 import edu.lehigh.swat.bench.uba.GlobalState;
 import edu.lehigh.swat.bench.uba.model.Ontology;
@@ -13,6 +14,7 @@ import java.util.Random;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileReader;
+import java.util.HashSet;
 
 
 public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
@@ -27,6 +29,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     private final Stack<Integer> type = new Stack<Integer>();
     private List<String> wordlist = new ArrayList<String>();
     private List<Integer> universityID = new ArrayList<Integer>();
+    //private Set<Integer> universityID = new HashSet<Integer>();
     private List<Integer> departmentID = new ArrayList<Integer>();
     private List<Integer> researchGroupID = new ArrayList<Integer>();
     private List<Integer> facultyID = new ArrayList<Integer>();
@@ -37,9 +40,9 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     private List<Integer> publicationID = new ArrayList<Integer>();
     private List<Integer> graduateCourseID = new ArrayList<Integer>();
     private List<Integer> undergraduateCourseID = new ArrayList<Integer>();
-    private List<String> title_wordlist = new ArrayList<String>();
-    private List<String> abstract_wordlist = new ArrayList<String>();
-    private List<String> interest_wordlist = new ArrayList<String>();
+    private Set<String> title_wordlist = new HashSet<String>();
+    private Set<String> abstract_wordlist = new HashSet<String>();
+    private Set<String> interest_wordlist = new HashSet<String>();
     protected String[] entityNames = {"universityID", "departmentID", "researchGroupID", "facultyID",
             "professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
             "publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract", "interest"};
@@ -62,48 +65,62 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         BufferedWriter outputWriter = null;
         try {
             pth.createNewFile();
-            outputWriter = new BufferedWriter(new FileWriter(pth, true));
+            //outputWriter = new BufferedWriter(new FileWriter(pth, true));
             switch (entity) {
                 case "universityID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, false));
                     outputWriter.write(universityID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "departmentID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(departmentID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "researchGroupID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(researchGroupID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "facultyID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(facultyID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "professorID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(professorID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "lecturerID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(lecturerID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "graduateStudentID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(graduateStudentID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "undergraduateStudentID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(undergraduateStudentID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "publicationID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(publicationID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "graduateCourseID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(graduateCourseID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "undergraduateCourseID":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(undergraduateCourseID.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "title":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(title_wordlist.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "abstract":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(abstract_wordlist.toString().replace("[", "").replace("]", "")+", ");
                     break;
                 case "interest":
+                    outputWriter = new BufferedWriter(new FileWriter(pth, true));
                     outputWriter.write(interest_wordlist.toString().replace("[", "").replace("]", "")+", ");
                     break;
 
@@ -123,6 +140,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
         File statis = new File("values", "statistics.csv");
         BufferedWriter outputWriter = null;
         try {
+
             outputWriter = new BufferedWriter(new FileWriter(statis, true));
             switch (entity) {
                 case "universityID":

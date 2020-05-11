@@ -38,7 +38,6 @@ public class Generator {
     public static final char ID_DELIMITER = '/';
     /** delimiter between name and index in a name string of an instance */
     public static final char INDEX_DELIMITER = '_';
-
     /**
      * Begins the data generation.
      * 
