@@ -193,8 +193,7 @@ export default () => {
     let qts = qtsFuc(queryT).qts_value;
     _.forEach(cluster.workers, worker => {
       const slice = Math.floor(
-        //(qts.queries.length / program.clients) * (index - 1)
-        (qts.queries.length / numWorkers) * (index - 1)
+        (qts.queries.length / program.clients) * (index - 1)
       );
       worker.send({
         command: "QUERIES",
