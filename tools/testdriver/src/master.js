@@ -230,13 +230,15 @@ export default () => {
       currentRun += 1;
       totalCount = 0;
       resetCollectedData();
-      start(query);
+      //start(query);
+      setTimeout(() => {
+        start(query);
+      }, 1000);
     } else {
       if(program.queryTP == 0){
         console.log("The throughput test for query template", query, "is completed");
         query +=1;
         currentRun = 1;
-        totalCount = 0;
         testForNextQT(query);
       }else{
         console.log("Test is complete, exiting.");
@@ -244,10 +246,13 @@ export default () => {
     }
   };
 
-  const testForNextQT = (queryT) => {
+  const testForNextQT = queryT => {
     if(queryT<queryTemplatesDirs.length+1){
+      totalCount = 0;
       resetCollectedData();
-      start(queryT);
+      setTimeout(() => {
+        start(queryT);
+      }, 1000);
     }else{
       console.log("All Throughput test are completed");
     }
