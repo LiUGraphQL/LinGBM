@@ -168,7 +168,9 @@ export default () => {
     switch (command) {
       case "LOGDATA":
         console.log(`worker ${worker.id}:`, data);
-        totalCount +=1;
+        if(data.error == 0){
+          totalCount +=1;
+        }
         //console.log(`totalCount:`, totalCount);
         collectedData.push(data);
     }

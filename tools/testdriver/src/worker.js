@@ -29,10 +29,8 @@ export default () => {
     console.log(cursor);
     console.log("QUERY:", query);
     console.log(prettyjson.render(error));
-    process.exit(1);
 
     // Send up error
-    /*
     process.send({
       command: "LOGDATA",
       data: {
@@ -40,7 +38,7 @@ export default () => {
         error: 1
       }
     });
-    */
+    //process.exit(1);
   };
 
   /*
