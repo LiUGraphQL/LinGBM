@@ -21,7 +21,7 @@ public class generator {
 	static ArrayList<String> templates = new ArrayList<String>();
 	static final Random seedGenerator = new Random(53223436L);
 	static ArrayList<String> placeholders = new ArrayList<String>();
-	static ArrayList<String> data = new ArrayList<String>();
+	static ArrayList<String> statistic_data = new ArrayList<String>();
 	/*
 	 * Parameters for steady state
 	 */
@@ -176,7 +176,7 @@ public class generator {
 			String placeholder = placeholders.get(i);
 			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, (i+1));
 			actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
-			data.add(actualNumInstan[1]+","+"QT"+ (i+1)+","+actualNumInstan[2]);
+			statistic_data.add(actualNumInstan[1]+","+"QT"+ (i+1)+","+actualNumInstan[2]);
 			System.out.println("queries for template "+(i+1)+" has been generated.");
 		}
 		System.out.println("All query instances has been generated.");
@@ -194,10 +194,10 @@ public class generator {
 				FileWriter rfw = new FileWriter(numInstance, true);
 				BufferedWriter rbw = new BufferedWriter(rfw);
 				PrintWriter R_file = new PrintWriter(rbw)) {
-			Iterator dataIte = data.iterator();
-			while (dataIte.hasNext()) {
-				R_file.println(dataIte.next());
-			}
+					Iterator dataIte = statistic_data.iterator();
+					while (dataIte.hasNext()) {
+						R_file.println(dataIte.next());
+					}
 		} catch (Exception e) {
 			System.out.println("This is the type of exception found for filling parameter of query: " + e);
 		}

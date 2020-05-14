@@ -42,7 +42,6 @@ public class valueSelection_new {
 	protected Integer abstractWordCount;
 	protected Integer interestWordCount;
 
-	protected Integer instanceNm;
 	protected String[] entityNames = {"universityID", "departmentID", "researchGroupID", "facultyID",
 			"professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
 			"publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract", "interest"};
@@ -163,10 +162,11 @@ public class valueSelection_new {
 	}
 
 	protected String[][] SelectedValues(String field, Integer maxInstanceNm) throws ParseException {
+		Integer instance = getInstanceNm(field, maxInstanceNm)[1];
 		Set setCombination=getRandomSelectedValues(field, maxInstanceNm);
 		String[] fields = field.split("-");
 		int paraNum = fields.length;
-		String[][] paras = new String[instanceNm][paraNum];
+		String[][] paras = new String[instance][paraNum];
 		Iterator iterator = setCombination.iterator();
 		int i=0;
 		while(iterator.hasNext()){
@@ -184,7 +184,7 @@ public class valueSelection_new {
 	}
 
 	protected Set getRandomSelectedValues(String field, Integer maxInstanceNm) throws ParseException {
-		instanceNm = getInstanceNm(field, maxInstanceNm)[1];
+		Integer instanceNm = getInstanceNm(field, maxInstanceNm)[1];
 		Set setCombination = new HashSet();
 		int size = 0;
 
@@ -200,10 +200,20 @@ public class valueSelection_new {
 			String oneCombination = getRandom(fields[0]);
 			for(int i = 1; i< paraNum;i++){
 				String para = fields[i];
-				component = getRandom(para);
+
+				//if multiple variables in one template come from the same list, the values must be different.
+				String compa1 = fields[i-1].replaceAll("[0-9]","");
+				String compa2 = fields[i].replaceAll("[0-9]","");
+				if(compa2.equals(compa1)){
+					component = getRandom(para);
+					while (oneCombination.contains(component)){
+						component = getRandom(para);
+					}
+				}else {
+					component = getRandom(para);
+				}
 				oneCombination = oneCombination+connect+component;
 			}
-
 			setCombination.add(oneCombination);
 			size = setCombination.size();
 		}
@@ -318,94 +328,64 @@ public class valueSelection_new {
 			default:
 				break;
 		}
-
 		NumOfInstance[0] = scalefactor;
 		return NumOfInstance;
 	}
 
-
 	protected String getRandom(String field) throws ParseException {
 		int Nr=-1;
 		String randomNr = null;
-		switch (field){
-			case "$departmentID":
-				Nr = valueGen.randomInt(0, departmentCount-1);
-				randomNr = String.valueOf(department.get(Nr));
-				break;
-			case "$facultyID":
-				Nr = valueGen.randomInt(0, facultyCount-1);
-				randomNr = String.valueOf(faculty.get(Nr));
-				break;
-			case "$universityID":
-				Nr = valueGen.randomInt(0, universityCount-1);
-				randomNr = String.valueOf(university.get(Nr));
-				break;
-			case "$researchGroupID":
-				Nr = valueGen.randomInt(0, researchGroupCount-1);
-				randomNr = String.valueOf(researchGroup.get(Nr));
-				break;
-			case "$lecturerID":
-				Nr = valueGen.randomInt(0, lecturerCount-1);
-				randomNr = String.valueOf(lecturer.get(Nr));
-				break;
-			case "$offset":
-				Nr = valueGen.randomInt(1, 50);
-				randomNr = String.valueOf(Nr);
-				break;
-			case "$cnt":
-				Nr = valueGen.randomInt(500, 1000);
-				randomNr = String.valueOf(Nr);
-				break;
-			case "$attrGStudent1":
-				Nr = valueGen.randomInt(0, graduateStudentField.length-1);
-				randomNr = String.valueOf(graduateStudentField[Nr]);
-				break;
-			case "$attrGStudent2":
-				Nr = valueGen.randomInt(0, graduateStudentField.length-1);
-				randomNr = String.valueOf(graduateStudentField[Nr]);
-				break;
-			case "$attrGStudent1PostGraphile":
+		if(field.equals("$departmentID")){
+			Nr = valueGen.randomInt(0, departmentCount-1);
+			randomNr = String.valueOf(department.get(Nr));
+		}else if(field.equals("$facultyID")){
+			Nr = valueGen.randomInt(0, facultyCount-1);
+			randomNr = String.valueOf(faculty.get(Nr));
+		}else if(field.equals("$universityID")){
+			Nr = valueGen.randomInt(0, universityCount-1);
+			randomNr = String.valueOf(university.get(Nr));
+		}else if(field.equals("$researchGroupID")){
+			Nr = valueGen.randomInt(0, researchGroupCount-1);
+			randomNr = String.valueOf(researchGroup.get(Nr));
+		}else if(field.equals("$lecturerID")){
+			Nr = valueGen.randomInt(0, facultyCount-1);
+			randomNr = String.valueOf(faculty.get(Nr));
+		}else if(field.equals("$offset")){
+			Nr = valueGen.randomInt(1, 50);
+			randomNr = String.valueOf(Nr);
+		}else if(field.equals("$cnt")){
+			Nr = valueGen.randomInt(500, 1000);
+			randomNr = String.valueOf(Nr);
+		}else if(field.contains("$attrGStudent")){
+			if (field.contains("PostGraphile")){
 				Nr = valueGen.randomInt(0, graduateStudentField_PostGraphile.length-1);
 				randomNr = String.valueOf(graduateStudentField_PostGraphile[Nr]);
-				break;
-			case "$attrGStudent2PostGraphile":
-				Nr = valueGen.randomInt(0, graduateStudentField_PostGraphile.length-1);
-				randomNr = String.valueOf(graduateStudentField_PostGraphile[Nr]);
-				break;
-			case "$attrGStudent1Hasura":
+			}else if(field.contains("Hasura")){
 				Nr = valueGen.randomInt(0, graduateStudentField_Hasura.length-1);
 				randomNr = String.valueOf(graduateStudentField_Hasura[Nr]);
-				break;
-			case "$attrGStudent2Hasura":
-				Nr = valueGen.randomInt(0, graduateStudentField_Hasura.length-1);
-				randomNr = String.valueOf(graduateStudentField_Hasura[Nr]);
-				break;	
-			case "$attrPublicationField":
+			}else{
+				Nr = valueGen.randomInt(0, graduateStudentField.length-1);
+				randomNr = String.valueOf(graduateStudentField[Nr]);
+			}
+		}else if(field.contains("$attrPublicationField")){
+			if(field.contains("$PostGraphile")){
 				Nr = valueGen.randomInt(0, publicationField.length-1);
 				randomNr = String.valueOf(publicationField[Nr]);
-				break;
-			case "$attrPublicationFieldPostGraphile":
+			}else{
 				Nr = valueGen.randomInt(0, publicationField_PostGraphile.length-1);
 				randomNr = String.valueOf(publicationField_PostGraphile[Nr]);
-				break;
-			case "$age":
-				Nr = valueGen.randomInt(20, 27);
-				randomNr = String.valueOf(Nr);
-				break;
-			case "$keyword":
-				Nr = valueGen.randomInt(0, titleWordCount-1);
-				randomNr = titleWord.get(Nr);
-				break;
-			case "$interestWord":
-				Nr = valueGen.randomInt(0, interestWordCount-1);
-				randomNr = interestWord.get(Nr);
-				break;
-
-			default:
-				break;
+			}
+		}else if(field.equals("$age")){
+			Nr = valueGen.randomInt(20, 27);
+			randomNr = String.valueOf(Nr);
+		}else if(field.equals("$keyword")){
+			Nr = valueGen.randomInt(0, titleWordCount-1);
+			randomNr = titleWord.get(Nr);
+		}else if(field.equals("$interestWord")){
+			Nr = valueGen.randomInt(0, interestWordCount-1);
+			randomNr = interestWord.get(Nr);
+		}else {
 		}
 		return randomNr;
 	}
-
-
 }

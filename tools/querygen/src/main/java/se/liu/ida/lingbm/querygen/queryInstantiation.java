@@ -19,8 +19,7 @@ public class queryInstantiation {
 		// Parse the parameter
 		String[] paraParts = parameter.split("-");
 		//Process the query string: replace the placeholders with corresponding values
-		String[][] valueCombine = null;
-		valueCombine = valueSel.SelectedValues(parameter, max);
+		String[][] valueCombine = valueSel.SelectedValues(parameter, max);
 
 		if(valueCombine!= null){
 			for(int i = 0; i<valueCombine.length; i++){
