@@ -1,0 +1,25 @@
+{
+  "name": "test-driver",
+  "version": "1.0.0",
+  "description": "Runs tests against a GraphQL server.",
+  "main": "index.js",
+  "author": "Lukas Lindqvist",
+  "license": "MIT",
+  "dependencies": {
+    "backpack-core": "^0.8.4",
+    "bluebird": "^3.5.5",
+    "commander": "^2.20.0",
+    "fs-extra": "^9.0.0",
+    "graphql-request": "^1.8.2",
+    "json2csv": "^4.5.1",
+    "mysql2": "^1.6.5",
+    "prettyjson": "^1.2.1",
+    "traverse": "^0.6.6",
+    "update": "^0.7.4"
+  },
+  "scripts": {
+    "dev": "backpack",
+    "build": "backpack build",
+    "start": "node ./build/main.js"
+  }
+}
