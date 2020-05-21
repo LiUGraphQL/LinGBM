@@ -22,7 +22,7 @@ public abstract class SQLFlatWriter extends AbstractWriter implements Writer {
     protected static final String RDF_TYPE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#type";
     protected static final String OWL_ONTOLOGY = "http://www.w3.org/2002/07/owl#Ontology";
     protected static final String OWL_IMPORTS = "http://www.w3.org/2002/07/owl#imports";
-    static Random rand= new Random(20);
+    static Random rand = new Random(0);
 
     protected final String ontologyUrl;
     private final Stack<String> subjects = new Stack<String>();
