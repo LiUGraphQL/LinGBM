@@ -12,7 +12,7 @@ export default () => {
   program
     .version("0.0.1", "-v, --version")
     .option("-a, --actual-queries <path>", "Path to actualQueries folder.")
-    .option("-c, --clients <clients>", "Number of clients", 1)
+    //.option("-c, --clients <clients>", "Number of clients", 1)
     .option(
       "-s --server <url>",
       "URL to the GraphQL server to test",
@@ -26,11 +26,13 @@ export default () => {
     )
     .option("-o --name <name>", "Set the name of the output file", "0")
     .option("-q --queryTP <queryTP>", "Set the queryTemplate to test", 0)
+    /*
     .option(
       "-r --repeat <repeat>",
       "Set the number of times to repeat the test",
       1
     )
+    */
     .option(
       "-n --numberQET <numberQET>",
       "Specify the number of queries per template that are used to test execution time",
@@ -44,7 +46,8 @@ export default () => {
   const actualQueriesPath = program.actualQueries;
   const SERVER_URL = "http://" + program.server + ":" + program.port;
   const numWorkers =
-    program.type === "tp" ? Math.min(maxClients, program.clients) : 1;
+    //program.type === "et" ? Math.min(maxClients, program.clients) : 1;
+    program.type === "et" ? Math.min(maxClients, 1) : 1;
 
   // Helper functions
   const isDirectory = source => lstatSync(source).isDirectory();
@@ -115,6 +118,7 @@ export default () => {
           {label: "Query Template", value: "queryT"},
           {label: "Query Number", value: "index" },
           {label:"Execution time", value: "executionT"},
+          {label:"Response time", value: "responseT"},
           { label: "Error", value: "error" }
         ];
       }
@@ -176,7 +180,8 @@ export default () => {
     let qts = qtsFuc(queryT).qts_value;
     _.forEach(cluster.workers, worker => {
       const slice = Math.floor(
-        (qts.queries.length / program.clients) * (index - 1)
+        //(qts.queries.length / program.clients) * (index - 1)
+        (qts.queries.length) * (index - 1)
       );
       worker.send({
         command: "QUERIES",

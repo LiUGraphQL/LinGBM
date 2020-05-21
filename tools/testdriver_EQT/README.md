@@ -22,7 +22,7 @@ To capture the execution time of 5 queries per template, please use the followin
 ```
 yarn start -a ACTUALQUERIES_PATH -n 5
 ```
-The ACTUALQUERIES_PATH needs to be the path where the generated queries are. This tool will then synchronously load all the generated queries and run them one by one. By default, this tool captures the execution time of 10 queries per templates and writes the execution time of single query into a csv file under the directory `./output/`, with four columns {"Query Template", "Query Index", "Execution time", "Error"}
+The ACTUALQUERIES_PATH needs to be the path where the generated queries are. This tool will then synchronously load all the generated queries and run them one by one. By default, this tool captures the execution time of 10 queries per templates and writes the execution time of single query into a csv file under the directory `./output/`, with four columns {"Query Template", "Query Index", "Execution time", "Response time", "Error"}
 
 If you need to capture the execution time of some instance for a specific query template, then the option '-q <queryTP>' can be used for setting the query template. For example, the following command is for capturing execution time of 10 quries for query template 1
 ```
@@ -33,11 +33,9 @@ In addition, there are also some other arguments can be used to change the confi
 | Argument | Description |
 | ------ | ------|
 |-a, --actual-queries \<path>|Path to actualQueries folder| 
-|-c, --clients \<clients> |Number of clients. Default: 1| 
 |-s --server <url> |URL to the GraphQL server to test. Default: localhost |
 |-p --port <port> |Port used by the GraphQL server. Default: "4000"|
 |-t --type <type> |Type of test to run, et (execution time). et |
 |-o --name <name> |Set the name of the output file |
 |-q, --queryTP <queryTP> |Set the queryTemplate to test|
-|-r, --repeat <repeat> |Set the number of times to repeat the test. Default: 1|
 |-n, --numberQET <numberQET> |Specify the number of queries per template that are used to test execution time. Default: 10|
