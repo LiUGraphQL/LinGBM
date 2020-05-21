@@ -11,7 +11,7 @@ Then, you could build up the test driver using the following command:
 
 ```
 git clone git@github.com:LiUGraphQL/LinGBM.git
-cd LinGBM/tools/testdriver/
+cd LinGBM/tools/testdriver_TP/
 npm install update
 yarn run build
 ```
