@@ -822,9 +822,9 @@ acorn-dynamic-import@^4.0.0:
   integrity sha512-d3OEjQV4ROpoflsnUA8HozoIR504TFxNivYEUi6uwz0IYhBkTDXGuWlNdMtybRt3nqVx/L6XqMt0FxkXuWKZhw==
 
 acorn@^6.0.5:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
-  integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 ajv-errors@^1.0.0:
   version "1.0.1"
@@ -4564,6 +4564,40 @@ lodash@^4.17.11:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
+log-ok@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/log-ok/-/log-ok-0.1.1.tgz#bea3dd36acd0b8a7240d78736b5b97c65444a334"
+  integrity sha1-vqPdNqzQuKckDXhza1uXxlREozQ=
+  dependencies:
+    ansi-green "^0.1.1"
+    success-symbol "^0.1.0"
+
+log-utils@^0.1.0, log-utils@^0.1.4:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/log-utils/-/log-utils-0.1.5.tgz#de0f38f957f4cd6ebd5dcb6875d8a3b9ae074f77"
+  integrity sha1-3g84+Vf0zW69Xctoddijua4HT3c=
+  dependencies:
+    ansi-colors "^0.1.0"
+    error-symbol "^0.1.0"
+    info-symbol "^0.1.0"
+    log-ok "^0.1.1"
+    success-symbol "^0.1.0"
+    time-stamp "^1.0.1"
+    warning-symbol "^0.1.0"
+
+log-utils@^0.2.0, log-utils@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/log-utils/-/log-utils-0.2.1.tgz#a4c217a0dd9a50515d9b920206091ab3d4e031cf"
+  integrity sha1-pMIXoN2aUFFdm5ICBgkas9TgMc8=
+  dependencies:
+    ansi-colors "^0.2.0"
+    error-symbol "^0.1.0"
+    info-symbol "^0.1.0"
+    log-ok "^0.1.1"
+    success-symbol "^0.1.0"
+    time-stamp "^1.0.1"
+    warning-symbol "^0.1.0"
 
 log-ok@^0.1.1:
   version "0.1.1"
