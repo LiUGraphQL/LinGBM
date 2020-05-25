@@ -5,4 +5,5 @@ This repo contains artifacts created for the benchmark (such as GraphQL schemas,
 * [Dataset generator](https://github.com/LiUGraphQL/LinGBM/tree/master/tools/datasetgen)
 * [Query generator](https://github.com/LiUGraphQL/LinGBM/tree/master/tools/querygen)
 * [Report generator](https://github.com/LiUGraphQL/LinGBM/tree/master/tools/reportgen) (TODO)
-* [Test driver](https://github.com/LiUGraphQL/LinGBM/tree/master/tools/testdriver) (TODO)
+* [Test driver-throughput](https://github.com/LiUGraphQL/LinGBM/tree/master/tools/testdriver_TP)
+* [Test driver-QET&QRT](https://github.com/LiUGraphQL/LinGBM/tree/master/tools/testdriver_QET_QRT)
