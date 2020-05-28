@@ -22,7 +22,7 @@ Option '-n' can be used to specify the number of queries per template that would
 ```
 yarn start -a ACTUALQUERIES_PATH -n 5
 ```
-The ACTUALQUERIES_PATH needs to be the path where the generated queries are. This tool will then synchronously load all generated queries and run them one by one. By default, this tool captures execution time and response time of 10 queries per templates. Result of all tested queries are recorded into a csv file under directory `./output/`. The result contains five columns **{"Query Template", "Query Index", "Execution time", "Response time", "Error"}**
+The ACTUALQUERIES_PATH needs to be the path where the generated queries are. This tool will then synchronously load all generated queries and run them one by one. By default, this tool captures execution time and response time (in millisecond) of 10 queries per templates. Result of all tested queries are recorded into a csv file under directory `./output/`. The result contains five columns **{"Query Template", "Query Index", "Execution time(ms)", "Response time(ms)", "Error"}**
 
 If you need to capture the query time of some instance for a specific query template, then the option '-q <queryTP>' can be used for setting the query template. For example, the following command is for capturing execution time of 10 quries for query template 1
 ```

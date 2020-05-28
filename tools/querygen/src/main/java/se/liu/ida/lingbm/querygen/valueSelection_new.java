@@ -369,11 +369,11 @@ public class valueSelection_new {
 			}
 		}else if(field.contains("$attrPublicationField")){
 			if(field.contains("$PostGraphile")){
-				Nr = valueGen.randomInt(0, publicationField.length-1);
-				randomNr = String.valueOf(publicationField[Nr]);
-			}else{
 				Nr = valueGen.randomInt(0, publicationField_PostGraphile.length-1);
 				randomNr = String.valueOf(publicationField_PostGraphile[Nr]);
+			}else{
+				Nr = valueGen.randomInt(0, publicationField.length-1);
+				randomNr = String.valueOf(publicationField[Nr]);
 			}
 		}else if(field.equals("$age")){
 			Nr = valueGen.randomInt(20, 27);
