@@ -112,10 +112,12 @@ export default () => {
       // Time to convert data to some csv
       console.log("All workers are done.");
       console.log("Within", program.interval, "seconds, the number of executed queries are:", totalCount);
+      console.log("Within", program.interval, "seconds, the number of timeout queries are:", errorCount);
       let fields;
       if (program.type === "tp") {
         fields = [
           { label: "Query Number", value: "index" },
+          { label:"Execution time", value: "executionT"},
           { label: "Error", value: "error" }
         ];
       } else {
@@ -128,18 +130,18 @@ export default () => {
       const json2csvParser = new Parser({ fields });
       const csv = json2csvParser.parse(collectedData);
       // Create output dir if it doesn't exist
-      if (!fs.existsSync("output")) fs.mkdirSync("output");
+      //if (!fs.existsSync("output")) fs.mkdirSync("output");
       // Write to file
       if(program.name == "0"){
         program.name = `${program.type}_${program.interval}sec_${program.clients}clients`;
-        //program.name = `${program.type}_${program.interval}sec_${Math.min(maxClients, program.clients)}clients`;
       }else{
         program.name = program.name;
       }
       const outputFileName = program.name;
+      if (!fs.existsSync(outputFileName)) fs.mkdirSync(outputFileName);
 
       writeFile(
-        `output/${outputFileName}_QT${query}_${currentRun}.csv`,
+        `${outputFileName}/QT${query}_${currentRun}.csv`,
         csv,
         { encoding: "utf-8" },
         err => {
@@ -148,9 +150,10 @@ export default () => {
         }
       );
       //Append to statistic file
-      const current_statistic = `QT${query}, ${totalCount}, ${currentRun}\n`;
+      const current_statistic = `QT${query}, ${totalCount}, ${errorCount}, ${currentRun}\n`;
       fs.appendFile(
-        `output/${outputFileName}_statistics.csv`,
+        //`output/${outputFileName}_statistics.csv`,
+        `${outputFileName}/statistics.csv`,
         current_statistic,
         { encoding: "utf-8" },
         err => {
@@ -163,6 +166,7 @@ export default () => {
   });
 
   let totalCount = 0;
+  let errorCount = 0;
   // Handle log-data from the workers
   cluster.on("message", (worker, { command, data }) => {
     switch (command) {
@@ -170,6 +174,9 @@ export default () => {
         console.log(`worker ${worker.id}:`, data);
         if(data.error == 0){
           totalCount +=1;
+        }
+        else{
+          errorCount +=1;
         }
         //console.log(`totalCount:`, totalCount);
         collectedData.push(data);
@@ -231,6 +238,7 @@ export default () => {
     if (currentRun < program.repeat) {
       currentRun += 1;
       totalCount = 0;
+      errorCount = 0;
       resetCollectedData();
       //start(query);
       setTimeout(() => {
@@ -251,6 +259,7 @@ export default () => {
   const testForNextQT = queryT => {
     if(queryT<queryTemplatesDirs.length+1){
       totalCount = 0;
+      errorCount = 0;
       resetCollectedData();
       setTimeout(() => {
         start(queryT);
