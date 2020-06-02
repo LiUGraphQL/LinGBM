@@ -116,8 +116,11 @@ export default () => {
       let fields;
       if (program.type === "tp") {
         fields = [
+          { label: "Process ID", value: "processID" },
           { label: "Query Number", value: "index" },
           { label:"Execution time", value: "executionT"},
+          { label:"Start time", value: "startTime"},
+          { label:"End time", value: "endTime"},
           { label: "Error", value: "error" }
         ];
       } else {

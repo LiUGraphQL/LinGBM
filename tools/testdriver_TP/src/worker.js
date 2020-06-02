@@ -34,6 +34,7 @@ export default () => {
     process.send({
       command: "LOGDATA",
       data: {
+        processID: process.pid,
         index: query.index,
         error: 1
       }
@@ -88,8 +89,11 @@ export default () => {
         process.send({
           command: "LOGDATA",
           data: {
+            processID: process.pid,
             index: query.index,
             executionT,
+            startTime,
+            endTime,
             error: 0
           }
         });
