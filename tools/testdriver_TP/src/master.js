@@ -16,7 +16,7 @@ export default () => {
     .option(
       "-s --server <url>",
       "URL to the GraphQL server to test",
-      "localhost"
+      "127.0.0.1"
     )
     .option("-p --port <port>", "Port used by the GraphQL server", "4000")
     .option(
