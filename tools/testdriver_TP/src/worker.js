@@ -81,11 +81,15 @@ export default () => {
   const throughputTest = async ({ url }) => {
     const runRequest = async (url, query) => {
       try {
+        const startTime = Date.now();
         await request(url, query.data);
+        const endTime = Date.now();
+        const executionT = endTime - startTime;
         process.send({
           command: "LOGDATA",
           data: {
             index: query.index,
+            executionT,
             error: 0
           }
         });
