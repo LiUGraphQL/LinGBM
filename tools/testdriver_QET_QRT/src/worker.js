@@ -19,6 +19,7 @@ export default () => {
     process.send({
       command: "LOGDATA",
       data: {
+        queryT: queryTemp,
         index: query.index,
         error: 1
       }

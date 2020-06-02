@@ -85,7 +85,11 @@ export default () => {
 
   const createWorkers = () => {
     //for (let i = 0; i < numWorkers; i++) {
+<<<<<<< HEAD
     for (let i = 0; i < program.clients; i++) { 
+=======
+    for (let i = 0; i < program.clients; i++) {
+>>>>>>> d62bdd5ec84f49af5424b10a1ac853a5d5f3b393
       cluster.fork();
       workerCount += 1;
     }
@@ -211,6 +215,7 @@ export default () => {
       worker.send({
         command: "QUERIES",
         data: qts.queries,
+        workerID: worker.id,
         slice
       });
       index += 1;
