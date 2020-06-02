@@ -41,7 +41,7 @@ export default () => {
   // Constants
   const numCPUs = os.cpus().length;
   const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
-  console.log("The max number of clients that this operation system can hold:", maxClients);
+  //console.log("The max number of clients that this operation system can hold:", maxClients);
   const actualQueriesPath = program.actualQueries;
   const SERVER_URL = "http://" + program.server + ":" + program.port;
   const numWorkers =
@@ -85,11 +85,7 @@ export default () => {
 
   const createWorkers = () => {
     //for (let i = 0; i < numWorkers; i++) {
-<<<<<<< HEAD
     for (let i = 0; i < program.clients; i++) { 
-=======
-    for (let i = 0; i < program.clients; i++) {
->>>>>>> d62bdd5ec84f49af5424b10a1ac853a5d5f3b393
       cluster.fork();
       workerCount += 1;
     }
@@ -121,7 +117,7 @@ export default () => {
       let fields;
       if (program.type === "tp") {
         fields = [
-          { label: "Process ID", value: "processID" },
+          { label: "Client Nr", value: "clientID" },
           { label: "Query Number", value: "index" },
           { label:"Execution time", value: "executionT"},
           { label:"Start time", value: "startTime"},
