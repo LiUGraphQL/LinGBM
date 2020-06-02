@@ -84,7 +84,8 @@ export default () => {
   let workerCount = 0;
 
   const createWorkers = () => {
-    for (let i = 0; i < numWorkers; i++) {
+    //for (let i = 0; i < numWorkers; i++) {
+    for (let i = 0; i < program.clients; i++) { 
       cluster.fork();
       workerCount += 1;
     }
