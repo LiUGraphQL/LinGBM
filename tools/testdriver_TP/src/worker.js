@@ -9,6 +9,7 @@ export default () => {
   let db;
   let queries;
   let cursor = 0;
+  let workerid;
 
   /*
   const setupDatabase = async () => {
@@ -34,7 +35,8 @@ export default () => {
     process.send({
       command: "LOGDATA",
       data: {
-        processID: process.pid,
+        //processID: process.pid,
+        clientID: workerid,
         index: query.index,
         error: 1
       }
@@ -89,7 +91,7 @@ export default () => {
         process.send({
           command: "LOGDATA",
           data: {
-            processID: process.pid,
+            clientID: workerid,
             index: query.index,
             executionT,
             startTime,
@@ -119,13 +121,14 @@ export default () => {
     }
   };
 
-  process.on("message", ({ command, data, slice }) => {
+  process.on("message", ({ command, data, workerID, slice }) => {
     switch (command) {
       case "ECHO":
         process.send({ command: "ECHO", data });
         break;
       case "QUERIES":
         queries = data;
+        workerid = workerID;
         cursor = slice;
         break;
       case "START":
