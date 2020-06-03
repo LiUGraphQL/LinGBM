@@ -1,7 +1,5 @@
 import { request } from "graphql-request";
 import prettyjson from "prettyjson";
-//import mysql from "mysql2/promise";
-//import bluebird from "bluebird";
 
 export default () => {
   console.log(`Worker ${process.pid} started`);
