@@ -11,20 +11,6 @@ export default () => {
   let cursor = 0;
   let workerid;
 
-  /*
-  const setupDatabase = async () => {
-    console.log("setting up database");
-    const db = await mysql.createConnection({
-      host: "localhost",
-      user: "test",
-      password: "pass",
-      database: "benchmark",
-      Promise: bluebird
-    });
-    return db;
-  };
-  */
-
   const errorHandler = ({ query, error }) => {
     console.log("ERROR - EXITING");
     console.log(cursor);
@@ -35,51 +21,12 @@ export default () => {
     process.send({
       command: "LOGDATA",
       data: {
-        //processID: process.pid,
         clientID: workerid,
         index: query.index,
         error: 1
       }
     });
-    //process.exit(1);
   };
-
-  /*
-  const databaseRequestTest = async ({ url }) => {
-    db = await setupDatabase();
-    const runRequest = async (url, query) => {
-      try {
-        const [rows] = await db.query("SHOW GLOBAL STATUS LIKE 'com_select'");
-        const { Value: preQuery } = rows[0];
-        await request(url, query.data);
-        const [rowsAfter] = await db.query(
-          "SHOW GLOBAL STATUS LIKE 'com_select'"
-        );
-        const { Value: afterQuery } = rowsAfter[0];
-        // Send data about the sent query up to the master.
-        const dbRequests = parseInt(afterQuery) - parseInt(preQuery);
-        process.send({
-          command: "LOGDATA",
-          data: {
-            index: query.index,
-            dbRequests,
-            error: 0
-          }
-        });
-      } catch (error) {
-        errorHandler({ query, error });
-      }
-    };
-
-    while (cursor !== queries.length) {
-      await runRequest(url, queries[cursor]);
-      cursor += 1;
-    }
-    if (cursor === queries.length) {
-      process.exit(0);
-    }
-  };
-  */
 
   const throughputTest = async ({ url }) => {
     const runRequest = async (url, query) => {
@@ -94,8 +41,8 @@ export default () => {
             clientID: workerid,
             index: query.index,
             executionT,
-            startTime,
-            endTime,
+            //startTime,
+            //endTime,
             error: 0
           }
         });

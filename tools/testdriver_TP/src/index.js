@@ -7,9 +7,6 @@ const path = require('path');
 
 if (cluster.isMaster) {
   master();
-  if (!fs.existsSync("output")) fs.mkdirSync("output");
-  const fsExtra = require('fs-extra')
-  fsExtra.emptyDirSync("output")
 } else {
   worker();
 }

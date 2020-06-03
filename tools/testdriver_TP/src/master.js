@@ -38,14 +38,13 @@ export default () => {
     )
     .parse(process.argv);
 
-  // Constants
   const numCPUs = os.cpus().length;
-  const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
+  //const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
   //console.log("The max number of clients that this operation system can hold:", maxClients);
   const actualQueriesPath = program.actualQueries;
   const SERVER_URL = "http://" + program.server + ":" + program.port;
-  const numWorkers =
-    program.type === "tp" ? Math.min(maxClients, program.clients) : 1;
+  //const numWorkers =
+  //  program.type === "tp" ? Math.min(maxClients, program.clients) : 1;
 
   // Helper functions
   const isDirectory = source => lstatSync(source).isDirectory();
@@ -93,7 +92,6 @@ export default () => {
 
   const killWorkers = () => {
     for (const id in cluster.workers) {
-      //console.log("killing worker", id);
       cluster.workers[id].kill();
     }
   };
@@ -113,15 +111,15 @@ export default () => {
       // Time to convert data to some csv
       console.log("All workers are done.");
       console.log("Within", program.interval, "seconds, the number of executed queries are:", totalCount);
-      console.log("Within", program.interval, "seconds, the number of timeout queries are:", errorCount);
+      console.log("the number of timeout queries are:", errorCount);
       let fields;
       if (program.type === "tp") {
         fields = [
           { label: "Client Nr", value: "clientID" },
           { label: "Query Number", value: "index" },
           { label:"Execution time", value: "executionT"},
-          { label:"Start time", value: "startTime"},
-          { label:"End time", value: "endTime"},
+          //{ label:"Start time", value: "startTime"},
+          //{ label:"End time", value: "endTime"},
           { label: "Error", value: "error" }
         ];
       } else {
@@ -133,8 +131,6 @@ export default () => {
       }
       const json2csvParser = new Parser({ fields });
       const csv = json2csvParser.parse(collectedData);
-      // Create output dir if it doesn't exist
-      //if (!fs.existsSync("output")) fs.mkdirSync("output");
       // Write to file
       if(program.name == "0"){
         program.name = `${program.type}_${program.interval}sec_${program.clients}clients`;
@@ -142,6 +138,7 @@ export default () => {
         program.name = program.name;
       }
       const outputFileName = program.name;
+      // Create output dir if it doesn't exist
       if (!fs.existsSync(outputFileName)) fs.mkdirSync(outputFileName);
 
       writeFile(
@@ -150,19 +147,18 @@ export default () => {
         { encoding: "utf-8" },
         err => {
           if (err) throw err;
-          console.log("Output has been saved.\n");
+          //console.log("Output has been saved.\n");
         }
       );
       //Append to statistic file
       const current_statistic = `QT${query}, ${totalCount}, ${errorCount}, ${currentRun}\n`;
       fs.appendFile(
-        //`output/${outputFileName}_statistics.csv`,
         `${outputFileName}/statistics.csv`,
         current_statistic,
         { encoding: "utf-8" },
         err => {
           if (err) throw err;
-          console.log("statistics has been saved.\n");
+          //console.log("statistics has been saved.\n");
         }
       );
       reset();
@@ -182,16 +178,10 @@ export default () => {
         else{
           errorCount +=1;
         }
-        //console.log(`totalCount:`, totalCount);
         collectedData.push(data);
     }
   });
 
-  /*
-  const qts = queryTemplates.find(
-    qt => qt.queryTemplate === parseInt(program.query)
-  );
-  */
   const qtsFuc = queryT => {
     const qts_value = queryTemplates.find(
       qt => qt.queryTemplate === parseInt(queryT)
@@ -245,7 +235,7 @@ export default () => {
       totalCount = 0;
       errorCount = 0;
       resetCollectedData();
-      //start(query);
+      console.log("Repeat the throughput test for query template",query,", the", currentRun ,"time starting:\n");
       setTimeout(() => {
         start(query);
       }, 1000);
@@ -256,7 +246,7 @@ export default () => {
         currentRun = 1;
         testForNextQT(query);
       }else{
-        console.log("Test is complete, exiting.");
+        console.log("Test is completed, exiting.");
       } 
     }
   };
