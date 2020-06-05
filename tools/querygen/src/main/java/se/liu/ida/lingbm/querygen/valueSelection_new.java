@@ -348,8 +348,8 @@ public class valueSelection_new {
 			Nr = valueGen.randomInt(0, researchGroupCount-1);
 			randomNr = String.valueOf(researchGroup.get(Nr));
 		}else if(field.equals("$lecturerID")){
-			Nr = valueGen.randomInt(0, facultyCount-1);
-			randomNr = String.valueOf(faculty.get(Nr));
+			Nr = valueGen.randomInt(0, lecturerCount-1);
+			randomNr = String.valueOf(lecturer.get(Nr));
 		}else if(field.equals("$offset")){
 			Nr = valueGen.randomInt(1, 50);
 			randomNr = String.valueOf(Nr);
