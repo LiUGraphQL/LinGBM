@@ -2,7 +2,7 @@ import { request, GraphQLClient} from "graphql-request";
 import prettyjson from "prettyjson";
 
 export default () => {
-  console.log(`Worker ${process.pid} started`);
+  //console.log(`Worker ${process.pid} started`);
 
   let queries;
   let cursor = 0;
@@ -10,10 +10,10 @@ export default () => {
   let queryTemp;
 
   const errorHandler = ({ query, error }) => {
-    console.log("ERROR - EXITING");
-    console.log(cursor);
-    console.log("QUERY:", query);
-    console.log(prettyjson.render(error));
+    //console.log("ERROR - EXITING");
+    //console.log(cursor);
+    //console.log("QUERY:", query);
+    //console.log(prettyjson.render(error));
 
     // Send up error
     process.send({
@@ -46,8 +46,8 @@ export default () => {
         const executionT = endTime - startTime;
         const responseT = responseTime - startTime;       
         
-        console.log(`response time =${Math.floor(responseT)}`);
-        console.log(`execution time = ${Math.floor(executionT)}`);
+        //console.log(`response time =${Math.floor(responseT)}`);
+        //console.log(`execution time = ${Math.floor(executionT)}`);
         
         process.send({
           command: "LOGDATA",

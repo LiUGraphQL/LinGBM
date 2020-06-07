@@ -12,7 +12,7 @@ Then, you could build up the test driver using the following command:
 ```
 git clone git@github.com:LiUGraphQL/LinGBM.git
 cd LinGBM/tools/testdriver_QET_QRT/
-npm install update
+npm install
 yarn run build
 ```
 

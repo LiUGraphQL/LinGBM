@@ -26,13 +26,12 @@ export default () => {
     )
     .option("-o --name <name>", "Set the name of the output file", "0")
     .option("-q --queryTP <queryTP>", "Set the queryTemplate to test", 0)
-    /*
+    
     .option(
       "-r --repeat <repeat>",
       "Set the number of times to repeat the test",
       1
     )
-    */
     .option(
       "-n --numberQET <numberQET>",
       "Specify the number of queries per template that are used to test execution time",
@@ -128,21 +127,22 @@ export default () => {
       const csvValue = csv.split("\n");
       const csv1 = csvValue[1]+"\n";
       // Create output dir if it doesn't exist
-      if (!fs.existsSync("output")) fs.mkdirSync("output");
+      //if (!fs.existsSync("output")) fs.mkdirSync("output");
       // Write to file
       if(program.name == "0"){
-        program.name = `${program.type}`;
+        program.name = `output`;
       }else{
         program.name = program.name;
       }
       const outputFileName = program.name;
+      if (!fs.existsSync(outputFileName)) fs.mkdirSync(outputFileName);
       fs.appendFile(
-        `output/${outputFileName}.csv`,
+        `${outputFileName}/QET_${program.repeat}.csv`,
         csv1,
         { encoding: "utf-8" },
         err => {
           if (err) throw err;
-          console.log("Execution time has been recorded.\n");
+          //console.log("Execution time has been recorded.\n");
         }
       );
       reset();
@@ -155,7 +155,7 @@ export default () => {
   cluster.on("message", (worker, { command, data }) => {
     switch (command) {
       case "LOGDATA":
-        console.log(`worker ${worker.id}:`, data);
+        //console.log(`worker ${worker.id}:`, data);
         if(data.error == 0){
           totalCount +=1;
         }else{
@@ -233,7 +233,7 @@ export default () => {
       query +=1;
       testForNextQT(query);
     } else{
-      console.log("test");
+      //console.log("test");
       repeatExe(program.queryTP);
     }
   };
@@ -243,7 +243,7 @@ export default () => {
         start(queryT);
       }, 1000);
     }else{
-      console.log("QETs for "+currentRun+" queries per template have been recorded");
+      //console.log("QETs for "+currentRun+" queries per template have been recorded");
       query = 0;
       repeatExe(query);
     }
