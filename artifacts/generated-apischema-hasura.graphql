@@ -1,0 +1,6940 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+# columns and relationships of "coauthorofpublication"
+type coauthorofpublication {
+  # An object relationship
+  graduatestudent: graduatestudent!
+  graduatestudentid: Int!
+
+  # An object relationship
+  publication: publication!
+  publicationid: Int!
+}
+
+# aggregated selection of "coauthorofpublication"
+type coauthorofpublication_aggregate {
+  aggregate: coauthorofpublication_aggregate_fields
+  nodes: [coauthorofpublication!]!
+}
+
+# aggregate fields of "coauthorofpublication"
+type coauthorofpublication_aggregate_fields {
+  avg: coauthorofpublication_avg_fields
+  count(columns: [coauthorofpublication_select_column!], distinct: Boolean): Int
+  max: coauthorofpublication_max_fields
+  min: coauthorofpublication_min_fields
+  stddev: coauthorofpublication_stddev_fields
+  stddev_pop: coauthorofpublication_stddev_pop_fields
+  stddev_samp: coauthorofpublication_stddev_samp_fields
+  sum: coauthorofpublication_sum_fields
+  var_pop: coauthorofpublication_var_pop_fields
+  var_samp: coauthorofpublication_var_samp_fields
+  variance: coauthorofpublication_variance_fields
+}
+
+# order by aggregate values of table "coauthorofpublication"
+input coauthorofpublication_aggregate_order_by {
+  avg: coauthorofpublication_avg_order_by
+  count: order_by
+  max: coauthorofpublication_max_order_by
+  min: coauthorofpublication_min_order_by
+  stddev: coauthorofpublication_stddev_order_by
+  stddev_pop: coauthorofpublication_stddev_pop_order_by
+  stddev_samp: coauthorofpublication_stddev_samp_order_by
+  sum: coauthorofpublication_sum_order_by
+  var_pop: coauthorofpublication_var_pop_order_by
+  var_samp: coauthorofpublication_var_samp_order_by
+  variance: coauthorofpublication_variance_order_by
+}
+
+# input type for inserting array relation for remote table "coauthorofpublication"
+input coauthorofpublication_arr_rel_insert_input {
+  data: [coauthorofpublication_insert_input!]!
+  on_conflict: coauthorofpublication_on_conflict
+}
+
+# aggregate avg on columns
+type coauthorofpublication_avg_fields {
+  graduatestudentid: Float
+  publicationid: Float
+}
+
+# order by avg() on columns of table "coauthorofpublication"
+input coauthorofpublication_avg_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# Boolean expression to filter rows from the table "coauthorofpublication". All fields are combined with a logical 'AND'.
+input coauthorofpublication_bool_exp {
+  _and: [coauthorofpublication_bool_exp]
+  _not: coauthorofpublication_bool_exp
+  _or: [coauthorofpublication_bool_exp]
+  graduatestudent: graduatestudent_bool_exp
+  graduatestudentid: Int_comparison_exp
+  publication: publication_bool_exp
+  publicationid: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "coauthorofpublication"
+enum coauthorofpublication_constraint {
+  # unique or primary key constraint
+  coauthorofpublication_pkey
+}
+
+# input type for incrementing integer columne in table "coauthorofpublication"
+input coauthorofpublication_inc_input {
+  graduatestudentid: Int
+  publicationid: Int
+}
+
+# input type for inserting data into table "coauthorofpublication"
+input coauthorofpublication_insert_input {
+  graduatestudent: graduatestudent_obj_rel_insert_input
+  graduatestudentid: Int
+  publication: publication_obj_rel_insert_input
+  publicationid: Int
+}
+
+# aggregate max on columns
+type coauthorofpublication_max_fields {
+  graduatestudentid: Int
+  publicationid: Int
+}
+
+# order by max() on columns of table "coauthorofpublication"
+input coauthorofpublication_max_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# aggregate min on columns
+type coauthorofpublication_min_fields {
+  graduatestudentid: Int
+  publicationid: Int
+}
+
+# order by min() on columns of table "coauthorofpublication"
+input coauthorofpublication_min_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# response of any mutation on the table "coauthorofpublication"
+type coauthorofpublication_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [coauthorofpublication!]!
+}
+
+# input type for inserting object relation for remote table "coauthorofpublication"
+input coauthorofpublication_obj_rel_insert_input {
+  data: coauthorofpublication_insert_input!
+  on_conflict: coauthorofpublication_on_conflict
+}
+
+# on conflict condition type for table "coauthorofpublication"
+input coauthorofpublication_on_conflict {
+  constraint: coauthorofpublication_constraint!
+  update_columns: [coauthorofpublication_update_column!]!
+  where: coauthorofpublication_bool_exp
+}
+
+# ordering options when selecting data from "coauthorofpublication"
+input coauthorofpublication_order_by {
+  graduatestudent: graduatestudent_order_by
+  graduatestudentid: order_by
+  publication: publication_order_by
+  publicationid: order_by
+}
+
+# primary key columns input for table: "coauthorofpublication"
+input coauthorofpublication_pk_columns_input {
+  graduatestudentid: Int!
+  publicationid: Int!
+}
+
+# select columns of table "coauthorofpublication"
+enum coauthorofpublication_select_column {
+  # column name
+  graduatestudentid
+
+  # column name
+  publicationid
+}
+
+# input type for updating data in table "coauthorofpublication"
+input coauthorofpublication_set_input {
+  graduatestudentid: Int
+  publicationid: Int
+}
+
+# aggregate stddev on columns
+type coauthorofpublication_stddev_fields {
+  graduatestudentid: Float
+  publicationid: Float
+}
+
+# order by stddev() on columns of table "coauthorofpublication"
+input coauthorofpublication_stddev_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# aggregate stddev_pop on columns
+type coauthorofpublication_stddev_pop_fields {
+  graduatestudentid: Float
+  publicationid: Float
+}
+
+# order by stddev_pop() on columns of table "coauthorofpublication"
+input coauthorofpublication_stddev_pop_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# aggregate stddev_samp on columns
+type coauthorofpublication_stddev_samp_fields {
+  graduatestudentid: Float
+  publicationid: Float
+}
+
+# order by stddev_samp() on columns of table "coauthorofpublication"
+input coauthorofpublication_stddev_samp_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# aggregate sum on columns
+type coauthorofpublication_sum_fields {
+  graduatestudentid: Int
+  publicationid: Int
+}
+
+# order by sum() on columns of table "coauthorofpublication"
+input coauthorofpublication_sum_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# update columns of table "coauthorofpublication"
+enum coauthorofpublication_update_column {
+  # column name
+  graduatestudentid
+
+  # column name
+  publicationid
+}
+
+# aggregate var_pop on columns
+type coauthorofpublication_var_pop_fields {
+  graduatestudentid: Float
+  publicationid: Float
+}
+
+# order by var_pop() on columns of table "coauthorofpublication"
+input coauthorofpublication_var_pop_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# aggregate var_samp on columns
+type coauthorofpublication_var_samp_fields {
+  graduatestudentid: Float
+  publicationid: Float
+}
+
+# order by var_samp() on columns of table "coauthorofpublication"
+input coauthorofpublication_var_samp_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# aggregate variance on columns
+type coauthorofpublication_variance_fields {
+  graduatestudentid: Float
+  publicationid: Float
+}
+
+# order by variance() on columns of table "coauthorofpublication"
+input coauthorofpublication_variance_order_by {
+  graduatestudentid: order_by
+  publicationid: order_by
+}
+
+# columns and relationships of "department"
+type department {
+  # An array relationship
+  faculties(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): [faculty!]!
+
+  # An aggregated array relationship
+  faculties_aggregate(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): faculty_aggregate!
+
+  # An array relationship
+  graduatestudents(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): [graduatestudent!]!
+
+  # An aggregated array relationship
+  graduatestudents_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): graduatestudent_aggregate!
+  name: String
+  nr: Int!
+
+  # An array relationship
+  professors(
+    # distinct select on columns
+    distinct_on: [professor_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [professor_order_by!]
+
+    # filter the rows returned
+    where: professor_bool_exp
+  ): [professor!]!
+
+  # An aggregated array relationship
+  professors_aggregate(
+    # distinct select on columns
+    distinct_on: [professor_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [professor_order_by!]
+
+    # filter the rows returned
+    where: professor_bool_exp
+  ): professor_aggregate!
+
+  # An array relationship
+  researchgroups(
+    # distinct select on columns
+    distinct_on: [researchgroup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [researchgroup_order_by!]
+
+    # filter the rows returned
+    where: researchgroup_bool_exp
+  ): [researchgroup!]!
+
+  # An aggregated array relationship
+  researchgroups_aggregate(
+    # distinct select on columns
+    distinct_on: [researchgroup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [researchgroup_order_by!]
+
+    # filter the rows returned
+    where: researchgroup_bool_exp
+  ): researchgroup_aggregate!
+  suborganizationof: Int
+
+  # An array relationship
+  undergraduatestudents(
+    # distinct select on columns
+    distinct_on: [undergraduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudent_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudent_bool_exp
+  ): [undergraduatestudent!]!
+
+  # An aggregated array relationship
+  undergraduatestudents_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudent_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudent_bool_exp
+  ): undergraduatestudent_aggregate!
+
+  # An object relationship
+  university: university
+}
+
+# aggregated selection of "department"
+type department_aggregate {
+  aggregate: department_aggregate_fields
+  nodes: [department!]!
+}
+
+# aggregate fields of "department"
+type department_aggregate_fields {
+  avg: department_avg_fields
+  count(columns: [department_select_column!], distinct: Boolean): Int
+  max: department_max_fields
+  min: department_min_fields
+  stddev: department_stddev_fields
+  stddev_pop: department_stddev_pop_fields
+  stddev_samp: department_stddev_samp_fields
+  sum: department_sum_fields
+  var_pop: department_var_pop_fields
+  var_samp: department_var_samp_fields
+  variance: department_variance_fields
+}
+
+# order by aggregate values of table "department"
+input department_aggregate_order_by {
+  avg: department_avg_order_by
+  count: order_by
+  max: department_max_order_by
+  min: department_min_order_by
+  stddev: department_stddev_order_by
+  stddev_pop: department_stddev_pop_order_by
+  stddev_samp: department_stddev_samp_order_by
+  sum: department_sum_order_by
+  var_pop: department_var_pop_order_by
+  var_samp: department_var_samp_order_by
+  variance: department_variance_order_by
+}
+
+# input type for inserting array relation for remote table "department"
+input department_arr_rel_insert_input {
+  data: [department_insert_input!]!
+  on_conflict: department_on_conflict
+}
+
+# aggregate avg on columns
+type department_avg_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by avg() on columns of table "department"
+input department_avg_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# Boolean expression to filter rows from the table "department". All fields are combined with a logical 'AND'.
+input department_bool_exp {
+  _and: [department_bool_exp]
+  _not: department_bool_exp
+  _or: [department_bool_exp]
+  faculties: faculty_bool_exp
+  graduatestudents: graduatestudent_bool_exp
+  name: String_comparison_exp
+  nr: Int_comparison_exp
+  professors: professor_bool_exp
+  researchgroups: researchgroup_bool_exp
+  suborganizationof: Int_comparison_exp
+  undergraduatestudents: undergraduatestudent_bool_exp
+  university: university_bool_exp
+}
+
+# unique or primary key constraints on table "department"
+enum department_constraint {
+  # unique or primary key constraint
+  department_pkey
+}
+
+# input type for incrementing integer columne in table "department"
+input department_inc_input {
+  nr: Int
+  suborganizationof: Int
+}
+
+# input type for inserting data into table "department"
+input department_insert_input {
+  faculties: faculty_arr_rel_insert_input
+  graduatestudents: graduatestudent_arr_rel_insert_input
+  name: String
+  nr: Int
+  professors: professor_arr_rel_insert_input
+  researchgroups: researchgroup_arr_rel_insert_input
+  suborganizationof: Int
+  undergraduatestudents: undergraduatestudent_arr_rel_insert_input
+  university: university_obj_rel_insert_input
+}
+
+# aggregate max on columns
+type department_max_fields {
+  name: String
+  nr: Int
+  suborganizationof: Int
+}
+
+# order by max() on columns of table "department"
+input department_max_order_by {
+  name: order_by
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate min on columns
+type department_min_fields {
+  name: String
+  nr: Int
+  suborganizationof: Int
+}
+
+# order by min() on columns of table "department"
+input department_min_order_by {
+  name: order_by
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# response of any mutation on the table "department"
+type department_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [department!]!
+}
+
+# input type for inserting object relation for remote table "department"
+input department_obj_rel_insert_input {
+  data: department_insert_input!
+  on_conflict: department_on_conflict
+}
+
+# on conflict condition type for table "department"
+input department_on_conflict {
+  constraint: department_constraint!
+  update_columns: [department_update_column!]!
+  where: department_bool_exp
+}
+
+# ordering options when selecting data from "department"
+input department_order_by {
+  faculties_aggregate: faculty_aggregate_order_by
+  graduatestudents_aggregate: graduatestudent_aggregate_order_by
+  name: order_by
+  nr: order_by
+  professors_aggregate: professor_aggregate_order_by
+  researchgroups_aggregate: researchgroup_aggregate_order_by
+  suborganizationof: order_by
+  undergraduatestudents_aggregate: undergraduatestudent_aggregate_order_by
+  university: university_order_by
+}
+
+# primary key columns input for table: "department"
+input department_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "department"
+enum department_select_column {
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  suborganizationof
+}
+
+# input type for updating data in table "department"
+input department_set_input {
+  name: String
+  nr: Int
+  suborganizationof: Int
+}
+
+# aggregate stddev on columns
+type department_stddev_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by stddev() on columns of table "department"
+input department_stddev_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate stddev_pop on columns
+type department_stddev_pop_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by stddev_pop() on columns of table "department"
+input department_stddev_pop_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate stddev_samp on columns
+type department_stddev_samp_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by stddev_samp() on columns of table "department"
+input department_stddev_samp_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate sum on columns
+type department_sum_fields {
+  nr: Int
+  suborganizationof: Int
+}
+
+# order by sum() on columns of table "department"
+input department_sum_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# update columns of table "department"
+enum department_update_column {
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  suborganizationof
+}
+
+# aggregate var_pop on columns
+type department_var_pop_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by var_pop() on columns of table "department"
+input department_var_pop_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate var_samp on columns
+type department_var_samp_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by var_samp() on columns of table "department"
+input department_var_samp_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate variance on columns
+type department_variance_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by variance() on columns of table "department"
+input department_variance_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# columns and relationships of "faculty"
+type faculty {
+  # An object relationship
+  department: department
+  doctoraldegreefrom: Int
+  emailaddress: String
+
+  # An array relationship
+  graduatecourses(
+    # distinct select on columns
+    distinct_on: [graduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatecourse_bool_exp
+  ): [graduatecourse!]!
+
+  # An aggregated array relationship
+  graduatecourses_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatecourse_bool_exp
+  ): graduatecourse_aggregate!
+
+  # An array relationship
+  lecturers(
+    # distinct select on columns
+    distinct_on: [lecturer_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [lecturer_order_by!]
+
+    # filter the rows returned
+    where: lecturer_bool_exp
+  ): [lecturer!]!
+
+  # An aggregated array relationship
+  lecturers_aggregate(
+    # distinct select on columns
+    distinct_on: [lecturer_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [lecturer_order_by!]
+
+    # filter the rows returned
+    where: lecturer_bool_exp
+  ): lecturer_aggregate!
+  masterdegreefrom: Int
+  name: String
+  nr: Int!
+
+  # An array relationship
+  professors(
+    # distinct select on columns
+    distinct_on: [professor_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [professor_order_by!]
+
+    # filter the rows returned
+    where: professor_bool_exp
+  ): [professor!]!
+
+  # An aggregated array relationship
+  professors_aggregate(
+    # distinct select on columns
+    distinct_on: [professor_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [professor_order_by!]
+
+    # filter the rows returned
+    where: professor_bool_exp
+  ): professor_aggregate!
+
+  # An array relationship
+  publications(
+    # distinct select on columns
+    distinct_on: [publication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [publication_order_by!]
+
+    # filter the rows returned
+    where: publication_bool_exp
+  ): [publication!]!
+
+  # An aggregated array relationship
+  publications_aggregate(
+    # distinct select on columns
+    distinct_on: [publication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [publication_order_by!]
+
+    # filter the rows returned
+    where: publication_bool_exp
+  ): publication_aggregate!
+  telephone: String
+
+  # An array relationship
+  undergraduatecourses(
+    # distinct select on columns
+    distinct_on: [undergraduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatecourse_bool_exp
+  ): [undergraduatecourse!]!
+
+  # An aggregated array relationship
+  undergraduatecourses_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatecourse_bool_exp
+  ): undergraduatecourse_aggregate!
+  undergraduatedegreefrom: Int
+
+  # An object relationship
+  university: university
+
+  # An object relationship
+  universityByDoctoraldegreefrom: university
+
+  # An object relationship
+  universityByMasterdegreefrom: university
+  worksfor: Int
+}
+
+# aggregated selection of "faculty"
+type faculty_aggregate {
+  aggregate: faculty_aggregate_fields
+  nodes: [faculty!]!
+}
+
+# aggregate fields of "faculty"
+type faculty_aggregate_fields {
+  avg: faculty_avg_fields
+  count(columns: [faculty_select_column!], distinct: Boolean): Int
+  max: faculty_max_fields
+  min: faculty_min_fields
+  stddev: faculty_stddev_fields
+  stddev_pop: faculty_stddev_pop_fields
+  stddev_samp: faculty_stddev_samp_fields
+  sum: faculty_sum_fields
+  var_pop: faculty_var_pop_fields
+  var_samp: faculty_var_samp_fields
+  variance: faculty_variance_fields
+}
+
+# order by aggregate values of table "faculty"
+input faculty_aggregate_order_by {
+  avg: faculty_avg_order_by
+  count: order_by
+  max: faculty_max_order_by
+  min: faculty_min_order_by
+  stddev: faculty_stddev_order_by
+  stddev_pop: faculty_stddev_pop_order_by
+  stddev_samp: faculty_stddev_samp_order_by
+  sum: faculty_sum_order_by
+  var_pop: faculty_var_pop_order_by
+  var_samp: faculty_var_samp_order_by
+  variance: faculty_variance_order_by
+}
+
+# input type for inserting array relation for remote table "faculty"
+input faculty_arr_rel_insert_input {
+  data: [faculty_insert_input!]!
+  on_conflict: faculty_on_conflict
+}
+
+# aggregate avg on columns
+type faculty_avg_fields {
+  doctoraldegreefrom: Float
+  masterdegreefrom: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+  worksfor: Float
+}
+
+# order by avg() on columns of table "faculty"
+input faculty_avg_order_by {
+  doctoraldegreefrom: order_by
+  masterdegreefrom: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# Boolean expression to filter rows from the table "faculty". All fields are combined with a logical 'AND'.
+input faculty_bool_exp {
+  _and: [faculty_bool_exp]
+  _not: faculty_bool_exp
+  _or: [faculty_bool_exp]
+  department: department_bool_exp
+  doctoraldegreefrom: Int_comparison_exp
+  emailaddress: String_comparison_exp
+  graduatecourses: graduatecourse_bool_exp
+  lecturers: lecturer_bool_exp
+  masterdegreefrom: Int_comparison_exp
+  name: String_comparison_exp
+  nr: Int_comparison_exp
+  professors: professor_bool_exp
+  publications: publication_bool_exp
+  telephone: String_comparison_exp
+  undergraduatecourses: undergraduatecourse_bool_exp
+  undergraduatedegreefrom: Int_comparison_exp
+  university: university_bool_exp
+  universityByDoctoraldegreefrom: university_bool_exp
+  universityByMasterdegreefrom: university_bool_exp
+  worksfor: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "faculty"
+enum faculty_constraint {
+  # unique or primary key constraint
+  faculty_pkey
+}
+
+# input type for incrementing integer columne in table "faculty"
+input faculty_inc_input {
+  doctoraldegreefrom: Int
+  masterdegreefrom: Int
+  nr: Int
+  undergraduatedegreefrom: Int
+  worksfor: Int
+}
+
+# input type for inserting data into table "faculty"
+input faculty_insert_input {
+  department: department_obj_rel_insert_input
+  doctoraldegreefrom: Int
+  emailaddress: String
+  graduatecourses: graduatecourse_arr_rel_insert_input
+  lecturers: lecturer_arr_rel_insert_input
+  masterdegreefrom: Int
+  name: String
+  nr: Int
+  professors: professor_arr_rel_insert_input
+  publications: publication_arr_rel_insert_input
+  telephone: String
+  undergraduatecourses: undergraduatecourse_arr_rel_insert_input
+  undergraduatedegreefrom: Int
+  university: university_obj_rel_insert_input
+  universityByDoctoraldegreefrom: university_obj_rel_insert_input
+  universityByMasterdegreefrom: university_obj_rel_insert_input
+  worksfor: Int
+}
+
+# aggregate max on columns
+type faculty_max_fields {
+  doctoraldegreefrom: Int
+  emailaddress: String
+  masterdegreefrom: Int
+  name: String
+  nr: Int
+  telephone: String
+  undergraduatedegreefrom: Int
+  worksfor: Int
+}
+
+# order by max() on columns of table "faculty"
+input faculty_max_order_by {
+  doctoraldegreefrom: order_by
+  emailaddress: order_by
+  masterdegreefrom: order_by
+  name: order_by
+  nr: order_by
+  telephone: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# aggregate min on columns
+type faculty_min_fields {
+  doctoraldegreefrom: Int
+  emailaddress: String
+  masterdegreefrom: Int
+  name: String
+  nr: Int
+  telephone: String
+  undergraduatedegreefrom: Int
+  worksfor: Int
+}
+
+# order by min() on columns of table "faculty"
+input faculty_min_order_by {
+  doctoraldegreefrom: order_by
+  emailaddress: order_by
+  masterdegreefrom: order_by
+  name: order_by
+  nr: order_by
+  telephone: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# response of any mutation on the table "faculty"
+type faculty_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [faculty!]!
+}
+
+# input type for inserting object relation for remote table "faculty"
+input faculty_obj_rel_insert_input {
+  data: faculty_insert_input!
+  on_conflict: faculty_on_conflict
+}
+
+# on conflict condition type for table "faculty"
+input faculty_on_conflict {
+  constraint: faculty_constraint!
+  update_columns: [faculty_update_column!]!
+  where: faculty_bool_exp
+}
+
+# ordering options when selecting data from "faculty"
+input faculty_order_by {
+  department: department_order_by
+  doctoraldegreefrom: order_by
+  emailaddress: order_by
+  graduatecourses_aggregate: graduatecourse_aggregate_order_by
+  lecturers_aggregate: lecturer_aggregate_order_by
+  masterdegreefrom: order_by
+  name: order_by
+  nr: order_by
+  professors_aggregate: professor_aggregate_order_by
+  publications_aggregate: publication_aggregate_order_by
+  telephone: order_by
+  undergraduatecourses_aggregate: undergraduatecourse_aggregate_order_by
+  undergraduatedegreefrom: order_by
+  university: university_order_by
+  universityByDoctoraldegreefrom: university_order_by
+  universityByMasterdegreefrom: university_order_by
+  worksfor: order_by
+}
+
+# primary key columns input for table: "faculty"
+input faculty_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "faculty"
+enum faculty_select_column {
+  # column name
+  doctoraldegreefrom
+
+  # column name
+  emailaddress
+
+  # column name
+  masterdegreefrom
+
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  telephone
+
+  # column name
+  undergraduatedegreefrom
+
+  # column name
+  worksfor
+}
+
+# input type for updating data in table "faculty"
+input faculty_set_input {
+  doctoraldegreefrom: Int
+  emailaddress: String
+  masterdegreefrom: Int
+  name: String
+  nr: Int
+  telephone: String
+  undergraduatedegreefrom: Int
+  worksfor: Int
+}
+
+# aggregate stddev on columns
+type faculty_stddev_fields {
+  doctoraldegreefrom: Float
+  masterdegreefrom: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+  worksfor: Float
+}
+
+# order by stddev() on columns of table "faculty"
+input faculty_stddev_order_by {
+  doctoraldegreefrom: order_by
+  masterdegreefrom: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# aggregate stddev_pop on columns
+type faculty_stddev_pop_fields {
+  doctoraldegreefrom: Float
+  masterdegreefrom: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+  worksfor: Float
+}
+
+# order by stddev_pop() on columns of table "faculty"
+input faculty_stddev_pop_order_by {
+  doctoraldegreefrom: order_by
+  masterdegreefrom: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# aggregate stddev_samp on columns
+type faculty_stddev_samp_fields {
+  doctoraldegreefrom: Float
+  masterdegreefrom: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+  worksfor: Float
+}
+
+# order by stddev_samp() on columns of table "faculty"
+input faculty_stddev_samp_order_by {
+  doctoraldegreefrom: order_by
+  masterdegreefrom: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# aggregate sum on columns
+type faculty_sum_fields {
+  doctoraldegreefrom: Int
+  masterdegreefrom: Int
+  nr: Int
+  undergraduatedegreefrom: Int
+  worksfor: Int
+}
+
+# order by sum() on columns of table "faculty"
+input faculty_sum_order_by {
+  doctoraldegreefrom: order_by
+  masterdegreefrom: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# update columns of table "faculty"
+enum faculty_update_column {
+  # column name
+  doctoraldegreefrom
+
+  # column name
+  emailaddress
+
+  # column name
+  masterdegreefrom
+
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  telephone
+
+  # column name
+  undergraduatedegreefrom
+
+  # column name
+  worksfor
+}
+
+# aggregate var_pop on columns
+type faculty_var_pop_fields {
+  doctoraldegreefrom: Float
+  masterdegreefrom: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+  worksfor: Float
+}
+
+# order by var_pop() on columns of table "faculty"
+input faculty_var_pop_order_by {
+  doctoraldegreefrom: order_by
+  masterdegreefrom: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# aggregate var_samp on columns
+type faculty_var_samp_fields {
+  doctoraldegreefrom: Float
+  masterdegreefrom: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+  worksfor: Float
+}
+
+# order by var_samp() on columns of table "faculty"
+input faculty_var_samp_order_by {
+  doctoraldegreefrom: order_by
+  masterdegreefrom: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# aggregate variance on columns
+type faculty_variance_fields {
+  doctoraldegreefrom: Float
+  masterdegreefrom: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+  worksfor: Float
+}
+
+# order by variance() on columns of table "faculty"
+input faculty_variance_order_by {
+  doctoraldegreefrom: order_by
+  masterdegreefrom: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+  worksfor: order_by
+}
+
+# columns and relationships of "graduatecourse"
+type graduatecourse {
+  # An object relationship
+  faculty: faculty
+
+  # An array relationship
+  graduatestudenttakecourses(
+    # distinct select on columns
+    distinct_on: [graduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatestudenttakecourse_bool_exp
+  ): [graduatestudenttakecourse!]!
+
+  # An aggregated array relationship
+  graduatestudenttakecourses_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatestudenttakecourse_bool_exp
+  ): graduatestudenttakecourse_aggregate!
+  name: String
+  nr: Int!
+  teacher: Int
+}
+
+# aggregated selection of "graduatecourse"
+type graduatecourse_aggregate {
+  aggregate: graduatecourse_aggregate_fields
+  nodes: [graduatecourse!]!
+}
+
+# aggregate fields of "graduatecourse"
+type graduatecourse_aggregate_fields {
+  avg: graduatecourse_avg_fields
+  count(columns: [graduatecourse_select_column!], distinct: Boolean): Int
+  max: graduatecourse_max_fields
+  min: graduatecourse_min_fields
+  stddev: graduatecourse_stddev_fields
+  stddev_pop: graduatecourse_stddev_pop_fields
+  stddev_samp: graduatecourse_stddev_samp_fields
+  sum: graduatecourse_sum_fields
+  var_pop: graduatecourse_var_pop_fields
+  var_samp: graduatecourse_var_samp_fields
+  variance: graduatecourse_variance_fields
+}
+
+# order by aggregate values of table "graduatecourse"
+input graduatecourse_aggregate_order_by {
+  avg: graduatecourse_avg_order_by
+  count: order_by
+  max: graduatecourse_max_order_by
+  min: graduatecourse_min_order_by
+  stddev: graduatecourse_stddev_order_by
+  stddev_pop: graduatecourse_stddev_pop_order_by
+  stddev_samp: graduatecourse_stddev_samp_order_by
+  sum: graduatecourse_sum_order_by
+  var_pop: graduatecourse_var_pop_order_by
+  var_samp: graduatecourse_var_samp_order_by
+  variance: graduatecourse_variance_order_by
+}
+
+# input type for inserting array relation for remote table "graduatecourse"
+input graduatecourse_arr_rel_insert_input {
+  data: [graduatecourse_insert_input!]!
+  on_conflict: graduatecourse_on_conflict
+}
+
+# aggregate avg on columns
+type graduatecourse_avg_fields {
+  nr: Float
+  teacher: Float
+}
+
+# order by avg() on columns of table "graduatecourse"
+input graduatecourse_avg_order_by {
+  nr: order_by
+  teacher: order_by
+}
+
+# Boolean expression to filter rows from the table "graduatecourse". All fields are combined with a logical 'AND'.
+input graduatecourse_bool_exp {
+  _and: [graduatecourse_bool_exp]
+  _not: graduatecourse_bool_exp
+  _or: [graduatecourse_bool_exp]
+  faculty: faculty_bool_exp
+  graduatestudenttakecourses: graduatestudenttakecourse_bool_exp
+  name: String_comparison_exp
+  nr: Int_comparison_exp
+  teacher: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "graduatecourse"
+enum graduatecourse_constraint {
+  # unique or primary key constraint
+  graduatecourse_pkey
+}
+
+# input type for incrementing integer columne in table "graduatecourse"
+input graduatecourse_inc_input {
+  nr: Int
+  teacher: Int
+}
+
+# input type for inserting data into table "graduatecourse"
+input graduatecourse_insert_input {
+  faculty: faculty_obj_rel_insert_input
+  graduatestudenttakecourses: graduatestudenttakecourse_arr_rel_insert_input
+  name: String
+  nr: Int
+  teacher: Int
+}
+
+# aggregate max on columns
+type graduatecourse_max_fields {
+  name: String
+  nr: Int
+  teacher: Int
+}
+
+# order by max() on columns of table "graduatecourse"
+input graduatecourse_max_order_by {
+  name: order_by
+  nr: order_by
+  teacher: order_by
+}
+
+# aggregate min on columns
+type graduatecourse_min_fields {
+  name: String
+  nr: Int
+  teacher: Int
+}
+
+# order by min() on columns of table "graduatecourse"
+input graduatecourse_min_order_by {
+  name: order_by
+  nr: order_by
+  teacher: order_by
+}
+
+# response of any mutation on the table "graduatecourse"
+type graduatecourse_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [graduatecourse!]!
+}
+
+# input type for inserting object relation for remote table "graduatecourse"
+input graduatecourse_obj_rel_insert_input {
+  data: graduatecourse_insert_input!
+  on_conflict: graduatecourse_on_conflict
+}
+
+# on conflict condition type for table "graduatecourse"
+input graduatecourse_on_conflict {
+  constraint: graduatecourse_constraint!
+  update_columns: [graduatecourse_update_column!]!
+  where: graduatecourse_bool_exp
+}
+
+# ordering options when selecting data from "graduatecourse"
+input graduatecourse_order_by {
+  faculty: faculty_order_by
+  graduatestudenttakecourses_aggregate: graduatestudenttakecourse_aggregate_order_by
+  name: order_by
+  nr: order_by
+  teacher: order_by
+}
+
+# primary key columns input for table: "graduatecourse"
+input graduatecourse_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "graduatecourse"
+enum graduatecourse_select_column {
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  teacher
+}
+
+# input type for updating data in table "graduatecourse"
+input graduatecourse_set_input {
+  name: String
+  nr: Int
+  teacher: Int
+}
+
+# aggregate stddev on columns
+type graduatecourse_stddev_fields {
+  nr: Float
+  teacher: Float
+}
+
+# order by stddev() on columns of table "graduatecourse"
+input graduatecourse_stddev_order_by {
+  nr: order_by
+  teacher: order_by
+}
+
+# aggregate stddev_pop on columns
+type graduatecourse_stddev_pop_fields {
+  nr: Float
+  teacher: Float
+}
+
+# order by stddev_pop() on columns of table "graduatecourse"
+input graduatecourse_stddev_pop_order_by {
+  nr: order_by
+  teacher: order_by
+}
+
+# aggregate stddev_samp on columns
+type graduatecourse_stddev_samp_fields {
+  nr: Float
+  teacher: Float
+}
+
+# order by stddev_samp() on columns of table "graduatecourse"
+input graduatecourse_stddev_samp_order_by {
+  nr: order_by
+  teacher: order_by
+}
+
+# aggregate sum on columns
+type graduatecourse_sum_fields {
+  nr: Int
+  teacher: Int
+}
+
+# order by sum() on columns of table "graduatecourse"
+input graduatecourse_sum_order_by {
+  nr: order_by
+  teacher: order_by
+}
+
+# update columns of table "graduatecourse"
+enum graduatecourse_update_column {
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  teacher
+}
+
+# aggregate var_pop on columns
+type graduatecourse_var_pop_fields {
+  nr: Float
+  teacher: Float
+}
+
+# order by var_pop() on columns of table "graduatecourse"
+input graduatecourse_var_pop_order_by {
+  nr: order_by
+  teacher: order_by
+}
+
+# aggregate var_samp on columns
+type graduatecourse_var_samp_fields {
+  nr: Float
+  teacher: Float
+}
+
+# order by var_samp() on columns of table "graduatecourse"
+input graduatecourse_var_samp_order_by {
+  nr: order_by
+  teacher: order_by
+}
+
+# aggregate variance on columns
+type graduatecourse_variance_fields {
+  nr: Float
+  teacher: Float
+}
+
+# order by variance() on columns of table "graduatecourse"
+input graduatecourse_variance_order_by {
+  nr: order_by
+  teacher: order_by
+}
+
+# columns and relationships of "graduatestudent"
+type graduatestudent {
+  advisor: Int
+  age: Int
+
+  # An array relationship
+  coauthorofpublications(
+    # distinct select on columns
+    distinct_on: [coauthorofpublication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [coauthorofpublication_order_by!]
+
+    # filter the rows returned
+    where: coauthorofpublication_bool_exp
+  ): [coauthorofpublication!]!
+
+  # An aggregated array relationship
+  coauthorofpublications_aggregate(
+    # distinct select on columns
+    distinct_on: [coauthorofpublication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [coauthorofpublication_order_by!]
+
+    # filter the rows returned
+    where: coauthorofpublication_bool_exp
+  ): coauthorofpublication_aggregate!
+
+  # An object relationship
+  department: department
+  emailaddress: String
+
+  # An array relationship
+  graduatestudenttakecourses(
+    # distinct select on columns
+    distinct_on: [graduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatestudenttakecourse_bool_exp
+  ): [graduatestudenttakecourse!]!
+
+  # An aggregated array relationship
+  graduatestudenttakecourses_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatestudenttakecourse_bool_exp
+  ): graduatestudenttakecourse_aggregate!
+  memberof: Int
+  name: String
+  nr: Int!
+
+  # An object relationship
+  professor: professor
+  telephone: String
+
+  # An array relationship
+  undergraduatecourses(
+    # distinct select on columns
+    distinct_on: [undergraduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatecourse_bool_exp
+  ): [undergraduatecourse!]!
+
+  # An aggregated array relationship
+  undergraduatecourses_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatecourse_bool_exp
+  ): undergraduatecourse_aggregate!
+  undergraduatedegreefrom: Int
+
+  # An object relationship
+  university: university
+}
+
+# aggregated selection of "graduatestudent"
+type graduatestudent_aggregate {
+  aggregate: graduatestudent_aggregate_fields
+  nodes: [graduatestudent!]!
+}
+
+# aggregate fields of "graduatestudent"
+type graduatestudent_aggregate_fields {
+  avg: graduatestudent_avg_fields
+  count(columns: [graduatestudent_select_column!], distinct: Boolean): Int
+  max: graduatestudent_max_fields
+  min: graduatestudent_min_fields
+  stddev: graduatestudent_stddev_fields
+  stddev_pop: graduatestudent_stddev_pop_fields
+  stddev_samp: graduatestudent_stddev_samp_fields
+  sum: graduatestudent_sum_fields
+  var_pop: graduatestudent_var_pop_fields
+  var_samp: graduatestudent_var_samp_fields
+  variance: graduatestudent_variance_fields
+}
+
+# order by aggregate values of table "graduatestudent"
+input graduatestudent_aggregate_order_by {
+  avg: graduatestudent_avg_order_by
+  count: order_by
+  max: graduatestudent_max_order_by
+  min: graduatestudent_min_order_by
+  stddev: graduatestudent_stddev_order_by
+  stddev_pop: graduatestudent_stddev_pop_order_by
+  stddev_samp: graduatestudent_stddev_samp_order_by
+  sum: graduatestudent_sum_order_by
+  var_pop: graduatestudent_var_pop_order_by
+  var_samp: graduatestudent_var_samp_order_by
+  variance: graduatestudent_variance_order_by
+}
+
+# input type for inserting array relation for remote table "graduatestudent"
+input graduatestudent_arr_rel_insert_input {
+  data: [graduatestudent_insert_input!]!
+  on_conflict: graduatestudent_on_conflict
+}
+
+# aggregate avg on columns
+type graduatestudent_avg_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+}
+
+# order by avg() on columns of table "graduatestudent"
+input graduatestudent_avg_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# Boolean expression to filter rows from the table "graduatestudent". All fields are combined with a logical 'AND'.
+input graduatestudent_bool_exp {
+  _and: [graduatestudent_bool_exp]
+  _not: graduatestudent_bool_exp
+  _or: [graduatestudent_bool_exp]
+  advisor: Int_comparison_exp
+  age: Int_comparison_exp
+  coauthorofpublications: coauthorofpublication_bool_exp
+  department: department_bool_exp
+  emailaddress: String_comparison_exp
+  graduatestudenttakecourses: graduatestudenttakecourse_bool_exp
+  memberof: Int_comparison_exp
+  name: String_comparison_exp
+  nr: Int_comparison_exp
+  professor: professor_bool_exp
+  telephone: String_comparison_exp
+  undergraduatecourses: undergraduatecourse_bool_exp
+  undergraduatedegreefrom: Int_comparison_exp
+  university: university_bool_exp
+}
+
+# unique or primary key constraints on table "graduatestudent"
+enum graduatestudent_constraint {
+  # unique or primary key constraint
+  graduatestudent_pkey
+}
+
+# input type for incrementing integer columne in table "graduatestudent"
+input graduatestudent_inc_input {
+  advisor: Int
+  age: Int
+  memberof: Int
+  nr: Int
+  undergraduatedegreefrom: Int
+}
+
+# input type for inserting data into table "graduatestudent"
+input graduatestudent_insert_input {
+  advisor: Int
+  age: Int
+  coauthorofpublications: coauthorofpublication_arr_rel_insert_input
+  department: department_obj_rel_insert_input
+  emailaddress: String
+  graduatestudenttakecourses: graduatestudenttakecourse_arr_rel_insert_input
+  memberof: Int
+  name: String
+  nr: Int
+  professor: professor_obj_rel_insert_input
+  telephone: String
+  undergraduatecourses: undergraduatecourse_arr_rel_insert_input
+  undergraduatedegreefrom: Int
+  university: university_obj_rel_insert_input
+}
+
+# aggregate max on columns
+type graduatestudent_max_fields {
+  advisor: Int
+  age: Int
+  emailaddress: String
+  memberof: Int
+  name: String
+  nr: Int
+  telephone: String
+  undergraduatedegreefrom: Int
+}
+
+# order by max() on columns of table "graduatestudent"
+input graduatestudent_max_order_by {
+  advisor: order_by
+  age: order_by
+  emailaddress: order_by
+  memberof: order_by
+  name: order_by
+  nr: order_by
+  telephone: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# aggregate min on columns
+type graduatestudent_min_fields {
+  advisor: Int
+  age: Int
+  emailaddress: String
+  memberof: Int
+  name: String
+  nr: Int
+  telephone: String
+  undergraduatedegreefrom: Int
+}
+
+# order by min() on columns of table "graduatestudent"
+input graduatestudent_min_order_by {
+  advisor: order_by
+  age: order_by
+  emailaddress: order_by
+  memberof: order_by
+  name: order_by
+  nr: order_by
+  telephone: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# response of any mutation on the table "graduatestudent"
+type graduatestudent_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [graduatestudent!]!
+}
+
+# input type for inserting object relation for remote table "graduatestudent"
+input graduatestudent_obj_rel_insert_input {
+  data: graduatestudent_insert_input!
+  on_conflict: graduatestudent_on_conflict
+}
+
+# on conflict condition type for table "graduatestudent"
+input graduatestudent_on_conflict {
+  constraint: graduatestudent_constraint!
+  update_columns: [graduatestudent_update_column!]!
+  where: graduatestudent_bool_exp
+}
+
+# ordering options when selecting data from "graduatestudent"
+input graduatestudent_order_by {
+  advisor: order_by
+  age: order_by
+  coauthorofpublications_aggregate: coauthorofpublication_aggregate_order_by
+  department: department_order_by
+  emailaddress: order_by
+  graduatestudenttakecourses_aggregate: graduatestudenttakecourse_aggregate_order_by
+  memberof: order_by
+  name: order_by
+  nr: order_by
+  professor: professor_order_by
+  telephone: order_by
+  undergraduatecourses_aggregate: undergraduatecourse_aggregate_order_by
+  undergraduatedegreefrom: order_by
+  university: university_order_by
+}
+
+# primary key columns input for table: "graduatestudent"
+input graduatestudent_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "graduatestudent"
+enum graduatestudent_select_column {
+  # column name
+  advisor
+
+  # column name
+  age
+
+  # column name
+  emailaddress
+
+  # column name
+  memberof
+
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  telephone
+
+  # column name
+  undergraduatedegreefrom
+}
+
+# input type for updating data in table "graduatestudent"
+input graduatestudent_set_input {
+  advisor: Int
+  age: Int
+  emailaddress: String
+  memberof: Int
+  name: String
+  nr: Int
+  telephone: String
+  undergraduatedegreefrom: Int
+}
+
+# aggregate stddev on columns
+type graduatestudent_stddev_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+}
+
+# order by stddev() on columns of table "graduatestudent"
+input graduatestudent_stddev_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# aggregate stddev_pop on columns
+type graduatestudent_stddev_pop_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+}
+
+# order by stddev_pop() on columns of table "graduatestudent"
+input graduatestudent_stddev_pop_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# aggregate stddev_samp on columns
+type graduatestudent_stddev_samp_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+}
+
+# order by stddev_samp() on columns of table "graduatestudent"
+input graduatestudent_stddev_samp_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# aggregate sum on columns
+type graduatestudent_sum_fields {
+  advisor: Int
+  age: Int
+  memberof: Int
+  nr: Int
+  undergraduatedegreefrom: Int
+}
+
+# order by sum() on columns of table "graduatestudent"
+input graduatestudent_sum_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# update columns of table "graduatestudent"
+enum graduatestudent_update_column {
+  # column name
+  advisor
+
+  # column name
+  age
+
+  # column name
+  emailaddress
+
+  # column name
+  memberof
+
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  telephone
+
+  # column name
+  undergraduatedegreefrom
+}
+
+# aggregate var_pop on columns
+type graduatestudent_var_pop_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+}
+
+# order by var_pop() on columns of table "graduatestudent"
+input graduatestudent_var_pop_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# aggregate var_samp on columns
+type graduatestudent_var_samp_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+}
+
+# order by var_samp() on columns of table "graduatestudent"
+input graduatestudent_var_samp_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# aggregate variance on columns
+type graduatestudent_variance_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+  undergraduatedegreefrom: Float
+}
+
+# order by variance() on columns of table "graduatestudent"
+input graduatestudent_variance_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+  undergraduatedegreefrom: order_by
+}
+
+# columns and relationships of "graduatestudenttakecourse"
+type graduatestudenttakecourse {
+  # An object relationship
+  graduatecourse: graduatecourse!
+  graduatecourseid: Int!
+
+  # An object relationship
+  graduatestudent: graduatestudent!
+  graduatestudentid: Int!
+}
+
+# aggregated selection of "graduatestudenttakecourse"
+type graduatestudenttakecourse_aggregate {
+  aggregate: graduatestudenttakecourse_aggregate_fields
+  nodes: [graduatestudenttakecourse!]!
+}
+
+# aggregate fields of "graduatestudenttakecourse"
+type graduatestudenttakecourse_aggregate_fields {
+  avg: graduatestudenttakecourse_avg_fields
+  count(columns: [graduatestudenttakecourse_select_column!], distinct: Boolean): Int
+  max: graduatestudenttakecourse_max_fields
+  min: graduatestudenttakecourse_min_fields
+  stddev: graduatestudenttakecourse_stddev_fields
+  stddev_pop: graduatestudenttakecourse_stddev_pop_fields
+  stddev_samp: graduatestudenttakecourse_stddev_samp_fields
+  sum: graduatestudenttakecourse_sum_fields
+  var_pop: graduatestudenttakecourse_var_pop_fields
+  var_samp: graduatestudenttakecourse_var_samp_fields
+  variance: graduatestudenttakecourse_variance_fields
+}
+
+# order by aggregate values of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_aggregate_order_by {
+  avg: graduatestudenttakecourse_avg_order_by
+  count: order_by
+  max: graduatestudenttakecourse_max_order_by
+  min: graduatestudenttakecourse_min_order_by
+  stddev: graduatestudenttakecourse_stddev_order_by
+  stddev_pop: graduatestudenttakecourse_stddev_pop_order_by
+  stddev_samp: graduatestudenttakecourse_stddev_samp_order_by
+  sum: graduatestudenttakecourse_sum_order_by
+  var_pop: graduatestudenttakecourse_var_pop_order_by
+  var_samp: graduatestudenttakecourse_var_samp_order_by
+  variance: graduatestudenttakecourse_variance_order_by
+}
+
+# input type for inserting array relation for remote table "graduatestudenttakecourse"
+input graduatestudenttakecourse_arr_rel_insert_input {
+  data: [graduatestudenttakecourse_insert_input!]!
+  on_conflict: graduatestudenttakecourse_on_conflict
+}
+
+# aggregate avg on columns
+type graduatestudenttakecourse_avg_fields {
+  graduatecourseid: Float
+  graduatestudentid: Float
+}
+
+# order by avg() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_avg_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# Boolean expression to filter rows from the table "graduatestudenttakecourse". All fields are combined with a logical 'AND'.
+input graduatestudenttakecourse_bool_exp {
+  _and: [graduatestudenttakecourse_bool_exp]
+  _not: graduatestudenttakecourse_bool_exp
+  _or: [graduatestudenttakecourse_bool_exp]
+  graduatecourse: graduatecourse_bool_exp
+  graduatecourseid: Int_comparison_exp
+  graduatestudent: graduatestudent_bool_exp
+  graduatestudentid: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "graduatestudenttakecourse"
+enum graduatestudenttakecourse_constraint {
+  # unique or primary key constraint
+  graduatestudenttakecourse_pkey
+}
+
+# input type for incrementing integer columne in table "graduatestudenttakecourse"
+input graduatestudenttakecourse_inc_input {
+  graduatecourseid: Int
+  graduatestudentid: Int
+}
+
+# input type for inserting data into table "graduatestudenttakecourse"
+input graduatestudenttakecourse_insert_input {
+  graduatecourse: graduatecourse_obj_rel_insert_input
+  graduatecourseid: Int
+  graduatestudent: graduatestudent_obj_rel_insert_input
+  graduatestudentid: Int
+}
+
+# aggregate max on columns
+type graduatestudenttakecourse_max_fields {
+  graduatecourseid: Int
+  graduatestudentid: Int
+}
+
+# order by max() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_max_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# aggregate min on columns
+type graduatestudenttakecourse_min_fields {
+  graduatecourseid: Int
+  graduatestudentid: Int
+}
+
+# order by min() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_min_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# response of any mutation on the table "graduatestudenttakecourse"
+type graduatestudenttakecourse_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [graduatestudenttakecourse!]!
+}
+
+# input type for inserting object relation for remote table "graduatestudenttakecourse"
+input graduatestudenttakecourse_obj_rel_insert_input {
+  data: graduatestudenttakecourse_insert_input!
+  on_conflict: graduatestudenttakecourse_on_conflict
+}
+
+# on conflict condition type for table "graduatestudenttakecourse"
+input graduatestudenttakecourse_on_conflict {
+  constraint: graduatestudenttakecourse_constraint!
+  update_columns: [graduatestudenttakecourse_update_column!]!
+  where: graduatestudenttakecourse_bool_exp
+}
+
+# ordering options when selecting data from "graduatestudenttakecourse"
+input graduatestudenttakecourse_order_by {
+  graduatecourse: graduatecourse_order_by
+  graduatecourseid: order_by
+  graduatestudent: graduatestudent_order_by
+  graduatestudentid: order_by
+}
+
+# primary key columns input for table: "graduatestudenttakecourse"
+input graduatestudenttakecourse_pk_columns_input {
+  graduatecourseid: Int!
+  graduatestudentid: Int!
+}
+
+# select columns of table "graduatestudenttakecourse"
+enum graduatestudenttakecourse_select_column {
+  # column name
+  graduatecourseid
+
+  # column name
+  graduatestudentid
+}
+
+# input type for updating data in table "graduatestudenttakecourse"
+input graduatestudenttakecourse_set_input {
+  graduatecourseid: Int
+  graduatestudentid: Int
+}
+
+# aggregate stddev on columns
+type graduatestudenttakecourse_stddev_fields {
+  graduatecourseid: Float
+  graduatestudentid: Float
+}
+
+# order by stddev() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_stddev_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# aggregate stddev_pop on columns
+type graduatestudenttakecourse_stddev_pop_fields {
+  graduatecourseid: Float
+  graduatestudentid: Float
+}
+
+# order by stddev_pop() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_stddev_pop_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# aggregate stddev_samp on columns
+type graduatestudenttakecourse_stddev_samp_fields {
+  graduatecourseid: Float
+  graduatestudentid: Float
+}
+
+# order by stddev_samp() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_stddev_samp_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# aggregate sum on columns
+type graduatestudenttakecourse_sum_fields {
+  graduatecourseid: Int
+  graduatestudentid: Int
+}
+
+# order by sum() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_sum_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# update columns of table "graduatestudenttakecourse"
+enum graduatestudenttakecourse_update_column {
+  # column name
+  graduatecourseid
+
+  # column name
+  graduatestudentid
+}
+
+# aggregate var_pop on columns
+type graduatestudenttakecourse_var_pop_fields {
+  graduatecourseid: Float
+  graduatestudentid: Float
+}
+
+# order by var_pop() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_var_pop_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# aggregate var_samp on columns
+type graduatestudenttakecourse_var_samp_fields {
+  graduatecourseid: Float
+  graduatestudentid: Float
+}
+
+# order by var_samp() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_var_samp_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# aggregate variance on columns
+type graduatestudenttakecourse_variance_fields {
+  graduatecourseid: Float
+  graduatestudentid: Float
+}
+
+# order by variance() on columns of table "graduatestudenttakecourse"
+input graduatestudenttakecourse_variance_order_by {
+  graduatecourseid: order_by
+  graduatestudentid: order_by
+}
+
+# expression to compare columns of type Int. All fields are combined with logical 'AND'.
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+# columns and relationships of "lecturer"
+type lecturer {
+  # An object relationship
+  faculty: faculty!
+  nr: Int!
+}
+
+# aggregated selection of "lecturer"
+type lecturer_aggregate {
+  aggregate: lecturer_aggregate_fields
+  nodes: [lecturer!]!
+}
+
+# aggregate fields of "lecturer"
+type lecturer_aggregate_fields {
+  avg: lecturer_avg_fields
+  count(columns: [lecturer_select_column!], distinct: Boolean): Int
+  max: lecturer_max_fields
+  min: lecturer_min_fields
+  stddev: lecturer_stddev_fields
+  stddev_pop: lecturer_stddev_pop_fields
+  stddev_samp: lecturer_stddev_samp_fields
+  sum: lecturer_sum_fields
+  var_pop: lecturer_var_pop_fields
+  var_samp: lecturer_var_samp_fields
+  variance: lecturer_variance_fields
+}
+
+# order by aggregate values of table "lecturer"
+input lecturer_aggregate_order_by {
+  avg: lecturer_avg_order_by
+  count: order_by
+  max: lecturer_max_order_by
+  min: lecturer_min_order_by
+  stddev: lecturer_stddev_order_by
+  stddev_pop: lecturer_stddev_pop_order_by
+  stddev_samp: lecturer_stddev_samp_order_by
+  sum: lecturer_sum_order_by
+  var_pop: lecturer_var_pop_order_by
+  var_samp: lecturer_var_samp_order_by
+  variance: lecturer_variance_order_by
+}
+
+# input type for inserting array relation for remote table "lecturer"
+input lecturer_arr_rel_insert_input {
+  data: [lecturer_insert_input!]!
+  on_conflict: lecturer_on_conflict
+}
+
+# aggregate avg on columns
+type lecturer_avg_fields {
+  nr: Float
+}
+
+# order by avg() on columns of table "lecturer"
+input lecturer_avg_order_by {
+  nr: order_by
+}
+
+# Boolean expression to filter rows from the table "lecturer". All fields are combined with a logical 'AND'.
+input lecturer_bool_exp {
+  _and: [lecturer_bool_exp]
+  _not: lecturer_bool_exp
+  _or: [lecturer_bool_exp]
+  faculty: faculty_bool_exp
+  nr: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "lecturer"
+enum lecturer_constraint {
+  # unique or primary key constraint
+  lecturer_pkey
+}
+
+# input type for incrementing integer columne in table "lecturer"
+input lecturer_inc_input {
+  nr: Int
+}
+
+# input type for inserting data into table "lecturer"
+input lecturer_insert_input {
+  faculty: faculty_obj_rel_insert_input
+  nr: Int
+}
+
+# aggregate max on columns
+type lecturer_max_fields {
+  nr: Int
+}
+
+# order by max() on columns of table "lecturer"
+input lecturer_max_order_by {
+  nr: order_by
+}
+
+# aggregate min on columns
+type lecturer_min_fields {
+  nr: Int
+}
+
+# order by min() on columns of table "lecturer"
+input lecturer_min_order_by {
+  nr: order_by
+}
+
+# response of any mutation on the table "lecturer"
+type lecturer_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [lecturer!]!
+}
+
+# input type for inserting object relation for remote table "lecturer"
+input lecturer_obj_rel_insert_input {
+  data: lecturer_insert_input!
+  on_conflict: lecturer_on_conflict
+}
+
+# on conflict condition type for table "lecturer"
+input lecturer_on_conflict {
+  constraint: lecturer_constraint!
+  update_columns: [lecturer_update_column!]!
+  where: lecturer_bool_exp
+}
+
+# ordering options when selecting data from "lecturer"
+input lecturer_order_by {
+  faculty: faculty_order_by
+  nr: order_by
+}
+
+# primary key columns input for table: "lecturer"
+input lecturer_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "lecturer"
+enum lecturer_select_column {
+  # column name
+  nr
+}
+
+# input type for updating data in table "lecturer"
+input lecturer_set_input {
+  nr: Int
+}
+
+# aggregate stddev on columns
+type lecturer_stddev_fields {
+  nr: Float
+}
+
+# order by stddev() on columns of table "lecturer"
+input lecturer_stddev_order_by {
+  nr: order_by
+}
+
+# aggregate stddev_pop on columns
+type lecturer_stddev_pop_fields {
+  nr: Float
+}
+
+# order by stddev_pop() on columns of table "lecturer"
+input lecturer_stddev_pop_order_by {
+  nr: order_by
+}
+
+# aggregate stddev_samp on columns
+type lecturer_stddev_samp_fields {
+  nr: Float
+}
+
+# order by stddev_samp() on columns of table "lecturer"
+input lecturer_stddev_samp_order_by {
+  nr: order_by
+}
+
+# aggregate sum on columns
+type lecturer_sum_fields {
+  nr: Int
+}
+
+# order by sum() on columns of table "lecturer"
+input lecturer_sum_order_by {
+  nr: order_by
+}
+
+# update columns of table "lecturer"
+enum lecturer_update_column {
+  # column name
+  nr
+}
+
+# aggregate var_pop on columns
+type lecturer_var_pop_fields {
+  nr: Float
+}
+
+# order by var_pop() on columns of table "lecturer"
+input lecturer_var_pop_order_by {
+  nr: order_by
+}
+
+# aggregate var_samp on columns
+type lecturer_var_samp_fields {
+  nr: Float
+}
+
+# order by var_samp() on columns of table "lecturer"
+input lecturer_var_samp_order_by {
+  nr: order_by
+}
+
+# aggregate variance on columns
+type lecturer_variance_fields {
+  nr: Float
+}
+
+# order by variance() on columns of table "lecturer"
+input lecturer_variance_order_by {
+  nr: order_by
+}
+
+# mutation root
+type mutation_root {
+  # delete data from the table: "coauthorofpublication"
+  delete_coauthorofpublication(
+    # filter the rows which have to be deleted
+    where: coauthorofpublication_bool_exp!
+  ): coauthorofpublication_mutation_response
+
+  # delete single row from the table: "coauthorofpublication"
+  delete_coauthorofpublication_by_pk(graduatestudentid: Int!, publicationid: Int!): coauthorofpublication
+
+  # delete data from the table: "department"
+  delete_department(
+    # filter the rows which have to be deleted
+    where: department_bool_exp!
+  ): department_mutation_response
+
+  # delete single row from the table: "department"
+  delete_department_by_pk(nr: Int!): department
+
+  # delete data from the table: "faculty"
+  delete_faculty(
+    # filter the rows which have to be deleted
+    where: faculty_bool_exp!
+  ): faculty_mutation_response
+
+  # delete single row from the table: "faculty"
+  delete_faculty_by_pk(nr: Int!): faculty
+
+  # delete data from the table: "graduatecourse"
+  delete_graduatecourse(
+    # filter the rows which have to be deleted
+    where: graduatecourse_bool_exp!
+  ): graduatecourse_mutation_response
+
+  # delete single row from the table: "graduatecourse"
+  delete_graduatecourse_by_pk(nr: Int!): graduatecourse
+
+  # delete data from the table: "graduatestudent"
+  delete_graduatestudent(
+    # filter the rows which have to be deleted
+    where: graduatestudent_bool_exp!
+  ): graduatestudent_mutation_response
+
+  # delete single row from the table: "graduatestudent"
+  delete_graduatestudent_by_pk(nr: Int!): graduatestudent
+
+  # delete data from the table: "graduatestudenttakecourse"
+  delete_graduatestudenttakecourse(
+    # filter the rows which have to be deleted
+    where: graduatestudenttakecourse_bool_exp!
+  ): graduatestudenttakecourse_mutation_response
+
+  # delete single row from the table: "graduatestudenttakecourse"
+  delete_graduatestudenttakecourse_by_pk(graduatecourseid: Int!, graduatestudentid: Int!): graduatestudenttakecourse
+
+  # delete data from the table: "lecturer"
+  delete_lecturer(
+    # filter the rows which have to be deleted
+    where: lecturer_bool_exp!
+  ): lecturer_mutation_response
+
+  # delete single row from the table: "lecturer"
+  delete_lecturer_by_pk(nr: Int!): lecturer
+
+  # delete data from the table: "professor"
+  delete_professor(
+    # filter the rows which have to be deleted
+    where: professor_bool_exp!
+  ): professor_mutation_response
+
+  # delete single row from the table: "professor"
+  delete_professor_by_pk(nr: Int!): professor
+
+  # delete data from the table: "publication"
+  delete_publication(
+    # filter the rows which have to be deleted
+    where: publication_bool_exp!
+  ): publication_mutation_response
+
+  # delete single row from the table: "publication"
+  delete_publication_by_pk(nr: Int!): publication
+
+  # delete data from the table: "researchgroup"
+  delete_researchgroup(
+    # filter the rows which have to be deleted
+    where: researchgroup_bool_exp!
+  ): researchgroup_mutation_response
+
+  # delete single row from the table: "researchgroup"
+  delete_researchgroup_by_pk(nr: Int!): researchgroup
+
+  # delete data from the table: "undergraduatecourse"
+  delete_undergraduatecourse(
+    # filter the rows which have to be deleted
+    where: undergraduatecourse_bool_exp!
+  ): undergraduatecourse_mutation_response
+
+  # delete single row from the table: "undergraduatecourse"
+  delete_undergraduatecourse_by_pk(nr: Int!): undergraduatecourse
+
+  # delete data from the table: "undergraduatestudent"
+  delete_undergraduatestudent(
+    # filter the rows which have to be deleted
+    where: undergraduatestudent_bool_exp!
+  ): undergraduatestudent_mutation_response
+
+  # delete single row from the table: "undergraduatestudent"
+  delete_undergraduatestudent_by_pk(nr: Int!): undergraduatestudent
+
+  # delete data from the table: "undergraduatestudenttakecourse"
+  delete_undergraduatestudenttakecourse(
+    # filter the rows which have to be deleted
+    where: undergraduatestudenttakecourse_bool_exp!
+  ): undergraduatestudenttakecourse_mutation_response
+
+  # delete single row from the table: "undergraduatestudenttakecourse"
+  delete_undergraduatestudenttakecourse_by_pk(undergraduatecourseid: Int!, undergraduatestudentid: Int!): undergraduatestudenttakecourse
+
+  # delete data from the table: "university"
+  delete_university(
+    # filter the rows which have to be deleted
+    where: university_bool_exp!
+  ): university_mutation_response
+
+  # delete single row from the table: "university"
+  delete_university_by_pk(nr: Int!): university
+
+  # insert data into the table: "coauthorofpublication"
+  insert_coauthorofpublication(
+    # the rows to be inserted
+    objects: [coauthorofpublication_insert_input!]!
+
+    # on conflict condition
+    on_conflict: coauthorofpublication_on_conflict
+  ): coauthorofpublication_mutation_response
+
+  # insert a single row into the table: "coauthorofpublication"
+  insert_coauthorofpublication_one(
+    # the row to be inserted
+    object: coauthorofpublication_insert_input!
+
+    # on conflict condition
+    on_conflict: coauthorofpublication_on_conflict
+  ): coauthorofpublication
+
+  # insert data into the table: "department"
+  insert_department(
+    # the rows to be inserted
+    objects: [department_insert_input!]!
+
+    # on conflict condition
+    on_conflict: department_on_conflict
+  ): department_mutation_response
+
+  # insert a single row into the table: "department"
+  insert_department_one(
+    # the row to be inserted
+    object: department_insert_input!
+
+    # on conflict condition
+    on_conflict: department_on_conflict
+  ): department
+
+  # insert data into the table: "faculty"
+  insert_faculty(
+    # the rows to be inserted
+    objects: [faculty_insert_input!]!
+
+    # on conflict condition
+    on_conflict: faculty_on_conflict
+  ): faculty_mutation_response
+
+  # insert a single row into the table: "faculty"
+  insert_faculty_one(
+    # the row to be inserted
+    object: faculty_insert_input!
+
+    # on conflict condition
+    on_conflict: faculty_on_conflict
+  ): faculty
+
+  # insert data into the table: "graduatecourse"
+  insert_graduatecourse(
+    # the rows to be inserted
+    objects: [graduatecourse_insert_input!]!
+
+    # on conflict condition
+    on_conflict: graduatecourse_on_conflict
+  ): graduatecourse_mutation_response
+
+  # insert a single row into the table: "graduatecourse"
+  insert_graduatecourse_one(
+    # the row to be inserted
+    object: graduatecourse_insert_input!
+
+    # on conflict condition
+    on_conflict: graduatecourse_on_conflict
+  ): graduatecourse
+
+  # insert data into the table: "graduatestudent"
+  insert_graduatestudent(
+    # the rows to be inserted
+    objects: [graduatestudent_insert_input!]!
+
+    # on conflict condition
+    on_conflict: graduatestudent_on_conflict
+  ): graduatestudent_mutation_response
+
+  # insert a single row into the table: "graduatestudent"
+  insert_graduatestudent_one(
+    # the row to be inserted
+    object: graduatestudent_insert_input!
+
+    # on conflict condition
+    on_conflict: graduatestudent_on_conflict
+  ): graduatestudent
+
+  # insert data into the table: "graduatestudenttakecourse"
+  insert_graduatestudenttakecourse(
+    # the rows to be inserted
+    objects: [graduatestudenttakecourse_insert_input!]!
+
+    # on conflict condition
+    on_conflict: graduatestudenttakecourse_on_conflict
+  ): graduatestudenttakecourse_mutation_response
+
+  # insert a single row into the table: "graduatestudenttakecourse"
+  insert_graduatestudenttakecourse_one(
+    # the row to be inserted
+    object: graduatestudenttakecourse_insert_input!
+
+    # on conflict condition
+    on_conflict: graduatestudenttakecourse_on_conflict
+  ): graduatestudenttakecourse
+
+  # insert data into the table: "lecturer"
+  insert_lecturer(
+    # the rows to be inserted
+    objects: [lecturer_insert_input!]!
+
+    # on conflict condition
+    on_conflict: lecturer_on_conflict
+  ): lecturer_mutation_response
+
+  # insert a single row into the table: "lecturer"
+  insert_lecturer_one(
+    # the row to be inserted
+    object: lecturer_insert_input!
+
+    # on conflict condition
+    on_conflict: lecturer_on_conflict
+  ): lecturer
+
+  # insert data into the table: "professor"
+  insert_professor(
+    # the rows to be inserted
+    objects: [professor_insert_input!]!
+
+    # on conflict condition
+    on_conflict: professor_on_conflict
+  ): professor_mutation_response
+
+  # insert a single row into the table: "professor"
+  insert_professor_one(
+    # the row to be inserted
+    object: professor_insert_input!
+
+    # on conflict condition
+    on_conflict: professor_on_conflict
+  ): professor
+
+  # insert data into the table: "publication"
+  insert_publication(
+    # the rows to be inserted
+    objects: [publication_insert_input!]!
+
+    # on conflict condition
+    on_conflict: publication_on_conflict
+  ): publication_mutation_response
+
+  # insert a single row into the table: "publication"
+  insert_publication_one(
+    # the row to be inserted
+    object: publication_insert_input!
+
+    # on conflict condition
+    on_conflict: publication_on_conflict
+  ): publication
+
+  # insert data into the table: "researchgroup"
+  insert_researchgroup(
+    # the rows to be inserted
+    objects: [researchgroup_insert_input!]!
+
+    # on conflict condition
+    on_conflict: researchgroup_on_conflict
+  ): researchgroup_mutation_response
+
+  # insert a single row into the table: "researchgroup"
+  insert_researchgroup_one(
+    # the row to be inserted
+    object: researchgroup_insert_input!
+
+    # on conflict condition
+    on_conflict: researchgroup_on_conflict
+  ): researchgroup
+
+  # insert data into the table: "undergraduatecourse"
+  insert_undergraduatecourse(
+    # the rows to be inserted
+    objects: [undergraduatecourse_insert_input!]!
+
+    # on conflict condition
+    on_conflict: undergraduatecourse_on_conflict
+  ): undergraduatecourse_mutation_response
+
+  # insert a single row into the table: "undergraduatecourse"
+  insert_undergraduatecourse_one(
+    # the row to be inserted
+    object: undergraduatecourse_insert_input!
+
+    # on conflict condition
+    on_conflict: undergraduatecourse_on_conflict
+  ): undergraduatecourse
+
+  # insert data into the table: "undergraduatestudent"
+  insert_undergraduatestudent(
+    # the rows to be inserted
+    objects: [undergraduatestudent_insert_input!]!
+
+    # on conflict condition
+    on_conflict: undergraduatestudent_on_conflict
+  ): undergraduatestudent_mutation_response
+
+  # insert a single row into the table: "undergraduatestudent"
+  insert_undergraduatestudent_one(
+    # the row to be inserted
+    object: undergraduatestudent_insert_input!
+
+    # on conflict condition
+    on_conflict: undergraduatestudent_on_conflict
+  ): undergraduatestudent
+
+  # insert data into the table: "undergraduatestudenttakecourse"
+  insert_undergraduatestudenttakecourse(
+    # the rows to be inserted
+    objects: [undergraduatestudenttakecourse_insert_input!]!
+
+    # on conflict condition
+    on_conflict: undergraduatestudenttakecourse_on_conflict
+  ): undergraduatestudenttakecourse_mutation_response
+
+  # insert a single row into the table: "undergraduatestudenttakecourse"
+  insert_undergraduatestudenttakecourse_one(
+    # the row to be inserted
+    object: undergraduatestudenttakecourse_insert_input!
+
+    # on conflict condition
+    on_conflict: undergraduatestudenttakecourse_on_conflict
+  ): undergraduatestudenttakecourse
+
+  # insert data into the table: "university"
+  insert_university(
+    # the rows to be inserted
+    objects: [university_insert_input!]!
+
+    # on conflict condition
+    on_conflict: university_on_conflict
+  ): university_mutation_response
+
+  # insert a single row into the table: "university"
+  insert_university_one(
+    # the row to be inserted
+    object: university_insert_input!
+
+    # on conflict condition
+    on_conflict: university_on_conflict
+  ): university
+
+  # update data of the table: "coauthorofpublication"
+  update_coauthorofpublication(
+    # increments the integer columns with given value of the filtered values
+    _inc: coauthorofpublication_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: coauthorofpublication_set_input
+
+    # filter the rows which have to be updated
+    where: coauthorofpublication_bool_exp!
+  ): coauthorofpublication_mutation_response
+
+  # update single row of the table: "coauthorofpublication"
+  update_coauthorofpublication_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: coauthorofpublication_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: coauthorofpublication_set_input
+    pk_columns: coauthorofpublication_pk_columns_input!
+  ): coauthorofpublication
+
+  # update data of the table: "department"
+  update_department(
+    # increments the integer columns with given value of the filtered values
+    _inc: department_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: department_set_input
+
+    # filter the rows which have to be updated
+    where: department_bool_exp!
+  ): department_mutation_response
+
+  # update single row of the table: "department"
+  update_department_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: department_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: department_set_input
+    pk_columns: department_pk_columns_input!
+  ): department
+
+  # update data of the table: "faculty"
+  update_faculty(
+    # increments the integer columns with given value of the filtered values
+    _inc: faculty_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: faculty_set_input
+
+    # filter the rows which have to be updated
+    where: faculty_bool_exp!
+  ): faculty_mutation_response
+
+  # update single row of the table: "faculty"
+  update_faculty_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: faculty_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: faculty_set_input
+    pk_columns: faculty_pk_columns_input!
+  ): faculty
+
+  # update data of the table: "graduatecourse"
+  update_graduatecourse(
+    # increments the integer columns with given value of the filtered values
+    _inc: graduatecourse_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: graduatecourse_set_input
+
+    # filter the rows which have to be updated
+    where: graduatecourse_bool_exp!
+  ): graduatecourse_mutation_response
+
+  # update single row of the table: "graduatecourse"
+  update_graduatecourse_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: graduatecourse_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: graduatecourse_set_input
+    pk_columns: graduatecourse_pk_columns_input!
+  ): graduatecourse
+
+  # update data of the table: "graduatestudent"
+  update_graduatestudent(
+    # increments the integer columns with given value of the filtered values
+    _inc: graduatestudent_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: graduatestudent_set_input
+
+    # filter the rows which have to be updated
+    where: graduatestudent_bool_exp!
+  ): graduatestudent_mutation_response
+
+  # update single row of the table: "graduatestudent"
+  update_graduatestudent_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: graduatestudent_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: graduatestudent_set_input
+    pk_columns: graduatestudent_pk_columns_input!
+  ): graduatestudent
+
+  # update data of the table: "graduatestudenttakecourse"
+  update_graduatestudenttakecourse(
+    # increments the integer columns with given value of the filtered values
+    _inc: graduatestudenttakecourse_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: graduatestudenttakecourse_set_input
+
+    # filter the rows which have to be updated
+    where: graduatestudenttakecourse_bool_exp!
+  ): graduatestudenttakecourse_mutation_response
+
+  # update single row of the table: "graduatestudenttakecourse"
+  update_graduatestudenttakecourse_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: graduatestudenttakecourse_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: graduatestudenttakecourse_set_input
+    pk_columns: graduatestudenttakecourse_pk_columns_input!
+  ): graduatestudenttakecourse
+
+  # update data of the table: "lecturer"
+  update_lecturer(
+    # increments the integer columns with given value of the filtered values
+    _inc: lecturer_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: lecturer_set_input
+
+    # filter the rows which have to be updated
+    where: lecturer_bool_exp!
+  ): lecturer_mutation_response
+
+  # update single row of the table: "lecturer"
+  update_lecturer_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: lecturer_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: lecturer_set_input
+    pk_columns: lecturer_pk_columns_input!
+  ): lecturer
+
+  # update data of the table: "professor"
+  update_professor(
+    # increments the integer columns with given value of the filtered values
+    _inc: professor_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: professor_set_input
+
+    # filter the rows which have to be updated
+    where: professor_bool_exp!
+  ): professor_mutation_response
+
+  # update single row of the table: "professor"
+  update_professor_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: professor_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: professor_set_input
+    pk_columns: professor_pk_columns_input!
+  ): professor
+
+  # update data of the table: "publication"
+  update_publication(
+    # increments the integer columns with given value of the filtered values
+    _inc: publication_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: publication_set_input
+
+    # filter the rows which have to be updated
+    where: publication_bool_exp!
+  ): publication_mutation_response
+
+  # update single row of the table: "publication"
+  update_publication_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: publication_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: publication_set_input
+    pk_columns: publication_pk_columns_input!
+  ): publication
+
+  # update data of the table: "researchgroup"
+  update_researchgroup(
+    # increments the integer columns with given value of the filtered values
+    _inc: researchgroup_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: researchgroup_set_input
+
+    # filter the rows which have to be updated
+    where: researchgroup_bool_exp!
+  ): researchgroup_mutation_response
+
+  # update single row of the table: "researchgroup"
+  update_researchgroup_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: researchgroup_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: researchgroup_set_input
+    pk_columns: researchgroup_pk_columns_input!
+  ): researchgroup
+
+  # update data of the table: "undergraduatecourse"
+  update_undergraduatecourse(
+    # increments the integer columns with given value of the filtered values
+    _inc: undergraduatecourse_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: undergraduatecourse_set_input
+
+    # filter the rows which have to be updated
+    where: undergraduatecourse_bool_exp!
+  ): undergraduatecourse_mutation_response
+
+  # update single row of the table: "undergraduatecourse"
+  update_undergraduatecourse_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: undergraduatecourse_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: undergraduatecourse_set_input
+    pk_columns: undergraduatecourse_pk_columns_input!
+  ): undergraduatecourse
+
+  # update data of the table: "undergraduatestudent"
+  update_undergraduatestudent(
+    # increments the integer columns with given value of the filtered values
+    _inc: undergraduatestudent_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: undergraduatestudent_set_input
+
+    # filter the rows which have to be updated
+    where: undergraduatestudent_bool_exp!
+  ): undergraduatestudent_mutation_response
+
+  # update single row of the table: "undergraduatestudent"
+  update_undergraduatestudent_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: undergraduatestudent_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: undergraduatestudent_set_input
+    pk_columns: undergraduatestudent_pk_columns_input!
+  ): undergraduatestudent
+
+  # update data of the table: "undergraduatestudenttakecourse"
+  update_undergraduatestudenttakecourse(
+    # increments the integer columns with given value of the filtered values
+    _inc: undergraduatestudenttakecourse_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: undergraduatestudenttakecourse_set_input
+
+    # filter the rows which have to be updated
+    where: undergraduatestudenttakecourse_bool_exp!
+  ): undergraduatestudenttakecourse_mutation_response
+
+  # update single row of the table: "undergraduatestudenttakecourse"
+  update_undergraduatestudenttakecourse_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: undergraduatestudenttakecourse_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: undergraduatestudenttakecourse_set_input
+    pk_columns: undergraduatestudenttakecourse_pk_columns_input!
+  ): undergraduatestudenttakecourse
+
+  # update data of the table: "university"
+  update_university(
+    # increments the integer columns with given value of the filtered values
+    _inc: university_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: university_set_input
+
+    # filter the rows which have to be updated
+    where: university_bool_exp!
+  ): university_mutation_response
+
+  # update single row of the table: "university"
+  update_university_by_pk(
+    # increments the integer columns with given value of the filtered values
+    _inc: university_inc_input
+
+    # sets the columns of the filtered rows to the given values
+    _set: university_set_input
+    pk_columns: university_pk_columns_input!
+  ): university
+}
+
+# column ordering options
+enum order_by {
+  # in the ascending order, nulls last
+  asc
+
+  # in the ascending order, nulls first
+  asc_nulls_first
+
+  # in the ascending order, nulls last
+  asc_nulls_last
+
+  # in the descending order, nulls first
+  desc
+
+  # in the descending order, nulls first
+  desc_nulls_first
+
+  # in the descending order, nulls last
+  desc_nulls_last
+}
+
+# columns and relationships of "professor"
+type professor {
+  # An object relationship
+  department: department
+
+  # An object relationship
+  faculty: faculty!
+
+  # An array relationship
+  graduatestudents(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): [graduatestudent!]!
+
+  # An aggregated array relationship
+  graduatestudents_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): graduatestudent_aggregate!
+  headof: Int
+  nr: Int!
+  professortype: String
+  researchinterest: String
+
+  # An array relationship
+  undergraduatestudents(
+    # distinct select on columns
+    distinct_on: [undergraduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudent_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudent_bool_exp
+  ): [undergraduatestudent!]!
+
+  # An aggregated array relationship
+  undergraduatestudents_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudent_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudent_bool_exp
+  ): undergraduatestudent_aggregate!
+}
+
+# aggregated selection of "professor"
+type professor_aggregate {
+  aggregate: professor_aggregate_fields
+  nodes: [professor!]!
+}
+
+# aggregate fields of "professor"
+type professor_aggregate_fields {
+  avg: professor_avg_fields
+  count(columns: [professor_select_column!], distinct: Boolean): Int
+  max: professor_max_fields
+  min: professor_min_fields
+  stddev: professor_stddev_fields
+  stddev_pop: professor_stddev_pop_fields
+  stddev_samp: professor_stddev_samp_fields
+  sum: professor_sum_fields
+  var_pop: professor_var_pop_fields
+  var_samp: professor_var_samp_fields
+  variance: professor_variance_fields
+}
+
+# order by aggregate values of table "professor"
+input professor_aggregate_order_by {
+  avg: professor_avg_order_by
+  count: order_by
+  max: professor_max_order_by
+  min: professor_min_order_by
+  stddev: professor_stddev_order_by
+  stddev_pop: professor_stddev_pop_order_by
+  stddev_samp: professor_stddev_samp_order_by
+  sum: professor_sum_order_by
+  var_pop: professor_var_pop_order_by
+  var_samp: professor_var_samp_order_by
+  variance: professor_variance_order_by
+}
+
+# input type for inserting array relation for remote table "professor"
+input professor_arr_rel_insert_input {
+  data: [professor_insert_input!]!
+  on_conflict: professor_on_conflict
+}
+
+# aggregate avg on columns
+type professor_avg_fields {
+  headof: Float
+  nr: Float
+}
+
+# order by avg() on columns of table "professor"
+input professor_avg_order_by {
+  headof: order_by
+  nr: order_by
+}
+
+# Boolean expression to filter rows from the table "professor". All fields are combined with a logical 'AND'.
+input professor_bool_exp {
+  _and: [professor_bool_exp]
+  _not: professor_bool_exp
+  _or: [professor_bool_exp]
+  department: department_bool_exp
+  faculty: faculty_bool_exp
+  graduatestudents: graduatestudent_bool_exp
+  headof: Int_comparison_exp
+  nr: Int_comparison_exp
+  professortype: String_comparison_exp
+  researchinterest: String_comparison_exp
+  undergraduatestudents: undergraduatestudent_bool_exp
+}
+
+# unique or primary key constraints on table "professor"
+enum professor_constraint {
+  # unique or primary key constraint
+  professor_pkey
+}
+
+# input type for incrementing integer columne in table "professor"
+input professor_inc_input {
+  headof: Int
+  nr: Int
+}
+
+# input type for inserting data into table "professor"
+input professor_insert_input {
+  department: department_obj_rel_insert_input
+  faculty: faculty_obj_rel_insert_input
+  graduatestudents: graduatestudent_arr_rel_insert_input
+  headof: Int
+  nr: Int
+  professortype: String
+  researchinterest: String
+  undergraduatestudents: undergraduatestudent_arr_rel_insert_input
+}
+
+# aggregate max on columns
+type professor_max_fields {
+  headof: Int
+  nr: Int
+  professortype: String
+  researchinterest: String
+}
+
+# order by max() on columns of table "professor"
+input professor_max_order_by {
+  headof: order_by
+  nr: order_by
+  professortype: order_by
+  researchinterest: order_by
+}
+
+# aggregate min on columns
+type professor_min_fields {
+  headof: Int
+  nr: Int
+  professortype: String
+  researchinterest: String
+}
+
+# order by min() on columns of table "professor"
+input professor_min_order_by {
+  headof: order_by
+  nr: order_by
+  professortype: order_by
+  researchinterest: order_by
+}
+
+# response of any mutation on the table "professor"
+type professor_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [professor!]!
+}
+
+# input type for inserting object relation for remote table "professor"
+input professor_obj_rel_insert_input {
+  data: professor_insert_input!
+  on_conflict: professor_on_conflict
+}
+
+# on conflict condition type for table "professor"
+input professor_on_conflict {
+  constraint: professor_constraint!
+  update_columns: [professor_update_column!]!
+  where: professor_bool_exp
+}
+
+# ordering options when selecting data from "professor"
+input professor_order_by {
+  department: department_order_by
+  faculty: faculty_order_by
+  graduatestudents_aggregate: graduatestudent_aggregate_order_by
+  headof: order_by
+  nr: order_by
+  professortype: order_by
+  researchinterest: order_by
+  undergraduatestudents_aggregate: undergraduatestudent_aggregate_order_by
+}
+
+# primary key columns input for table: "professor"
+input professor_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "professor"
+enum professor_select_column {
+  # column name
+  headof
+
+  # column name
+  nr
+
+  # column name
+  professortype
+
+  # column name
+  researchinterest
+}
+
+# input type for updating data in table "professor"
+input professor_set_input {
+  headof: Int
+  nr: Int
+  professortype: String
+  researchinterest: String
+}
+
+# aggregate stddev on columns
+type professor_stddev_fields {
+  headof: Float
+  nr: Float
+}
+
+# order by stddev() on columns of table "professor"
+input professor_stddev_order_by {
+  headof: order_by
+  nr: order_by
+}
+
+# aggregate stddev_pop on columns
+type professor_stddev_pop_fields {
+  headof: Float
+  nr: Float
+}
+
+# order by stddev_pop() on columns of table "professor"
+input professor_stddev_pop_order_by {
+  headof: order_by
+  nr: order_by
+}
+
+# aggregate stddev_samp on columns
+type professor_stddev_samp_fields {
+  headof: Float
+  nr: Float
+}
+
+# order by stddev_samp() on columns of table "professor"
+input professor_stddev_samp_order_by {
+  headof: order_by
+  nr: order_by
+}
+
+# aggregate sum on columns
+type professor_sum_fields {
+  headof: Int
+  nr: Int
+}
+
+# order by sum() on columns of table "professor"
+input professor_sum_order_by {
+  headof: order_by
+  nr: order_by
+}
+
+# update columns of table "professor"
+enum professor_update_column {
+  # column name
+  headof
+
+  # column name
+  nr
+
+  # column name
+  professortype
+
+  # column name
+  researchinterest
+}
+
+# aggregate var_pop on columns
+type professor_var_pop_fields {
+  headof: Float
+  nr: Float
+}
+
+# order by var_pop() on columns of table "professor"
+input professor_var_pop_order_by {
+  headof: order_by
+  nr: order_by
+}
+
+# aggregate var_samp on columns
+type professor_var_samp_fields {
+  headof: Float
+  nr: Float
+}
+
+# order by var_samp() on columns of table "professor"
+input professor_var_samp_order_by {
+  headof: order_by
+  nr: order_by
+}
+
+# aggregate variance on columns
+type professor_variance_fields {
+  headof: Float
+  nr: Float
+}
+
+# order by variance() on columns of table "professor"
+input professor_variance_order_by {
+  headof: order_by
+  nr: order_by
+}
+
+# columns and relationships of "publication"
+type publication {
+  abstract: String
+
+  # An array relationship
+  coauthorofpublications(
+    # distinct select on columns
+    distinct_on: [coauthorofpublication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [coauthorofpublication_order_by!]
+
+    # filter the rows returned
+    where: coauthorofpublication_bool_exp
+  ): [coauthorofpublication!]!
+
+  # An aggregated array relationship
+  coauthorofpublications_aggregate(
+    # distinct select on columns
+    distinct_on: [coauthorofpublication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [coauthorofpublication_order_by!]
+
+    # filter the rows returned
+    where: coauthorofpublication_bool_exp
+  ): coauthorofpublication_aggregate!
+
+  # An object relationship
+  faculty: faculty
+  mainauthor: Int
+  name: String
+  nr: Int!
+  title: String
+}
+
+# aggregated selection of "publication"
+type publication_aggregate {
+  aggregate: publication_aggregate_fields
+  nodes: [publication!]!
+}
+
+# aggregate fields of "publication"
+type publication_aggregate_fields {
+  avg: publication_avg_fields
+  count(columns: [publication_select_column!], distinct: Boolean): Int
+  max: publication_max_fields
+  min: publication_min_fields
+  stddev: publication_stddev_fields
+  stddev_pop: publication_stddev_pop_fields
+  stddev_samp: publication_stddev_samp_fields
+  sum: publication_sum_fields
+  var_pop: publication_var_pop_fields
+  var_samp: publication_var_samp_fields
+  variance: publication_variance_fields
+}
+
+# order by aggregate values of table "publication"
+input publication_aggregate_order_by {
+  avg: publication_avg_order_by
+  count: order_by
+  max: publication_max_order_by
+  min: publication_min_order_by
+  stddev: publication_stddev_order_by
+  stddev_pop: publication_stddev_pop_order_by
+  stddev_samp: publication_stddev_samp_order_by
+  sum: publication_sum_order_by
+  var_pop: publication_var_pop_order_by
+  var_samp: publication_var_samp_order_by
+  variance: publication_variance_order_by
+}
+
+# input type for inserting array relation for remote table "publication"
+input publication_arr_rel_insert_input {
+  data: [publication_insert_input!]!
+  on_conflict: publication_on_conflict
+}
+
+# aggregate avg on columns
+type publication_avg_fields {
+  mainauthor: Float
+  nr: Float
+}
+
+# order by avg() on columns of table "publication"
+input publication_avg_order_by {
+  mainauthor: order_by
+  nr: order_by
+}
+
+# Boolean expression to filter rows from the table "publication". All fields are combined with a logical 'AND'.
+input publication_bool_exp {
+  _and: [publication_bool_exp]
+  _not: publication_bool_exp
+  _or: [publication_bool_exp]
+  abstract: String_comparison_exp
+  coauthorofpublications: coauthorofpublication_bool_exp
+  faculty: faculty_bool_exp
+  mainauthor: Int_comparison_exp
+  name: String_comparison_exp
+  nr: Int_comparison_exp
+  title: String_comparison_exp
+}
+
+# unique or primary key constraints on table "publication"
+enum publication_constraint {
+  # unique or primary key constraint
+  publication_pkey
+}
+
+# input type for incrementing integer columne in table "publication"
+input publication_inc_input {
+  mainauthor: Int
+  nr: Int
+}
+
+# input type for inserting data into table "publication"
+input publication_insert_input {
+  abstract: String
+  coauthorofpublications: coauthorofpublication_arr_rel_insert_input
+  faculty: faculty_obj_rel_insert_input
+  mainauthor: Int
+  name: String
+  nr: Int
+  title: String
+}
+
+# aggregate max on columns
+type publication_max_fields {
+  abstract: String
+  mainauthor: Int
+  name: String
+  nr: Int
+  title: String
+}
+
+# order by max() on columns of table "publication"
+input publication_max_order_by {
+  abstract: order_by
+  mainauthor: order_by
+  name: order_by
+  nr: order_by
+  title: order_by
+}
+
+# aggregate min on columns
+type publication_min_fields {
+  abstract: String
+  mainauthor: Int
+  name: String
+  nr: Int
+  title: String
+}
+
+# order by min() on columns of table "publication"
+input publication_min_order_by {
+  abstract: order_by
+  mainauthor: order_by
+  name: order_by
+  nr: order_by
+  title: order_by
+}
+
+# response of any mutation on the table "publication"
+type publication_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [publication!]!
+}
+
+# input type for inserting object relation for remote table "publication"
+input publication_obj_rel_insert_input {
+  data: publication_insert_input!
+  on_conflict: publication_on_conflict
+}
+
+# on conflict condition type for table "publication"
+input publication_on_conflict {
+  constraint: publication_constraint!
+  update_columns: [publication_update_column!]!
+  where: publication_bool_exp
+}
+
+# ordering options when selecting data from "publication"
+input publication_order_by {
+  abstract: order_by
+  coauthorofpublications_aggregate: coauthorofpublication_aggregate_order_by
+  faculty: faculty_order_by
+  mainauthor: order_by
+  name: order_by
+  nr: order_by
+  title: order_by
+}
+
+# primary key columns input for table: "publication"
+input publication_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "publication"
+enum publication_select_column {
+  # column name
+  abstract
+
+  # column name
+  mainauthor
+
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  title
+}
+
+# input type for updating data in table "publication"
+input publication_set_input {
+  abstract: String
+  mainauthor: Int
+  name: String
+  nr: Int
+  title: String
+}
+
+# aggregate stddev on columns
+type publication_stddev_fields {
+  mainauthor: Float
+  nr: Float
+}
+
+# order by stddev() on columns of table "publication"
+input publication_stddev_order_by {
+  mainauthor: order_by
+  nr: order_by
+}
+
+# aggregate stddev_pop on columns
+type publication_stddev_pop_fields {
+  mainauthor: Float
+  nr: Float
+}
+
+# order by stddev_pop() on columns of table "publication"
+input publication_stddev_pop_order_by {
+  mainauthor: order_by
+  nr: order_by
+}
+
+# aggregate stddev_samp on columns
+type publication_stddev_samp_fields {
+  mainauthor: Float
+  nr: Float
+}
+
+# order by stddev_samp() on columns of table "publication"
+input publication_stddev_samp_order_by {
+  mainauthor: order_by
+  nr: order_by
+}
+
+# aggregate sum on columns
+type publication_sum_fields {
+  mainauthor: Int
+  nr: Int
+}
+
+# order by sum() on columns of table "publication"
+input publication_sum_order_by {
+  mainauthor: order_by
+  nr: order_by
+}
+
+# update columns of table "publication"
+enum publication_update_column {
+  # column name
+  abstract
+
+  # column name
+  mainauthor
+
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  title
+}
+
+# aggregate var_pop on columns
+type publication_var_pop_fields {
+  mainauthor: Float
+  nr: Float
+}
+
+# order by var_pop() on columns of table "publication"
+input publication_var_pop_order_by {
+  mainauthor: order_by
+  nr: order_by
+}
+
+# aggregate var_samp on columns
+type publication_var_samp_fields {
+  mainauthor: Float
+  nr: Float
+}
+
+# order by var_samp() on columns of table "publication"
+input publication_var_samp_order_by {
+  mainauthor: order_by
+  nr: order_by
+}
+
+# aggregate variance on columns
+type publication_variance_fields {
+  mainauthor: Float
+  nr: Float
+}
+
+# order by variance() on columns of table "publication"
+input publication_variance_order_by {
+  mainauthor: order_by
+  nr: order_by
+}
+
+# query root
+type query_root {
+  # fetch data from the table: "coauthorofpublication"
+  coauthorofpublication(
+    # distinct select on columns
+    distinct_on: [coauthorofpublication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [coauthorofpublication_order_by!]
+
+    # filter the rows returned
+    where: coauthorofpublication_bool_exp
+  ): [coauthorofpublication!]!
+
+  # fetch aggregated fields from the table: "coauthorofpublication"
+  coauthorofpublication_aggregate(
+    # distinct select on columns
+    distinct_on: [coauthorofpublication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [coauthorofpublication_order_by!]
+
+    # filter the rows returned
+    where: coauthorofpublication_bool_exp
+  ): coauthorofpublication_aggregate!
+
+  # fetch data from the table: "coauthorofpublication" using primary key columns
+  coauthorofpublication_by_pk(graduatestudentid: Int!, publicationid: Int!): coauthorofpublication
+
+  # fetch data from the table: "department"
+  department(
+    # distinct select on columns
+    distinct_on: [department_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [department_order_by!]
+
+    # filter the rows returned
+    where: department_bool_exp
+  ): [department!]!
+
+  # fetch aggregated fields from the table: "department"
+  department_aggregate(
+    # distinct select on columns
+    distinct_on: [department_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [department_order_by!]
+
+    # filter the rows returned
+    where: department_bool_exp
+  ): department_aggregate!
+
+  # fetch data from the table: "department" using primary key columns
+  department_by_pk(nr: Int!): department
+
+  # fetch data from the table: "faculty"
+  faculty(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): [faculty!]!
+
+  # fetch aggregated fields from the table: "faculty"
+  faculty_aggregate(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): faculty_aggregate!
+
+  # fetch data from the table: "faculty" using primary key columns
+  faculty_by_pk(nr: Int!): faculty
+
+  # fetch data from the table: "graduatecourse"
+  graduatecourse(
+    # distinct select on columns
+    distinct_on: [graduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatecourse_bool_exp
+  ): [graduatecourse!]!
+
+  # fetch aggregated fields from the table: "graduatecourse"
+  graduatecourse_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatecourse_bool_exp
+  ): graduatecourse_aggregate!
+
+  # fetch data from the table: "graduatecourse" using primary key columns
+  graduatecourse_by_pk(nr: Int!): graduatecourse
+
+  # fetch data from the table: "graduatestudent"
+  graduatestudent(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): [graduatestudent!]!
+
+  # fetch aggregated fields from the table: "graduatestudent"
+  graduatestudent_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): graduatestudent_aggregate!
+
+  # fetch data from the table: "graduatestudent" using primary key columns
+  graduatestudent_by_pk(nr: Int!): graduatestudent
+
+  # fetch data from the table: "graduatestudenttakecourse"
+  graduatestudenttakecourse(
+    # distinct select on columns
+    distinct_on: [graduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatestudenttakecourse_bool_exp
+  ): [graduatestudenttakecourse!]!
+
+  # fetch aggregated fields from the table: "graduatestudenttakecourse"
+  graduatestudenttakecourse_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatestudenttakecourse_bool_exp
+  ): graduatestudenttakecourse_aggregate!
+
+  # fetch data from the table: "graduatestudenttakecourse" using primary key columns
+  graduatestudenttakecourse_by_pk(graduatecourseid: Int!, graduatestudentid: Int!): graduatestudenttakecourse
+
+  # fetch data from the table: "lecturer"
+  lecturer(
+    # distinct select on columns
+    distinct_on: [lecturer_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [lecturer_order_by!]
+
+    # filter the rows returned
+    where: lecturer_bool_exp
+  ): [lecturer!]!
+
+  # fetch aggregated fields from the table: "lecturer"
+  lecturer_aggregate(
+    # distinct select on columns
+    distinct_on: [lecturer_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [lecturer_order_by!]
+
+    # filter the rows returned
+    where: lecturer_bool_exp
+  ): lecturer_aggregate!
+
+  # fetch data from the table: "lecturer" using primary key columns
+  lecturer_by_pk(nr: Int!): lecturer
+
+  # fetch data from the table: "professor"
+  professor(
+    # distinct select on columns
+    distinct_on: [professor_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [professor_order_by!]
+
+    # filter the rows returned
+    where: professor_bool_exp
+  ): [professor!]!
+
+  # fetch aggregated fields from the table: "professor"
+  professor_aggregate(
+    # distinct select on columns
+    distinct_on: [professor_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [professor_order_by!]
+
+    # filter the rows returned
+    where: professor_bool_exp
+  ): professor_aggregate!
+
+  # fetch data from the table: "professor" using primary key columns
+  professor_by_pk(nr: Int!): professor
+
+  # fetch data from the table: "publication"
+  publication(
+    # distinct select on columns
+    distinct_on: [publication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [publication_order_by!]
+
+    # filter the rows returned
+    where: publication_bool_exp
+  ): [publication!]!
+
+  # fetch aggregated fields from the table: "publication"
+  publication_aggregate(
+    # distinct select on columns
+    distinct_on: [publication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [publication_order_by!]
+
+    # filter the rows returned
+    where: publication_bool_exp
+  ): publication_aggregate!
+
+  # fetch data from the table: "publication" using primary key columns
+  publication_by_pk(nr: Int!): publication
+
+  # fetch data from the table: "researchgroup"
+  researchgroup(
+    # distinct select on columns
+    distinct_on: [researchgroup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [researchgroup_order_by!]
+
+    # filter the rows returned
+    where: researchgroup_bool_exp
+  ): [researchgroup!]!
+
+  # fetch aggregated fields from the table: "researchgroup"
+  researchgroup_aggregate(
+    # distinct select on columns
+    distinct_on: [researchgroup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [researchgroup_order_by!]
+
+    # filter the rows returned
+    where: researchgroup_bool_exp
+  ): researchgroup_aggregate!
+
+  # fetch data from the table: "researchgroup" using primary key columns
+  researchgroup_by_pk(nr: Int!): researchgroup
+
+  # fetch data from the table: "undergraduatecourse"
+  undergraduatecourse(
+    # distinct select on columns
+    distinct_on: [undergraduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatecourse_bool_exp
+  ): [undergraduatecourse!]!
+
+  # fetch aggregated fields from the table: "undergraduatecourse"
+  undergraduatecourse_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatecourse_bool_exp
+  ): undergraduatecourse_aggregate!
+
+  # fetch data from the table: "undergraduatecourse" using primary key columns
+  undergraduatecourse_by_pk(nr: Int!): undergraduatecourse
+
+  # fetch data from the table: "undergraduatestudent"
+  undergraduatestudent(
+    # distinct select on columns
+    distinct_on: [undergraduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudent_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudent_bool_exp
+  ): [undergraduatestudent!]!
+
+  # fetch aggregated fields from the table: "undergraduatestudent"
+  undergraduatestudent_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudent_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudent_bool_exp
+  ): undergraduatestudent_aggregate!
+
+  # fetch data from the table: "undergraduatestudent" using primary key columns
+  undergraduatestudent_by_pk(nr: Int!): undergraduatestudent
+
+  # fetch data from the table: "undergraduatestudenttakecourse"
+  undergraduatestudenttakecourse(
+    # distinct select on columns
+    distinct_on: [undergraduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudenttakecourse_bool_exp
+  ): [undergraduatestudenttakecourse!]!
+
+  # fetch aggregated fields from the table: "undergraduatestudenttakecourse"
+  undergraduatestudenttakecourse_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudenttakecourse_bool_exp
+  ): undergraduatestudenttakecourse_aggregate!
+
+  # fetch data from the table: "undergraduatestudenttakecourse" using primary key columns
+  undergraduatestudenttakecourse_by_pk(undergraduatecourseid: Int!, undergraduatestudentid: Int!): undergraduatestudenttakecourse
+
+  # fetch data from the table: "university"
+  university(
+    # distinct select on columns
+    distinct_on: [university_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [university_order_by!]
+
+    # filter the rows returned
+    where: university_bool_exp
+  ): [university!]!
+
+  # fetch aggregated fields from the table: "university"
+  university_aggregate(
+    # distinct select on columns
+    distinct_on: [university_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [university_order_by!]
+
+    # filter the rows returned
+    where: university_bool_exp
+  ): university_aggregate!
+
+  # fetch data from the table: "university" using primary key columns
+  university_by_pk(nr: Int!): university
+}
+
+# columns and relationships of "researchgroup"
+type researchgroup {
+  # An object relationship
+  department: department
+  nr: Int!
+  suborganizationof: Int
+}
+
+# aggregated selection of "researchgroup"
+type researchgroup_aggregate {
+  aggregate: researchgroup_aggregate_fields
+  nodes: [researchgroup!]!
+}
+
+# aggregate fields of "researchgroup"
+type researchgroup_aggregate_fields {
+  avg: researchgroup_avg_fields
+  count(columns: [researchgroup_select_column!], distinct: Boolean): Int
+  max: researchgroup_max_fields
+  min: researchgroup_min_fields
+  stddev: researchgroup_stddev_fields
+  stddev_pop: researchgroup_stddev_pop_fields
+  stddev_samp: researchgroup_stddev_samp_fields
+  sum: researchgroup_sum_fields
+  var_pop: researchgroup_var_pop_fields
+  var_samp: researchgroup_var_samp_fields
+  variance: researchgroup_variance_fields
+}
+
+# order by aggregate values of table "researchgroup"
+input researchgroup_aggregate_order_by {
+  avg: researchgroup_avg_order_by
+  count: order_by
+  max: researchgroup_max_order_by
+  min: researchgroup_min_order_by
+  stddev: researchgroup_stddev_order_by
+  stddev_pop: researchgroup_stddev_pop_order_by
+  stddev_samp: researchgroup_stddev_samp_order_by
+  sum: researchgroup_sum_order_by
+  var_pop: researchgroup_var_pop_order_by
+  var_samp: researchgroup_var_samp_order_by
+  variance: researchgroup_variance_order_by
+}
+
+# input type for inserting array relation for remote table "researchgroup"
+input researchgroup_arr_rel_insert_input {
+  data: [researchgroup_insert_input!]!
+  on_conflict: researchgroup_on_conflict
+}
+
+# aggregate avg on columns
+type researchgroup_avg_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by avg() on columns of table "researchgroup"
+input researchgroup_avg_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# Boolean expression to filter rows from the table "researchgroup". All fields are combined with a logical 'AND'.
+input researchgroup_bool_exp {
+  _and: [researchgroup_bool_exp]
+  _not: researchgroup_bool_exp
+  _or: [researchgroup_bool_exp]
+  department: department_bool_exp
+  nr: Int_comparison_exp
+  suborganizationof: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "researchgroup"
+enum researchgroup_constraint {
+  # unique or primary key constraint
+  researchgroup_pkey
+}
+
+# input type for incrementing integer columne in table "researchgroup"
+input researchgroup_inc_input {
+  nr: Int
+  suborganizationof: Int
+}
+
+# input type for inserting data into table "researchgroup"
+input researchgroup_insert_input {
+  department: department_obj_rel_insert_input
+  nr: Int
+  suborganizationof: Int
+}
+
+# aggregate max on columns
+type researchgroup_max_fields {
+  nr: Int
+  suborganizationof: Int
+}
+
+# order by max() on columns of table "researchgroup"
+input researchgroup_max_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate min on columns
+type researchgroup_min_fields {
+  nr: Int
+  suborganizationof: Int
+}
+
+# order by min() on columns of table "researchgroup"
+input researchgroup_min_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# response of any mutation on the table "researchgroup"
+type researchgroup_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [researchgroup!]!
+}
+
+# input type for inserting object relation for remote table "researchgroup"
+input researchgroup_obj_rel_insert_input {
+  data: researchgroup_insert_input!
+  on_conflict: researchgroup_on_conflict
+}
+
+# on conflict condition type for table "researchgroup"
+input researchgroup_on_conflict {
+  constraint: researchgroup_constraint!
+  update_columns: [researchgroup_update_column!]!
+  where: researchgroup_bool_exp
+}
+
+# ordering options when selecting data from "researchgroup"
+input researchgroup_order_by {
+  department: department_order_by
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# primary key columns input for table: "researchgroup"
+input researchgroup_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "researchgroup"
+enum researchgroup_select_column {
+  # column name
+  nr
+
+  # column name
+  suborganizationof
+}
+
+# input type for updating data in table "researchgroup"
+input researchgroup_set_input {
+  nr: Int
+  suborganizationof: Int
+}
+
+# aggregate stddev on columns
+type researchgroup_stddev_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by stddev() on columns of table "researchgroup"
+input researchgroup_stddev_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate stddev_pop on columns
+type researchgroup_stddev_pop_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by stddev_pop() on columns of table "researchgroup"
+input researchgroup_stddev_pop_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate stddev_samp on columns
+type researchgroup_stddev_samp_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by stddev_samp() on columns of table "researchgroup"
+input researchgroup_stddev_samp_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate sum on columns
+type researchgroup_sum_fields {
+  nr: Int
+  suborganizationof: Int
+}
+
+# order by sum() on columns of table "researchgroup"
+input researchgroup_sum_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# update columns of table "researchgroup"
+enum researchgroup_update_column {
+  # column name
+  nr
+
+  # column name
+  suborganizationof
+}
+
+# aggregate var_pop on columns
+type researchgroup_var_pop_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by var_pop() on columns of table "researchgroup"
+input researchgroup_var_pop_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate var_samp on columns
+type researchgroup_var_samp_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by var_samp() on columns of table "researchgroup"
+input researchgroup_var_samp_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# aggregate variance on columns
+type researchgroup_variance_fields {
+  nr: Float
+  suborganizationof: Float
+}
+
+# order by variance() on columns of table "researchgroup"
+input researchgroup_variance_order_by {
+  nr: order_by
+  suborganizationof: order_by
+}
+
+# expression to compare columns of type String. All fields are combined with logical 'AND'.
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+  _ilike: String
+  _in: [String!]
+  _is_null: Boolean
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+  _nilike: String
+  _nin: [String!]
+  _nlike: String
+  _nsimilar: String
+  _similar: String
+}
+
+# subscription root
+type subscription_root {
+  # fetch data from the table: "coauthorofpublication"
+  coauthorofpublication(
+    # distinct select on columns
+    distinct_on: [coauthorofpublication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [coauthorofpublication_order_by!]
+
+    # filter the rows returned
+    where: coauthorofpublication_bool_exp
+  ): [coauthorofpublication!]!
+
+  # fetch aggregated fields from the table: "coauthorofpublication"
+  coauthorofpublication_aggregate(
+    # distinct select on columns
+    distinct_on: [coauthorofpublication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [coauthorofpublication_order_by!]
+
+    # filter the rows returned
+    where: coauthorofpublication_bool_exp
+  ): coauthorofpublication_aggregate!
+
+  # fetch data from the table: "coauthorofpublication" using primary key columns
+  coauthorofpublication_by_pk(graduatestudentid: Int!, publicationid: Int!): coauthorofpublication
+
+  # fetch data from the table: "department"
+  department(
+    # distinct select on columns
+    distinct_on: [department_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [department_order_by!]
+
+    # filter the rows returned
+    where: department_bool_exp
+  ): [department!]!
+
+  # fetch aggregated fields from the table: "department"
+  department_aggregate(
+    # distinct select on columns
+    distinct_on: [department_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [department_order_by!]
+
+    # filter the rows returned
+    where: department_bool_exp
+  ): department_aggregate!
+
+  # fetch data from the table: "department" using primary key columns
+  department_by_pk(nr: Int!): department
+
+  # fetch data from the table: "faculty"
+  faculty(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): [faculty!]!
+
+  # fetch aggregated fields from the table: "faculty"
+  faculty_aggregate(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): faculty_aggregate!
+
+  # fetch data from the table: "faculty" using primary key columns
+  faculty_by_pk(nr: Int!): faculty
+
+  # fetch data from the table: "graduatecourse"
+  graduatecourse(
+    # distinct select on columns
+    distinct_on: [graduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatecourse_bool_exp
+  ): [graduatecourse!]!
+
+  # fetch aggregated fields from the table: "graduatecourse"
+  graduatecourse_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatecourse_bool_exp
+  ): graduatecourse_aggregate!
+
+  # fetch data from the table: "graduatecourse" using primary key columns
+  graduatecourse_by_pk(nr: Int!): graduatecourse
+
+  # fetch data from the table: "graduatestudent"
+  graduatestudent(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): [graduatestudent!]!
+
+  # fetch aggregated fields from the table: "graduatestudent"
+  graduatestudent_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): graduatestudent_aggregate!
+
+  # fetch data from the table: "graduatestudent" using primary key columns
+  graduatestudent_by_pk(nr: Int!): graduatestudent
+
+  # fetch data from the table: "graduatestudenttakecourse"
+  graduatestudenttakecourse(
+    # distinct select on columns
+    distinct_on: [graduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatestudenttakecourse_bool_exp
+  ): [graduatestudenttakecourse!]!
+
+  # fetch aggregated fields from the table: "graduatestudenttakecourse"
+  graduatestudenttakecourse_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: graduatestudenttakecourse_bool_exp
+  ): graduatestudenttakecourse_aggregate!
+
+  # fetch data from the table: "graduatestudenttakecourse" using primary key columns
+  graduatestudenttakecourse_by_pk(graduatecourseid: Int!, graduatestudentid: Int!): graduatestudenttakecourse
+
+  # fetch data from the table: "lecturer"
+  lecturer(
+    # distinct select on columns
+    distinct_on: [lecturer_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [lecturer_order_by!]
+
+    # filter the rows returned
+    where: lecturer_bool_exp
+  ): [lecturer!]!
+
+  # fetch aggregated fields from the table: "lecturer"
+  lecturer_aggregate(
+    # distinct select on columns
+    distinct_on: [lecturer_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [lecturer_order_by!]
+
+    # filter the rows returned
+    where: lecturer_bool_exp
+  ): lecturer_aggregate!
+
+  # fetch data from the table: "lecturer" using primary key columns
+  lecturer_by_pk(nr: Int!): lecturer
+
+  # fetch data from the table: "professor"
+  professor(
+    # distinct select on columns
+    distinct_on: [professor_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [professor_order_by!]
+
+    # filter the rows returned
+    where: professor_bool_exp
+  ): [professor!]!
+
+  # fetch aggregated fields from the table: "professor"
+  professor_aggregate(
+    # distinct select on columns
+    distinct_on: [professor_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [professor_order_by!]
+
+    # filter the rows returned
+    where: professor_bool_exp
+  ): professor_aggregate!
+
+  # fetch data from the table: "professor" using primary key columns
+  professor_by_pk(nr: Int!): professor
+
+  # fetch data from the table: "publication"
+  publication(
+    # distinct select on columns
+    distinct_on: [publication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [publication_order_by!]
+
+    # filter the rows returned
+    where: publication_bool_exp
+  ): [publication!]!
+
+  # fetch aggregated fields from the table: "publication"
+  publication_aggregate(
+    # distinct select on columns
+    distinct_on: [publication_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [publication_order_by!]
+
+    # filter the rows returned
+    where: publication_bool_exp
+  ): publication_aggregate!
+
+  # fetch data from the table: "publication" using primary key columns
+  publication_by_pk(nr: Int!): publication
+
+  # fetch data from the table: "researchgroup"
+  researchgroup(
+    # distinct select on columns
+    distinct_on: [researchgroup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [researchgroup_order_by!]
+
+    # filter the rows returned
+    where: researchgroup_bool_exp
+  ): [researchgroup!]!
+
+  # fetch aggregated fields from the table: "researchgroup"
+  researchgroup_aggregate(
+    # distinct select on columns
+    distinct_on: [researchgroup_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [researchgroup_order_by!]
+
+    # filter the rows returned
+    where: researchgroup_bool_exp
+  ): researchgroup_aggregate!
+
+  # fetch data from the table: "researchgroup" using primary key columns
+  researchgroup_by_pk(nr: Int!): researchgroup
+
+  # fetch data from the table: "undergraduatecourse"
+  undergraduatecourse(
+    # distinct select on columns
+    distinct_on: [undergraduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatecourse_bool_exp
+  ): [undergraduatecourse!]!
+
+  # fetch aggregated fields from the table: "undergraduatecourse"
+  undergraduatecourse_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatecourse_bool_exp
+  ): undergraduatecourse_aggregate!
+
+  # fetch data from the table: "undergraduatecourse" using primary key columns
+  undergraduatecourse_by_pk(nr: Int!): undergraduatecourse
+
+  # fetch data from the table: "undergraduatestudent"
+  undergraduatestudent(
+    # distinct select on columns
+    distinct_on: [undergraduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudent_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudent_bool_exp
+  ): [undergraduatestudent!]!
+
+  # fetch aggregated fields from the table: "undergraduatestudent"
+  undergraduatestudent_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudent_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudent_bool_exp
+  ): undergraduatestudent_aggregate!
+
+  # fetch data from the table: "undergraduatestudent" using primary key columns
+  undergraduatestudent_by_pk(nr: Int!): undergraduatestudent
+
+  # fetch data from the table: "undergraduatestudenttakecourse"
+  undergraduatestudenttakecourse(
+    # distinct select on columns
+    distinct_on: [undergraduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudenttakecourse_bool_exp
+  ): [undergraduatestudenttakecourse!]!
+
+  # fetch aggregated fields from the table: "undergraduatestudenttakecourse"
+  undergraduatestudenttakecourse_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudenttakecourse_bool_exp
+  ): undergraduatestudenttakecourse_aggregate!
+
+  # fetch data from the table: "undergraduatestudenttakecourse" using primary key columns
+  undergraduatestudenttakecourse_by_pk(undergraduatecourseid: Int!, undergraduatestudentid: Int!): undergraduatestudenttakecourse
+
+  # fetch data from the table: "university"
+  university(
+    # distinct select on columns
+    distinct_on: [university_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [university_order_by!]
+
+    # filter the rows returned
+    where: university_bool_exp
+  ): [university!]!
+
+  # fetch aggregated fields from the table: "university"
+  university_aggregate(
+    # distinct select on columns
+    distinct_on: [university_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [university_order_by!]
+
+    # filter the rows returned
+    where: university_bool_exp
+  ): university_aggregate!
+
+  # fetch data from the table: "university" using primary key columns
+  university_by_pk(nr: Int!): university
+}
+
+# columns and relationships of "undergraduatecourse"
+type undergraduatecourse {
+  # An object relationship
+  faculty: faculty
+
+  # An object relationship
+  graduatestudent: graduatestudent
+  name: String
+  nr: Int!
+  teacher: Int
+  teachingassistant: Int
+
+  # An array relationship
+  undergraduatestudenttakecourses(
+    # distinct select on columns
+    distinct_on: [undergraduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudenttakecourse_bool_exp
+  ): [undergraduatestudenttakecourse!]!
+
+  # An aggregated array relationship
+  undergraduatestudenttakecourses_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudenttakecourse_bool_exp
+  ): undergraduatestudenttakecourse_aggregate!
+}
+
+# aggregated selection of "undergraduatecourse"
+type undergraduatecourse_aggregate {
+  aggregate: undergraduatecourse_aggregate_fields
+  nodes: [undergraduatecourse!]!
+}
+
+# aggregate fields of "undergraduatecourse"
+type undergraduatecourse_aggregate_fields {
+  avg: undergraduatecourse_avg_fields
+  count(columns: [undergraduatecourse_select_column!], distinct: Boolean): Int
+  max: undergraduatecourse_max_fields
+  min: undergraduatecourse_min_fields
+  stddev: undergraduatecourse_stddev_fields
+  stddev_pop: undergraduatecourse_stddev_pop_fields
+  stddev_samp: undergraduatecourse_stddev_samp_fields
+  sum: undergraduatecourse_sum_fields
+  var_pop: undergraduatecourse_var_pop_fields
+  var_samp: undergraduatecourse_var_samp_fields
+  variance: undergraduatecourse_variance_fields
+}
+
+# order by aggregate values of table "undergraduatecourse"
+input undergraduatecourse_aggregate_order_by {
+  avg: undergraduatecourse_avg_order_by
+  count: order_by
+  max: undergraduatecourse_max_order_by
+  min: undergraduatecourse_min_order_by
+  stddev: undergraduatecourse_stddev_order_by
+  stddev_pop: undergraduatecourse_stddev_pop_order_by
+  stddev_samp: undergraduatecourse_stddev_samp_order_by
+  sum: undergraduatecourse_sum_order_by
+  var_pop: undergraduatecourse_var_pop_order_by
+  var_samp: undergraduatecourse_var_samp_order_by
+  variance: undergraduatecourse_variance_order_by
+}
+
+# input type for inserting array relation for remote table "undergraduatecourse"
+input undergraduatecourse_arr_rel_insert_input {
+  data: [undergraduatecourse_insert_input!]!
+  on_conflict: undergraduatecourse_on_conflict
+}
+
+# aggregate avg on columns
+type undergraduatecourse_avg_fields {
+  nr: Float
+  teacher: Float
+  teachingassistant: Float
+}
+
+# order by avg() on columns of table "undergraduatecourse"
+input undergraduatecourse_avg_order_by {
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# Boolean expression to filter rows from the table "undergraduatecourse". All fields are combined with a logical 'AND'.
+input undergraduatecourse_bool_exp {
+  _and: [undergraduatecourse_bool_exp]
+  _not: undergraduatecourse_bool_exp
+  _or: [undergraduatecourse_bool_exp]
+  faculty: faculty_bool_exp
+  graduatestudent: graduatestudent_bool_exp
+  name: String_comparison_exp
+  nr: Int_comparison_exp
+  teacher: Int_comparison_exp
+  teachingassistant: Int_comparison_exp
+  undergraduatestudenttakecourses: undergraduatestudenttakecourse_bool_exp
+}
+
+# unique or primary key constraints on table "undergraduatecourse"
+enum undergraduatecourse_constraint {
+  # unique or primary key constraint
+  undergraduatecourse_pkey
+}
+
+# input type for incrementing integer columne in table "undergraduatecourse"
+input undergraduatecourse_inc_input {
+  nr: Int
+  teacher: Int
+  teachingassistant: Int
+}
+
+# input type for inserting data into table "undergraduatecourse"
+input undergraduatecourse_insert_input {
+  faculty: faculty_obj_rel_insert_input
+  graduatestudent: graduatestudent_obj_rel_insert_input
+  name: String
+  nr: Int
+  teacher: Int
+  teachingassistant: Int
+  undergraduatestudenttakecourses: undergraduatestudenttakecourse_arr_rel_insert_input
+}
+
+# aggregate max on columns
+type undergraduatecourse_max_fields {
+  name: String
+  nr: Int
+  teacher: Int
+  teachingassistant: Int
+}
+
+# order by max() on columns of table "undergraduatecourse"
+input undergraduatecourse_max_order_by {
+  name: order_by
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# aggregate min on columns
+type undergraduatecourse_min_fields {
+  name: String
+  nr: Int
+  teacher: Int
+  teachingassistant: Int
+}
+
+# order by min() on columns of table "undergraduatecourse"
+input undergraduatecourse_min_order_by {
+  name: order_by
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# response of any mutation on the table "undergraduatecourse"
+type undergraduatecourse_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [undergraduatecourse!]!
+}
+
+# input type for inserting object relation for remote table "undergraduatecourse"
+input undergraduatecourse_obj_rel_insert_input {
+  data: undergraduatecourse_insert_input!
+  on_conflict: undergraduatecourse_on_conflict
+}
+
+# on conflict condition type for table "undergraduatecourse"
+input undergraduatecourse_on_conflict {
+  constraint: undergraduatecourse_constraint!
+  update_columns: [undergraduatecourse_update_column!]!
+  where: undergraduatecourse_bool_exp
+}
+
+# ordering options when selecting data from "undergraduatecourse"
+input undergraduatecourse_order_by {
+  faculty: faculty_order_by
+  graduatestudent: graduatestudent_order_by
+  name: order_by
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+  undergraduatestudenttakecourses_aggregate: undergraduatestudenttakecourse_aggregate_order_by
+}
+
+# primary key columns input for table: "undergraduatecourse"
+input undergraduatecourse_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "undergraduatecourse"
+enum undergraduatecourse_select_column {
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  teacher
+
+  # column name
+  teachingassistant
+}
+
+# input type for updating data in table "undergraduatecourse"
+input undergraduatecourse_set_input {
+  name: String
+  nr: Int
+  teacher: Int
+  teachingassistant: Int
+}
+
+# aggregate stddev on columns
+type undergraduatecourse_stddev_fields {
+  nr: Float
+  teacher: Float
+  teachingassistant: Float
+}
+
+# order by stddev() on columns of table "undergraduatecourse"
+input undergraduatecourse_stddev_order_by {
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# aggregate stddev_pop on columns
+type undergraduatecourse_stddev_pop_fields {
+  nr: Float
+  teacher: Float
+  teachingassistant: Float
+}
+
+# order by stddev_pop() on columns of table "undergraduatecourse"
+input undergraduatecourse_stddev_pop_order_by {
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# aggregate stddev_samp on columns
+type undergraduatecourse_stddev_samp_fields {
+  nr: Float
+  teacher: Float
+  teachingassistant: Float
+}
+
+# order by stddev_samp() on columns of table "undergraduatecourse"
+input undergraduatecourse_stddev_samp_order_by {
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# aggregate sum on columns
+type undergraduatecourse_sum_fields {
+  nr: Int
+  teacher: Int
+  teachingassistant: Int
+}
+
+# order by sum() on columns of table "undergraduatecourse"
+input undergraduatecourse_sum_order_by {
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# update columns of table "undergraduatecourse"
+enum undergraduatecourse_update_column {
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  teacher
+
+  # column name
+  teachingassistant
+}
+
+# aggregate var_pop on columns
+type undergraduatecourse_var_pop_fields {
+  nr: Float
+  teacher: Float
+  teachingassistant: Float
+}
+
+# order by var_pop() on columns of table "undergraduatecourse"
+input undergraduatecourse_var_pop_order_by {
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# aggregate var_samp on columns
+type undergraduatecourse_var_samp_fields {
+  nr: Float
+  teacher: Float
+  teachingassistant: Float
+}
+
+# order by var_samp() on columns of table "undergraduatecourse"
+input undergraduatecourse_var_samp_order_by {
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# aggregate variance on columns
+type undergraduatecourse_variance_fields {
+  nr: Float
+  teacher: Float
+  teachingassistant: Float
+}
+
+# order by variance() on columns of table "undergraduatecourse"
+input undergraduatecourse_variance_order_by {
+  nr: order_by
+  teacher: order_by
+  teachingassistant: order_by
+}
+
+# columns and relationships of "undergraduatestudent"
+type undergraduatestudent {
+  advisor: Int
+  age: Int
+
+  # An object relationship
+  department: department
+  emailaddress: String
+  memberof: Int
+  name: String
+  nr: Int!
+
+  # An object relationship
+  professor: professor
+  telephone: String
+
+  # An array relationship
+  undergraduatestudenttakecourses(
+    # distinct select on columns
+    distinct_on: [undergraduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudenttakecourse_bool_exp
+  ): [undergraduatestudenttakecourse!]!
+
+  # An aggregated array relationship
+  undergraduatestudenttakecourses_aggregate(
+    # distinct select on columns
+    distinct_on: [undergraduatestudenttakecourse_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [undergraduatestudenttakecourse_order_by!]
+
+    # filter the rows returned
+    where: undergraduatestudenttakecourse_bool_exp
+  ): undergraduatestudenttakecourse_aggregate!
+}
+
+# aggregated selection of "undergraduatestudent"
+type undergraduatestudent_aggregate {
+  aggregate: undergraduatestudent_aggregate_fields
+  nodes: [undergraduatestudent!]!
+}
+
+# aggregate fields of "undergraduatestudent"
+type undergraduatestudent_aggregate_fields {
+  avg: undergraduatestudent_avg_fields
+  count(columns: [undergraduatestudent_select_column!], distinct: Boolean): Int
+  max: undergraduatestudent_max_fields
+  min: undergraduatestudent_min_fields
+  stddev: undergraduatestudent_stddev_fields
+  stddev_pop: undergraduatestudent_stddev_pop_fields
+  stddev_samp: undergraduatestudent_stddev_samp_fields
+  sum: undergraduatestudent_sum_fields
+  var_pop: undergraduatestudent_var_pop_fields
+  var_samp: undergraduatestudent_var_samp_fields
+  variance: undergraduatestudent_variance_fields
+}
+
+# order by aggregate values of table "undergraduatestudent"
+input undergraduatestudent_aggregate_order_by {
+  avg: undergraduatestudent_avg_order_by
+  count: order_by
+  max: undergraduatestudent_max_order_by
+  min: undergraduatestudent_min_order_by
+  stddev: undergraduatestudent_stddev_order_by
+  stddev_pop: undergraduatestudent_stddev_pop_order_by
+  stddev_samp: undergraduatestudent_stddev_samp_order_by
+  sum: undergraduatestudent_sum_order_by
+  var_pop: undergraduatestudent_var_pop_order_by
+  var_samp: undergraduatestudent_var_samp_order_by
+  variance: undergraduatestudent_variance_order_by
+}
+
+# input type for inserting array relation for remote table "undergraduatestudent"
+input undergraduatestudent_arr_rel_insert_input {
+  data: [undergraduatestudent_insert_input!]!
+  on_conflict: undergraduatestudent_on_conflict
+}
+
+# aggregate avg on columns
+type undergraduatestudent_avg_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+}
+
+# order by avg() on columns of table "undergraduatestudent"
+input undergraduatestudent_avg_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+}
+
+# Boolean expression to filter rows from the table "undergraduatestudent". All fields are combined with a logical 'AND'.
+input undergraduatestudent_bool_exp {
+  _and: [undergraduatestudent_bool_exp]
+  _not: undergraduatestudent_bool_exp
+  _or: [undergraduatestudent_bool_exp]
+  advisor: Int_comparison_exp
+  age: Int_comparison_exp
+  department: department_bool_exp
+  emailaddress: String_comparison_exp
+  memberof: Int_comparison_exp
+  name: String_comparison_exp
+  nr: Int_comparison_exp
+  professor: professor_bool_exp
+  telephone: String_comparison_exp
+  undergraduatestudenttakecourses: undergraduatestudenttakecourse_bool_exp
+}
+
+# unique or primary key constraints on table "undergraduatestudent"
+enum undergraduatestudent_constraint {
+  # unique or primary key constraint
+  undergraduatestudent_pkey
+}
+
+# input type for incrementing integer columne in table "undergraduatestudent"
+input undergraduatestudent_inc_input {
+  advisor: Int
+  age: Int
+  memberof: Int
+  nr: Int
+}
+
+# input type for inserting data into table "undergraduatestudent"
+input undergraduatestudent_insert_input {
+  advisor: Int
+  age: Int
+  department: department_obj_rel_insert_input
+  emailaddress: String
+  memberof: Int
+  name: String
+  nr: Int
+  professor: professor_obj_rel_insert_input
+  telephone: String
+  undergraduatestudenttakecourses: undergraduatestudenttakecourse_arr_rel_insert_input
+}
+
+# aggregate max on columns
+type undergraduatestudent_max_fields {
+  advisor: Int
+  age: Int
+  emailaddress: String
+  memberof: Int
+  name: String
+  nr: Int
+  telephone: String
+}
+
+# order by max() on columns of table "undergraduatestudent"
+input undergraduatestudent_max_order_by {
+  advisor: order_by
+  age: order_by
+  emailaddress: order_by
+  memberof: order_by
+  name: order_by
+  nr: order_by
+  telephone: order_by
+}
+
+# aggregate min on columns
+type undergraduatestudent_min_fields {
+  advisor: Int
+  age: Int
+  emailaddress: String
+  memberof: Int
+  name: String
+  nr: Int
+  telephone: String
+}
+
+# order by min() on columns of table "undergraduatestudent"
+input undergraduatestudent_min_order_by {
+  advisor: order_by
+  age: order_by
+  emailaddress: order_by
+  memberof: order_by
+  name: order_by
+  nr: order_by
+  telephone: order_by
+}
+
+# response of any mutation on the table "undergraduatestudent"
+type undergraduatestudent_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [undergraduatestudent!]!
+}
+
+# input type for inserting object relation for remote table "undergraduatestudent"
+input undergraduatestudent_obj_rel_insert_input {
+  data: undergraduatestudent_insert_input!
+  on_conflict: undergraduatestudent_on_conflict
+}
+
+# on conflict condition type for table "undergraduatestudent"
+input undergraduatestudent_on_conflict {
+  constraint: undergraduatestudent_constraint!
+  update_columns: [undergraduatestudent_update_column!]!
+  where: undergraduatestudent_bool_exp
+}
+
+# ordering options when selecting data from "undergraduatestudent"
+input undergraduatestudent_order_by {
+  advisor: order_by
+  age: order_by
+  department: department_order_by
+  emailaddress: order_by
+  memberof: order_by
+  name: order_by
+  nr: order_by
+  professor: professor_order_by
+  telephone: order_by
+  undergraduatestudenttakecourses_aggregate: undergraduatestudenttakecourse_aggregate_order_by
+}
+
+# primary key columns input for table: "undergraduatestudent"
+input undergraduatestudent_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "undergraduatestudent"
+enum undergraduatestudent_select_column {
+  # column name
+  advisor
+
+  # column name
+  age
+
+  # column name
+  emailaddress
+
+  # column name
+  memberof
+
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  telephone
+}
+
+# input type for updating data in table "undergraduatestudent"
+input undergraduatestudent_set_input {
+  advisor: Int
+  age: Int
+  emailaddress: String
+  memberof: Int
+  name: String
+  nr: Int
+  telephone: String
+}
+
+# aggregate stddev on columns
+type undergraduatestudent_stddev_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+}
+
+# order by stddev() on columns of table "undergraduatestudent"
+input undergraduatestudent_stddev_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+}
+
+# aggregate stddev_pop on columns
+type undergraduatestudent_stddev_pop_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+}
+
+# order by stddev_pop() on columns of table "undergraduatestudent"
+input undergraduatestudent_stddev_pop_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+}
+
+# aggregate stddev_samp on columns
+type undergraduatestudent_stddev_samp_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+}
+
+# order by stddev_samp() on columns of table "undergraduatestudent"
+input undergraduatestudent_stddev_samp_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+}
+
+# aggregate sum on columns
+type undergraduatestudent_sum_fields {
+  advisor: Int
+  age: Int
+  memberof: Int
+  nr: Int
+}
+
+# order by sum() on columns of table "undergraduatestudent"
+input undergraduatestudent_sum_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+}
+
+# update columns of table "undergraduatestudent"
+enum undergraduatestudent_update_column {
+  # column name
+  advisor
+
+  # column name
+  age
+
+  # column name
+  emailaddress
+
+  # column name
+  memberof
+
+  # column name
+  name
+
+  # column name
+  nr
+
+  # column name
+  telephone
+}
+
+# aggregate var_pop on columns
+type undergraduatestudent_var_pop_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+}
+
+# order by var_pop() on columns of table "undergraduatestudent"
+input undergraduatestudent_var_pop_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+}
+
+# aggregate var_samp on columns
+type undergraduatestudent_var_samp_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+}
+
+# order by var_samp() on columns of table "undergraduatestudent"
+input undergraduatestudent_var_samp_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+}
+
+# aggregate variance on columns
+type undergraduatestudent_variance_fields {
+  advisor: Float
+  age: Float
+  memberof: Float
+  nr: Float
+}
+
+# order by variance() on columns of table "undergraduatestudent"
+input undergraduatestudent_variance_order_by {
+  advisor: order_by
+  age: order_by
+  memberof: order_by
+  nr: order_by
+}
+
+# columns and relationships of "undergraduatestudenttakecourse"
+type undergraduatestudenttakecourse {
+  # An object relationship
+  undergraduatecourse: undergraduatecourse!
+  undergraduatecourseid: Int!
+
+  # An object relationship
+  undergraduatestudent: undergraduatestudent!
+  undergraduatestudentid: Int!
+}
+
+# aggregated selection of "undergraduatestudenttakecourse"
+type undergraduatestudenttakecourse_aggregate {
+  aggregate: undergraduatestudenttakecourse_aggregate_fields
+  nodes: [undergraduatestudenttakecourse!]!
+}
+
+# aggregate fields of "undergraduatestudenttakecourse"
+type undergraduatestudenttakecourse_aggregate_fields {
+  avg: undergraduatestudenttakecourse_avg_fields
+  count(columns: [undergraduatestudenttakecourse_select_column!], distinct: Boolean): Int
+  max: undergraduatestudenttakecourse_max_fields
+  min: undergraduatestudenttakecourse_min_fields
+  stddev: undergraduatestudenttakecourse_stddev_fields
+  stddev_pop: undergraduatestudenttakecourse_stddev_pop_fields
+  stddev_samp: undergraduatestudenttakecourse_stddev_samp_fields
+  sum: undergraduatestudenttakecourse_sum_fields
+  var_pop: undergraduatestudenttakecourse_var_pop_fields
+  var_samp: undergraduatestudenttakecourse_var_samp_fields
+  variance: undergraduatestudenttakecourse_variance_fields
+}
+
+# order by aggregate values of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_aggregate_order_by {
+  avg: undergraduatestudenttakecourse_avg_order_by
+  count: order_by
+  max: undergraduatestudenttakecourse_max_order_by
+  min: undergraduatestudenttakecourse_min_order_by
+  stddev: undergraduatestudenttakecourse_stddev_order_by
+  stddev_pop: undergraduatestudenttakecourse_stddev_pop_order_by
+  stddev_samp: undergraduatestudenttakecourse_stddev_samp_order_by
+  sum: undergraduatestudenttakecourse_sum_order_by
+  var_pop: undergraduatestudenttakecourse_var_pop_order_by
+  var_samp: undergraduatestudenttakecourse_var_samp_order_by
+  variance: undergraduatestudenttakecourse_variance_order_by
+}
+
+# input type for inserting array relation for remote table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_arr_rel_insert_input {
+  data: [undergraduatestudenttakecourse_insert_input!]!
+  on_conflict: undergraduatestudenttakecourse_on_conflict
+}
+
+# aggregate avg on columns
+type undergraduatestudenttakecourse_avg_fields {
+  undergraduatecourseid: Float
+  undergraduatestudentid: Float
+}
+
+# order by avg() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_avg_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# Boolean expression to filter rows from the table
+# "undergraduatestudenttakecourse". All fields are combined with a logical 'AND'.
+input undergraduatestudenttakecourse_bool_exp {
+  _and: [undergraduatestudenttakecourse_bool_exp]
+  _not: undergraduatestudenttakecourse_bool_exp
+  _or: [undergraduatestudenttakecourse_bool_exp]
+  undergraduatecourse: undergraduatecourse_bool_exp
+  undergraduatecourseid: Int_comparison_exp
+  undergraduatestudent: undergraduatestudent_bool_exp
+  undergraduatestudentid: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "undergraduatestudenttakecourse"
+enum undergraduatestudenttakecourse_constraint {
+  # unique or primary key constraint
+  undergraduatestudenttakecourse_pkey
+}
+
+# input type for incrementing integer columne in table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_inc_input {
+  undergraduatecourseid: Int
+  undergraduatestudentid: Int
+}
+
+# input type for inserting data into table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_insert_input {
+  undergraduatecourse: undergraduatecourse_obj_rel_insert_input
+  undergraduatecourseid: Int
+  undergraduatestudent: undergraduatestudent_obj_rel_insert_input
+  undergraduatestudentid: Int
+}
+
+# aggregate max on columns
+type undergraduatestudenttakecourse_max_fields {
+  undergraduatecourseid: Int
+  undergraduatestudentid: Int
+}
+
+# order by max() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_max_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# aggregate min on columns
+type undergraduatestudenttakecourse_min_fields {
+  undergraduatecourseid: Int
+  undergraduatestudentid: Int
+}
+
+# order by min() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_min_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# response of any mutation on the table "undergraduatestudenttakecourse"
+type undergraduatestudenttakecourse_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [undergraduatestudenttakecourse!]!
+}
+
+# input type for inserting object relation for remote table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_obj_rel_insert_input {
+  data: undergraduatestudenttakecourse_insert_input!
+  on_conflict: undergraduatestudenttakecourse_on_conflict
+}
+
+# on conflict condition type for table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_on_conflict {
+  constraint: undergraduatestudenttakecourse_constraint!
+  update_columns: [undergraduatestudenttakecourse_update_column!]!
+  where: undergraduatestudenttakecourse_bool_exp
+}
+
+# ordering options when selecting data from "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_order_by {
+  undergraduatecourse: undergraduatecourse_order_by
+  undergraduatecourseid: order_by
+  undergraduatestudent: undergraduatestudent_order_by
+  undergraduatestudentid: order_by
+}
+
+# primary key columns input for table: "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_pk_columns_input {
+  undergraduatecourseid: Int!
+  undergraduatestudentid: Int!
+}
+
+# select columns of table "undergraduatestudenttakecourse"
+enum undergraduatestudenttakecourse_select_column {
+  # column name
+  undergraduatecourseid
+
+  # column name
+  undergraduatestudentid
+}
+
+# input type for updating data in table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_set_input {
+  undergraduatecourseid: Int
+  undergraduatestudentid: Int
+}
+
+# aggregate stddev on columns
+type undergraduatestudenttakecourse_stddev_fields {
+  undergraduatecourseid: Float
+  undergraduatestudentid: Float
+}
+
+# order by stddev() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_stddev_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# aggregate stddev_pop on columns
+type undergraduatestudenttakecourse_stddev_pop_fields {
+  undergraduatecourseid: Float
+  undergraduatestudentid: Float
+}
+
+# order by stddev_pop() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_stddev_pop_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# aggregate stddev_samp on columns
+type undergraduatestudenttakecourse_stddev_samp_fields {
+  undergraduatecourseid: Float
+  undergraduatestudentid: Float
+}
+
+# order by stddev_samp() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_stddev_samp_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# aggregate sum on columns
+type undergraduatestudenttakecourse_sum_fields {
+  undergraduatecourseid: Int
+  undergraduatestudentid: Int
+}
+
+# order by sum() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_sum_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# update columns of table "undergraduatestudenttakecourse"
+enum undergraduatestudenttakecourse_update_column {
+  # column name
+  undergraduatecourseid
+
+  # column name
+  undergraduatestudentid
+}
+
+# aggregate var_pop on columns
+type undergraduatestudenttakecourse_var_pop_fields {
+  undergraduatecourseid: Float
+  undergraduatestudentid: Float
+}
+
+# order by var_pop() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_var_pop_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# aggregate var_samp on columns
+type undergraduatestudenttakecourse_var_samp_fields {
+  undergraduatecourseid: Float
+  undergraduatestudentid: Float
+}
+
+# order by var_samp() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_var_samp_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# aggregate variance on columns
+type undergraduatestudenttakecourse_variance_fields {
+  undergraduatecourseid: Float
+  undergraduatestudentid: Float
+}
+
+# order by variance() on columns of table "undergraduatestudenttakecourse"
+input undergraduatestudenttakecourse_variance_order_by {
+  undergraduatecourseid: order_by
+  undergraduatestudentid: order_by
+}
+
+# columns and relationships of "university"
+type university {
+  # An array relationship
+  departments(
+    # distinct select on columns
+    distinct_on: [department_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [department_order_by!]
+
+    # filter the rows returned
+    where: department_bool_exp
+  ): [department!]!
+
+  # An aggregated array relationship
+  departments_aggregate(
+    # distinct select on columns
+    distinct_on: [department_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [department_order_by!]
+
+    # filter the rows returned
+    where: department_bool_exp
+  ): department_aggregate!
+
+  # An array relationship
+  faculties(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): [faculty!]!
+
+  # An array relationship
+  facultiesByDoctoraldegreefrom(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): [faculty!]!
+
+  # An aggregated array relationship
+  facultiesByDoctoraldegreefrom_aggregate(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): faculty_aggregate!
+
+  # An array relationship
+  facultiesByMasterdegreefrom(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): [faculty!]!
+
+  # An aggregated array relationship
+  facultiesByMasterdegreefrom_aggregate(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): faculty_aggregate!
+
+  # An aggregated array relationship
+  faculties_aggregate(
+    # distinct select on columns
+    distinct_on: [faculty_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [faculty_order_by!]
+
+    # filter the rows returned
+    where: faculty_bool_exp
+  ): faculty_aggregate!
+
+  # An array relationship
+  graduatestudents(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): [graduatestudent!]!
+
+  # An aggregated array relationship
+  graduatestudents_aggregate(
+    # distinct select on columns
+    distinct_on: [graduatestudent_select_column!]
+
+    # limit the number of rows returned
+    limit: Int
+
+    # skip the first n rows. Use only with order_by
+    offset: Int
+
+    # sort the rows by one or more columns
+    order_by: [graduatestudent_order_by!]
+
+    # filter the rows returned
+    where: graduatestudent_bool_exp
+  ): graduatestudent_aggregate!
+  name: String
+  nr: Int!
+}
+
+# aggregated selection of "university"
+type university_aggregate {
+  aggregate: university_aggregate_fields
+  nodes: [university!]!
+}
+
+# aggregate fields of "university"
+type university_aggregate_fields {
+  avg: university_avg_fields
+  count(columns: [university_select_column!], distinct: Boolean): Int
+  max: university_max_fields
+  min: university_min_fields
+  stddev: university_stddev_fields
+  stddev_pop: university_stddev_pop_fields
+  stddev_samp: university_stddev_samp_fields
+  sum: university_sum_fields
+  var_pop: university_var_pop_fields
+  var_samp: university_var_samp_fields
+  variance: university_variance_fields
+}
+
+# order by aggregate values of table "university"
+input university_aggregate_order_by {
+  avg: university_avg_order_by
+  count: order_by
+  max: university_max_order_by
+  min: university_min_order_by
+  stddev: university_stddev_order_by
+  stddev_pop: university_stddev_pop_order_by
+  stddev_samp: university_stddev_samp_order_by
+  sum: university_sum_order_by
+  var_pop: university_var_pop_order_by
+  var_samp: university_var_samp_order_by
+  variance: university_variance_order_by
+}
+
+# input type for inserting array relation for remote table "university"
+input university_arr_rel_insert_input {
+  data: [university_insert_input!]!
+  on_conflict: university_on_conflict
+}
+
+# aggregate avg on columns
+type university_avg_fields {
+  nr: Float
+}
+
+# order by avg() on columns of table "university"
+input university_avg_order_by {
+  nr: order_by
+}
+
+# Boolean expression to filter rows from the table "university". All fields are combined with a logical 'AND'.
+input university_bool_exp {
+  _and: [university_bool_exp]
+  _not: university_bool_exp
+  _or: [university_bool_exp]
+  departments: department_bool_exp
+  faculties: faculty_bool_exp
+  facultiesByDoctoraldegreefrom: faculty_bool_exp
+  facultiesByMasterdegreefrom: faculty_bool_exp
+  graduatestudents: graduatestudent_bool_exp
+  name: String_comparison_exp
+  nr: Int_comparison_exp
+}
+
+# unique or primary key constraints on table "university"
+enum university_constraint {
+  # unique or primary key constraint
+  university_pkey
+}
+
+# input type for incrementing integer columne in table "university"
+input university_inc_input {
+  nr: Int
+}
+
+# input type for inserting data into table "university"
+input university_insert_input {
+  departments: department_arr_rel_insert_input
+  faculties: faculty_arr_rel_insert_input
+  facultiesByDoctoraldegreefrom: faculty_arr_rel_insert_input
+  facultiesByMasterdegreefrom: faculty_arr_rel_insert_input
+  graduatestudents: graduatestudent_arr_rel_insert_input
+  name: String
+  nr: Int
+}
+
+# aggregate max on columns
+type university_max_fields {
+  name: String
+  nr: Int
+}
+
+# order by max() on columns of table "university"
+input university_max_order_by {
+  name: order_by
+  nr: order_by
+}
+
+# aggregate min on columns
+type university_min_fields {
+  name: String
+  nr: Int
+}
+
+# order by min() on columns of table "university"
+input university_min_order_by {
+  name: order_by
+  nr: order_by
+}
+
+# response of any mutation on the table "university"
+type university_mutation_response {
+  # number of affected rows by the mutation
+  affected_rows: Int!
+
+  # data of the affected rows by the mutation
+  returning: [university!]!
+}
+
+# input type for inserting object relation for remote table "university"
+input university_obj_rel_insert_input {
+  data: university_insert_input!
+  on_conflict: university_on_conflict
+}
+
+# on conflict condition type for table "university"
+input university_on_conflict {
+  constraint: university_constraint!
+  update_columns: [university_update_column!]!
+  where: university_bool_exp
+}
+
+# ordering options when selecting data from "university"
+input university_order_by {
+  departments_aggregate: department_aggregate_order_by
+  facultiesByDoctoraldegreefrom_aggregate: faculty_aggregate_order_by
+  facultiesByMasterdegreefrom_aggregate: faculty_aggregate_order_by
+  faculties_aggregate: faculty_aggregate_order_by
+  graduatestudents_aggregate: graduatestudent_aggregate_order_by
+  name: order_by
+  nr: order_by
+}
+
+# primary key columns input for table: "university"
+input university_pk_columns_input {
+  nr: Int!
+}
+
+# select columns of table "university"
+enum university_select_column {
+  # column name
+  name
+
+  # column name
+  nr
+}
+
+# input type for updating data in table "university"
+input university_set_input {
+  name: String
+  nr: Int
+}
+
+# aggregate stddev on columns
+type university_stddev_fields {
+  nr: Float
+}
+
+# order by stddev() on columns of table "university"
+input university_stddev_order_by {
+  nr: order_by
+}
+
+# aggregate stddev_pop on columns
+type university_stddev_pop_fields {
+  nr: Float
+}
+
+# order by stddev_pop() on columns of table "university"
+input university_stddev_pop_order_by {
+  nr: order_by
+}
+
+# aggregate stddev_samp on columns
+type university_stddev_samp_fields {
+  nr: Float
+}
+
+# order by stddev_samp() on columns of table "university"
+input university_stddev_samp_order_by {
+  nr: order_by
+}
+
+# aggregate sum on columns
+type university_sum_fields {
+  nr: Int
+}
+
+# order by sum() on columns of table "university"
+input university_sum_order_by {
+  nr: order_by
+}
+
+# update columns of table "university"
+enum university_update_column {
+  # column name
+  name
+
+  # column name
+  nr
+}
+
+# aggregate var_pop on columns
+type university_var_pop_fields {
+  nr: Float
+}
+
+# order by var_pop() on columns of table "university"
+input university_var_pop_order_by {
+  nr: order_by
+}
+
+# aggregate var_samp on columns
+type university_var_samp_fields {
+  nr: Float
+}
+
+# order by var_samp() on columns of table "university"
+input university_var_samp_order_by {
+  nr: order_by
+}
+
+# aggregate variance on columns
+type university_variance_fields {
+  nr: Float
+}
+
+# order by variance() on columns of table "university"
+input university_variance_order_by {
+  nr: order_by
+}
