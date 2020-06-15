@@ -1,0 +1,1 @@
+This directory contains the 16 main query templates for [Scenario 1](https://github.com/LiUGraphQL/LinGBM/wiki/Introduction-to-the-LinGBM-Project#scenarios) of the LinGBM benchmark. You can find a [detailed description of these templates in the LinGBM wiki](https://github.com/LiUGraphQL/LinGBM/wiki/Query-Templates-of-the-Benchmark).
