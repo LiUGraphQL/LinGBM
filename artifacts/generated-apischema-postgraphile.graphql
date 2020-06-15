@@ -1,0 +1,4445 @@
+type Coauthorofpublication implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  publicationid: Int!
+  graduatestudentid: Int!
+
+  # Reads a single `Publication` that is related to this `Coauthorofpublication`.
+  publicationByPublicationid: Publication
+
+  # Reads a single `Graduatestudent` that is related to this `Coauthorofpublication`.
+  graduatestudentByGraduatestudentid: Graduatestudent
+}
+
+# A condition to be used against `Coauthorofpublication` object types. All fields
+# are tested for equality and combined with a logical ‘and.’
+input CoauthorofpublicationCondition {
+  # Checks for equality with the object’s `publicationid` field.
+  publicationid: Int
+
+  # Checks for equality with the object’s `graduatestudentid` field.
+  graduatestudentid: Int
+}
+
+# An input for mutations affecting `Coauthorofpublication`
+input CoauthorofpublicationInput {
+  publicationid: Int!
+  graduatestudentid: Int!
+}
+
+# Represents an update to a `Coauthorofpublication`. Fields that are set will be updated.
+input CoauthorofpublicationPatch {
+  publicationid: Int
+  graduatestudentid: Int
+}
+
+# A connection to a list of `Coauthorofpublication` values.
+type CoauthorofpublicationsConnection {
+  # A list of `Coauthorofpublication` objects.
+  nodes: [Coauthorofpublication]!
+
+  # A list of edges which contains the `Coauthorofpublication` and cursor to aid in pagination.
+  edges: [CoauthorofpublicationsEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Coauthorofpublication` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Coauthorofpublication` edge in the connection.
+type CoauthorofpublicationsEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Coauthorofpublication` at the end of the edge.
+  node: Coauthorofpublication
+}
+
+# Methods to use when ordering `Coauthorofpublication`.
+enum CoauthorofpublicationsOrderBy {
+  NATURAL
+  PUBLICATIONID_ASC
+  PUBLICATIONID_DESC
+  GRADUATESTUDENTID_ASC
+  GRADUATESTUDENTID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+# All input for the create `Coauthorofpublication` mutation.
+input CreateCoauthorofpublicationInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Coauthorofpublication` to be created by this mutation.
+  coauthorofpublication: CoauthorofpublicationInput!
+}
+
+# The output of our create `Coauthorofpublication` mutation.
+type CreateCoauthorofpublicationPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Coauthorofpublication` that was created by this mutation.
+  coauthorofpublication: Coauthorofpublication
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Publication` that is related to this `Coauthorofpublication`.
+  publicationByPublicationid: Publication
+
+  # Reads a single `Graduatestudent` that is related to this `Coauthorofpublication`.
+  graduatestudentByGraduatestudentid: Graduatestudent
+
+  # An edge for our `Coauthorofpublication`. May be used by Relay 1.
+  coauthorofpublicationEdge(
+    # The method to use when ordering `Coauthorofpublication`.
+    orderBy: [CoauthorofpublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CoauthorofpublicationsEdge
+}
+
+# All input for the create `Department` mutation.
+input CreateDepartmentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Department` to be created by this mutation.
+  department: DepartmentInput!
+}
+
+# The output of our create `Department` mutation.
+type CreateDepartmentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Department` that was created by this mutation.
+  department: Department
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Department`.
+  universityBySuborganizationof: University
+
+  # An edge for our `Department`. May be used by Relay 1.
+  departmentEdge(
+    # The method to use when ordering `Department`.
+    orderBy: [DepartmentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): DepartmentsEdge
+}
+
+# All input for the create `Faculty` mutation.
+input CreateFacultyInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Faculty` to be created by this mutation.
+  faculty: FacultyInput!
+}
+
+# The output of our create `Faculty` mutation.
+type CreateFacultyPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Faculty` that was created by this mutation.
+  faculty: Faculty
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByUndergraduatedegreefrom: University
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByMasterdegreefrom: University
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByDoctoraldegreefrom: University
+
+  # Reads a single `Department` that is related to this `Faculty`.
+  departmentByWorksfor: Department
+
+  # An edge for our `Faculty`. May be used by Relay 1.
+  facultyEdge(
+    # The method to use when ordering `Faculty`.
+    orderBy: [FacultiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FacultiesEdge
+}
+
+# All input for the create `Graduatecourse` mutation.
+input CreateGraduatecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Graduatecourse` to be created by this mutation.
+  graduatecourse: GraduatecourseInput!
+}
+
+# The output of our create `Graduatecourse` mutation.
+type CreateGraduatecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatecourse` that was created by this mutation.
+  graduatecourse: Graduatecourse
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Graduatecourse`.
+  facultyByTeacher: Faculty
+
+  # An edge for our `Graduatecourse`. May be used by Relay 1.
+  graduatecourseEdge(
+    # The method to use when ordering `Graduatecourse`.
+    orderBy: [GraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatecoursesEdge
+}
+
+# All input for the create `Graduatestudent` mutation.
+input CreateGraduatestudentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Graduatestudent` to be created by this mutation.
+  graduatestudent: GraduatestudentInput!
+}
+
+# The output of our create `Graduatestudent` mutation.
+type CreateGraduatestudentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatestudent` that was created by this mutation.
+  graduatestudent: Graduatestudent
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Graduatestudent`.
+  universityByUndergraduatedegreefrom: University
+
+  # Reads a single `Professor` that is related to this `Graduatestudent`.
+  professorByAdvisor: Professor
+
+  # Reads a single `Department` that is related to this `Graduatestudent`.
+  departmentByMemberof: Department
+
+  # An edge for our `Graduatestudent`. May be used by Relay 1.
+  graduatestudentEdge(
+    # The method to use when ordering `Graduatestudent`.
+    orderBy: [GraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatestudentsEdge
+}
+
+# All input for the create `Graduatestudenttakecourse` mutation.
+input CreateGraduatestudenttakecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Graduatestudenttakecourse` to be created by this mutation.
+  graduatestudenttakecourse: GraduatestudenttakecourseInput!
+}
+
+# The output of our create `Graduatestudenttakecourse` mutation.
+type CreateGraduatestudenttakecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatestudenttakecourse` that was created by this mutation.
+  graduatestudenttakecourse: Graduatestudenttakecourse
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Graduatestudent` that is related to this `Graduatestudenttakecourse`.
+  graduatestudentByGraduatestudentid: Graduatestudent
+
+  # Reads a single `Graduatecourse` that is related to this `Graduatestudenttakecourse`.
+  graduatecourseByGraduatecourseid: Graduatecourse
+
+  # An edge for our `Graduatestudenttakecourse`. May be used by Relay 1.
+  graduatestudenttakecourseEdge(
+    # The method to use when ordering `Graduatestudenttakecourse`.
+    orderBy: [GraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatestudenttakecoursesEdge
+}
+
+# All input for the create `Lecturer` mutation.
+input CreateLecturerInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Lecturer` to be created by this mutation.
+  lecturer: LecturerInput!
+}
+
+# The output of our create `Lecturer` mutation.
+type CreateLecturerPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Lecturer` that was created by this mutation.
+  lecturer: Lecturer
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Lecturer`.
+  facultyByNr: Faculty
+
+  # An edge for our `Lecturer`. May be used by Relay 1.
+  lecturerEdge(
+    # The method to use when ordering `Lecturer`.
+    orderBy: [LecturersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): LecturersEdge
+}
+
+# All input for the create `Professor` mutation.
+input CreateProfessorInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Professor` to be created by this mutation.
+  professor: ProfessorInput!
+}
+
+# The output of our create `Professor` mutation.
+type CreateProfessorPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Professor` that was created by this mutation.
+  professor: Professor
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Professor`.
+  facultyByNr: Faculty
+
+  # Reads a single `Department` that is related to this `Professor`.
+  departmentByHeadof: Department
+
+  # An edge for our `Professor`. May be used by Relay 1.
+  professorEdge(
+    # The method to use when ordering `Professor`.
+    orderBy: [ProfessorsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProfessorsEdge
+}
+
+# All input for the create `Publication` mutation.
+input CreatePublicationInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Publication` to be created by this mutation.
+  publication: PublicationInput!
+}
+
+# The output of our create `Publication` mutation.
+type CreatePublicationPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Publication` that was created by this mutation.
+  publication: Publication
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Publication`.
+  facultyByMainauthor: Faculty
+
+  # An edge for our `Publication`. May be used by Relay 1.
+  publicationEdge(
+    # The method to use when ordering `Publication`.
+    orderBy: [PublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): PublicationsEdge
+}
+
+# All input for the create `Researchgroup` mutation.
+input CreateResearchgroupInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Researchgroup` to be created by this mutation.
+  researchgroup: ResearchgroupInput!
+}
+
+# The output of our create `Researchgroup` mutation.
+type CreateResearchgroupPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Researchgroup` that was created by this mutation.
+  researchgroup: Researchgroup
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Department` that is related to this `Researchgroup`.
+  departmentBySuborganizationof: Department
+
+  # An edge for our `Researchgroup`. May be used by Relay 1.
+  researchgroupEdge(
+    # The method to use when ordering `Researchgroup`.
+    orderBy: [ResearchgroupsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ResearchgroupsEdge
+}
+
+# All input for the create `Undergraduatecourse` mutation.
+input CreateUndergraduatecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Undergraduatecourse` to be created by this mutation.
+  undergraduatecourse: UndergraduatecourseInput!
+}
+
+# The output of our create `Undergraduatecourse` mutation.
+type CreateUndergraduatecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatecourse` that was created by this mutation.
+  undergraduatecourse: Undergraduatecourse
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Undergraduatecourse`.
+  facultyByTeacher: Faculty
+
+  # Reads a single `Graduatestudent` that is related to this `Undergraduatecourse`.
+  graduatestudentByTeachingassistant: Graduatestudent
+
+  # An edge for our `Undergraduatecourse`. May be used by Relay 1.
+  undergraduatecourseEdge(
+    # The method to use when ordering `Undergraduatecourse`.
+    orderBy: [UndergraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatecoursesEdge
+}
+
+# All input for the create `Undergraduatestudent` mutation.
+input CreateUndergraduatestudentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Undergraduatestudent` to be created by this mutation.
+  undergraduatestudent: UndergraduatestudentInput!
+}
+
+# The output of our create `Undergraduatestudent` mutation.
+type CreateUndergraduatestudentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatestudent` that was created by this mutation.
+  undergraduatestudent: Undergraduatestudent
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Professor` that is related to this `Undergraduatestudent`.
+  professorByAdvisor: Professor
+
+  # Reads a single `Department` that is related to this `Undergraduatestudent`.
+  departmentByMemberof: Department
+
+  # An edge for our `Undergraduatestudent`. May be used by Relay 1.
+  undergraduatestudentEdge(
+    # The method to use when ordering `Undergraduatestudent`.
+    orderBy: [UndergraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatestudentsEdge
+}
+
+# All input for the create `Undergraduatestudenttakecourse` mutation.
+input CreateUndergraduatestudenttakecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `Undergraduatestudenttakecourse` to be created by this mutation.
+  undergraduatestudenttakecourse: UndergraduatestudenttakecourseInput!
+}
+
+# The output of our create `Undergraduatestudenttakecourse` mutation.
+type CreateUndergraduatestudenttakecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatestudenttakecourse` that was created by this mutation.
+  undergraduatestudenttakecourse: Undergraduatestudenttakecourse
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Undergraduatestudent` that is related to this `Undergraduatestudenttakecourse`.
+  undergraduatestudentByUndergraduatestudentid: Undergraduatestudent
+
+  # Reads a single `Undergraduatecourse` that is related to this `Undergraduatestudenttakecourse`.
+  undergraduatecourseByUndergraduatecourseid: Undergraduatecourse
+
+  # An edge for our `Undergraduatestudenttakecourse`. May be used by Relay 1.
+  undergraduatestudenttakecourseEdge(
+    # The method to use when ordering `Undergraduatestudenttakecourse`.
+    orderBy: [UndergraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatestudenttakecoursesEdge
+}
+
+# All input for the create `University` mutation.
+input CreateUniversityInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The `University` to be created by this mutation.
+  university: UniversityInput!
+}
+
+# The output of our create `University` mutation.
+type CreateUniversityPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `University` that was created by this mutation.
+  university: University
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # An edge for our `University`. May be used by Relay 1.
+  universityEdge(
+    # The method to use when ordering `University`.
+    orderBy: [UniversitiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UniversitiesEdge
+}
+
+# A location in a connection that can be used for resuming pagination.
+scalar Cursor
+
+# All input for the `deleteCoauthorofpublicationByPublicationidAndGraduatestudentid` mutation.
+input DeleteCoauthorofpublicationByPublicationidAndGraduatestudentidInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  publicationid: Int!
+  graduatestudentid: Int!
+}
+
+# All input for the `deleteCoauthorofpublication` mutation.
+input DeleteCoauthorofpublicationInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Coauthorofpublication` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Coauthorofpublication` mutation.
+type DeleteCoauthorofpublicationPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Coauthorofpublication` that was deleted by this mutation.
+  coauthorofpublication: Coauthorofpublication
+  deletedCoauthorofpublicationId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Publication` that is related to this `Coauthorofpublication`.
+  publicationByPublicationid: Publication
+
+  # Reads a single `Graduatestudent` that is related to this `Coauthorofpublication`.
+  graduatestudentByGraduatestudentid: Graduatestudent
+
+  # An edge for our `Coauthorofpublication`. May be used by Relay 1.
+  coauthorofpublicationEdge(
+    # The method to use when ordering `Coauthorofpublication`.
+    orderBy: [CoauthorofpublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CoauthorofpublicationsEdge
+}
+
+# All input for the `deleteDepartmentByNr` mutation.
+input DeleteDepartmentByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteDepartment` mutation.
+input DeleteDepartmentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Department` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Department` mutation.
+type DeleteDepartmentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Department` that was deleted by this mutation.
+  department: Department
+  deletedDepartmentId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Department`.
+  universityBySuborganizationof: University
+
+  # An edge for our `Department`. May be used by Relay 1.
+  departmentEdge(
+    # The method to use when ordering `Department`.
+    orderBy: [DepartmentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): DepartmentsEdge
+}
+
+# All input for the `deleteFacultyByNr` mutation.
+input DeleteFacultyByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteFaculty` mutation.
+input DeleteFacultyInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Faculty` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Faculty` mutation.
+type DeleteFacultyPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Faculty` that was deleted by this mutation.
+  faculty: Faculty
+  deletedFacultyId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByUndergraduatedegreefrom: University
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByMasterdegreefrom: University
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByDoctoraldegreefrom: University
+
+  # Reads a single `Department` that is related to this `Faculty`.
+  departmentByWorksfor: Department
+
+  # An edge for our `Faculty`. May be used by Relay 1.
+  facultyEdge(
+    # The method to use when ordering `Faculty`.
+    orderBy: [FacultiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FacultiesEdge
+}
+
+# All input for the `deleteGraduatecourseByNr` mutation.
+input DeleteGraduatecourseByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteGraduatecourse` mutation.
+input DeleteGraduatecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Graduatecourse` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Graduatecourse` mutation.
+type DeleteGraduatecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatecourse` that was deleted by this mutation.
+  graduatecourse: Graduatecourse
+  deletedGraduatecourseId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Graduatecourse`.
+  facultyByTeacher: Faculty
+
+  # An edge for our `Graduatecourse`. May be used by Relay 1.
+  graduatecourseEdge(
+    # The method to use when ordering `Graduatecourse`.
+    orderBy: [GraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatecoursesEdge
+}
+
+# All input for the `deleteGraduatestudentByNr` mutation.
+input DeleteGraduatestudentByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteGraduatestudent` mutation.
+input DeleteGraduatestudentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Graduatestudent` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Graduatestudent` mutation.
+type DeleteGraduatestudentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatestudent` that was deleted by this mutation.
+  graduatestudent: Graduatestudent
+  deletedGraduatestudentId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Graduatestudent`.
+  universityByUndergraduatedegreefrom: University
+
+  # Reads a single `Professor` that is related to this `Graduatestudent`.
+  professorByAdvisor: Professor
+
+  # Reads a single `Department` that is related to this `Graduatestudent`.
+  departmentByMemberof: Department
+
+  # An edge for our `Graduatestudent`. May be used by Relay 1.
+  graduatestudentEdge(
+    # The method to use when ordering `Graduatestudent`.
+    orderBy: [GraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatestudentsEdge
+}
+
+# All input for the `deleteGraduatestudenttakecourseByGraduatestudentidAndGraduatecourseid` mutation.
+input DeleteGraduatestudenttakecourseByGraduatestudentidAndGraduatecourseidInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  graduatestudentid: Int!
+  graduatecourseid: Int!
+}
+
+# All input for the `deleteGraduatestudenttakecourse` mutation.
+input DeleteGraduatestudenttakecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Graduatestudenttakecourse` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Graduatestudenttakecourse` mutation.
+type DeleteGraduatestudenttakecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatestudenttakecourse` that was deleted by this mutation.
+  graduatestudenttakecourse: Graduatestudenttakecourse
+  deletedGraduatestudenttakecourseId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Graduatestudent` that is related to this `Graduatestudenttakecourse`.
+  graduatestudentByGraduatestudentid: Graduatestudent
+
+  # Reads a single `Graduatecourse` that is related to this `Graduatestudenttakecourse`.
+  graduatecourseByGraduatecourseid: Graduatecourse
+
+  # An edge for our `Graduatestudenttakecourse`. May be used by Relay 1.
+  graduatestudenttakecourseEdge(
+    # The method to use when ordering `Graduatestudenttakecourse`.
+    orderBy: [GraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatestudenttakecoursesEdge
+}
+
+# All input for the `deleteLecturerByNr` mutation.
+input DeleteLecturerByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteLecturer` mutation.
+input DeleteLecturerInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Lecturer` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Lecturer` mutation.
+type DeleteLecturerPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Lecturer` that was deleted by this mutation.
+  lecturer: Lecturer
+  deletedLecturerId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Lecturer`.
+  facultyByNr: Faculty
+
+  # An edge for our `Lecturer`. May be used by Relay 1.
+  lecturerEdge(
+    # The method to use when ordering `Lecturer`.
+    orderBy: [LecturersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): LecturersEdge
+}
+
+# All input for the `deleteProfessorByNr` mutation.
+input DeleteProfessorByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteProfessor` mutation.
+input DeleteProfessorInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Professor` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Professor` mutation.
+type DeleteProfessorPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Professor` that was deleted by this mutation.
+  professor: Professor
+  deletedProfessorId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Professor`.
+  facultyByNr: Faculty
+
+  # Reads a single `Department` that is related to this `Professor`.
+  departmentByHeadof: Department
+
+  # An edge for our `Professor`. May be used by Relay 1.
+  professorEdge(
+    # The method to use when ordering `Professor`.
+    orderBy: [ProfessorsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProfessorsEdge
+}
+
+# All input for the `deletePublicationByNr` mutation.
+input DeletePublicationByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deletePublication` mutation.
+input DeletePublicationInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Publication` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Publication` mutation.
+type DeletePublicationPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Publication` that was deleted by this mutation.
+  publication: Publication
+  deletedPublicationId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Publication`.
+  facultyByMainauthor: Faculty
+
+  # An edge for our `Publication`. May be used by Relay 1.
+  publicationEdge(
+    # The method to use when ordering `Publication`.
+    orderBy: [PublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): PublicationsEdge
+}
+
+# All input for the `deleteResearchgroupByNr` mutation.
+input DeleteResearchgroupByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteResearchgroup` mutation.
+input DeleteResearchgroupInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Researchgroup` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Researchgroup` mutation.
+type DeleteResearchgroupPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Researchgroup` that was deleted by this mutation.
+  researchgroup: Researchgroup
+  deletedResearchgroupId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Department` that is related to this `Researchgroup`.
+  departmentBySuborganizationof: Department
+
+  # An edge for our `Researchgroup`. May be used by Relay 1.
+  researchgroupEdge(
+    # The method to use when ordering `Researchgroup`.
+    orderBy: [ResearchgroupsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ResearchgroupsEdge
+}
+
+# All input for the `deleteUndergraduatecourseByNr` mutation.
+input DeleteUndergraduatecourseByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteUndergraduatecourse` mutation.
+input DeleteUndergraduatecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Undergraduatecourse` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Undergraduatecourse` mutation.
+type DeleteUndergraduatecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatecourse` that was deleted by this mutation.
+  undergraduatecourse: Undergraduatecourse
+  deletedUndergraduatecourseId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Undergraduatecourse`.
+  facultyByTeacher: Faculty
+
+  # Reads a single `Graduatestudent` that is related to this `Undergraduatecourse`.
+  graduatestudentByTeachingassistant: Graduatestudent
+
+  # An edge for our `Undergraduatecourse`. May be used by Relay 1.
+  undergraduatecourseEdge(
+    # The method to use when ordering `Undergraduatecourse`.
+    orderBy: [UndergraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatecoursesEdge
+}
+
+# All input for the `deleteUndergraduatestudentByNr` mutation.
+input DeleteUndergraduatestudentByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteUndergraduatestudent` mutation.
+input DeleteUndergraduatestudentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Undergraduatestudent` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Undergraduatestudent` mutation.
+type DeleteUndergraduatestudentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatestudent` that was deleted by this mutation.
+  undergraduatestudent: Undergraduatestudent
+  deletedUndergraduatestudentId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Professor` that is related to this `Undergraduatestudent`.
+  professorByAdvisor: Professor
+
+  # Reads a single `Department` that is related to this `Undergraduatestudent`.
+  departmentByMemberof: Department
+
+  # An edge for our `Undergraduatestudent`. May be used by Relay 1.
+  undergraduatestudentEdge(
+    # The method to use when ordering `Undergraduatestudent`.
+    orderBy: [UndergraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatestudentsEdge
+}
+
+# All input for the `deleteUndergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseid` mutation.
+input DeleteUndergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseidInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  undergraduatestudentid: Int!
+  undergraduatecourseid: Int!
+}
+
+# All input for the `deleteUndergraduatestudenttakecourse` mutation.
+input DeleteUndergraduatestudenttakecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Undergraduatestudenttakecourse` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `Undergraduatestudenttakecourse` mutation.
+type DeleteUndergraduatestudenttakecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatestudenttakecourse` that was deleted by this mutation.
+  undergraduatestudenttakecourse: Undergraduatestudenttakecourse
+  deletedUndergraduatestudenttakecourseId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Undergraduatestudent` that is related to this `Undergraduatestudenttakecourse`.
+  undergraduatestudentByUndergraduatestudentid: Undergraduatestudent
+
+  # Reads a single `Undergraduatecourse` that is related to this `Undergraduatestudenttakecourse`.
+  undergraduatecourseByUndergraduatecourseid: Undergraduatecourse
+
+  # An edge for our `Undergraduatestudenttakecourse`. May be used by Relay 1.
+  undergraduatestudenttakecourseEdge(
+    # The method to use when ordering `Undergraduatestudenttakecourse`.
+    orderBy: [UndergraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatestudenttakecoursesEdge
+}
+
+# All input for the `deleteUniversityByNr` mutation.
+input DeleteUniversityByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+  nr: Int!
+}
+
+# All input for the `deleteUniversity` mutation.
+input DeleteUniversityInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `University` to be deleted.
+  nodeId: ID!
+}
+
+# The output of our delete `University` mutation.
+type DeleteUniversityPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `University` that was deleted by this mutation.
+  university: University
+  deletedUniversityId: ID
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # An edge for our `University`. May be used by Relay 1.
+  universityEdge(
+    # The method to use when ordering `University`.
+    orderBy: [UniversitiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UniversitiesEdge
+}
+
+type Department implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  name: String
+  suborganizationof: Int
+
+  # Reads a single `University` that is related to this `Department`.
+  universityBySuborganizationof: University
+
+  # Reads and enables pagination through a set of `Researchgroup`.
+  researchgroupsBySuborganizationof(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Researchgroup`.
+    orderBy: [ResearchgroupsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: ResearchgroupCondition
+  ): ResearchgroupsConnection!
+
+  # Reads and enables pagination through a set of `Faculty`.
+  facultiesByWorksfor(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Faculty`.
+    orderBy: [FacultiesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: FacultyCondition
+  ): FacultiesConnection!
+
+  # Reads and enables pagination through a set of `Professor`.
+  professorsByHeadof(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Professor`.
+    orderBy: [ProfessorsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: ProfessorCondition
+  ): ProfessorsConnection!
+
+  # Reads and enables pagination through a set of `Graduatestudent`.
+  graduatestudentsByMemberof(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatestudent`.
+    orderBy: [GraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatestudentCondition
+  ): GraduatestudentsConnection!
+
+  # Reads and enables pagination through a set of `Undergraduatestudent`.
+  undergraduatestudentsByMemberof(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatestudent`.
+    orderBy: [UndergraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatestudentCondition
+  ): UndergraduatestudentsConnection!
+}
+
+# A condition to be used against `Department` object types. All fields are tested
+# for equality and combined with a logical ‘and.’
+input DepartmentCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `name` field.
+  name: String
+
+  # Checks for equality with the object’s `suborganizationof` field.
+  suborganizationof: Int
+}
+
+# An input for mutations affecting `Department`
+input DepartmentInput {
+  nr: Int!
+  name: String
+  suborganizationof: Int
+}
+
+# Represents an update to a `Department`. Fields that are set will be updated.
+input DepartmentPatch {
+  nr: Int
+  name: String
+  suborganizationof: Int
+}
+
+# A connection to a list of `Department` values.
+type DepartmentsConnection {
+  # A list of `Department` objects.
+  nodes: [Department]!
+
+  # A list of edges which contains the `Department` and cursor to aid in pagination.
+  edges: [DepartmentsEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Department` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Department` edge in the connection.
+type DepartmentsEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Department` at the end of the edge.
+  node: Department
+}
+
+# Methods to use when ordering `Department`.
+enum DepartmentsOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  NAME_ASC
+  NAME_DESC
+  SUBORGANIZATIONOF_ASC
+  SUBORGANIZATIONOF_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+# A connection to a list of `Faculty` values.
+type FacultiesConnection {
+  # A list of `Faculty` objects.
+  nodes: [Faculty]!
+
+  # A list of edges which contains the `Faculty` and cursor to aid in pagination.
+  edges: [FacultiesEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Faculty` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Faculty` edge in the connection.
+type FacultiesEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Faculty` at the end of the edge.
+  node: Faculty
+}
+
+# Methods to use when ordering `Faculty`.
+enum FacultiesOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  NAME_ASC
+  NAME_DESC
+  TELEPHONE_ASC
+  TELEPHONE_DESC
+  EMAILADDRESS_ASC
+  EMAILADDRESS_DESC
+  UNDERGRADUATEDEGREEFROM_ASC
+  UNDERGRADUATEDEGREEFROM_DESC
+  MASTERDEGREEFROM_ASC
+  MASTERDEGREEFROM_DESC
+  DOCTORALDEGREEFROM_ASC
+  DOCTORALDEGREEFROM_DESC
+  WORKSFOR_ASC
+  WORKSFOR_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Faculty implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  name: String
+  telephone: String
+  emailaddress: String
+  undergraduatedegreefrom: Int
+  masterdegreefrom: Int
+  doctoraldegreefrom: Int
+  worksfor: Int
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByUndergraduatedegreefrom: University
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByMasterdegreefrom: University
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByDoctoraldegreefrom: University
+
+  # Reads a single `Department` that is related to this `Faculty`.
+  departmentByWorksfor: Department
+
+  # Reads a single `Professor` that is related to this `Faculty`.
+  professorByNr: Professor
+
+  # Reads and enables pagination through a set of `Professor`.
+  professorsByNr(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Professor`.
+    orderBy: [ProfessorsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: ProfessorCondition
+  ): ProfessorsConnection! @deprecated(reason: "Please use professorByNr instead")
+
+  # Reads a single `Lecturer` that is related to this `Faculty`.
+  lecturerByNr: Lecturer
+
+  # Reads and enables pagination through a set of `Lecturer`.
+  lecturersByNr(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Lecturer`.
+    orderBy: [LecturersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: LecturerCondition
+  ): LecturersConnection! @deprecated(reason: "Please use lecturerByNr instead")
+
+  # Reads and enables pagination through a set of `Undergraduatecourse`.
+  undergraduatecoursesByTeacher(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatecourse`.
+    orderBy: [UndergraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatecourseCondition
+  ): UndergraduatecoursesConnection!
+
+  # Reads and enables pagination through a set of `Publication`.
+  publicationsByMainauthor(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Publication`.
+    orderBy: [PublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: PublicationCondition
+  ): PublicationsConnection!
+
+  # Reads and enables pagination through a set of `Graduatecourse`.
+  graduatecoursesByTeacher(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatecourse`.
+    orderBy: [GraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatecourseCondition
+  ): GraduatecoursesConnection!
+}
+
+# A condition to be used against `Faculty` object types. All fields are tested for equality and combined with a logical ‘and.’
+input FacultyCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `name` field.
+  name: String
+
+  # Checks for equality with the object’s `telephone` field.
+  telephone: String
+
+  # Checks for equality with the object’s `emailaddress` field.
+  emailaddress: String
+
+  # Checks for equality with the object’s `undergraduatedegreefrom` field.
+  undergraduatedegreefrom: Int
+
+  # Checks for equality with the object’s `masterdegreefrom` field.
+  masterdegreefrom: Int
+
+  # Checks for equality with the object’s `doctoraldegreefrom` field.
+  doctoraldegreefrom: Int
+
+  # Checks for equality with the object’s `worksfor` field.
+  worksfor: Int
+}
+
+# An input for mutations affecting `Faculty`
+input FacultyInput {
+  nr: Int!
+  name: String
+  telephone: String
+  emailaddress: String
+  undergraduatedegreefrom: Int
+  masterdegreefrom: Int
+  doctoraldegreefrom: Int
+  worksfor: Int
+}
+
+# Represents an update to a `Faculty`. Fields that are set will be updated.
+input FacultyPatch {
+  nr: Int
+  name: String
+  telephone: String
+  emailaddress: String
+  undergraduatedegreefrom: Int
+  masterdegreefrom: Int
+  doctoraldegreefrom: Int
+  worksfor: Int
+}
+
+type Graduatecourse implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  name: String
+  teacher: Int
+
+  # Reads a single `Faculty` that is related to this `Graduatecourse`.
+  facultyByTeacher: Faculty
+
+  # Reads and enables pagination through a set of `Graduatestudenttakecourse`.
+  graduatestudenttakecoursesByGraduatecourseid(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatestudenttakecourse`.
+    orderBy: [GraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatestudenttakecourseCondition
+  ): GraduatestudenttakecoursesConnection!
+}
+
+# A condition to be used against `Graduatecourse` object types. All fields are
+# tested for equality and combined with a logical ‘and.’
+input GraduatecourseCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `name` field.
+  name: String
+
+  # Checks for equality with the object’s `teacher` field.
+  teacher: Int
+}
+
+# An input for mutations affecting `Graduatecourse`
+input GraduatecourseInput {
+  nr: Int!
+  name: String
+  teacher: Int
+}
+
+# Represents an update to a `Graduatecourse`. Fields that are set will be updated.
+input GraduatecoursePatch {
+  nr: Int
+  name: String
+  teacher: Int
+}
+
+# A connection to a list of `Graduatecourse` values.
+type GraduatecoursesConnection {
+  # A list of `Graduatecourse` objects.
+  nodes: [Graduatecourse]!
+
+  # A list of edges which contains the `Graduatecourse` and cursor to aid in pagination.
+  edges: [GraduatecoursesEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Graduatecourse` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Graduatecourse` edge in the connection.
+type GraduatecoursesEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Graduatecourse` at the end of the edge.
+  node: Graduatecourse
+}
+
+# Methods to use when ordering `Graduatecourse`.
+enum GraduatecoursesOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  NAME_ASC
+  NAME_DESC
+  TEACHER_ASC
+  TEACHER_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Graduatestudent implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  name: String
+  telephone: String
+  emailaddress: String
+  age: Int
+  undergraduatedegreefrom: Int
+  advisor: Int
+  memberof: Int
+
+  # Reads a single `University` that is related to this `Graduatestudent`.
+  universityByUndergraduatedegreefrom: University
+
+  # Reads a single `Professor` that is related to this `Graduatestudent`.
+  professorByAdvisor: Professor
+
+  # Reads a single `Department` that is related to this `Graduatestudent`.
+  departmentByMemberof: Department
+
+  # Reads and enables pagination through a set of `Undergraduatecourse`.
+  undergraduatecoursesByTeachingassistant(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatecourse`.
+    orderBy: [UndergraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatecourseCondition
+  ): UndergraduatecoursesConnection!
+
+  # Reads and enables pagination through a set of `Coauthorofpublication`.
+  coauthorofpublicationsByGraduatestudentid(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Coauthorofpublication`.
+    orderBy: [CoauthorofpublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: CoauthorofpublicationCondition
+  ): CoauthorofpublicationsConnection!
+
+  # Reads and enables pagination through a set of `Graduatestudenttakecourse`.
+  graduatestudenttakecoursesByGraduatestudentid(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatestudenttakecourse`.
+    orderBy: [GraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatestudenttakecourseCondition
+  ): GraduatestudenttakecoursesConnection!
+}
+
+# A condition to be used against `Graduatestudent` object types. All fields are
+# tested for equality and combined with a logical ‘and.’
+input GraduatestudentCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `name` field.
+  name: String
+
+  # Checks for equality with the object’s `telephone` field.
+  telephone: String
+
+  # Checks for equality with the object’s `emailaddress` field.
+  emailaddress: String
+
+  # Checks for equality with the object’s `age` field.
+  age: Int
+
+  # Checks for equality with the object’s `undergraduatedegreefrom` field.
+  undergraduatedegreefrom: Int
+
+  # Checks for equality with the object’s `advisor` field.
+  advisor: Int
+
+  # Checks for equality with the object’s `memberof` field.
+  memberof: Int
+}
+
+# An input for mutations affecting `Graduatestudent`
+input GraduatestudentInput {
+  nr: Int!
+  name: String
+  telephone: String
+  emailaddress: String
+  age: Int
+  undergraduatedegreefrom: Int
+  advisor: Int
+  memberof: Int
+}
+
+# Represents an update to a `Graduatestudent`. Fields that are set will be updated.
+input GraduatestudentPatch {
+  nr: Int
+  name: String
+  telephone: String
+  emailaddress: String
+  age: Int
+  undergraduatedegreefrom: Int
+  advisor: Int
+  memberof: Int
+}
+
+# A connection to a list of `Graduatestudent` values.
+type GraduatestudentsConnection {
+  # A list of `Graduatestudent` objects.
+  nodes: [Graduatestudent]!
+
+  # A list of edges which contains the `Graduatestudent` and cursor to aid in pagination.
+  edges: [GraduatestudentsEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Graduatestudent` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Graduatestudent` edge in the connection.
+type GraduatestudentsEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Graduatestudent` at the end of the edge.
+  node: Graduatestudent
+}
+
+# Methods to use when ordering `Graduatestudent`.
+enum GraduatestudentsOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  NAME_ASC
+  NAME_DESC
+  TELEPHONE_ASC
+  TELEPHONE_DESC
+  EMAILADDRESS_ASC
+  EMAILADDRESS_DESC
+  AGE_ASC
+  AGE_DESC
+  UNDERGRADUATEDEGREEFROM_ASC
+  UNDERGRADUATEDEGREEFROM_DESC
+  ADVISOR_ASC
+  ADVISOR_DESC
+  MEMBEROF_ASC
+  MEMBEROF_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Graduatestudenttakecourse implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  graduatestudentid: Int!
+  graduatecourseid: Int!
+
+  # Reads a single `Graduatestudent` that is related to this `Graduatestudenttakecourse`.
+  graduatestudentByGraduatestudentid: Graduatestudent
+
+  # Reads a single `Graduatecourse` that is related to this `Graduatestudenttakecourse`.
+  graduatecourseByGraduatecourseid: Graduatecourse
+}
+
+# A condition to be used against `Graduatestudenttakecourse` object types. All
+# fields are tested for equality and combined with a logical ‘and.’
+input GraduatestudenttakecourseCondition {
+  # Checks for equality with the object’s `graduatestudentid` field.
+  graduatestudentid: Int
+
+  # Checks for equality with the object’s `graduatecourseid` field.
+  graduatecourseid: Int
+}
+
+# An input for mutations affecting `Graduatestudenttakecourse`
+input GraduatestudenttakecourseInput {
+  graduatestudentid: Int!
+  graduatecourseid: Int!
+}
+
+# Represents an update to a `Graduatestudenttakecourse`. Fields that are set will be updated.
+input GraduatestudenttakecoursePatch {
+  graduatestudentid: Int
+  graduatecourseid: Int
+}
+
+# A connection to a list of `Graduatestudenttakecourse` values.
+type GraduatestudenttakecoursesConnection {
+  # A list of `Graduatestudenttakecourse` objects.
+  nodes: [Graduatestudenttakecourse]!
+
+  # A list of edges which contains the `Graduatestudenttakecourse` and cursor to aid in pagination.
+  edges: [GraduatestudenttakecoursesEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Graduatestudenttakecourse` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Graduatestudenttakecourse` edge in the connection.
+type GraduatestudenttakecoursesEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Graduatestudenttakecourse` at the end of the edge.
+  node: Graduatestudenttakecourse
+}
+
+# Methods to use when ordering `Graduatestudenttakecourse`.
+enum GraduatestudenttakecoursesOrderBy {
+  NATURAL
+  GRADUATESTUDENTID_ASC
+  GRADUATESTUDENTID_DESC
+  GRADUATECOURSEID_ASC
+  GRADUATECOURSEID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Lecturer implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+
+  # Reads a single `Faculty` that is related to this `Lecturer`.
+  facultyByNr: Faculty
+}
+
+# A condition to be used against `Lecturer` object types. All fields are tested
+# for equality and combined with a logical ‘and.’
+input LecturerCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+}
+
+# An input for mutations affecting `Lecturer`
+input LecturerInput {
+  nr: Int!
+}
+
+# Represents an update to a `Lecturer`. Fields that are set will be updated.
+input LecturerPatch {
+  nr: Int
+}
+
+# A connection to a list of `Lecturer` values.
+type LecturersConnection {
+  # A list of `Lecturer` objects.
+  nodes: [Lecturer]!
+
+  # A list of edges which contains the `Lecturer` and cursor to aid in pagination.
+  edges: [LecturersEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Lecturer` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Lecturer` edge in the connection.
+type LecturersEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Lecturer` at the end of the edge.
+  node: Lecturer
+}
+
+# Methods to use when ordering `Lecturer`.
+enum LecturersOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+# The root mutation type which contains root level fields which mutate data.
+type Mutation {
+  # Creates a single `Coauthorofpublication`.
+  createCoauthorofpublication(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateCoauthorofpublicationInput!
+  ): CreateCoauthorofpublicationPayload
+
+  # Creates a single `Department`.
+  createDepartment(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateDepartmentInput!
+  ): CreateDepartmentPayload
+
+  # Creates a single `Faculty`.
+  createFaculty(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateFacultyInput!
+  ): CreateFacultyPayload
+
+  # Creates a single `Graduatecourse`.
+  createGraduatecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateGraduatecourseInput!
+  ): CreateGraduatecoursePayload
+
+  # Creates a single `Graduatestudent`.
+  createGraduatestudent(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateGraduatestudentInput!
+  ): CreateGraduatestudentPayload
+
+  # Creates a single `Graduatestudenttakecourse`.
+  createGraduatestudenttakecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateGraduatestudenttakecourseInput!
+  ): CreateGraduatestudenttakecoursePayload
+
+  # Creates a single `Lecturer`.
+  createLecturer(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateLecturerInput!
+  ): CreateLecturerPayload
+
+  # Creates a single `Professor`.
+  createProfessor(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateProfessorInput!
+  ): CreateProfessorPayload
+
+  # Creates a single `Publication`.
+  createPublication(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreatePublicationInput!
+  ): CreatePublicationPayload
+
+  # Creates a single `Researchgroup`.
+  createResearchgroup(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateResearchgroupInput!
+  ): CreateResearchgroupPayload
+
+  # Creates a single `Undergraduatecourse`.
+  createUndergraduatecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateUndergraduatecourseInput!
+  ): CreateUndergraduatecoursePayload
+
+  # Creates a single `Undergraduatestudent`.
+  createUndergraduatestudent(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateUndergraduatestudentInput!
+  ): CreateUndergraduatestudentPayload
+
+  # Creates a single `Undergraduatestudenttakecourse`.
+  createUndergraduatestudenttakecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateUndergraduatestudenttakecourseInput!
+  ): CreateUndergraduatestudenttakecoursePayload
+
+  # Creates a single `University`.
+  createUniversity(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: CreateUniversityInput!
+  ): CreateUniversityPayload
+
+  # Updates a single `Coauthorofpublication` using its globally unique id and a patch.
+  updateCoauthorofpublication(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateCoauthorofpublicationInput!
+  ): UpdateCoauthorofpublicationPayload
+
+  # Updates a single `Coauthorofpublication` using a unique key and a patch.
+  updateCoauthorofpublicationByPublicationidAndGraduatestudentid(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateCoauthorofpublicationByPublicationidAndGraduatestudentidInput!
+  ): UpdateCoauthorofpublicationPayload
+
+  # Updates a single `Department` using its globally unique id and a patch.
+  updateDepartment(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateDepartmentInput!
+  ): UpdateDepartmentPayload
+
+  # Updates a single `Department` using a unique key and a patch.
+  updateDepartmentByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateDepartmentByNrInput!
+  ): UpdateDepartmentPayload
+
+  # Updates a single `Faculty` using its globally unique id and a patch.
+  updateFaculty(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateFacultyInput!
+  ): UpdateFacultyPayload
+
+  # Updates a single `Faculty` using a unique key and a patch.
+  updateFacultyByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateFacultyByNrInput!
+  ): UpdateFacultyPayload
+
+  # Updates a single `Graduatecourse` using its globally unique id and a patch.
+  updateGraduatecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateGraduatecourseInput!
+  ): UpdateGraduatecoursePayload
+
+  # Updates a single `Graduatecourse` using a unique key and a patch.
+  updateGraduatecourseByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateGraduatecourseByNrInput!
+  ): UpdateGraduatecoursePayload
+
+  # Updates a single `Graduatestudent` using its globally unique id and a patch.
+  updateGraduatestudent(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateGraduatestudentInput!
+  ): UpdateGraduatestudentPayload
+
+  # Updates a single `Graduatestudent` using a unique key and a patch.
+  updateGraduatestudentByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateGraduatestudentByNrInput!
+  ): UpdateGraduatestudentPayload
+
+  # Updates a single `Graduatestudenttakecourse` using its globally unique id and a patch.
+  updateGraduatestudenttakecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateGraduatestudenttakecourseInput!
+  ): UpdateGraduatestudenttakecoursePayload
+
+  # Updates a single `Graduatestudenttakecourse` using a unique key and a patch.
+  updateGraduatestudenttakecourseByGraduatestudentidAndGraduatecourseid(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateGraduatestudenttakecourseByGraduatestudentidAndGraduatecourseidInput!
+  ): UpdateGraduatestudenttakecoursePayload
+
+  # Updates a single `Lecturer` using its globally unique id and a patch.
+  updateLecturer(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateLecturerInput!
+  ): UpdateLecturerPayload
+
+  # Updates a single `Lecturer` using a unique key and a patch.
+  updateLecturerByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateLecturerByNrInput!
+  ): UpdateLecturerPayload
+
+  # Updates a single `Professor` using its globally unique id and a patch.
+  updateProfessor(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateProfessorInput!
+  ): UpdateProfessorPayload
+
+  # Updates a single `Professor` using a unique key and a patch.
+  updateProfessorByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateProfessorByNrInput!
+  ): UpdateProfessorPayload
+
+  # Updates a single `Publication` using its globally unique id and a patch.
+  updatePublication(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdatePublicationInput!
+  ): UpdatePublicationPayload
+
+  # Updates a single `Publication` using a unique key and a patch.
+  updatePublicationByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdatePublicationByNrInput!
+  ): UpdatePublicationPayload
+
+  # Updates a single `Researchgroup` using its globally unique id and a patch.
+  updateResearchgroup(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateResearchgroupInput!
+  ): UpdateResearchgroupPayload
+
+  # Updates a single `Researchgroup` using a unique key and a patch.
+  updateResearchgroupByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateResearchgroupByNrInput!
+  ): UpdateResearchgroupPayload
+
+  # Updates a single `Undergraduatecourse` using its globally unique id and a patch.
+  updateUndergraduatecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateUndergraduatecourseInput!
+  ): UpdateUndergraduatecoursePayload
+
+  # Updates a single `Undergraduatecourse` using a unique key and a patch.
+  updateUndergraduatecourseByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateUndergraduatecourseByNrInput!
+  ): UpdateUndergraduatecoursePayload
+
+  # Updates a single `Undergraduatestudent` using its globally unique id and a patch.
+  updateUndergraduatestudent(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateUndergraduatestudentInput!
+  ): UpdateUndergraduatestudentPayload
+
+  # Updates a single `Undergraduatestudent` using a unique key and a patch.
+  updateUndergraduatestudentByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateUndergraduatestudentByNrInput!
+  ): UpdateUndergraduatestudentPayload
+
+  # Updates a single `Undergraduatestudenttakecourse` using its globally unique id and a patch.
+  updateUndergraduatestudenttakecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateUndergraduatestudenttakecourseInput!
+  ): UpdateUndergraduatestudenttakecoursePayload
+
+  # Updates a single `Undergraduatestudenttakecourse` using a unique key and a patch.
+  updateUndergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseid(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateUndergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseidInput!
+  ): UpdateUndergraduatestudenttakecoursePayload
+
+  # Updates a single `University` using its globally unique id and a patch.
+  updateUniversity(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateUniversityInput!
+  ): UpdateUniversityPayload
+
+  # Updates a single `University` using a unique key and a patch.
+  updateUniversityByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: UpdateUniversityByNrInput!
+  ): UpdateUniversityPayload
+
+  # Deletes a single `Coauthorofpublication` using its globally unique id.
+  deleteCoauthorofpublication(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteCoauthorofpublicationInput!
+  ): DeleteCoauthorofpublicationPayload
+
+  # Deletes a single `Coauthorofpublication` using a unique key.
+  deleteCoauthorofpublicationByPublicationidAndGraduatestudentid(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteCoauthorofpublicationByPublicationidAndGraduatestudentidInput!
+  ): DeleteCoauthorofpublicationPayload
+
+  # Deletes a single `Department` using its globally unique id.
+  deleteDepartment(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteDepartmentInput!
+  ): DeleteDepartmentPayload
+
+  # Deletes a single `Department` using a unique key.
+  deleteDepartmentByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteDepartmentByNrInput!
+  ): DeleteDepartmentPayload
+
+  # Deletes a single `Faculty` using its globally unique id.
+  deleteFaculty(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteFacultyInput!
+  ): DeleteFacultyPayload
+
+  # Deletes a single `Faculty` using a unique key.
+  deleteFacultyByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteFacultyByNrInput!
+  ): DeleteFacultyPayload
+
+  # Deletes a single `Graduatecourse` using its globally unique id.
+  deleteGraduatecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteGraduatecourseInput!
+  ): DeleteGraduatecoursePayload
+
+  # Deletes a single `Graduatecourse` using a unique key.
+  deleteGraduatecourseByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteGraduatecourseByNrInput!
+  ): DeleteGraduatecoursePayload
+
+  # Deletes a single `Graduatestudent` using its globally unique id.
+  deleteGraduatestudent(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteGraduatestudentInput!
+  ): DeleteGraduatestudentPayload
+
+  # Deletes a single `Graduatestudent` using a unique key.
+  deleteGraduatestudentByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteGraduatestudentByNrInput!
+  ): DeleteGraduatestudentPayload
+
+  # Deletes a single `Graduatestudenttakecourse` using its globally unique id.
+  deleteGraduatestudenttakecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteGraduatestudenttakecourseInput!
+  ): DeleteGraduatestudenttakecoursePayload
+
+  # Deletes a single `Graduatestudenttakecourse` using a unique key.
+  deleteGraduatestudenttakecourseByGraduatestudentidAndGraduatecourseid(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteGraduatestudenttakecourseByGraduatestudentidAndGraduatecourseidInput!
+  ): DeleteGraduatestudenttakecoursePayload
+
+  # Deletes a single `Lecturer` using its globally unique id.
+  deleteLecturer(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteLecturerInput!
+  ): DeleteLecturerPayload
+
+  # Deletes a single `Lecturer` using a unique key.
+  deleteLecturerByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteLecturerByNrInput!
+  ): DeleteLecturerPayload
+
+  # Deletes a single `Professor` using its globally unique id.
+  deleteProfessor(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteProfessorInput!
+  ): DeleteProfessorPayload
+
+  # Deletes a single `Professor` using a unique key.
+  deleteProfessorByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteProfessorByNrInput!
+  ): DeleteProfessorPayload
+
+  # Deletes a single `Publication` using its globally unique id.
+  deletePublication(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeletePublicationInput!
+  ): DeletePublicationPayload
+
+  # Deletes a single `Publication` using a unique key.
+  deletePublicationByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeletePublicationByNrInput!
+  ): DeletePublicationPayload
+
+  # Deletes a single `Researchgroup` using its globally unique id.
+  deleteResearchgroup(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteResearchgroupInput!
+  ): DeleteResearchgroupPayload
+
+  # Deletes a single `Researchgroup` using a unique key.
+  deleteResearchgroupByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteResearchgroupByNrInput!
+  ): DeleteResearchgroupPayload
+
+  # Deletes a single `Undergraduatecourse` using its globally unique id.
+  deleteUndergraduatecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteUndergraduatecourseInput!
+  ): DeleteUndergraduatecoursePayload
+
+  # Deletes a single `Undergraduatecourse` using a unique key.
+  deleteUndergraduatecourseByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteUndergraduatecourseByNrInput!
+  ): DeleteUndergraduatecoursePayload
+
+  # Deletes a single `Undergraduatestudent` using its globally unique id.
+  deleteUndergraduatestudent(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteUndergraduatestudentInput!
+  ): DeleteUndergraduatestudentPayload
+
+  # Deletes a single `Undergraduatestudent` using a unique key.
+  deleteUndergraduatestudentByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteUndergraduatestudentByNrInput!
+  ): DeleteUndergraduatestudentPayload
+
+  # Deletes a single `Undergraduatestudenttakecourse` using its globally unique id.
+  deleteUndergraduatestudenttakecourse(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteUndergraduatestudenttakecourseInput!
+  ): DeleteUndergraduatestudenttakecoursePayload
+
+  # Deletes a single `Undergraduatestudenttakecourse` using a unique key.
+  deleteUndergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseid(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteUndergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseidInput!
+  ): DeleteUndergraduatestudenttakecoursePayload
+
+  # Deletes a single `University` using its globally unique id.
+  deleteUniversity(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteUniversityInput!
+  ): DeleteUniversityPayload
+
+  # Deletes a single `University` using a unique key.
+  deleteUniversityByNr(
+    # The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    input: DeleteUniversityByNrInput!
+  ): DeleteUniversityPayload
+}
+
+# An object with a globally unique `ID`.
+interface Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+}
+
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: Cursor
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: Cursor
+}
+
+type Professor implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  professortype: String
+  researchinterest: String
+  headof: Int
+
+  # Reads a single `Faculty` that is related to this `Professor`.
+  facultyByNr: Faculty
+
+  # Reads a single `Department` that is related to this `Professor`.
+  departmentByHeadof: Department
+
+  # Reads and enables pagination through a set of `Graduatestudent`.
+  graduatestudentsByAdvisor(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatestudent`.
+    orderBy: [GraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatestudentCondition
+  ): GraduatestudentsConnection!
+
+  # Reads and enables pagination through a set of `Undergraduatestudent`.
+  undergraduatestudentsByAdvisor(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatestudent`.
+    orderBy: [UndergraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatestudentCondition
+  ): UndergraduatestudentsConnection!
+}
+
+# A condition to be used against `Professor` object types. All fields are tested
+# for equality and combined with a logical ‘and.’
+input ProfessorCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `professortype` field.
+  professortype: String
+
+  # Checks for equality with the object’s `researchinterest` field.
+  researchinterest: String
+
+  # Checks for equality with the object’s `headof` field.
+  headof: Int
+}
+
+# An input for mutations affecting `Professor`
+input ProfessorInput {
+  nr: Int!
+  professortype: String
+  researchinterest: String
+  headof: Int
+}
+
+# Represents an update to a `Professor`. Fields that are set will be updated.
+input ProfessorPatch {
+  nr: Int
+  professortype: String
+  researchinterest: String
+  headof: Int
+}
+
+# A connection to a list of `Professor` values.
+type ProfessorsConnection {
+  # A list of `Professor` objects.
+  nodes: [Professor]!
+
+  # A list of edges which contains the `Professor` and cursor to aid in pagination.
+  edges: [ProfessorsEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Professor` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Professor` edge in the connection.
+type ProfessorsEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Professor` at the end of the edge.
+  node: Professor
+}
+
+# Methods to use when ordering `Professor`.
+enum ProfessorsOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  PROFESSORTYPE_ASC
+  PROFESSORTYPE_DESC
+  RESEARCHINTEREST_ASC
+  RESEARCHINTEREST_DESC
+  HEADOF_ASC
+  HEADOF_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Publication implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  name: String
+  title: String
+  abstract: String
+  mainauthor: Int
+
+  # Reads a single `Faculty` that is related to this `Publication`.
+  facultyByMainauthor: Faculty
+
+  # Reads and enables pagination through a set of `Coauthorofpublication`.
+  coauthorofpublicationsByPublicationid(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Coauthorofpublication`.
+    orderBy: [CoauthorofpublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: CoauthorofpublicationCondition
+  ): CoauthorofpublicationsConnection!
+}
+
+# A condition to be used against `Publication` object types. All fields are tested
+# for equality and combined with a logical ‘and.’
+input PublicationCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `name` field.
+  name: String
+
+  # Checks for equality with the object’s `title` field.
+  title: String
+
+  # Checks for equality with the object’s `abstract` field.
+  abstract: String
+
+  # Checks for equality with the object’s `mainauthor` field.
+  mainauthor: Int
+}
+
+# An input for mutations affecting `Publication`
+input PublicationInput {
+  nr: Int!
+  name: String
+  title: String
+  abstract: String
+  mainauthor: Int
+}
+
+# Represents an update to a `Publication`. Fields that are set will be updated.
+input PublicationPatch {
+  nr: Int
+  name: String
+  title: String
+  abstract: String
+  mainauthor: Int
+}
+
+# A connection to a list of `Publication` values.
+type PublicationsConnection {
+  # A list of `Publication` objects.
+  nodes: [Publication]!
+
+  # A list of edges which contains the `Publication` and cursor to aid in pagination.
+  edges: [PublicationsEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Publication` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Publication` edge in the connection.
+type PublicationsEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Publication` at the end of the edge.
+  node: Publication
+}
+
+# Methods to use when ordering `Publication`.
+enum PublicationsOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  NAME_ASC
+  NAME_DESC
+  TITLE_ASC
+  TITLE_DESC
+  ABSTRACT_ASC
+  ABSTRACT_DESC
+  MAINAUTHOR_ASC
+  MAINAUTHOR_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+# The root query type which gives access points into the data universe.
+type Query implements Node {
+  # Exposes the root query type nested one level down. This is helpful for Relay 1
+  # which can only query top level fields if they are in a particular form.
+  query: Query!
+
+  # The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  nodeId: ID!
+
+  # Fetches an object given its globally unique `ID`.
+  node(
+    # The globally unique `ID`.
+    nodeId: ID!
+  ): Node
+
+  # Reads and enables pagination through a set of `Coauthorofpublication`.
+  allCoauthorofpublications(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Coauthorofpublication`.
+    orderBy: [CoauthorofpublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: CoauthorofpublicationCondition
+  ): CoauthorofpublicationsConnection
+
+  # Reads and enables pagination through a set of `Department`.
+  allDepartments(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Department`.
+    orderBy: [DepartmentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: DepartmentCondition
+  ): DepartmentsConnection
+
+  # Reads and enables pagination through a set of `Faculty`.
+  allFaculties(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Faculty`.
+    orderBy: [FacultiesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: FacultyCondition
+  ): FacultiesConnection
+
+  # Reads and enables pagination through a set of `Graduatecourse`.
+  allGraduatecourses(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatecourse`.
+    orderBy: [GraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatecourseCondition
+  ): GraduatecoursesConnection
+
+  # Reads and enables pagination through a set of `Graduatestudent`.
+  allGraduatestudents(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatestudent`.
+    orderBy: [GraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatestudentCondition
+  ): GraduatestudentsConnection
+
+  # Reads and enables pagination through a set of `Graduatestudenttakecourse`.
+  allGraduatestudenttakecourses(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatestudenttakecourse`.
+    orderBy: [GraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatestudenttakecourseCondition
+  ): GraduatestudenttakecoursesConnection
+
+  # Reads and enables pagination through a set of `Lecturer`.
+  allLecturers(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Lecturer`.
+    orderBy: [LecturersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: LecturerCondition
+  ): LecturersConnection
+
+  # Reads and enables pagination through a set of `Professor`.
+  allProfessors(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Professor`.
+    orderBy: [ProfessorsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: ProfessorCondition
+  ): ProfessorsConnection
+
+  # Reads and enables pagination through a set of `Publication`.
+  allPublications(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Publication`.
+    orderBy: [PublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: PublicationCondition
+  ): PublicationsConnection
+
+  # Reads and enables pagination through a set of `Researchgroup`.
+  allResearchgroups(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Researchgroup`.
+    orderBy: [ResearchgroupsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: ResearchgroupCondition
+  ): ResearchgroupsConnection
+
+  # Reads and enables pagination through a set of `Undergraduatecourse`.
+  allUndergraduatecourses(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatecourse`.
+    orderBy: [UndergraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatecourseCondition
+  ): UndergraduatecoursesConnection
+
+  # Reads and enables pagination through a set of `Undergraduatestudent`.
+  allUndergraduatestudents(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatestudent`.
+    orderBy: [UndergraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatestudentCondition
+  ): UndergraduatestudentsConnection
+
+  # Reads and enables pagination through a set of `Undergraduatestudenttakecourse`.
+  allUndergraduatestudenttakecourses(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatestudenttakecourse`.
+    orderBy: [UndergraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatestudenttakecourseCondition
+  ): UndergraduatestudenttakecoursesConnection
+
+  # Reads and enables pagination through a set of `University`.
+  allUniversities(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `University`.
+    orderBy: [UniversitiesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UniversityCondition
+  ): UniversitiesConnection
+  coauthorofpublicationByPublicationidAndGraduatestudentid(publicationid: Int!, graduatestudentid: Int!): Coauthorofpublication
+  departmentByNr(nr: Int!): Department
+  facultyByNr(nr: Int!): Faculty
+  graduatecourseByNr(nr: Int!): Graduatecourse
+  graduatestudentByNr(nr: Int!): Graduatestudent
+  graduatestudenttakecourseByGraduatestudentidAndGraduatecourseid(graduatestudentid: Int!, graduatecourseid: Int!): Graduatestudenttakecourse
+  lecturerByNr(nr: Int!): Lecturer
+  professorByNr(nr: Int!): Professor
+  publicationByNr(nr: Int!): Publication
+  researchgroupByNr(nr: Int!): Researchgroup
+  undergraduatecourseByNr(nr: Int!): Undergraduatecourse
+  undergraduatestudentByNr(nr: Int!): Undergraduatestudent
+  undergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseid(undergraduatestudentid: Int!, undergraduatecourseid: Int!): Undergraduatestudenttakecourse
+  universityByNr(nr: Int!): University
+
+  # Reads a single `Coauthorofpublication` using its globally unique `ID`.
+  coauthorofpublication(
+    # The globally unique `ID` to be used in selecting a single `Coauthorofpublication`.
+    nodeId: ID!
+  ): Coauthorofpublication
+
+  # Reads a single `Department` using its globally unique `ID`.
+  department(
+    # The globally unique `ID` to be used in selecting a single `Department`.
+    nodeId: ID!
+  ): Department
+
+  # Reads a single `Faculty` using its globally unique `ID`.
+  faculty(
+    # The globally unique `ID` to be used in selecting a single `Faculty`.
+    nodeId: ID!
+  ): Faculty
+
+  # Reads a single `Graduatecourse` using its globally unique `ID`.
+  graduatecourse(
+    # The globally unique `ID` to be used in selecting a single `Graduatecourse`.
+    nodeId: ID!
+  ): Graduatecourse
+
+  # Reads a single `Graduatestudent` using its globally unique `ID`.
+  graduatestudent(
+    # The globally unique `ID` to be used in selecting a single `Graduatestudent`.
+    nodeId: ID!
+  ): Graduatestudent
+
+  # Reads a single `Graduatestudenttakecourse` using its globally unique `ID`.
+  graduatestudenttakecourse(
+    # The globally unique `ID` to be used in selecting a single `Graduatestudenttakecourse`.
+    nodeId: ID!
+  ): Graduatestudenttakecourse
+
+  # Reads a single `Lecturer` using its globally unique `ID`.
+  lecturer(
+    # The globally unique `ID` to be used in selecting a single `Lecturer`.
+    nodeId: ID!
+  ): Lecturer
+
+  # Reads a single `Professor` using its globally unique `ID`.
+  professor(
+    # The globally unique `ID` to be used in selecting a single `Professor`.
+    nodeId: ID!
+  ): Professor
+
+  # Reads a single `Publication` using its globally unique `ID`.
+  publication(
+    # The globally unique `ID` to be used in selecting a single `Publication`.
+    nodeId: ID!
+  ): Publication
+
+  # Reads a single `Researchgroup` using its globally unique `ID`.
+  researchgroup(
+    # The globally unique `ID` to be used in selecting a single `Researchgroup`.
+    nodeId: ID!
+  ): Researchgroup
+
+  # Reads a single `Undergraduatecourse` using its globally unique `ID`.
+  undergraduatecourse(
+    # The globally unique `ID` to be used in selecting a single `Undergraduatecourse`.
+    nodeId: ID!
+  ): Undergraduatecourse
+
+  # Reads a single `Undergraduatestudent` using its globally unique `ID`.
+  undergraduatestudent(
+    # The globally unique `ID` to be used in selecting a single `Undergraduatestudent`.
+    nodeId: ID!
+  ): Undergraduatestudent
+
+  # Reads a single `Undergraduatestudenttakecourse` using its globally unique `ID`.
+  undergraduatestudenttakecourse(
+    # The globally unique `ID` to be used in selecting a single `Undergraduatestudenttakecourse`.
+    nodeId: ID!
+  ): Undergraduatestudenttakecourse
+
+  # Reads a single `University` using its globally unique `ID`.
+  university(
+    # The globally unique `ID` to be used in selecting a single `University`.
+    nodeId: ID!
+  ): University
+}
+
+type Researchgroup implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  suborganizationof: Int
+
+  # Reads a single `Department` that is related to this `Researchgroup`.
+  departmentBySuborganizationof: Department
+}
+
+# A condition to be used against `Researchgroup` object types. All fields are
+# tested for equality and combined with a logical ‘and.’
+input ResearchgroupCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `suborganizationof` field.
+  suborganizationof: Int
+}
+
+# An input for mutations affecting `Researchgroup`
+input ResearchgroupInput {
+  nr: Int!
+  suborganizationof: Int
+}
+
+# Represents an update to a `Researchgroup`. Fields that are set will be updated.
+input ResearchgroupPatch {
+  nr: Int
+  suborganizationof: Int
+}
+
+# A connection to a list of `Researchgroup` values.
+type ResearchgroupsConnection {
+  # A list of `Researchgroup` objects.
+  nodes: [Researchgroup]!
+
+  # A list of edges which contains the `Researchgroup` and cursor to aid in pagination.
+  edges: [ResearchgroupsEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Researchgroup` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Researchgroup` edge in the connection.
+type ResearchgroupsEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Researchgroup` at the end of the edge.
+  node: Researchgroup
+}
+
+# Methods to use when ordering `Researchgroup`.
+enum ResearchgroupsOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  SUBORGANIZATIONOF_ASC
+  SUBORGANIZATIONOF_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Undergraduatecourse implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  name: String
+  teacher: Int
+  teachingassistant: Int
+
+  # Reads a single `Faculty` that is related to this `Undergraduatecourse`.
+  facultyByTeacher: Faculty
+
+  # Reads a single `Graduatestudent` that is related to this `Undergraduatecourse`.
+  graduatestudentByTeachingassistant: Graduatestudent
+
+  # Reads and enables pagination through a set of `Undergraduatestudenttakecourse`.
+  undergraduatestudenttakecoursesByUndergraduatecourseid(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatestudenttakecourse`.
+    orderBy: [UndergraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatestudenttakecourseCondition
+  ): UndergraduatestudenttakecoursesConnection!
+}
+
+# A condition to be used against `Undergraduatecourse` object types. All fields
+# are tested for equality and combined with a logical ‘and.’
+input UndergraduatecourseCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `name` field.
+  name: String
+
+  # Checks for equality with the object’s `teacher` field.
+  teacher: Int
+
+  # Checks for equality with the object’s `teachingassistant` field.
+  teachingassistant: Int
+}
+
+# An input for mutations affecting `Undergraduatecourse`
+input UndergraduatecourseInput {
+  nr: Int!
+  name: String
+  teacher: Int
+  teachingassistant: Int
+}
+
+# Represents an update to a `Undergraduatecourse`. Fields that are set will be updated.
+input UndergraduatecoursePatch {
+  nr: Int
+  name: String
+  teacher: Int
+  teachingassistant: Int
+}
+
+# A connection to a list of `Undergraduatecourse` values.
+type UndergraduatecoursesConnection {
+  # A list of `Undergraduatecourse` objects.
+  nodes: [Undergraduatecourse]!
+
+  # A list of edges which contains the `Undergraduatecourse` and cursor to aid in pagination.
+  edges: [UndergraduatecoursesEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Undergraduatecourse` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Undergraduatecourse` edge in the connection.
+type UndergraduatecoursesEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Undergraduatecourse` at the end of the edge.
+  node: Undergraduatecourse
+}
+
+# Methods to use when ordering `Undergraduatecourse`.
+enum UndergraduatecoursesOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  NAME_ASC
+  NAME_DESC
+  TEACHER_ASC
+  TEACHER_DESC
+  TEACHINGASSISTANT_ASC
+  TEACHINGASSISTANT_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Undergraduatestudent implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  name: String
+  telephone: String
+  emailaddress: String
+  age: Int
+  advisor: Int
+  memberof: Int
+
+  # Reads a single `Professor` that is related to this `Undergraduatestudent`.
+  professorByAdvisor: Professor
+
+  # Reads a single `Department` that is related to this `Undergraduatestudent`.
+  departmentByMemberof: Department
+
+  # Reads and enables pagination through a set of `Undergraduatestudenttakecourse`.
+  undergraduatestudenttakecoursesByUndergraduatestudentid(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Undergraduatestudenttakecourse`.
+    orderBy: [UndergraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: UndergraduatestudenttakecourseCondition
+  ): UndergraduatestudenttakecoursesConnection!
+}
+
+# A condition to be used against `Undergraduatestudent` object types. All fields
+# are tested for equality and combined with a logical ‘and.’
+input UndergraduatestudentCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `name` field.
+  name: String
+
+  # Checks for equality with the object’s `telephone` field.
+  telephone: String
+
+  # Checks for equality with the object’s `emailaddress` field.
+  emailaddress: String
+
+  # Checks for equality with the object’s `age` field.
+  age: Int
+
+  # Checks for equality with the object’s `advisor` field.
+  advisor: Int
+
+  # Checks for equality with the object’s `memberof` field.
+  memberof: Int
+}
+
+# An input for mutations affecting `Undergraduatestudent`
+input UndergraduatestudentInput {
+  nr: Int!
+  name: String
+  telephone: String
+  emailaddress: String
+  age: Int
+  advisor: Int
+  memberof: Int
+}
+
+# Represents an update to a `Undergraduatestudent`. Fields that are set will be updated.
+input UndergraduatestudentPatch {
+  nr: Int
+  name: String
+  telephone: String
+  emailaddress: String
+  age: Int
+  advisor: Int
+  memberof: Int
+}
+
+# A connection to a list of `Undergraduatestudent` values.
+type UndergraduatestudentsConnection {
+  # A list of `Undergraduatestudent` objects.
+  nodes: [Undergraduatestudent]!
+
+  # A list of edges which contains the `Undergraduatestudent` and cursor to aid in pagination.
+  edges: [UndergraduatestudentsEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Undergraduatestudent` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Undergraduatestudent` edge in the connection.
+type UndergraduatestudentsEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Undergraduatestudent` at the end of the edge.
+  node: Undergraduatestudent
+}
+
+# Methods to use when ordering `Undergraduatestudent`.
+enum UndergraduatestudentsOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  NAME_ASC
+  NAME_DESC
+  TELEPHONE_ASC
+  TELEPHONE_DESC
+  EMAILADDRESS_ASC
+  EMAILADDRESS_DESC
+  AGE_ASC
+  AGE_DESC
+  ADVISOR_ASC
+  ADVISOR_DESC
+  MEMBEROF_ASC
+  MEMBEROF_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type Undergraduatestudenttakecourse implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  undergraduatestudentid: Int!
+  undergraduatecourseid: Int!
+
+  # Reads a single `Undergraduatestudent` that is related to this `Undergraduatestudenttakecourse`.
+  undergraduatestudentByUndergraduatestudentid: Undergraduatestudent
+
+  # Reads a single `Undergraduatecourse` that is related to this `Undergraduatestudenttakecourse`.
+  undergraduatecourseByUndergraduatecourseid: Undergraduatecourse
+}
+
+# A condition to be used against `Undergraduatestudenttakecourse` object types.
+# All fields are tested for equality and combined with a logical ‘and.’
+input UndergraduatestudenttakecourseCondition {
+  # Checks for equality with the object’s `undergraduatestudentid` field.
+  undergraduatestudentid: Int
+
+  # Checks for equality with the object’s `undergraduatecourseid` field.
+  undergraduatecourseid: Int
+}
+
+# An input for mutations affecting `Undergraduatestudenttakecourse`
+input UndergraduatestudenttakecourseInput {
+  undergraduatestudentid: Int!
+  undergraduatecourseid: Int!
+}
+
+# Represents an update to a `Undergraduatestudenttakecourse`. Fields that are set will be updated.
+input UndergraduatestudenttakecoursePatch {
+  undergraduatestudentid: Int
+  undergraduatecourseid: Int
+}
+
+# A connection to a list of `Undergraduatestudenttakecourse` values.
+type UndergraduatestudenttakecoursesConnection {
+  # A list of `Undergraduatestudenttakecourse` objects.
+  nodes: [Undergraduatestudenttakecourse]!
+
+  # A list of edges which contains the `Undergraduatestudenttakecourse` and cursor to aid in pagination.
+  edges: [UndergraduatestudenttakecoursesEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `Undergraduatestudenttakecourse` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `Undergraduatestudenttakecourse` edge in the connection.
+type UndergraduatestudenttakecoursesEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `Undergraduatestudenttakecourse` at the end of the edge.
+  node: Undergraduatestudenttakecourse
+}
+
+# Methods to use when ordering `Undergraduatestudenttakecourse`.
+enum UndergraduatestudenttakecoursesOrderBy {
+  NATURAL
+  UNDERGRADUATESTUDENTID_ASC
+  UNDERGRADUATESTUDENTID_DESC
+  UNDERGRADUATECOURSEID_ASC
+  UNDERGRADUATECOURSEID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+# A connection to a list of `University` values.
+type UniversitiesConnection {
+  # A list of `University` objects.
+  nodes: [University]!
+
+  # A list of edges which contains the `University` and cursor to aid in pagination.
+  edges: [UniversitiesEdge!]!
+
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # The count of *all* `University` you could get from the connection.
+  totalCount: Int!
+}
+
+# A `University` edge in the connection.
+type UniversitiesEdge {
+  # A cursor for use in pagination.
+  cursor: Cursor
+
+  # The `University` at the end of the edge.
+  node: University
+}
+
+# Methods to use when ordering `University`.
+enum UniversitiesOrderBy {
+  NATURAL
+  NR_ASC
+  NR_DESC
+  NAME_ASC
+  NAME_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+type University implements Node {
+  # A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  nodeId: ID!
+  nr: Int!
+  name: String
+
+  # Reads and enables pagination through a set of `Department`.
+  departmentsBySuborganizationof(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Department`.
+    orderBy: [DepartmentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: DepartmentCondition
+  ): DepartmentsConnection!
+
+  # Reads and enables pagination through a set of `Faculty`.
+  facultiesByUndergraduatedegreefrom(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Faculty`.
+    orderBy: [FacultiesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: FacultyCondition
+  ): FacultiesConnection!
+
+  # Reads and enables pagination through a set of `Faculty`.
+  facultiesByMasterdegreefrom(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Faculty`.
+    orderBy: [FacultiesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: FacultyCondition
+  ): FacultiesConnection!
+
+  # Reads and enables pagination through a set of `Faculty`.
+  facultiesByDoctoraldegreefrom(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Faculty`.
+    orderBy: [FacultiesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: FacultyCondition
+  ): FacultiesConnection!
+
+  # Reads and enables pagination through a set of `Graduatestudent`.
+  graduatestudentsByUndergraduatedegreefrom(
+    # Only read the first `n` values of the set.
+    first: Int
+
+    # Only read the last `n` values of the set.
+    last: Int
+
+    # Skip the first `n` values from our `after` cursor, an alternative to cursor
+    # based pagination. May not be used with `last`.
+    offset: Int
+
+    # Read all values in the set before (above) this cursor.
+    before: Cursor
+
+    # Read all values in the set after (below) this cursor.
+    after: Cursor
+
+    # The method to use when ordering `Graduatestudent`.
+    orderBy: [GraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    # A condition to be used in determining which values should be returned by the collection.
+    condition: GraduatestudentCondition
+  ): GraduatestudentsConnection!
+}
+
+# A condition to be used against `University` object types. All fields are tested
+# for equality and combined with a logical ‘and.’
+input UniversityCondition {
+  # Checks for equality with the object’s `nr` field.
+  nr: Int
+
+  # Checks for equality with the object’s `name` field.
+  name: String
+}
+
+# An input for mutations affecting `University`
+input UniversityInput {
+  nr: Int!
+  name: String
+}
+
+# Represents an update to a `University`. Fields that are set will be updated.
+input UniversityPatch {
+  nr: Int
+  name: String
+}
+
+# All input for the `updateCoauthorofpublicationByPublicationidAndGraduatestudentid` mutation.
+input UpdateCoauthorofpublicationByPublicationidAndGraduatestudentidInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Coauthorofpublication` being updated.
+  coauthorofpublicationPatch: CoauthorofpublicationPatch!
+  publicationid: Int!
+  graduatestudentid: Int!
+}
+
+# All input for the `updateCoauthorofpublication` mutation.
+input UpdateCoauthorofpublicationInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Coauthorofpublication` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Coauthorofpublication` being updated.
+  coauthorofpublicationPatch: CoauthorofpublicationPatch!
+}
+
+# The output of our update `Coauthorofpublication` mutation.
+type UpdateCoauthorofpublicationPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Coauthorofpublication` that was updated by this mutation.
+  coauthorofpublication: Coauthorofpublication
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Publication` that is related to this `Coauthorofpublication`.
+  publicationByPublicationid: Publication
+
+  # Reads a single `Graduatestudent` that is related to this `Coauthorofpublication`.
+  graduatestudentByGraduatestudentid: Graduatestudent
+
+  # An edge for our `Coauthorofpublication`. May be used by Relay 1.
+  coauthorofpublicationEdge(
+    # The method to use when ordering `Coauthorofpublication`.
+    orderBy: [CoauthorofpublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): CoauthorofpublicationsEdge
+}
+
+# All input for the `updateDepartmentByNr` mutation.
+input UpdateDepartmentByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Department` being updated.
+  departmentPatch: DepartmentPatch!
+  nr: Int!
+}
+
+# All input for the `updateDepartment` mutation.
+input UpdateDepartmentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Department` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Department` being updated.
+  departmentPatch: DepartmentPatch!
+}
+
+# The output of our update `Department` mutation.
+type UpdateDepartmentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Department` that was updated by this mutation.
+  department: Department
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Department`.
+  universityBySuborganizationof: University
+
+  # An edge for our `Department`. May be used by Relay 1.
+  departmentEdge(
+    # The method to use when ordering `Department`.
+    orderBy: [DepartmentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): DepartmentsEdge
+}
+
+# All input for the `updateFacultyByNr` mutation.
+input UpdateFacultyByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Faculty` being updated.
+  facultyPatch: FacultyPatch!
+  nr: Int!
+}
+
+# All input for the `updateFaculty` mutation.
+input UpdateFacultyInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Faculty` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Faculty` being updated.
+  facultyPatch: FacultyPatch!
+}
+
+# The output of our update `Faculty` mutation.
+type UpdateFacultyPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Faculty` that was updated by this mutation.
+  faculty: Faculty
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByUndergraduatedegreefrom: University
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByMasterdegreefrom: University
+
+  # Reads a single `University` that is related to this `Faculty`.
+  universityByDoctoraldegreefrom: University
+
+  # Reads a single `Department` that is related to this `Faculty`.
+  departmentByWorksfor: Department
+
+  # An edge for our `Faculty`. May be used by Relay 1.
+  facultyEdge(
+    # The method to use when ordering `Faculty`.
+    orderBy: [FacultiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): FacultiesEdge
+}
+
+# All input for the `updateGraduatecourseByNr` mutation.
+input UpdateGraduatecourseByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Graduatecourse` being updated.
+  graduatecoursePatch: GraduatecoursePatch!
+  nr: Int!
+}
+
+# All input for the `updateGraduatecourse` mutation.
+input UpdateGraduatecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Graduatecourse` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Graduatecourse` being updated.
+  graduatecoursePatch: GraduatecoursePatch!
+}
+
+# The output of our update `Graduatecourse` mutation.
+type UpdateGraduatecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatecourse` that was updated by this mutation.
+  graduatecourse: Graduatecourse
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Graduatecourse`.
+  facultyByTeacher: Faculty
+
+  # An edge for our `Graduatecourse`. May be used by Relay 1.
+  graduatecourseEdge(
+    # The method to use when ordering `Graduatecourse`.
+    orderBy: [GraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatecoursesEdge
+}
+
+# All input for the `updateGraduatestudentByNr` mutation.
+input UpdateGraduatestudentByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Graduatestudent` being updated.
+  graduatestudentPatch: GraduatestudentPatch!
+  nr: Int!
+}
+
+# All input for the `updateGraduatestudent` mutation.
+input UpdateGraduatestudentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Graduatestudent` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Graduatestudent` being updated.
+  graduatestudentPatch: GraduatestudentPatch!
+}
+
+# The output of our update `Graduatestudent` mutation.
+type UpdateGraduatestudentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatestudent` that was updated by this mutation.
+  graduatestudent: Graduatestudent
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `University` that is related to this `Graduatestudent`.
+  universityByUndergraduatedegreefrom: University
+
+  # Reads a single `Professor` that is related to this `Graduatestudent`.
+  professorByAdvisor: Professor
+
+  # Reads a single `Department` that is related to this `Graduatestudent`.
+  departmentByMemberof: Department
+
+  # An edge for our `Graduatestudent`. May be used by Relay 1.
+  graduatestudentEdge(
+    # The method to use when ordering `Graduatestudent`.
+    orderBy: [GraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatestudentsEdge
+}
+
+# All input for the `updateGraduatestudenttakecourseByGraduatestudentidAndGraduatecourseid` mutation.
+input UpdateGraduatestudenttakecourseByGraduatestudentidAndGraduatecourseidInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Graduatestudenttakecourse` being updated.
+  graduatestudenttakecoursePatch: GraduatestudenttakecoursePatch!
+  graduatestudentid: Int!
+  graduatecourseid: Int!
+}
+
+# All input for the `updateGraduatestudenttakecourse` mutation.
+input UpdateGraduatestudenttakecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Graduatestudenttakecourse` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Graduatestudenttakecourse` being updated.
+  graduatestudenttakecoursePatch: GraduatestudenttakecoursePatch!
+}
+
+# The output of our update `Graduatestudenttakecourse` mutation.
+type UpdateGraduatestudenttakecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Graduatestudenttakecourse` that was updated by this mutation.
+  graduatestudenttakecourse: Graduatestudenttakecourse
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Graduatestudent` that is related to this `Graduatestudenttakecourse`.
+  graduatestudentByGraduatestudentid: Graduatestudent
+
+  # Reads a single `Graduatecourse` that is related to this `Graduatestudenttakecourse`.
+  graduatecourseByGraduatecourseid: Graduatecourse
+
+  # An edge for our `Graduatestudenttakecourse`. May be used by Relay 1.
+  graduatestudenttakecourseEdge(
+    # The method to use when ordering `Graduatestudenttakecourse`.
+    orderBy: [GraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GraduatestudenttakecoursesEdge
+}
+
+# All input for the `updateLecturerByNr` mutation.
+input UpdateLecturerByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Lecturer` being updated.
+  lecturerPatch: LecturerPatch!
+  nr: Int!
+}
+
+# All input for the `updateLecturer` mutation.
+input UpdateLecturerInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Lecturer` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Lecturer` being updated.
+  lecturerPatch: LecturerPatch!
+}
+
+# The output of our update `Lecturer` mutation.
+type UpdateLecturerPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Lecturer` that was updated by this mutation.
+  lecturer: Lecturer
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Lecturer`.
+  facultyByNr: Faculty
+
+  # An edge for our `Lecturer`. May be used by Relay 1.
+  lecturerEdge(
+    # The method to use when ordering `Lecturer`.
+    orderBy: [LecturersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): LecturersEdge
+}
+
+# All input for the `updateProfessorByNr` mutation.
+input UpdateProfessorByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Professor` being updated.
+  professorPatch: ProfessorPatch!
+  nr: Int!
+}
+
+# All input for the `updateProfessor` mutation.
+input UpdateProfessorInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Professor` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Professor` being updated.
+  professorPatch: ProfessorPatch!
+}
+
+# The output of our update `Professor` mutation.
+type UpdateProfessorPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Professor` that was updated by this mutation.
+  professor: Professor
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Professor`.
+  facultyByNr: Faculty
+
+  # Reads a single `Department` that is related to this `Professor`.
+  departmentByHeadof: Department
+
+  # An edge for our `Professor`. May be used by Relay 1.
+  professorEdge(
+    # The method to use when ordering `Professor`.
+    orderBy: [ProfessorsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ProfessorsEdge
+}
+
+# All input for the `updatePublicationByNr` mutation.
+input UpdatePublicationByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Publication` being updated.
+  publicationPatch: PublicationPatch!
+  nr: Int!
+}
+
+# All input for the `updatePublication` mutation.
+input UpdatePublicationInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Publication` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Publication` being updated.
+  publicationPatch: PublicationPatch!
+}
+
+# The output of our update `Publication` mutation.
+type UpdatePublicationPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Publication` that was updated by this mutation.
+  publication: Publication
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Publication`.
+  facultyByMainauthor: Faculty
+
+  # An edge for our `Publication`. May be used by Relay 1.
+  publicationEdge(
+    # The method to use when ordering `Publication`.
+    orderBy: [PublicationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): PublicationsEdge
+}
+
+# All input for the `updateResearchgroupByNr` mutation.
+input UpdateResearchgroupByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Researchgroup` being updated.
+  researchgroupPatch: ResearchgroupPatch!
+  nr: Int!
+}
+
+# All input for the `updateResearchgroup` mutation.
+input UpdateResearchgroupInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Researchgroup` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Researchgroup` being updated.
+  researchgroupPatch: ResearchgroupPatch!
+}
+
+# The output of our update `Researchgroup` mutation.
+type UpdateResearchgroupPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Researchgroup` that was updated by this mutation.
+  researchgroup: Researchgroup
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Department` that is related to this `Researchgroup`.
+  departmentBySuborganizationof: Department
+
+  # An edge for our `Researchgroup`. May be used by Relay 1.
+  researchgroupEdge(
+    # The method to use when ordering `Researchgroup`.
+    orderBy: [ResearchgroupsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ResearchgroupsEdge
+}
+
+# All input for the `updateUndergraduatecourseByNr` mutation.
+input UpdateUndergraduatecourseByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Undergraduatecourse` being updated.
+  undergraduatecoursePatch: UndergraduatecoursePatch!
+  nr: Int!
+}
+
+# All input for the `updateUndergraduatecourse` mutation.
+input UpdateUndergraduatecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Undergraduatecourse` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Undergraduatecourse` being updated.
+  undergraduatecoursePatch: UndergraduatecoursePatch!
+}
+
+# The output of our update `Undergraduatecourse` mutation.
+type UpdateUndergraduatecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatecourse` that was updated by this mutation.
+  undergraduatecourse: Undergraduatecourse
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Faculty` that is related to this `Undergraduatecourse`.
+  facultyByTeacher: Faculty
+
+  # Reads a single `Graduatestudent` that is related to this `Undergraduatecourse`.
+  graduatestudentByTeachingassistant: Graduatestudent
+
+  # An edge for our `Undergraduatecourse`. May be used by Relay 1.
+  undergraduatecourseEdge(
+    # The method to use when ordering `Undergraduatecourse`.
+    orderBy: [UndergraduatecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatecoursesEdge
+}
+
+# All input for the `updateUndergraduatestudentByNr` mutation.
+input UpdateUndergraduatestudentByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Undergraduatestudent` being updated.
+  undergraduatestudentPatch: UndergraduatestudentPatch!
+  nr: Int!
+}
+
+# All input for the `updateUndergraduatestudent` mutation.
+input UpdateUndergraduatestudentInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Undergraduatestudent` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Undergraduatestudent` being updated.
+  undergraduatestudentPatch: UndergraduatestudentPatch!
+}
+
+# The output of our update `Undergraduatestudent` mutation.
+type UpdateUndergraduatestudentPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatestudent` that was updated by this mutation.
+  undergraduatestudent: Undergraduatestudent
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Professor` that is related to this `Undergraduatestudent`.
+  professorByAdvisor: Professor
+
+  # Reads a single `Department` that is related to this `Undergraduatestudent`.
+  departmentByMemberof: Department
+
+  # An edge for our `Undergraduatestudent`. May be used by Relay 1.
+  undergraduatestudentEdge(
+    # The method to use when ordering `Undergraduatestudent`.
+    orderBy: [UndergraduatestudentsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatestudentsEdge
+}
+
+# All input for the `updateUndergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseid` mutation.
+input UpdateUndergraduatestudenttakecourseByUndergraduatestudentidAndUndergraduatecourseidInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `Undergraduatestudenttakecourse` being updated.
+  undergraduatestudenttakecoursePatch: UndergraduatestudenttakecoursePatch!
+  undergraduatestudentid: Int!
+  undergraduatecourseid: Int!
+}
+
+# All input for the `updateUndergraduatestudenttakecourse` mutation.
+input UpdateUndergraduatestudenttakecourseInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `Undergraduatestudenttakecourse` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `Undergraduatestudenttakecourse` being updated.
+  undergraduatestudenttakecoursePatch: UndergraduatestudenttakecoursePatch!
+}
+
+# The output of our update `Undergraduatestudenttakecourse` mutation.
+type UpdateUndergraduatestudenttakecoursePayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `Undergraduatestudenttakecourse` that was updated by this mutation.
+  undergraduatestudenttakecourse: Undergraduatestudenttakecourse
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # Reads a single `Undergraduatestudent` that is related to this `Undergraduatestudenttakecourse`.
+  undergraduatestudentByUndergraduatestudentid: Undergraduatestudent
+
+  # Reads a single `Undergraduatecourse` that is related to this `Undergraduatestudenttakecourse`.
+  undergraduatecourseByUndergraduatecourseid: Undergraduatecourse
+
+  # An edge for our `Undergraduatestudenttakecourse`. May be used by Relay 1.
+  undergraduatestudenttakecourseEdge(
+    # The method to use when ordering `Undergraduatestudenttakecourse`.
+    orderBy: [UndergraduatestudenttakecoursesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UndergraduatestudenttakecoursesEdge
+}
+
+# All input for the `updateUniversityByNr` mutation.
+input UpdateUniversityByNrInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # An object where the defined keys will be set on the `University` being updated.
+  universityPatch: UniversityPatch!
+  nr: Int!
+}
+
+# All input for the `updateUniversity` mutation.
+input UpdateUniversityInput {
+  # An arbitrary string value with no semantic meaning. Will be included in the
+  # payload verbatim. May be used to track mutations by the client.
+  clientMutationId: String
+
+  # The globally unique `ID` which will identify a single `University` to be updated.
+  nodeId: ID!
+
+  # An object where the defined keys will be set on the `University` being updated.
+  universityPatch: UniversityPatch!
+}
+
+# The output of our update `University` mutation.
+type UpdateUniversityPayload {
+  # The exact same `clientMutationId` that was provided in the mutation input,
+  # unchanged and unused. May be used by a client to track mutations.
+  clientMutationId: String
+
+  # The `University` that was updated by this mutation.
+  university: University
+
+  # Our root query field type. Allows us to run any query from our mutation payload.
+  query: Query
+
+  # An edge for our `University`. May be used by Relay 1.
+  universityEdge(
+    # The method to use when ordering `University`.
+    orderBy: [UniversitiesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UniversitiesEdge
+}
