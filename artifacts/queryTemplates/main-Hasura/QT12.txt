@@ -1,0 +1,10 @@
+query subqueryFilter1($universityID:ID, $departmentID:ID) 
+{ 
+  university(where: { nr: { _eq: $universityID }}) { 
+    facultiesByDoctoraldegreefrom (where: {worksfor: { _eq: $departmentID } } ){ 
+      nr 
+      emailaddress 
+      publications {nr } 
+    } 
+  } 
+} 

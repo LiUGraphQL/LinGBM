@@ -1,0 +1,10 @@
+query stringMatching($keyword:String) 
+{
+  allPublications(filter: {title: {includes: "$keyword"}}) {
+    nodes {
+      nr
+      title
+      abstract
+    }
+  }
+}

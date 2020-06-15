@@ -1,0 +1,7 @@
+query subquerySearch($universityID:ID) 
+{ 
+	graduatestudent (where: {university: {nr: { _eq: $universityID }} } ) { 
+		nr 
+		professor {nr} 
+	} 
+}

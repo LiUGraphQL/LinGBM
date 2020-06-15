@@ -1,0 +1,20 @@
+query paging_and_sorting($universityID:ID, $attrPublicationFieldPostGraphile:PublicationsOrderBy) 
+{
+  allUniversities(condition: {nr: $universityID}) {
+    nodes {
+      graduatestudentsByUndergraduatedegreefrom(first: 50) {
+        nodes {
+          professorByAdvisor {
+            facultyByNr {
+              publicationsByMainauthor(orderBy: $attrPublicationFieldPostGraphile) {
+                nodes {
+                  nr
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

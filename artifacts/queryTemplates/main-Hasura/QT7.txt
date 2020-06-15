@@ -1,0 +1,8 @@
+query paging_with_offset_as_counter($universityID:ID, $offset:Int) 
+{ 
+	university(where: {nr: {_eq: $universityID }}) { 
+		graduatestudents (limit:10, offset: $offset) { 
+			professor {nr} 
+		} 
+	} 
+} 

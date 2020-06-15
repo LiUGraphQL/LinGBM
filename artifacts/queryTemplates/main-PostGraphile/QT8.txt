@@ -1,0 +1,10 @@
+query sorting_with_paging($cnt:Int, $attrGStudent1PostGraphile: GraduatestudentsOrderBy, $attrGStudent2PostGraphile: GraduatestudentsOrderBy)  
+{
+  allGraduatestudents(first:$cnt, orderBy: [ $attrGStudent1PostGraphile, $attrGStudent2PostGraphile ]) {
+    nodes {
+      nr
+      telephone
+      emailaddress
+    }
+  }
+}

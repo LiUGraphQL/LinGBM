@@ -1,0 +1,14 @@
+query researchGroup_department_head_doctorDegreeFrom($researchGroupID:ID) 
+{ 
+  researchgroup(where:{ nr:{ _eq: $researchGroupID }}) { 
+    department { 
+      professors {
+        faculty {
+          nr 
+          emailaddress 
+          universityByDoctoraldegreefrom {nr}
+        }
+      } 
+    } 
+  } 
+} 

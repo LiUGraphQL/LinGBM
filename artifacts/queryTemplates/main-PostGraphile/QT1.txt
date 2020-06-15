@@ -1,0 +1,15 @@
+query faculty_university_graduateStudent($facultyID:ID) 
+{ 
+	allFaculties(condition: { nr:$facultyID }){
+        nodes {
+		    universityByDoctoraldegreefrom { 
+			    graduatestudentsByUndergraduatedegreefrom{
+                    nodes {
+                        nr
+                        emailaddress
+                    }
+                }
+	    	} 
+    	} 
+    }
+}

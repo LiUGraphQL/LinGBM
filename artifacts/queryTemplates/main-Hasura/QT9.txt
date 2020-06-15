@@ -1,0 +1,14 @@
+query paging_and_sorting($universityID:ID, $attrPublicationField:PublicationField) 
+{ 
+  university(where:{ nr:{ _eq: $universityID }}) { 
+    graduatestudents (limit:50) { 
+      professor {
+        faculty {
+          publications (order_by:{ $attrPublicationField: desc}){ 
+            nr
+          }
+        }
+      } 
+    } 
+  } 
+} 

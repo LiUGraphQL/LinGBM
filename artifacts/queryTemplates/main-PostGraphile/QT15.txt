@@ -1,0 +1,10 @@
+query count_query ($universityID:ID) 
+{
+  allUniversities(condition: {nr: $universityID}) {
+    nodes {
+      graduatestudentsByUndergraduatedegreefrom {
+        totalCount
+      }
+    }
+  }
+}

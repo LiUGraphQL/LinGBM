@@ -1,0 +1,18 @@
+query university_graduateStudents_supervisor_department($universityID:ID) 
+{
+  allUniversities(condition: {nr: $universityID}) {
+    nodes {
+      graduatestudentsByUndergraduatedegreefrom {
+        nodes {
+          professorByAdvisor {
+            facultyByNr {
+              departmentByWorksfor {
+                nr
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

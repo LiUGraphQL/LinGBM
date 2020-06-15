@@ -1,0 +1,12 @@
+query university_graduateStudents_supervisor_department($universityID:ID) 
+{ 
+	university (where:{ nr:{ _eq: $universityID }}) { 
+		graduatestudents { 
+			professor { 
+				faculty {
+                    department {nr}
+                }
+			} 
+		} 
+	} 
+} 

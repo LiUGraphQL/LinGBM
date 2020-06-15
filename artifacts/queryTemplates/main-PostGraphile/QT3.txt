@@ -1,0 +1,20 @@
+query researchGroup_department_head_doctorDegreeFrom($researchGroupID:ID) 
+{
+  allResearchgroups(condition: {nr: $researchGroupID}) {
+    nodes {
+      departmentBySuborganizationof {
+        professorsByHeadof {
+          nodes {
+            facultyByNr {
+              nr
+              emailaddress
+              universityByDoctoraldegreefrom {
+                nr
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

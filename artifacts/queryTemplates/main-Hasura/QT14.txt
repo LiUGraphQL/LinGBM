@@ -1,0 +1,12 @@
+query multipleFilters($universityID:ID, $age:Int, $interestWord:String) 
+{ 
+	university(where:{ nr:{ _eq:$universityID }}) { 
+		graduatestudents(where: { _and: {age: { _gt: $age }, professor:{ researchinterest:{ _like:"%$interestWord%"}}}}) { 
+			nr 
+			emailaddress 
+			graduatestudenttakecourses {graduatecourseid} 
+		} 
+	} 
+}
+
+

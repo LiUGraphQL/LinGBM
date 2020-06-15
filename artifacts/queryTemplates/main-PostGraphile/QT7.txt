@@ -1,0 +1,14 @@
+query paging_with_offset_as_counter($universityID:ID, $offset:Int) 
+{
+  allUniversities(condition: {nr: $universityID}) {
+    nodes {
+      graduatestudentsByUndergraduatedegreefrom(first: 10, offset: $offset) {
+        nodes {
+          professorByAdvisor {
+            nr
+          }
+        }
+      }
+    }
+  }
+}

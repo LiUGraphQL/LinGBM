@@ -1,0 +1,18 @@
+query aggregation_query ($universityID:ID) 
+{ 
+	university(where:{ nr:{ _eq: $universityID }}){ 
+		graduatestudents_aggregate{ 
+			aggregate { 
+				avg{
+                    age
+				}
+                max {
+                    age
+                }
+                min {
+                    age
+                }
+			} 
+		} 
+	} 
+}

@@ -1,0 +1,8 @@
+query stringMatching($keyword:String) 
+{ 
+	publication(where: {title: {_like: "%$keyword%"}}) { 
+		nr 
+		title 
+		abstract 
+	} 
+} 

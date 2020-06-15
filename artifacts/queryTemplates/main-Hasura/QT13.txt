@@ -1,0 +1,10 @@
+query subqueryFilter2($universityID:ID, $interestWord: String) 
+{ 
+  university(where: { nr:{ _eq: $universityID }}) { 
+    graduatestudents(where: {professor: {researchinterest:{ _like: "%$interestWord%" }}}){ 
+      nr 
+      emailaddress 
+      graduatestudenttakecourses {graduatecourseid } 
+    } 
+  } 
+} 

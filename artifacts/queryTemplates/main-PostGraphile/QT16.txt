@@ -1,0 +1,14 @@
+query aggregation_query ($universityID:ID) 
+{ 
+	university(nr:$universityID){ 
+		undergraduateStudentConnection{ 
+			aggregate { 
+				age{ 
+					avg 
+					max 
+					min 
+				} 
+			} 
+		} 
+	} 
+}

@@ -1,0 +1,8 @@
+query university_faculty_publications($universityID:ID) 
+{ 
+	university(where: {nr: {_eq: $universityID }}){ 
+		facultiesByDoctoraldegreefrom { 
+			publications{title} 
+		} 
+	} 
+} 

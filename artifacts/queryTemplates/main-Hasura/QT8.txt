@@ -1,0 +1,8 @@
+query sorting_with_paging($cnt:Int, $attrGStudent1Hasura: graduatestudent_order_by, $attrGStudent2Hasura: graduatestudent_order_by)  
+{ 
+	graduatestudent (limit:$cnt, order_by:{$attrGStudent1Hasura:asc, $attrGStudent2Hasura:asc}){ 
+		nr 
+		telephone 
+		emailaddress 
+	} 
+} 
