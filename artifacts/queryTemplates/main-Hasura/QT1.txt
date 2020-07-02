@@ -1,7 +1,7 @@
 query faculty_university_graduateStudent($facultyID:ID) 
 { 
 	faculty(where: {nr: {_eq: $facultyID }}){ 
-		universityByDoctoraldegreefrom { 
+		university { 
 			graduatestudents {nr emailaddress} 
 		} 
 	} 

@@ -5,7 +5,7 @@ query department_faculty_university_graduateStudents_department($departmentID:ID
     faculties { 
       nr 
       emailaddress 
-      universityByDoctoraldegreefrom { 
+      university { 
         graduatestudents { 
           nr 
           emailaddress 
