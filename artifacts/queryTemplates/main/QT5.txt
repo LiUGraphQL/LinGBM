@@ -1,17 +1,25 @@
-query department_faculty_university_graduateStudents_department($departmentID:ID) 
+query department_university_graduateStudents_department($departmentID:ID) 
 { 
   department(nr:$departmentID) { 
-    id 
-    faculties { 
-      id 
-      emailAddress 
-      doctoralDegreeFrom { 
-        undergraduateDegreeObtainedBystudent { 
+    subOrganizationOf{ 
+      id
+      undergraduateDegreeObtainedBystudent {
+        id 
+        emailAddress 
+        memberOf{ 
           id 
-          emailAddress 
-          memberOf{ id } 
-        } 
-      } 
-    } 
-  } 
-} 
+          subOrganizationOf{
+            id 
+            undergraduateDegreeObtainedBystudent {
+              id 
+              emailAddress 
+              memberOf{ 
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
