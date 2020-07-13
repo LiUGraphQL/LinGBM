@@ -1,6 +1,7 @@
 query department_university_graduateStudents_department($departmentID:ID) 
 { 
-  department(nr:$departmentID) { 
+  department(nr:$departmentID) {
+    id 
     subOrganizationOf{ 
       id
       undergraduateDegreeObtainedBystudent {

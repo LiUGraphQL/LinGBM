@@ -1,17 +1,26 @@
-query department_faculty_university_graduateStudents_department($departmentID:ID) 
+query department_university_graduateStudents_department($departmentID:ID) 
 { 
   department(where:{ nr:{ _eq: $departmentID }}) { 
-    nr 
-    faculties { 
+    nr
+    university {
       nr 
-      emailaddress 
-      university { 
-        graduatestudents { 
-          nr 
-          emailaddress 
-          department{ nr } 
+      graduatestudents { 
+        nr 
+        emailaddress 
+        department{ 
+          nr
+          university {
+            nr 
+            graduatestudents { 
+              nr 
+              emailaddress 
+              department{ 
+                nr 
+              }
+            }
+          }
         } 
       } 
-    } 
+    }
   } 
 } 

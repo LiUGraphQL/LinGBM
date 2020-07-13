@@ -8,6 +8,7 @@
   "dependencies": {
     "backpack-core": "^0.8.4",
     "bluebird": "^3.5.5",
+    "clean": "^4.0.2",
     "commander": "^2.20.0",
     "fs-extra": "^9.0.0",
     "graphql-request": "^1.8.2",
