@@ -22,7 +22,7 @@ To capture the throughput of each query template, please use the following examp
 ```
 yarn start -a ACTUALQUERIES_PATH
 ```
-The ACTUALQUERIES_PATH needs to be the path where the generated queries are. This tool will then synchronously load all the generated queries and run them one by one. By default, this tool captures the throughput of each query templates and writes the throughput of all query templates into a separate file "xxx_statistics" under the directory `./output/`.
+The ACTUALQUERIES_PATH needs to be the path where the generated queries are. This tool will then synchronously load all the generated queries and run them one by one. By default, this tool captures the throughput of each query templates and writes the throughput of all query templates into a separate file "xxx_statistics" under the directory `./output/`. The statistics values contain the number of "total send out query", "successfully executed query", "error query" within the given time period.
 
 If you need to capture the throughput of only one specific query template, then the option '-q <queryTP>' can be used for setting the query template. For example, the following command is for capturing the throughput of query template 1
 ```

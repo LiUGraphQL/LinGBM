@@ -6,6 +6,7 @@ import _ from "lodash";
 import program from "commander";
 import { Parser } from "json2csv";
 import { create } from "domain";
+import {default as countNum} from "./worker";
 
 // MASTER
 export default () => {
@@ -16,7 +17,7 @@ export default () => {
     .option(
       "-s --server <url>",
       "URL to the GraphQL server to test",
-      "127.0.0.1"
+      "localhost"
     )
     .option("-p --port <port>", "Port used by the GraphQL server", "4000")
     .option(
@@ -37,7 +38,10 @@ export default () => {
       1
     )
     .parse(process.argv);
-
+  
+  let sendKeyValue = {};
+  let successKeyValue = {};
+  let errorKeyValue = {};
   const numCPUs = os.cpus().length;
   //const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
   //console.log("The max number of clients that this operation system can hold:", maxClients);
@@ -97,38 +101,51 @@ export default () => {
   };
 
   let currentRun = 1;
-
+  let sendCount = 0;
+  let successCount = 0;
+  let errorCount = 0;
+  
   let collectedData = [];
   const resetCollectedData = () => {
     collectedData = [];
+    sendCount = 0;
+    successCount = 0;
+    errorCount = 0;
+    sendKeyValue = {};
+    successKeyValue = {};
+    errorKeyValue = {};
   };
 
   cluster.on("exit", (worker, code, signal) => {
-    //console.log(`worker ${worker.process.pid} died`);
     workerCount -= 1;
-
+    if (signal) {
+      console.log(`worker ${worker.process.pid} was killed by signal: ${signal}`);
+    } else if (code !== 0) {
+      console.log(`worker exited with error code: ${code}`);
+    } else {
+      console.log('worker success!');
+    }
     if (workerCount === 0) {
       // Time to convert data to some csv
       console.log("All workers are done.");
-      console.log("Within", program.interval, "seconds, the number of executed queries are:", totalCount);
-      console.log("the number of timeout queries are:", errorCount);
-      let fields;
-      if (program.type === "tp") {
-        fields = [
-          { label: "Client Nr", value: "clientID" },
-          { label: "Query Number", value: "index" },
-          { label:"Execution time", value: "executionT"},
-          //{ label:"Start time", value: "startTime"},
-          //{ label:"End time", value: "endTime"},
-          { label: "Error", value: "error" }
-        ];
-      } else {
-        fields = [
-          { label: "Query Number", value: "index" },
-          { label: "Database Request", value: "dbRequests" },
-          { label: "Error", value: "error" }
-        ];
+      
+      for(var i in sendKeyValue) {
+          sendCount += sendKeyValue[i];
+          successCount += successKeyValue[i];
+          errorCount += errorKeyValue[i];
       }
+      console.log("Within", program.interval, "seconds, the number of total send out queries are:", sendCount);
+      console.log("the number of successfully executed queries are:", successCount);
+      console.log("the number of queries output an error message:", errorCount);
+      let fields;
+      fields = [
+        { label: "Client Nr", value: "clientID" },
+        { label: "Query Number", value: "index" },
+        { label:"Execution time", value: "executionT"},
+        //{ label:"Start time", value: "startTime"},
+        //{ label:"End time", value: "endTime"},
+        { label: "Error", value: "error" }
+      ];
       const json2csvParser = new Parser({ fields });
       const csv = json2csvParser.parse(collectedData);
       // Write to file
@@ -151,7 +168,7 @@ export default () => {
         }
       );
       //Append to statistic file
-      const current_statistic = `QT${query}, ${totalCount}, ${errorCount}, ${currentRun}\n`;
+      const current_statistic = `QT${query}, ${sendCount}, ${successCount}, ${errorCount}, ${currentRun}\n`;
       fs.appendFile(
         `${outputFileName}/statistics.csv`,
         current_statistic,
@@ -165,20 +182,22 @@ export default () => {
     }
   });
 
-  let totalCount = 0;
-  let errorCount = 0;
   // Handle log-data from the workers
   cluster.on("message", (worker, { command, data }) => {
     switch (command) {
       case "LOGDATA":
         console.log(`worker ${worker.id}:`, data);
         if(data.error == 0){
-          totalCount +=1;
-        }
-        else{
-          errorCount +=1;
+          successKeyValue[worker.id] = data.count; 
+        }else if(data.error == 1){
+          errorKeyValue[worker.id] = data.count; 
         }
         collectedData.push(data);
+        //console.log("totalSuccessuery of :", worker.id, "is: ",successKeyValue[worker.id]);
+        //console.log("totalErrorquery of :", worker.id, "is: ",errorKeyValue[worker.id]);
+      case "COUNT":
+        sendKeyValue[worker.id] = data.count;
+        //console.log("client",worker.id,"send out", sendKeyValue[i], " queries.");
     }
   });
 
@@ -224,6 +243,7 @@ export default () => {
     // If a throughput test is started, stop it after 30s.
     if (program.type == "tp") {
       setTimeout(() => {
+        console.log("timeout");
         killWorkers();
       }, program.interval * 1000);
     }
@@ -232,8 +252,6 @@ export default () => {
   const reset = () => {
     if (currentRun < program.repeat) {
       currentRun += 1;
-      totalCount = 0;
-      errorCount = 0;
       resetCollectedData();
       console.log("Repeat the throughput test for query template",query,", the", currentRun ,"time starting:\n");
       setTimeout(() => {
@@ -253,8 +271,9 @@ export default () => {
 
   const testForNextQT = queryT => {
     if(queryT<queryTemplatesDirs.length+1){
-      totalCount = 0;
-      errorCount = 0;
+      //sendCount = 0;
+      //successCount = 0;
+      //errorCount = 0;
       resetCollectedData();
       setTimeout(() => {
         start(queryT);
