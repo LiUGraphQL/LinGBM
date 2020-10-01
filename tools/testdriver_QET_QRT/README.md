@@ -39,3 +39,4 @@ In addition, there are also some other arguments that can be used to change conf
 |-o --name \<name> |Set the name of the output file |
 |-q, --queryTP \<queryTP> |Set the queryTemplate to test|
 |-n, --numberQET \<numberQET> |Specify the number of queries per template that are used to test execution time. Default: 10|
+|-r, --repeat \<repeat> |Indicates that the number of running the test, 1 refers to the first time. This value will be added as the suffix of the output file name. Default: 1|

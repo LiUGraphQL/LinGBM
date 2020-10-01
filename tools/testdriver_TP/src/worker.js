@@ -23,7 +23,6 @@ export default () => {
       data: {
         clientID: workerid,
         index: query.index,
-        executionT,
         error: 1,
         count: errorCount
       }
@@ -76,9 +75,6 @@ export default () => {
 
   const start = async ({ url, type }) => {
     switch (type) {
-      case "dbc":
-        databaseRequestTest({ url });
-        break;
       case "tp":
         throughputTest({ url });
         break;

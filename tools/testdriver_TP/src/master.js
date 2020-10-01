@@ -5,8 +5,6 @@ import fs, { writeFile, lstatSync, readdirSync, readFileSync } from "fs";
 import _ from "lodash";
 import program from "commander";
 import { Parser } from "json2csv";
-import { create } from "domain";
-import {default as countNum} from "./worker";
 
 // MASTER
 export default () => {
@@ -21,8 +19,13 @@ export default () => {
     )
     .option("-p --port <port>", "Port used by the GraphQL server", "4000")
     .option(
+      "-u --urlSuffix <urlSuf>",
+      "URL suffix to the server",
+      ""
+    )
+    .option(
       "-t --type <type>",
-      "Type of test to run, tp (throughput) or dbc (database-count).",
+      "Type of test to run, tp (throughput).",
       "tp"
     )
     .option(
@@ -30,8 +33,13 @@ export default () => {
       "How long the test should run for, default 30 sec",
       30
     )
-    .option("-n --name <name>", "Set the name of the output file", "0")
+    .option("-o --name <name>", "Set the name of the output file", "0")
     .option("-q, --queryTP <queryTP>", "Set the queryTemplate to test", 0)
+    .option(
+      "-n --repeatNr <repeatNr>",
+      "Set the number of running the test, 1 refers to the first time",
+      1
+    )
     .option(
       "-r, --repeat <repeat>",
       "Set the number of times to repeat the test",
@@ -43,12 +51,8 @@ export default () => {
   let successKeyValue = {};
   let errorKeyValue = {};
   const numCPUs = os.cpus().length;
-  //const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
-  //console.log("The max number of clients that this operation system can hold:", maxClients);
   const actualQueriesPath = program.actualQueries;
-  const SERVER_URL = "http://" + program.server + ":" + program.port;
-  //const numWorkers =
-  //  program.type === "tp" ? Math.min(maxClients, program.clients) : 1;
+  const SERVER_URL = "http://" + program.server + ":" + program.port+"/" + program.urlSuffix;
 
   // Helper functions
   const isDirectory = source => lstatSync(source).isDirectory();
@@ -128,7 +132,6 @@ export default () => {
     if (workerCount === 0) {
       // Time to convert data to some csv
       console.log("All workers are done.");
-      
       for(var i in sendKeyValue) {
           sendCount += sendKeyValue[i];
           successCount += successKeyValue[i];
@@ -157,9 +160,8 @@ export default () => {
       const outputFileName = program.name;
       // Create output dir if it doesn't exist
       if (!fs.existsSync(outputFileName)) fs.mkdirSync(outputFileName);
-
       writeFile(
-        `${outputFileName}/QT${query}_${currentRun}.csv`,
+        `${outputFileName}/QT${query}_${currentRun}_${program.repeatNr}.csv`,
         csv,
         { encoding: "utf-8" },
         err => {
@@ -271,9 +273,6 @@ export default () => {
 
   const testForNextQT = queryT => {
     if(queryT<queryTemplatesDirs.length+1){
-      //sendCount = 0;
-      //successCount = 0;
-      //errorCount = 0;
       resetCollectedData();
       setTimeout(() => {
         start(queryT);

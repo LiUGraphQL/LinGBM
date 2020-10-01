@@ -267,17 +267,17 @@ public class valueSelection_new {
 				NumOfInstance[2] = combTotalCount;
 				break;
 			case "$cnt-$attrGStudent1-$attrGStudent2":
-				combTotalCount = 500 * 6 * 6;
+				combTotalCount = 500 * 6 * 5;
 				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
 				NumOfInstance[2] = combTotalCount;
 				break;
 			case "$cnt-$attrGStudent1Hasura-$attrGStudent2Hasura":
-				combTotalCount = 500 * 6 * 6;
+				combTotalCount = 500 * 6 * 5;
 				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
 				NumOfInstance[2] = combTotalCount;
 				break;
 			case "$cnt-$attrGStudent1PostGraphile-$attrGStudent2PostGraphile":
-				combTotalCount = 500 * 6 * 6;
+				combTotalCount = 500 * 6 * 5;
 				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
 				NumOfInstance[2] = combTotalCount;
 				break;
