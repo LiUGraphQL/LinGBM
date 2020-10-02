@@ -58,12 +58,7 @@ export default () => {
           }
         });
       } catch (error) {
-        if(error.code == "ERR_IPC_CHANNEL_CLOSED"){
-          console.log("exist due to ERROR of CHANNEL CLOSED");
-          process.exit(1);
-        }else{
           errorHandler({ query, error });
-        }
       }
     };
 

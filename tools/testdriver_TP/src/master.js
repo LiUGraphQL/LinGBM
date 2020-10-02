@@ -191,7 +191,8 @@ export default () => {
         console.log(`worker ${worker.id}:`, data);
         if(data.error == 0){
           successKeyValue[worker.id] = data.count; 
-        }else if(data.error == 1){
+        }
+        else{
           errorKeyValue[worker.id] = data.count; 
         }
         collectedData.push(data);
