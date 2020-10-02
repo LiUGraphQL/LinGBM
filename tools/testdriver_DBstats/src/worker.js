@@ -55,37 +55,37 @@ export default () => {
 
         statAfter = await db.query('SELECT * FROM pg_stat_database WHERE datname= $1',['linbenchmark']);
         const { numbackends: numbackends } = statAfter.rows[0];
-        const { xact_commit: xact_commit } = statAfter.rows[0];
-        const { xact_rollback: xact_rollback } = statAfter.rows[0];
-        const { blks_read: afterdiskRead } = statAfter.rows[0];
-        const { blks_hit: aftercacheHit } = statAfter.rows[0];
+        //const { xact_commit: xact_commit } = statAfter.rows[0];
+        //const { xact_rollback: xact_rollback } = statAfter.rows[0];
+        //const { blks_read: afterdiskRead } = statAfter.rows[0];
+        //const { blks_hit: aftercacheHit } = statAfter.rows[0];
         const { tup_returned: afterReturnTuple } = statAfter.rows[0];
         const { tup_fetched: afterFetchTuple } = statAfter.rows[0];
-        const { blk_read_time: blk_read_time } = statAfter.rows[0];
+       // const { blk_read_time: blk_read_time } = statAfter.rows[0];
         console.log(JSON.stringify(statAfter.rows))
 
         // Send data about the sent query up to the master.
         const disnumbackends = parseInt(numbackends)
-        const disxact_commit = parseInt(xact_commit)
-        const disxact_rollback = parseInt(xact_rollback)
-        const diskRead = parseInt(afterdiskRead);
-        const cacheHit = parseInt(aftercacheHit);
+        //const disxact_commit = parseInt(xact_commit)
+        //const disxact_rollback = parseInt(xact_rollback)
+        //const diskRead = parseInt(afterdiskRead);
+        //const cacheHit = parseInt(aftercacheHit);
         const returnTuple = parseInt(afterReturnTuple);
         const fetchTuple = parseInt(afterFetchTuple);
-        const disblk_read_time = parseInt(blk_read_time);
+        //const disblk_read_time = parseInt(blk_read_time);
        
         process.send({
           command: "LOGDATA",
           data: {
             index: query.index,
             disnumbackends,
-            disxact_commit,
-            disxact_rollback,
-            diskRead,
-            cacheHit,
+            //disxact_commit,
+            //disxact_rollback,
+            //diskRead,
+            //cacheHit,
             returnTuple,
             fetchTuple,
-            disblk_read_time,
+            //disblk_read_time,
             error: 0
           }
         });

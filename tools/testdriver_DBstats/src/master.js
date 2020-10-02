@@ -115,13 +115,13 @@ export default () => {
       fields = [
         { label: "Query Number", value: "index" },
         { label: "disnumbackends", value: "disnumbackends" },
-        { label: "disxact_commit", value: "disxact_commit" },
-        { label: "disxact_rollback", value: "disxact_rollback" },
-        { label: "diskRead", value: "diskRead" },
-        { label: "cacheHit", value: "cacheHit" },
+        //{ label: "disxact_commit", value: "disxact_commit" },
+        //{ label: "disxact_rollback", value: "disxact_rollback" },
+        //{ label: "diskRead", value: "diskRead" },
+        //{ label: "cacheHit", value: "cacheHit" },
         { label: "returnTuple", value: "returnTuple" },
         { label: "fetchTuple", value: "fetchTuple" },
-        { label: "disblk_read_time", value: "disblk_read_time" },
+        //{ label: "disblk_read_time", value: "disblk_read_time" },
         { label: "Error", value: "error" }
       ];
       const json2csvParser = new Parser({ fields });
