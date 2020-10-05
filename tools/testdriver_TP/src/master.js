@@ -133,9 +133,21 @@ export default () => {
       // Time to convert data to some csv
       console.log("All workers are done.");
       for(var i in sendKeyValue) {
-          sendCount += sendKeyValue[i];
-          successCount += successKeyValue[i];
-          errorCount += errorKeyValue[i];
+          if(sendKeyValue[i]){
+            sendCount += sendKeyValue[i];
+          }else{
+            console.log("client",worker.id,"send out 0 query.");
+          }
+          if(successKeyValue[i]){
+            successCount += successKeyValue[i];
+          }else{
+            console.log("client",worker.id,"successfully executed 0 query.");
+          }
+          if(errorKeyValue[i]){
+            errorCount += errorKeyValue[i];
+          }else{
+            console.log("client",worker.id," have 0 query returned error message.");
+          }
       }
       console.log("Within", program.interval, "seconds, the number of total send out queries are:", sendCount);
       console.log("the number of successfully executed queries are:", successCount);
