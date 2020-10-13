@@ -126,8 +126,6 @@ export default () => {
       const csv = json2csvParser.parse(collectedData);
       const csvValue = csv.split("\n");
       const csv1 = csvValue[1]+"\n";
-      // Create output dir if it doesn't exist
-      //if (!fs.existsSync("output")) fs.mkdirSync("output");
       // Write to file
       if(program.name == "0"){
         program.name = `output`;

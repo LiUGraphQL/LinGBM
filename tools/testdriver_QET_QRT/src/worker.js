@@ -1,4 +1,4 @@
-import { request, GraphQLClient} from "graphql-request";
+import { request} from "graphql-request";
 import prettyjson from "prettyjson";
 
 export default () => {
@@ -31,23 +31,13 @@ export default () => {
     const runRequest = async (url, query) => {
       try {
         const startTime = Date.now();
-        /*
-        await request(url, query.data)
-          .catch(console.error)
-          .then(responseT = Math.floor(Date.now()-startTime))
-          .then(console.log);
-        */
-        const client = new GraphQLClient(url);
-        const reponseRes = await client.request(query.data).catch(console.error);
+        const reponseRes = await request(url, query.data);
         const responseTime = Date.now();
         console.log(reponseRes);
         const endTime = Date.now();
 
         const executionT = endTime - startTime;
         const responseT = responseTime - startTime;       
-        
-        //console.log(`response time =${Math.floor(responseT)}`);
-        //console.log(`execution time = ${Math.floor(executionT)}`);
         
         process.send({
           command: "LOGDATA",
