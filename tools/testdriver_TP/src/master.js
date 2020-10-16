@@ -227,16 +227,27 @@ export default () => {
 
   const distributeQueries = queryT => {
     let index = 1;
+    let sliceStart = 0;
+    let sliceStartNext = 0;
     let qts = qtsFuc(queryT).qts_value;
     _.forEach(cluster.workers, worker => {
-      const slice = Math.floor(
-        (qts.queries.length / program.clients) * (index - 1)
-      );
+      if((qts.queries.length / program.clients) < 1){
+        sliceStart = 0;
+        sliceStartNext = 0;
+      }else{
+        sliceStart = Math.floor(
+          (qts.queries.length / program.clients) * (index - 1)
+        );
+        sliceStartNext = Math.floor(
+          (qts.queries.length / program.clients) * (index)
+        );
+      }
       worker.send({
         command: "QUERIES",
         data: qts.queries,
         workerID: worker.id,
-        slice
+        sliceStart,
+        sliceStartNext
       });
       index += 1;
     });

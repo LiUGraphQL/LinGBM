@@ -11,6 +11,8 @@ export default () => {
   let errorCount = 0;
   let successCount = 0; 
   let executionT = 0;
+  let subsetStart = 0;
+  let subsetEnd = 0;
 
   const errorHandler = ({ query, error }) => {
     console.log(cursor);
@@ -64,7 +66,7 @@ export default () => {
 
     while (true) {
       await runRequest(url, queries[cursor]);
-      cursor = cursor === queries.length - 1 ? 0 : cursor + 1;
+      cursor = cursor === subsetEnd ? subsetStart : cursor + 1;
     };
   };
 
@@ -76,7 +78,7 @@ export default () => {
     }
   };
 
-  process.on("message", ({ command, data, workerID, slice }) => {
+  process.on("message", ({ command, data, workerID, sliceStart, sliceStartNext }) => {
     switch (command) {
       case "ECHO":
         process.send({ command: "ECHO", data });
@@ -84,7 +86,16 @@ export default () => {
       case "QUERIES":
         queries = data;
         workerid = workerID;
-        cursor = slice;
+        cursor = sliceStart;
+        subsetStart = sliceStart;
+        console.log("subsetStart:", subsetStart);
+        console.log("sliceStartNext:",sliceStartNext);
+        if (sliceStartNext == 0){
+          subsetEnd = queries.length - 1;
+        }else{
+          subsetEnd = sliceStartNext - 1;
+        }
+        console.log("subsetEnd:",subsetEnd);
         break;
       case "START":
         start(data);
