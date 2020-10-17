@@ -1,2 +1,4 @@
 This directory contains PostGraphile-specific versions of the main query templates of the LinGBM benchmark.
 That is, the templates in this directory are translations of the [original templates](https://github.com/LiUGraphQL/LinGBM/tree/master/artifacts/queryTemplates/main) into templates for the GraphQL schema of a PostGraphile-generated GraphQL server.
+
+Notice that there are no PostGraphile-specific versions of templates QT13, QT14, and QT16, because, due to limitations of the GraphQL schema that PostGraphile generates for the LinGBM dataset, these templates cannot be expressed in terms of this schema.
