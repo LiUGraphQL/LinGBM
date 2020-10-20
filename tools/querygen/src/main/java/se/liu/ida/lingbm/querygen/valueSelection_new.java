@@ -368,7 +368,7 @@ public class valueSelection_new {
 				randomNr = String.valueOf(graduateStudentField[Nr]);
 			}
 		}else if(field.contains("$attrPublicationField")){
-			if(field.contains("$PostGraphile")){
+			if(field.contains("PostGraphile")){
 				Nr = valueGen.randomInt(0, publicationField_PostGraphile.length-1);
 				randomNr = String.valueOf(publicationField_PostGraphile[Nr]);
 			}else{
