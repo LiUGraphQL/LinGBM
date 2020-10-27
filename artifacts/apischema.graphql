@@ -17,7 +17,7 @@ type University
 	doctoralDegreeObtainers(where: FacultyWhereInput): [Faculty]
 	undergraduateDegreeObtainedBystudent(where: GraduateStudentWhereInput, limit: Int, offset: Int): [GraduateStudent]
 	departments: [Department] 
-	graduateStudentConnection:CollectionOfEdgesToUgStudents
+	graduateStudentConnection: CollectionOfEdgesToUgStudents
 } 
 
 interface Faculty  
@@ -25,7 +25,7 @@ interface Faculty
 	id: ID! 
 	telephone: String 
 	emailAddress: String 
-	undergraduteDegreeFrom: University 
+	undergraduateDegreeFrom: University 
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
 	worksFor: Department 
@@ -50,7 +50,7 @@ type Department
 type ResearchGroup  
 { 
 	id: ID! 
-	subOrgnizationOf: Department 
+	subOrganizationOf: Department 
 } 
 
 interface Author  
@@ -67,7 +67,7 @@ type Professor implements Faculty & Author
 	emailAddress: String 
 	researchInterest: String 
 	profType: String
-	undergraduteDegreeFrom: University 
+	undergraduateDegreeFrom: University 
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
 	worksFor: Department 
@@ -85,7 +85,7 @@ type Lecturer implements Faculty & Author
 	telephone: String 
 	emailAddress: String 
 	position: String
-	undergraduteDegreeFrom: University 
+	undergraduateDegreeFrom: University 
 	masterDegreeFrom: University 
 	doctoralDegreeFrom: University 
 	worksFor: Department 
