@@ -1,0 +1,3 @@
+* The directory **main** contains the 16 main query templates for [Scenario 1](https://github.com/LiUGraphQL/LinGBM/wiki/Introduction-to-the-LinGBM-Project#scenarios) of the LinGBM benchmark. You can find a [detailed description of these templates in the LinGBM wiki](https://github.com/LiUGraphQL/LinGBM/wiki/Query-Templates-of-the-Benchmark).
+* The directory **main-Hasura** contains Hasura-specific versions of the main query templates. That is, the templates in this directory are translations of the main templates into templates for the GraphQL schema of a Hasura-generated GraphQL server.
+* The directory **main-PostGraphile** contains PostGraphile-specific versions of the main query templates.
