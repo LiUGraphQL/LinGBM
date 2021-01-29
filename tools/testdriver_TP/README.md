@@ -38,7 +38,7 @@ In addition, there are also some other arguments can be used to change the confi
 |-p --port <port> |Port used by the GraphQL server. Default: "4000"|
 |-u --urlSuffix <urlSuf> |URL suffix used by the GraphQL server. Default: ""|
 |-t --type <type> |Type of test to run, tp (throughput). tp |
-|-i --interval <interval> |How long the test should run for. Default: 30 sec|
+|-i --interval <interval> |How long the test should run for. Default: 60 sec|
 |-o --name <name> |Set the name of the output file |
 |-q, --queryTP <queryTP> |Set the queryTemplate to test|
 |-n, --repeatNr <repeatNr> |Set the number of running the test, 1 refers to the first time. Default: 1|

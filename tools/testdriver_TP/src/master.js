@@ -30,8 +30,8 @@ export default () => {
     )
     .option(
       "-i --interval <interval>",
-      "How long the test should run for, default 30 sec",
-      30
+      "How long the test should run for, default 60 sec",
+      60
     )
     .option("-o --name <name>", "Set the name of the output file", "0")
     .option("-q, --queryTP <queryTP>", "Set the queryTemplate to test", 0)
