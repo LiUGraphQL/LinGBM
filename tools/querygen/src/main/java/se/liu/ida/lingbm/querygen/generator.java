@@ -106,53 +106,38 @@ public class generator {
 	        }
 	    }
 	}
-	
 
+	static class FileGen{
+		String fileName;
+		File txtFile;
+		File varsFile;
+
+		public FileGen(String fileName){
+			this.fileName=fileName;
+		}
+
+		public boolean checkPaired(){
+			return !(txtFile==null||varsFile==null);
+		}
+	}
+	
+//TODO:/Users/liutianyuan/work/LinGBM/tools/datasetgen/values/universityID.txt (No such file or directory)
 	public static void main(String[] args) throws IOException, ParseException {
 		generator generator = new generator(args);
 
-		//read query template, and store it as string
 		File dir = new File(queryTemplateDir);
-		//System.out.println(queryTemplateDir);
-		int numberOfTemplates = 0;
-		File listDir[] = dir.listFiles();
-		numberOfTemplates = listDir.length/2;
-
-		System.out.println("number of query templates:"+numberOfTemplates);
-		System.out.println("Read in query templates and placeholders for query templates...");
-		for (int i = 1; i<= numberOfTemplates; i++){
-			File queryTempfile = new File(dir, "QT"+i+".txt");
-			FileInputStream queryT = new FileInputStream(queryTempfile);
-			BufferedReader txtQueryTem = new BufferedReader(new InputStreamReader(queryT));
-
-			String queryLine = txtQueryTem.readLine();
-			StringBuilder queryBuilder = new StringBuilder();
-			while(queryLine != null){
-				queryBuilder.append(queryLine).append("\n");
-				queryLine = txtQueryTem.readLine();
-			}
-			String queryTemp = queryBuilder.toString();
-			templates.add(queryTemp);
-
-			File queryDesfile = new File(dir, "QT"+i+".vars");
-			BufferedReader txtQueryDes = new BufferedReader(new InputStreamReader(new FileInputStream(queryDesfile)));
-			String placeholder = txtQueryDes.readLine();
-
-			String queryDescription= "";
-			while(placeholder != null){
-				queryDescription = queryDescription+"-"+placeholder;
-				placeholder = txtQueryDes.readLine();
-			}
-			String para = queryDescription.substring(1, queryDescription.length());
-			placeholders.add(para);
+		if (!dir.isDirectory()){
+			System.out.println("ERROR: "+dir+" is not a valid directory");
+			System.exit(1);
 		}
-
-
-		System.out.println("Query templates and description are prepared.\n");
-
-		System.out.println("Read in Values for placeholders...");
+		//System.out.println("Read in Values for placeholders...");
 		//The path to possible values for the placeholders
 		File resourceDir = new File(placeholderValDir);
+		if(!resourceDir.isDirectory()){
+			System.out.println("ERROR: "+resourceDir+" is not a valid directory.");
+			System.exit(1);
+		}
+
 		// read in files that used to generate values for the placeholders
 		valueSelection_new valueSel = new valueSelection_new();
 		Long seed = seedGenerator.nextLong();
@@ -165,20 +150,88 @@ public class generator {
 		System.out.println("\n Cleared\n");
 		System.out.println("\n Clear existing queries with variables...\n");
 		File dirQueryVari = new File(querywithVariDir);
+
 		deleteFolder(dirQueryVari);
 		System.out.println("\n Cleared\n");
 
-		System.out.println("\nStart generating new query instances...\n");
-
 		Integer[] actualNumInstan= new Integer[3];
-		for(int i=0; i< placeholders.size(); i++){
-			String queryTemp = templates.get(i);
-			String placeholder = placeholders.get(i);
-			queryInstantiation instances = new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, (i+1));
-			actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
-			statistic_data.add(actualNumInstan[1]+","+"QT"+ (i+1)+","+actualNumInstan[2]);
-			System.out.println("queries for template "+(i+1)+" has been generated.");
+		//read query template, and store it as string
+		
+		System.out.println("\nStart generating new query instances...\n");
+		int numberOfTemplates = 0;
+		File[] listDir = dir.listFiles();
+
+		Map<String,FileGen> fileMap=new LinkedHashMap<>();
+		for (int i = 0; i < listDir.length; i++) {
+			String fileName=listDir[i].getName();
+			if(!(fileName.endsWith(".txt")||fileName.endsWith(".vars"))){
+				continue;
+			}
+			String simpleName=fileName.split("\\.")[0];
+			FileGen fileGen=null;
+			if(fileMap.containsKey(simpleName)){
+				fileGen=fileMap.get(simpleName);
+			}else{
+				fileGen=new FileGen(simpleName);
+				fileMap.put(simpleName,fileGen);
+			}
+			if(fileName.endsWith(".txt")){
+				fileGen.txtFile=listDir[i];
+			}else{
+				fileGen.varsFile=listDir[i];
+			}
 		}
+
+		System.out.println("Read in query templates and placeholders for query templates...");
+
+		List<FileGen> collection=new ArrayList<>(fileMap.values());
+		Collections.sort(collection, new Comparator<FileGen>() {
+			@Override
+			public int compare(FileGen o1, FileGen o2) {
+				return o1.fileName.compareTo(o2.fileName);
+			}
+
+		});
+		int countTemplates=0;
+		for (FileGen fileGen:collection){
+			if(!fileGen.checkPaired()){
+				System.out.println("query template/placeholders for "+fileGen.fileName+" is missing. Skipped");
+				continue;
+			}
+			countTemplates++;
+			File queryTempfile = fileGen.txtFile;
+			FileInputStream queryT = new FileInputStream(queryTempfile);
+			BufferedReader txtQueryTem = new BufferedReader(new InputStreamReader(queryT));
+
+			String queryLine = txtQueryTem.readLine();
+			StringBuilder queryBuilder = new StringBuilder();
+			while(queryLine != null){
+				queryBuilder.append(queryLine).append("\n");
+				queryLine = txtQueryTem.readLine();
+			}
+			String queryTemp = queryBuilder.toString();
+
+			File queryDesfile = fileGen.varsFile;
+			BufferedReader txtQueryDes = new BufferedReader(new InputStreamReader(new FileInputStream(queryDesfile)));
+			String placeholderTemp = txtQueryDes.readLine();
+
+			String queryDescription= "";
+			while(placeholderTemp != null){
+				queryDescription = queryDescription+"-"+placeholderTemp;
+				placeholderTemp = txtQueryDes.readLine();
+			}
+			String placeholder = queryDescription.substring(1, queryDescription.length());
+			new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, fileGen.fileName);
+			actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
+			statistic_data.add(actualNumInstan[1]+","+fileGen.fileName+","+actualNumInstan[2]);
+			System.out.println("queries for template "+fileGen.fileName+" has been generated.");
+		}
+
+		if(countTemplates==0){
+			System.out.println("ERROR: no applicable template exists in the given directory "+dir.getName());
+			System.exit(1);
+		}
+
 		System.out.println("All query instances has been generated.");
 
 

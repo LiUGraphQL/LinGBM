@@ -33,7 +33,7 @@ The following arguments can be used to change the behavior of the program:
 | ------ | ------|
 |-nm \<number of instances for each template> |The number of query instances for each template. Default: 20. <br> If the specified value is less than the total number of instances possible for some query template (because there are not enough possible values for the placeholder(s) in that query template), then all possible query instances are generated.| 
 |-templates \<Absolute path to the directory with the query templates> |The query templates used as input. Default: /LinGBM/artifacts/queryTemplates/main| 
-|-values \<Absolute path to the directory with the placeholder values> |The directory with the input values for placeholders, which was created by the dataset generator. Default: /LinGBM/tools/datasetgen/td_data |
+|-values \<Absolute path to the directory with the placeholder values> |The directory with the input values for placeholders, which was created by the dataset generator. Default: /LinGBM/tools/datasetgen/values |
 |-outdirQ \<Absolute path to output directory: query instances> |The output directory for writing the files with the generated query instances. Default: /LinGBM/tools/querygen/actualQueries|
 |-outdirV \<Absolute path to output directory: values for variables> |The output directory for writing the files with the variable assignments to be used together with the query templates. Default: /LinGBM/tools/querygen/queryVariables |
 

@@ -13,7 +13,7 @@ import java.util.Set;
 //Given a query template, output a set of query instances.
 public class queryInstantiation {
 
-	public queryInstantiation(String oldQuery, String parameter, valueSelection_new valueSel, File dirIns , File dirQueryVari, int max, int No_temp) throws ParseException {
+	public queryInstantiation(String oldQuery, String parameter, valueSelection_new valueSel, File dirIns , File dirQueryVari, int max, String fileName) throws ParseException {
 
 
 		// Parse the parameter
@@ -24,7 +24,7 @@ public class queryInstantiation {
 		if(valueCombine!= null){
 			for(int i = 0; i<valueCombine.length; i++){
 				String replaceString=oldQuery.substring(oldQuery.indexOf('\n')+1);
-				File dirActualQueries = new File(dirIns+"/"+"QT"+No_temp+"/");
+				File dirActualQueries = new File(dirIns+"/"+fileName+"/");
 				dirActualQueries.mkdirs();
 				for(int j = 0; j<valueCombine[0].length; j++){
 					replaceString = replaceString.replace(paraParts[j], valueCombine[i][j]);
@@ -43,7 +43,7 @@ public class queryInstantiation {
 				}
 
 				String variables="{"+ "\n ";
-				File dirQuerywithVari = new File(dirQueryVari+"/"+"QT"+No_temp+"/");
+				File dirQuerywithVari = new File(dirQueryVari+"/"+fileName+"/");
 				dirQuerywithVari.mkdirs();
 				for(int k = 0; k<valueCombine[0].length; k++){
 					variables = variables.concat("	\""+paraParts[k].substring(1, paraParts[k].length())+"\": "+valueCombine[i][k]+",\n");
