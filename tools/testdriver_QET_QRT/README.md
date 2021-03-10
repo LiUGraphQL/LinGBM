@@ -33,9 +33,7 @@ In addition, there are also some other arguments that can be used to change conf
 | Argument | Description |
 | ------ | ------|
 |-a, --actual-queries \<path>|Path to actualQueries folder| 
-|-s --server \<url> |URL to the GraphQL server to test. Default: localhost |
-|-p --port \<port> |Port used by the GraphQL server. Default: "4000"|
-|-t --type \<type> |Type of test to run, et (execution time). et |
+|-s --server \<url> |complete URL to the GraphQL server under test, including port (if any) and local path (if any). Default: "http://localhost:4000" |
 |-o --name \<name> |Set the name of the output file |
 |-q, --queryTP \<queryTP> |Set the queryTemplate to test|
 |-n, --numberQET \<numberQET> |Specify the number of queries per template that are used to test execution time. Default: 10|

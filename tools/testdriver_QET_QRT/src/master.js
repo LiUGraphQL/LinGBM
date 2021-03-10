@@ -12,13 +12,11 @@ export default () => {
   program
     .version("0.0.1", "-v, --version")
     .option("-a, --actual-queries <path>", "Path to actualQueries folder.")
-    //.option("-c, --clients <clients>", "Number of clients", 1)
     .option(
       "-s --server <url>",
-      "URL to the GraphQL server to test",
-      "127.0.0.1"
+      "complete URL to the GraphQL server under test, including port (if any) and local path (if any)",
+      "http://localhost:4000"  // default value
     )
-    .option("-p --port <port>", "Port used by the GraphQL server", "4000")
     .option(
       "-t --type <type>",
       "Type of test to run, et (execution time)",
@@ -43,7 +41,8 @@ export default () => {
   const numCPUs = os.cpus().length;
   const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
   const actualQueriesPath = program.actualQueries;
-  const SERVER_URL = "http://" + program.server + ":" + program.port;
+  //const SERVER_URL = "http://" + program.server + ":" + program.port;
+  const SERVER_URL = program.server;
   const numWorkers =
     //program.type === "et" ? Math.min(maxClients, program.clients) : 1;
     program.type === "et" ? Math.min(maxClients, 1) : 1;

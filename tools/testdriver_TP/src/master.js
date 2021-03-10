@@ -14,14 +14,8 @@ export default () => {
     .option("-c, --clients <clients>", "Number of clients", 1)
     .option(
       "-s --server <url>",
-      "URL to the GraphQL server to test",
-      "localhost"
-    )
-    .option("-p --port <port>", "Port used by the GraphQL server", "4000")
-    .option(
-      "-u --urlSuffix <urlSuf>",
-      "URL suffix to the server",
-      ""
+      "complete URL to the GraphQL server under test, including port (if any) and local path (if any)",
+      "http://localhost:4000"  // default value
     )
     .option(
       "-t --type <type>",
@@ -52,7 +46,8 @@ export default () => {
   let errorKeyValue = {};
   const numCPUs = os.cpus().length;
   const actualQueriesPath = program.actualQueries;
-  const SERVER_URL = "http://" + program.server + ":" + program.port+"/" + program.urlSuffix;
+  //const SERVER_URL = "http://" + program.server + ":" + program.port+"/" + program.urlSuffix;
+  const SERVER_URL = program.server;
 
   // Helper functions
   const isDirectory = source => lstatSync(source).isDirectory();
