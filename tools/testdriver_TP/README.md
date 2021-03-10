@@ -34,7 +34,7 @@ In addition, there are also some other arguments can be used to change the confi
 | ------ | ------|
 |-a, --actual-queries \<path>|Path to actualQueries folder| 
 |-c, --clients \<clients> |Number of clients. Default: 1| 
-|-s --server <url> |complete URL to the GraphQL server under test, including port (if any) and local path (if any). Default: "http://localhost:4000" |
+|-s --server \<url> |complete URL to the GraphQL server under test, including port (if any) and local path (if any). Default: "http://localhost:4000" |
 |-i --interval <interval> |How long the test should run for. Default: 60 sec|
 |-o --name <name> |Set the name of the output file |
 |-q, --queryTP <queryTP> |Set the queryTemplate to test|

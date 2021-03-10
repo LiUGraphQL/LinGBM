@@ -46,7 +46,6 @@ export default () => {
   let errorKeyValue = {};
   const numCPUs = os.cpus().length;
   const actualQueriesPath = program.actualQueries;
-  //const SERVER_URL = "http://" + program.server + ":" + program.port+"/" + program.urlSuffix;
   const SERVER_URL = program.server;
 
   // Helper functions

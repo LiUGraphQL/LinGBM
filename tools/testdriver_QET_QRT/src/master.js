@@ -41,8 +41,8 @@ export default () => {
   const numCPUs = os.cpus().length;
   const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
   const actualQueriesPath = program.actualQueries;
-  //const SERVER_URL = "http://" + program.server + ":" + program.port;
   const SERVER_URL = program.server;
+  
   const numWorkers =
     //program.type === "et" ? Math.min(maxClients, program.clients) : 1;
     program.type === "et" ? Math.min(maxClients, 1) : 1;
