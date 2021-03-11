@@ -121,7 +121,7 @@ public class generator {
 		}
 	}
 	
-//TODO:/Users/liutianyuan/work/LinGBM/tools/datasetgen/values/universityID.txt (No such file or directory)
+
 	public static void main(String[] args) throws IOException, ParseException {
 		generator generator = new generator(args);
 
@@ -233,8 +233,6 @@ public class generator {
 		}
 
 		System.out.println("All query instances has been generated.");
-
-
 
 		File path = new File(dirIns.getPath().substring(0, dirIns.getPath().lastIndexOf("/actualQueries")));
 		File oldNumInstance = new File(path, "/NumOfInstances.csv");

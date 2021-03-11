@@ -117,7 +117,7 @@ export default () => {
   cluster.on("exit", (worker, code, signal) => {
     workerCount -= 1;
     if (signal) {
-      console.log(`worker ${worker.process.pid} was killed by signal: ${signal}`);
+      //console.log(`worker ${worker.process.pid} was killed by signal: ${signal}`);
     } else if (code !== 0) {
       console.log(`worker exited with error code: ${code}`);
     } else {
@@ -140,10 +140,10 @@ export default () => {
           if(errorKeyValue[i]){
             errorCount += errorKeyValue[i];
           }else{
-            console.log("client",worker.id," have 0 query returned error message.");
+            //console.log("client",worker.id," have 0 query returned error message.");
           }
       }
-      console.log("Within", program.interval, "seconds, the number of total send out queries are:", sendCount);
+      //console.log("Within", program.interval, "seconds, the number of total send out queries are:", sendCount);
       console.log("the number of successfully executed queries are:", successCount);
       console.log("the number of queries output an error message:", errorCount);
       let fields;
@@ -261,52 +261,61 @@ export default () => {
     distributeQueries(queryT);
     startWorkers();
     // If a throughput test is started, stop it after 30s.
-    if (program.type == "tp") {
-      setTimeout(() => {
-        console.log("timeout");
-        killWorkers();
-      }, program.interval * 1000);
-    }
+    setTimeout(() => {
+      console.log("timeout");
+      killWorkers();
+    }, program.interval * 1000);
   };
 
   const reset = () => {
     if (currentRun < program.repeat) {
       currentRun += 1;
       resetCollectedData();
-      console.log("Repeat the throughput test for query template",query,", the", currentRun ,"time starting:\n");
+      console.log("Repeat the throughput test for query template",query,". The", currentRun ,"time starting:\n");
       setTimeout(() => {
         start(query);
       }, 1000);
     } else {
       if(program.queryTP == 0){
         console.log("The throughput test for query template", query, "is completed");
-        query +=1;
+        T_index +=1;
         currentRun = 1;
-        testForNextQT(query);
+        testForNextQT(T_index);
       }else{
-        console.log("Test is completed, exiting.");
+        console.log("The throughput test for query template", program.queryTP, "is completed");
       } 
     }
   };
 
-  const testForNextQT = queryT => {
-    if(queryT<queryTemplatesDirs.length+1){
+  const testForNextQT = index => {
+    if(index<queryTemplatesDirs.length){
       resetCollectedData();
+      query = queryT_list[index]
       setTimeout(() => {
-        start(queryT);
+        start(query);
       }, 1000);
     }else{
-      console.log("All Throughput test are completed");
+      console.log("The Throughput test is completed");
     }
   };
 
+  let queryT_list = []
+  for (const QT_item of queryTemplates) {
+    queryT_list.push(QT_item.queryTemplate);
+  }
+
   //query: specify the nr of query template
-  let query = 1;
+  let query
+  let T_index = 0;
   if(program.queryTP == 0){
-    query = 1;
+    query = queryT_list[T_index];
     start(query);
   }else{
-    query = program.queryTP;
-    start(query);
+    query = parseInt(program.queryTP, 10)
+    if(queryT_list.includes(query)){
+      start(query);
+    }else{
+      console.log("Query instances for QT",program.queryTP ,"are not available.");
+    }
   } 
 };

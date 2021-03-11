@@ -26,11 +26,6 @@ export default () => {
     .option("-q --queryTP <queryTP>", "Set the queryTemplate to test", 0)
     
     .option(
-      "-r --repeat <repeat>",
-      "Set the number of times to repeat the test",
-      1
-    )
-    .option(
       "-n --numberQET <numberQET>",
       "Specify the number of queries per template that are used to test execution time",
       10
@@ -42,7 +37,6 @@ export default () => {
   const maxClients = numCPUs - 1; // The extra one here runs the graphQL server
   const actualQueriesPath = program.actualQueries;
   const SERVER_URL = program.server;
-  
   const numWorkers =
     //program.type === "et" ? Math.min(maxClients, program.clients) : 1;
     program.type === "et" ? Math.min(maxClients, 1) : 1;
@@ -134,7 +128,7 @@ export default () => {
       const outputFileName = program.name;
       if (!fs.existsSync(outputFileName)) fs.mkdirSync(outputFileName);
       fs.appendFile(
-        `${outputFileName}/QET_${program.repeat}.csv`,
+        `${outputFileName}/QET.csv`,
         csv1,
         { encoding: "utf-8" },
         err => {
@@ -206,15 +200,14 @@ export default () => {
     startWorkers();
   };
 
-  const repeatExe = queryT =>{
+  const repeatExe = T_index =>{
     if (currentRun < program.numberQET) {
       currentRun += 1;
-      //reset(queryT);
       if(program.queryTP == 0){
-        reset(queryT);
+        reset(T_index);
       } else{
         setTimeout(() => {
-          start(queryT);
+          start(T_index);
         }, 1000);
       }
     }else{
@@ -227,32 +220,41 @@ export default () => {
     totalCount = 0;
     resetCollectedData();
     if(program.queryTP == 0){
-      query +=1;
-      testForNextQT(query);
+      T_index +=1;
+      testForNextQT(T_index);
     } else{
-      //console.log("test");
       repeatExe(program.queryTP);
     }
   };
-  const testForNextQT = (queryT) => {
-    if(queryT<queryTemplatesDirs.length+1){
+  const testForNextQT = (index) => {
+    if(index<queryTemplatesDirs.length){
+      query = queryT_list[index]
       setTimeout(() => {
-        start(queryT);
+        start(query);
       }, 1000);
     }else{
       //console.log("QETs for "+currentRun+" queries per template have been recorded");
-      query = 0;
-      repeatExe(query);
+      T_index = -1;
+      repeatExe(T_index);
     }
   };
 
-  //query: specify the nr of query template
-  let query = 1;
+  let queryT_list = []
+  for (const QT_item of queryTemplates) {
+    queryT_list.push(QT_item.queryTemplate);
+  }
+
+  let query
+  let T_index = 0;
   if(program.queryTP == 0){
-    query = 1;
+    query = queryT_list[T_index];
     start(query);
   }else{
-    query = program.queryTP;
-    start(query);
-  } 
+    query = parseInt(program.queryTP, 10)
+    if(queryT_list.includes(query)){
+      start(query);
+    }else{
+      console.log("Query instances for QT",program.queryTP ,"are not available.");
+    }
+  }  
 };
