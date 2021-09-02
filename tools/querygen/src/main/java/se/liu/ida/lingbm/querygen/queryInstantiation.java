@@ -13,13 +13,13 @@ import java.util.Set;
 //Given a query template, output a set of query instances.
 public class queryInstantiation {
 
-	public queryInstantiation(String oldQuery, String parameter, valueSelection_new valueSel, File dirIns , File dirQueryVari, int max, String fileName) throws ParseException {
+	public queryInstantiation(String oldQuery, String parameter, valueSelection_new valueSel, File dirIns , File dirQueryVari, int max, String fileName, ValueGenerator valueGen) throws ParseException {
 
 
 		// Parse the parameter
 		String[] paraParts = parameter.split("-");
 		//Process the query string: replace the placeholders with corresponding values
-		String[][] valueCombine = valueSel.SelectedValues(parameter, max);
+		String[][] valueCombine = valueSel.SelectedValues(parameter, max, valueGen);
 
 		if(valueCombine!= null){
 			for(int i = 0; i<valueCombine.length; i++){

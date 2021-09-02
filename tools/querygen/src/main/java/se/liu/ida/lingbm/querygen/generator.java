@@ -1,6 +1,5 @@
 package se.liu.ida.lingbm.querygen;
 
-import javax.swing.text.html.HTMLDocument;
 import java.io.*;
 import java.text.ParseException;
 import java.util.*;
@@ -18,9 +17,6 @@ public class generator {
 	protected static String placeholderValDir= generatorDefaultValues.placeholderValDirDef;
 	protected static String queryTemplateDir = generatorDefaultValues.queryTemplateDirDef;
 
-	static ArrayList<String> templates = new ArrayList<String>();
-	static final Random seedGenerator = new Random(53223436L);
-	static ArrayList<String> placeholders = new ArrayList<String>();
 	static ArrayList<String> statistic_data = new ArrayList<String>();
 	/*
 	 * Parameters for steady state
@@ -140,8 +136,7 @@ public class generator {
 
 		// read in files that used to generate values for the placeholders
 		valueSelection_new valueSel = new valueSelection_new();
-		Long seed = seedGenerator.nextLong();
-		valueSel.init(resourceDir, seed);
+		valueSel.init(resourceDir);
 		System.out.println("Values for placeholders are prepared.");
 
 		System.out.println("\n Clear existing query instances...\n");
@@ -158,7 +153,7 @@ public class generator {
 		//read query template, and store it as string
 		
 		System.out.println("\nStart generating new query instances...\n");
-		int numberOfTemplates = 0;
+		//int numberOfTemplates = 0;
 		File[] listDir = dir.listFiles();
 
 		Map<String,FileGen> fileMap=new LinkedHashMap<>();
@@ -221,7 +216,11 @@ public class generator {
 				placeholderTemp = txtQueryDes.readLine();
 			}
 			String placeholder = queryDescription.substring(1, queryDescription.length());
-			new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, fileGen.fileName);
+
+			final Random seedGenerator = new Random(53223436L);
+			ValueGenerator valueGen = new ValueGenerator(seedGenerator.nextLong());
+			new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, fileGen.fileName, valueGen);
+
 			actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
 			statistic_data.add(actualNumInstan[1]+","+fileGen.fileName+","+actualNumInstan[2]);
 			System.out.println("queries for template "+fileGen.fileName+" has been generated.");

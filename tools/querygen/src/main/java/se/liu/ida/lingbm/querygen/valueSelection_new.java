@@ -1,10 +1,8 @@
 package se.liu.ida.lingbm.querygen;
 
 import java.io.*;
-import java.sql.Array;
 import java.text.ParseException;
 import java.util.*;
-import java.util.Scanner;
 
 // This module works for generating a group of values for one parameter or a combination of parameters.
 // Given a placeholder, randomly select a group of values for it
@@ -46,9 +44,7 @@ public class valueSelection_new {
 			"professorID", "lecturerID", "graduateStudentID", "undergraduateStudentID",
 			"publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract", "interest"};
 
-	protected void init(File resourceDir, long seed) {
-		Random seedGen = new Random(seed);
-		valueGen = new ValueGenerator(seedGen.nextLong());
+	protected void init( File resourceDir ) {
 		for(int i = 0; i<entityNames.length; i++){
 			readDepartment(resourceDir, entityNames[i]);
 		}
@@ -161,7 +157,8 @@ public class valueSelection_new {
 
 	}
 
-	protected String[][] SelectedValues(String field, Integer maxInstanceNm) throws ParseException {
+	protected String[][] SelectedValues(String field, Integer maxInstanceNm, ValueGenerator valueGen) throws ParseException {
+		this.valueGen = valueGen;
 		Integer instance = getInstanceNm(field, maxInstanceNm)[1];
 		Set setCombination=getRandomSelectedValues(field, maxInstanceNm);
 		String[] fields = field.split("-");
