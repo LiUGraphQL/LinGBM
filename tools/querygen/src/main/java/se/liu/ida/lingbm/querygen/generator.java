@@ -182,6 +182,7 @@ public class generator {
 		List<FileGen> collection=new ArrayList<>(fileMap.values());
 		Collections.sort(collection, Comparator.comparing(o -> o.fileName));
 		int countTemplates=0;
+
 		for (FileGen fileGen:collection){
 			if(!fileGen.checkPaired()){
 				System.out.println("query template/placeholders for "+fileGen.fileName+" is missing. Skipped");
@@ -211,11 +212,12 @@ public class generator {
 			}
 			String placeholder = queryDescription.substring(1);
 
-			new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, fileGen.fileName);
+			int templateNr = Integer.parseInt(fileGen.fileName.replaceAll("[^0-9]", ""));
+			new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, templateNr);
 
 			Integer[] actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
-			statistic_data.add(actualNumInstan[1]+","+fileGen.fileName+","+actualNumInstan[2]);
-			System.out.println("queries for template "+fileGen.fileName+" has been generated.");
+			statistic_data.add(actualNumInstan[1]+", QT"+templateNr+","+actualNumInstan[2]);
+			System.out.println("queries for template QT"+templateNr+" has been generated.");
 		}
 
 		if(countTemplates==0){

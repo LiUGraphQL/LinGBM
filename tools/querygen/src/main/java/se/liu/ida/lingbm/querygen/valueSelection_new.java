@@ -1,7 +1,6 @@
 package se.liu.ida.lingbm.querygen;
 
 import java.io.*;
-import java.text.ParseException;
 import java.util.*;
 
 // This module works for generating a group of values for one parameter or a combination of parameters.
@@ -149,9 +148,8 @@ public class valueSelection_new {
 
 	}
 
-	protected String[][] SelectedValues(String field, Integer maxInstanceNm) {
-		final Random seedGenerator = new Random(53223436L);
-		valueGen = new ValueGenerator(seedGenerator.nextLong());
+	protected String[][] SelectedValues( String field, Integer maxInstanceNm, Long seed ) {
+		valueGen = new ValueGenerator(seed);
 
 		Integer instance = getInstanceNm(field, maxInstanceNm)[1];
 		Set<String> setCombination=getRandomSelectedValues(field, maxInstanceNm);
