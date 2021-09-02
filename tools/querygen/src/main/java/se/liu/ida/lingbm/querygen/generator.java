@@ -17,7 +17,7 @@ public class generator {
 	protected static String placeholderValDir= generatorDefaultValues.placeholderValDirDef;
 	protected static String queryTemplateDir = generatorDefaultValues.queryTemplateDirDef;
 
-	static ArrayList<String> statistic_data = new ArrayList<String>();
+	static ArrayList<String> statistic_data = new ArrayList<>();
 	/*
 	 * Parameters for steady state
 	 */
@@ -31,24 +31,30 @@ public class generator {
 		int i = 0;
 		while (i < args.length) {
 			try {
-				if (args[i].equals("-nm")) {
-					numQueriesPerTempate = Integer.parseInt(args[i++ + 1]);
-				} else if (args[i].equals("-values")) {
-					placeholderValDir = args[i++ + 1];
-				} else if (args[i].equals("-templates")) {
-					queryTemplateDir = args[i++ + 1];
-				} else if (args[i].equals("-outdirQ")) {
-					queryInstanceDir = args[i++ + 1];
-				} else if(args[i].equals("-outdirV")){
-					querywithVariDir = args[i++ + 1];
-				}else {
-					if (!args[i].equals("-help")) {
-						System.err.println("Unknown parameter: " + args[i]);
-					}
-					printUsageInfos();
-					System.exit(-1);
+				switch (args[i]){
+					case "-nm":
+						numQueriesPerTempate = Integer.parseInt(args[i++ + 1]);
+						break;
+					case "-values":
+						placeholderValDir = args[i++ + 1];
+						break;
+					case "-templates":
+						queryTemplateDir = args[i++ + 1];
+						break;
+					case "-outdirQ":
+						queryInstanceDir = args[i++ + 1];
+						break;
+					case "-outdirV":
+						querywithVariDir = args[i++ + 1];
+						break;
+					default:
+						if (!args[i].equals("-help")) {
+							System.err.println("Unknown parameter: " + args[i]);
+						}
+						printUsageInfos();
+						System.exit(-1);
+						break;
 				}
-
 				i++;
 
 			} catch (Exception e) {
@@ -93,12 +99,10 @@ public class generator {
 	    File[] files = folder.listFiles();
 	    if(files!=null) { //some JVMs return null for empty dirs
 	        for(File f: files) {
-	        		f.delete();
 	            if(f.isDirectory()) {
 	                deleteFolder(f);
-	            } else {
-	                f.delete();
 	            }
+	            f.delete();
 	        }
 	    }
 	}
@@ -118,8 +122,8 @@ public class generator {
 	}
 	
 
-	public static void main(String[] args) throws IOException, ParseException {
-		generator generator = new generator(args);
+	public static void main(String[] args) throws IOException {
+		new generator(args);
 
 		File dir = new File(queryTemplateDir);
 		if (!dir.isDirectory()){
@@ -148,22 +152,18 @@ public class generator {
 
 		deleteFolder(dirQueryVari);
 		System.out.println("\n Cleared\n");
-
-		Integer[] actualNumInstan= new Integer[3];
-		//read query template, and store it as string
 		
 		System.out.println("\nStart generating new query instances...\n");
-		//int numberOfTemplates = 0;
 		File[] listDir = dir.listFiles();
 
 		Map<String,FileGen> fileMap=new LinkedHashMap<>();
-		for (int i = 0; i < listDir.length; i++) {
-			String fileName=listDir[i].getName();
+		for ( File file : listDir ) {
+			String fileName=file.getName();
 			if(!(fileName.endsWith(".txt")||fileName.endsWith(".vars"))){
 				continue;
 			}
 			String simpleName=fileName.split("\\.")[0];
-			FileGen fileGen=null;
+			FileGen fileGen;
 			if(fileMap.containsKey(simpleName)){
 				fileGen=fileMap.get(simpleName);
 			}else{
@@ -171,22 +171,16 @@ public class generator {
 				fileMap.put(simpleName,fileGen);
 			}
 			if(fileName.endsWith(".txt")){
-				fileGen.txtFile=listDir[i];
+				fileGen.txtFile=file;
 			}else{
-				fileGen.varsFile=listDir[i];
+				fileGen.varsFile=file;
 			}
 		}
 
 		System.out.println("Read in query templates and placeholders for query templates...");
 
 		List<FileGen> collection=new ArrayList<>(fileMap.values());
-		Collections.sort(collection, new Comparator<FileGen>() {
-			@Override
-			public int compare(FileGen o1, FileGen o2) {
-				return o1.fileName.compareTo(o2.fileName);
-			}
-
-		});
+		Collections.sort(collection, Comparator.comparing(o -> o.fileName));
 		int countTemplates=0;
 		for (FileGen fileGen:collection){
 			if(!fileGen.checkPaired()){
@@ -215,13 +209,11 @@ public class generator {
 				queryDescription = queryDescription+"-"+placeholderTemp;
 				placeholderTemp = txtQueryDes.readLine();
 			}
-			String placeholder = queryDescription.substring(1, queryDescription.length());
+			String placeholder = queryDescription.substring(1);
 
-			final Random seedGenerator = new Random(53223436L);
-			ValueGenerator valueGen = new ValueGenerator(seedGenerator.nextLong());
-			new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, fileGen.fileName, valueGen);
+			new queryInstantiation(queryTemp, placeholder, valueSel, dirIns, dirQueryVari, numQueriesPerTempate, fileGen.fileName);
 
-			actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
+			Integer[] actualNumInstan = valueSel.getInstanceNm(placeholder, numQueriesPerTempate);
 			statistic_data.add(actualNumInstan[1]+","+fileGen.fileName+","+actualNumInstan[2]);
 			System.out.println("queries for template "+fileGen.fileName+" has been generated.");
 		}
@@ -241,13 +233,12 @@ public class generator {
 
 		File numInstance = new File(path, "/NumOfInstances.csv");
 		try (
-				FileWriter rfw = new FileWriter(numInstance, true);
-				BufferedWriter rbw = new BufferedWriter(rfw);
-				PrintWriter R_file = new PrintWriter(rbw)) {
-					Iterator dataIte = statistic_data.iterator();
-					while (dataIte.hasNext()) {
-						R_file.println(dataIte.next());
-					}
+			FileWriter rfw = new FileWriter(numInstance, true);
+			BufferedWriter rbw = new BufferedWriter(rfw);
+			PrintWriter R_file = new PrintWriter(rbw)) {
+				for ( String data : statistic_data) {
+					R_file.println( data );
+				}
 		} catch (Exception e) {
 			System.out.println("This is the type of exception found for filling parameter of query: " + e);
 		}

@@ -9,20 +9,20 @@ import java.util.*;
 public class valueSelection_new {
 	protected ValueGenerator valueGen;
 
-	private List<Integer> university = new ArrayList<Integer>();
-	private List<Integer> department = new ArrayList<Integer>();
-	private List<Integer> researchGroup = new ArrayList<Integer>();
-	private List<Integer> faculty = new ArrayList<Integer>();
-	private List<Integer> professor = new ArrayList<Integer>();
-	private List<Integer> lecturer = new ArrayList<Integer>();
-	private List<Integer> graduateStudent = new ArrayList<Integer>();
-	private List<Integer> undergraduateStudent = new ArrayList<Integer>();
-	private List<Integer> publication = new ArrayList<Integer>();
-	private List<Integer> graduateCourse = new ArrayList<Integer>();
-	private List<Integer> undergraduateCourse = new ArrayList<Integer>();
-	private List<String> titleWord = new ArrayList<String>();
-	private List<String> abstractWord = new ArrayList<String>();
-	private List<String> interestWord = new ArrayList<String>();
+	private List<Integer> university = new ArrayList<>();
+	private List<Integer> department = new ArrayList<>();
+	private List<Integer> researchGroup = new ArrayList<>();
+	private List<Integer> faculty = new ArrayList<>();
+	private List<Integer> professor = new ArrayList<>();
+	private List<Integer> lecturer = new ArrayList<>();
+	private List<Integer> graduateStudent = new ArrayList<>();
+	private List<Integer> undergraduateStudent = new ArrayList<>();
+	private List<Integer> publication = new ArrayList<>();
+	private List<Integer> graduateCourse = new ArrayList<>();
+	private List<Integer> undergraduateCourse = new ArrayList<>();
+	private List<String> titleWord = new ArrayList<>();
+	private List<String> abstractWord = new ArrayList<>();
+	private List<String> interestWord = new ArrayList<>();
 
 	protected Integer scalefactor;
 	protected Integer departmentCount;
@@ -45,105 +45,97 @@ public class valueSelection_new {
 			"publicationID", "graduateCourseID", "undergraduateCourseID", "title", "abstract", "interest"};
 
 	protected void init( File resourceDir ) {
-		for(int i = 0; i<entityNames.length; i++){
-			readDepartment(resourceDir, entityNames[i]);
+		for( String entity : entityNames ){
+			readDepartment( resourceDir, entity );
 		}
 	}
 	private void readDepartment(File resourceDir, String entity) {
 		File dep = new File(resourceDir, entity+".txt");
-		String line = null;
 
-		BufferedReader departmentinputReader = null;
 		try {
-			departmentinputReader = new BufferedReader(new FileReader(dep));
-			line = departmentinputReader.readLine();
+			BufferedReader departmentInputReader = new BufferedReader(new FileReader(dep));
+			String line = departmentInputReader.readLine();
 
 			String[] values = line.split(", ");
 
 			switch (entity) {
 				case "universityID":
 					universityCount = values.length;
-					for(int i=0; i<values.length; i++){
-						university.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						university.add( Integer.parseInt(value) );
 					}
 					break;
 				case "departmentID":
 					departmentCount = values.length;
-					for(int i=0; i<values.length; i++){
-						department.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						department.add( Integer.parseInt(value) );
 					}
 					break;
 				case "researchGroupID":
 					researchGroupCount = values.length;
-					for(int i=0; i<values.length; i++){
-						researchGroup.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						researchGroup.add( Integer.parseInt(value) );
 					}
 					break;
 				case "facultyID":
 					facultyCount = values.length;
-					for(int i=0; i<values.length; i++){
-						faculty.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						faculty.add( Integer.parseInt(value) );
 					}
 					break;
 				case "professorID":
 					professorCount = values.length;
-					for(int i=0; i<values.length; i++){
-						professor.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						professor.add( Integer.parseInt(value) );
 					}
 					break;
 				case "lecturerID":
 					lecturerCount = values.length;
-					for(int i=0; i<values.length; i++){
-						lecturer.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						lecturer.add( Integer.parseInt(value) );
 					}
 					break;
 				case "graduateStudentID":
 					graduateStudentCount = values.length;
-					for(int i=0; i<values.length; i++){
-						graduateStudent.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						graduateStudent.add( Integer.parseInt(value) );
 					}
 					break;
 				case "undergraduateStudentID":
 					undergraduateStudentCount = values.length;
-					for(int i=0; i<values.length; i++){
-						undergraduateStudent.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						undergraduateStudent.add( Integer.parseInt(value) );
 					}
 					break;
 				case "publicationID":
 					publicationCount = values.length;
-					for(int i=0; i<values.length; i++){
-						publication.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						publication.add( Integer.parseInt(value) );
 					}
 					break;
 				case "graduateCourseID":
 					graduateCourseCount = values.length;
-					for(int i=0; i<values.length; i++){
-						graduateCourse.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						graduateCourse.add( Integer.parseInt(value) );
 					}
 					break;
 				case "undergraduateCourseID":
 					undergraduateCourseCount = values.length;
-					for(int i=0; i<values.length; i++){
-						undergraduateCourse.add(Integer.parseInt(values[i]));
+					for ( String value : values){
+						undergraduateCourse.add( Integer.parseInt(value) );
 					}
 					break;
 				case "title":
 					titleWordCount = values.length;
-					for(int i=0; i<values.length; i++){
-						titleWord.add(values[i]);
-					}
+					titleWord.addAll(List.of(values));
 					break;
 				case "abstract":
 					abstractWordCount = values.length;
-					for(int i=0; i<values.length; i++){
-						abstractWord.add(values[i]);
-					}
+					abstractWord.addAll(List.of(values));
 					break;
 				case "interest":
 					interestWordCount = values.length;
-					for(int i=0; i<values.length; i++){
-						interestWord.add(values[i]);
-					}
+					interestWord.addAll(List.of(values));
 					break;
 				default:
 					break;
@@ -157,18 +149,17 @@ public class valueSelection_new {
 
 	}
 
-	protected String[][] SelectedValues(String field, Integer maxInstanceNm, ValueGenerator valueGen) throws ParseException {
-		this.valueGen = valueGen;
+	protected String[][] SelectedValues(String field, Integer maxInstanceNm) {
+		final Random seedGenerator = new Random(53223436L);
+		valueGen = new ValueGenerator(seedGenerator.nextLong());
+
 		Integer instance = getInstanceNm(field, maxInstanceNm)[1];
-		Set setCombination=getRandomSelectedValues(field, maxInstanceNm);
+		Set<String> setCombination=getRandomSelectedValues(field, maxInstanceNm);
 		String[] fields = field.split("-");
 		int paraNum = fields.length;
 		String[][] paras = new String[instance][paraNum];
-		Iterator iterator = setCombination.iterator();
 		int i=0;
-		while(iterator.hasNext()){
-			String element = (String) iterator.next();
-			//String[] parts = element.split("_");
+		for( String element:setCombination ){
 			String[] parts = element.split("/");
 			int k=0;
 			for(String value:parts){
@@ -180,43 +171,35 @@ public class valueSelection_new {
 		return paras;
 	}
 
-	protected Set getRandomSelectedValues(String field, Integer maxInstanceNm) throws ParseException {
-		Integer instanceNm = getInstanceNm(field, maxInstanceNm)[1];
-		Set setCombination = new HashSet();
+	protected Set<String> getRandomSelectedValues(String field, Integer maxInstanceNm) {
+		Set<String> setCombination = new LinkedHashSet<>();
 		int size = 0;
 
 		String[] fields = field.split("-");
 		int paraNum = fields.length;
 
-		boolean Empty = true;
-		String component = null;
-		//String connect = "_";
-		String connect = "/";
-
+		Integer instanceNm = getInstanceNm(field, maxInstanceNm)[1];
 		while(size < instanceNm){
 			String oneCombination = getRandom(fields[0]);
-			for(int i = 1; i< paraNum;i++){
+			for(int i = 1; i< paraNum; i++){
 				String para = fields[i];
+				String component = getRandom(para);
 
 				//if multiple variables in one template come from the same list, the values must be different.
 				String compa1 = fields[i-1].replaceAll("[0-9]","");
 				String compa2 = fields[i].replaceAll("[0-9]","");
 				if(compa2.equals(compa1)){
-					component = getRandom(para);
 					while (oneCombination.contains(component)){
 						component = getRandom(para);
 					}
-				}else {
-					component = getRandom(para);
 				}
-				oneCombination = oneCombination+connect+component;
+				oneCombination = oneCombination+"/"+component;
 			}
 			setCombination.add(oneCombination);
 			size = setCombination.size();
 		}
-		Empty = setCombination.isEmpty();
 
-		if(Empty)
+		if(setCombination.isEmpty())
 			System.out.println("The combination set is empty");
 		return setCombination;
 	}
@@ -237,7 +220,7 @@ public class valueSelection_new {
 
 
 	protected Integer[] getInstanceNm(String field, Integer maxInstanceNm) {
-		int combTotalCount =0;
+		int combTotalCount;
 		//NumOfInstance[1]: number of query instances (should be generated)
 		//NumOfInstance[2]: actual max number of query instances in the dataset
 		Integer[] NumOfInstance = new Integer[3];
@@ -264,25 +247,13 @@ public class valueSelection_new {
 				NumOfInstance[2] = combTotalCount;
 				break;
 			case "$cnt-$attrGStudent1-$attrGStudent2":
-				combTotalCount = 500 * 6 * 5;
-				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
-				NumOfInstance[2] = combTotalCount;
-				break;
 			case "$cnt-$attrGStudent1Hasura-$attrGStudent2Hasura":
-				combTotalCount = 500 * 6 * 5;
-				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
-				NumOfInstance[2] = combTotalCount;
-				break;
 			case "$cnt-$attrGStudent1PostGraphile-$attrGStudent2PostGraphile":
 				combTotalCount = 500 * 6 * 5;
 				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
 				NumOfInstance[2] = combTotalCount;
 				break;
 			case "$universityID-$attrPublicationField":
-				combTotalCount = universityCount * 2;
-				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
-				NumOfInstance[2] = combTotalCount;
-				break;
 			case "$universityID-$attrPublicationFieldPostGraphile":
 				combTotalCount = universityCount * 2;
 				NumOfInstance[1] = Math.min(combTotalCount, maxInstanceNm);
@@ -329,60 +300,58 @@ public class valueSelection_new {
 		return NumOfInstance;
 	}
 
-	protected String getRandom(String field) throws ParseException {
-		int Nr=-1;
-		String randomNr = null;
+	protected String getRandom(String field) {
 		if(field.equals("$departmentID")){
-			Nr = valueGen.randomInt(0, departmentCount-1);
-			randomNr = String.valueOf(department.get(Nr));
+			int Nr = valueGen.randomInt(0, departmentCount-1);
+			return String.valueOf(department.get(Nr));
 		}else if(field.equals("$facultyID")){
-			Nr = valueGen.randomInt(0, facultyCount-1);
-			randomNr = String.valueOf(faculty.get(Nr));
+			int Nr = valueGen.randomInt(0, facultyCount-1);
+			return String.valueOf(faculty.get(Nr));
 		}else if(field.equals("$universityID")){
-			Nr = valueGen.randomInt(0, universityCount-1);
-			randomNr = String.valueOf(university.get(Nr));
+			int Nr = valueGen.randomInt(0, universityCount-1);
+			return String.valueOf(university.get(Nr));
 		}else if(field.equals("$researchGroupID")){
-			Nr = valueGen.randomInt(0, researchGroupCount-1);
-			randomNr = String.valueOf(researchGroup.get(Nr));
+			int Nr = valueGen.randomInt(0, researchGroupCount-1);
+			return String.valueOf(researchGroup.get(Nr));
 		}else if(field.equals("$lecturerID")){
-			Nr = valueGen.randomInt(0, lecturerCount-1);
-			randomNr = String.valueOf(lecturer.get(Nr));
+			int Nr = valueGen.randomInt(0, lecturerCount-1);
+			return String.valueOf(lecturer.get(Nr));
 		}else if(field.equals("$offset")){
-			Nr = valueGen.randomInt(1, 50);
-			randomNr = String.valueOf(Nr);
+			int Nr = valueGen.randomInt(1, 50);
+			return String.valueOf(Nr);
 		}else if(field.equals("$cnt")){
-			Nr = valueGen.randomInt(500, 1000);
-			randomNr = String.valueOf(Nr);
+			int Nr = valueGen.randomInt(500, 1000);
+			return String.valueOf(Nr);
 		}else if(field.contains("$attrGStudent")){
 			if (field.contains("PostGraphile")){
-				Nr = valueGen.randomInt(0, graduateStudentField_PostGraphile.length-1);
-				randomNr = String.valueOf(graduateStudentField_PostGraphile[Nr]);
+				int Nr = valueGen.randomInt(0, graduateStudentField_PostGraphile.length-1);
+				return String.valueOf(graduateStudentField_PostGraphile[Nr]);
 			}else if(field.contains("Hasura")){
-				Nr = valueGen.randomInt(0, graduateStudentField_Hasura.length-1);
-				randomNr = String.valueOf(graduateStudentField_Hasura[Nr]);
+				int Nr = valueGen.randomInt(0, graduateStudentField_Hasura.length-1);
+				return String.valueOf(graduateStudentField_Hasura[Nr]);
 			}else{
-				Nr = valueGen.randomInt(0, graduateStudentField.length-1);
-				randomNr = String.valueOf(graduateStudentField[Nr]);
+				int Nr = valueGen.randomInt(0, graduateStudentField.length-1);
+				return String.valueOf(graduateStudentField[Nr]);
 			}
 		}else if(field.contains("$attrPublicationField")){
 			if(field.contains("PostGraphile")){
-				Nr = valueGen.randomInt(0, publicationField_PostGraphile.length-1);
-				randomNr = String.valueOf(publicationField_PostGraphile[Nr]);
+				int Nr = valueGen.randomInt(0, publicationField_PostGraphile.length-1);
+				return String.valueOf(publicationField_PostGraphile[Nr]);
 			}else{
-				Nr = valueGen.randomInt(0, publicationField.length-1);
-				randomNr = String.valueOf(publicationField[Nr]);
+				int Nr = valueGen.randomInt(0, publicationField.length-1);
+				return String.valueOf(publicationField[Nr]);
 			}
 		}else if(field.equals("$age")){
-			Nr = valueGen.randomInt(20, 27);
-			randomNr = String.valueOf(Nr);
+			int Nr = valueGen.randomInt(20, 27);
+			return String.valueOf(Nr);
 		}else if(field.equals("$keyword")){
-			Nr = valueGen.randomInt(0, titleWordCount-1);
-			randomNr = titleWord.get(Nr);
+			int Nr = valueGen.randomInt(0, titleWordCount-1);
+			return titleWord.get(Nr);
 		}else if(field.equals("$interestWord")){
-			Nr = valueGen.randomInt(0, interestWordCount-1);
-			randomNr = interestWord.get(Nr);
+			int Nr = valueGen.randomInt(0, interestWordCount-1);
+			return interestWord.get(Nr);
 		}else {
+			return null;
 		}
-		return randomNr;
 	}
 }

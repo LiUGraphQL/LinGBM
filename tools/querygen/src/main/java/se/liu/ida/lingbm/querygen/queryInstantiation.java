@@ -13,13 +13,11 @@ import java.util.Set;
 //Given a query template, output a set of query instances.
 public class queryInstantiation {
 
-	public queryInstantiation(String oldQuery, String parameter, valueSelection_new valueSel, File dirIns , File dirQueryVari, int max, String fileName, ValueGenerator valueGen) throws ParseException {
-
-
+	public queryInstantiation(String oldQuery, String parameter, valueSelection_new valueSel, File dirIns , File dirQueryVari, int max, String fileName) {
 		// Parse the parameter
 		String[] paraParts = parameter.split("-");
 		//Process the query string: replace the placeholders with corresponding values
-		String[][] valueCombine = valueSel.SelectedValues(parameter, max, valueGen);
+		String[][] valueCombine = valueSel.SelectedValues(parameter, max);
 
 		if(valueCombine!= null){
 			for(int i = 0; i<valueCombine.length; i++){
@@ -46,7 +44,7 @@ public class queryInstantiation {
 				File dirQuerywithVari = new File(dirQueryVari+"/"+fileName+"/");
 				dirQuerywithVari.mkdirs();
 				for(int k = 0; k<valueCombine[0].length; k++){
-					variables = variables.concat("	\""+paraParts[k].substring(1, paraParts[k].length())+"\": "+valueCombine[i][k]+",\n");
+					variables = variables.concat("	\""+paraParts[k].substring(1)+"\": "+valueCombine[i][k]+",\n");
 				}
 				variables = variables.substring(0, variables.length()-2);
 				variables=variables.concat("\n}");
@@ -62,7 +60,6 @@ public class queryInstantiation {
 				catch(Exception e) {
 					System.out.println("This is the type of exception found for add values for variables of query: " + e);
 				}
-
 
 			}
 		}
