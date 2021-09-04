@@ -2,7 +2,7 @@ query lecturer_university_graduateStudent_professor_department($lecturerID:ID)
 { 
   lecturer(where:{ nr:{_eq: $lecturerID }}) {
     faculty {
-      universityByDoctoraldegreefrom { 
+      university { 
         nr 
         graduatestudents { 
           nr 
