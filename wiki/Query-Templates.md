@@ -1,0 +1,1 @@
+See [Query Templates of the Benchmark](Query-Templates-of-the-Benchmark).
