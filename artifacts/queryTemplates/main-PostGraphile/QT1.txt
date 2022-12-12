@@ -2,7 +2,7 @@ query faculty_university_graduateStudent($facultyID:ID!)
 { 
 	facultyByNr(nr: $facultyID){
 		    universityByDoctoraldegreefrom { 
-			    graduatestudentsByUndergraduatedegreefrom{
+			    graduatestudentsByUndergraduatedegreefromList{
                         nr
                         emailaddress
                     }
