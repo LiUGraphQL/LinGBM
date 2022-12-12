@@ -1,15 +1,11 @@
-query faculty_university_graduateStudent($facultyID:ID) 
+query faculty_university_graduateStudent($facultyID:ID!) 
 { 
-	allFaculties(condition: { nr:$facultyID }){
-        nodes {
+	facultyByNr(nr: $facultyID){
 		    universityByDoctoraldegreefrom { 
 			    graduatestudentsByUndergraduatedegreefrom{
-                    nodes {
                         nr
                         emailaddress
                     }
-                }
 	    	} 
-    	} 
     }
 }

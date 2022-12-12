@@ -1,18 +1,12 @@
-query subqueryFilter1($universityID:ID, $departmentID:ID) 
+query subqueryFilter1($universityID:ID!, $departmentID:ID) 
 {
-  allUniversities(condition: {nr: $universityID}) {
-    nodes {
-      facultiesByDoctoraldegreefrom(condition: {worksfor: $departmentID}) {
-        nodes {
+  universityByNr(nr: $universityID) {
+      facultiesByDoctoraldegreefromList(condition: {worksfor: $departmentID}) {
           nr
           emailaddress
-          publicationsByMainauthor {
-            nodes {
+          publicationsByMainauthorList {
               nr
-            }
           }
-        }
       }
-    }
   }
 }

@@ -1,12 +1,10 @@
-query lecturer_university_graduateStudent_professor_department($lecturerID:ID) 
+query lecturer_university_graduateStudent_professor_department($lecturerID:ID!) 
 { 
- allLecturers(condition: {nr: $lecturerID}) {
-    nodes {
+ lecturerByNr(nr: $lecturerID) {
       facultyByNr {
         universityByDoctoraldegreefrom {
           nr
-          graduatestudentsByUndergraduatedegreefrom {
-            nodes {
+          graduatestudentsByUndergraduatedegreefromList {
               nr
               emailaddress
               professorByAdvisor {
@@ -18,10 +16,8 @@ query lecturer_university_graduateStudent_professor_department($lecturerID:ID)
                   }
                 }
               }
-            }
           }
         }
       }
-    }
   }
 }

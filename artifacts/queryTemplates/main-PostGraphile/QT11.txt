@@ -1,11 +1,9 @@
 query subquerySearch($universityID:ID) 
 {
-  allGraduatestudents(condition: {undergraduatedegreefrom: $universityID}) {
-    nodes {
+  allGraduatestudentsList(condition: {undergraduatedegreefrom: $universityID}) {
       nr
       professorByAdvisor {
         nr
       }
-    }
   }
 }
