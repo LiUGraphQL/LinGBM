@@ -1,31 +1,25 @@
-query department_faculty_university_graduateStudents_department($departmentID:ID) 
+query department_faculty_university_graduateStudents_department($departmentID:ID!) 
 {
-  allDepartments(condition: {nr: $departmentID}) {
-    nodes {
+  departmentByNr(nr: $departmentID) {
       universityBySuborganizationof {
         nr
-        graduatestudentsByUndergraduatedegreefrom {
-          nodes {
+        graduatestudentsByUndergraduatedegreefromList {
             nr
             emailaddress
             departmentByMemberof {
               nr
               universityBySuborganizationof {
                 nr
-                graduatestudentsByUndergraduatedegreefrom {
-                  nodes {
+                graduatestudentsByUndergraduatedegreefromList {
                     nr
                     emailaddress
                     departmentByMemberof {
                       nr
                     }
-                  }
                 }
               }
             }
-          }
         }
       }
-    }
   }
 }

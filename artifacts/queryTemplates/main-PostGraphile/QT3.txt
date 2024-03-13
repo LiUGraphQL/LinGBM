@@ -1,10 +1,8 @@
-query researchGroup_department_head_doctorDegreeFrom($researchGroupID:ID) 
+query researchGroup_department_head_doctorDegreeFrom($researchGroupID:ID!) 
 {
-  allResearchgroups(condition: {nr: $researchGroupID}) {
-    nodes {
+  researchGroupByNr(nr: $researchGroupID) {
       departmentBySuborganizationof {
-        professorsByHeadof {
-          nodes {
+        professorsByHeadofList {
             facultyByNr {
               nr
               emailaddress
@@ -12,9 +10,7 @@ query researchGroup_department_head_doctorDegreeFrom($researchGroupID:ID)
                 nr
               }
             }
-          }
         }
       }
-    }
   }
 }

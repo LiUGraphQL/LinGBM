@@ -1,16 +1,10 @@
-query university_faculty_publications($universityID:ID) 
+query university_faculty_publications($universityID:ID!) 
 {
-  allUniversities(condition: {nr: $universityID}) {
-    nodes {
-      facultiesByDoctoraldegreefrom {
-        nodes {
-          publicationsByMainauthor {
-            nodes {
+  universityByNr(nr: $universityID) {
+      facultiesByDoctoraldegreefromList {
+          publicationsByMainauthorList {
               title
-            }
           }
-        }
       }
-    }
   }
 }

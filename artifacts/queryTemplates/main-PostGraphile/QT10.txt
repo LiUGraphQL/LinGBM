@@ -1,10 +1,8 @@
 query stringMatching($keyword:String) 
 {
-  allPublications(filter: {title: {includes: "$keyword"}}) {
-    nodes {
+  allPublicationsList(filter: {title: {includes: $keyword}}) {
       nr
       title
       abstract
-    }
   }
 }
